@@ -6,3 +6,5 @@ library for programming contest
 	- template file
  - succinct_data_structure
 	- union_find
+ - graph
+ 	- dijkstra
