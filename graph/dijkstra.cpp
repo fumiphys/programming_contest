@@ -22,6 +22,9 @@ struct Graph_ {
 				edge.resize(n);
 				dis.resize(n);
 		}
+		void dijkstra(int s){
+				dijkstra(s, 0);
+		}
 		T dijkstra(int s, int t){
 				// initialize
 				fill(dis.begin(), dis.end(), -1);
@@ -36,7 +39,6 @@ struct Graph_ {
 						pair<T, int> p = q.top(); q.pop();
 						int at = p.second;
 						T distance = p.first;
-						if(at == t)break;
 						used[at] = true;
 						if(distance > dis[at])continue;
 						for(auto itr = edge[at].begin(); itr != edge[at].end(); ++itr){
@@ -81,6 +83,28 @@ int main(int argc, char const* argv[])
 	assert(graphi.dijkstra(1, 3) == 3);
 	assert(graphi.dijkstra(0, 2) == 5);
 	assert(graphi.dijkstra(0, 1) == 1);
+
+	// ll version
+	GraphL graphl(4);
+
+	graphl.adde(0, 1, (ll)1 * 1e9);
+	graphl.adde(0, 2, (ll)6 * 1e9);
+	graphl.adde(0, 3, (ll)2 * 1e9);
+	graphl.adde(1, 0, (ll)1 * 1e9);
+	graphl.adde(1, 2, (ll)4 * 1e9);
+	graphl.adde(1, 3, (ll)5 * 1e9);
+	graphl.adde(2, 0, (ll)6 * 1e9);
+	graphl.adde(2, 1, (ll)4 * 1e9);
+	graphl.adde(2, 3, (ll)3 * 1e9);
+	graphl.adde(3, 0, (ll)2 * 1e9);
+	graphl.adde(3, 1, (ll)5 * 1e9);
+	graphl.adde(3, 2, (ll)3 * 1e9);
+
+	graphl.dijkstra(0);
+	assert(graphl.dis[0] == 0);
+	assert(graphl.dis[1] == (ll)1 * 1e9);
+	assert(graphl.dis[2] == (ll)5 * 1e9);
+	assert(graphl.dis[3] == (ll)2 * 1e9);
 	cout << "-- test for dijkstra end: Success --" << endl;
 	return 0;
 }
