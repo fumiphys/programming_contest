@@ -18,4 +18,11 @@ if [ -e ${1} ]; then
 fi
 
 cp ${TEMPLATE_FILE} ${1}
+
+FILENAME=${1}
+TNAME=${FILENAME%.*}
+mkdir -p test
+mkdir -p "test/test_${TNAME}"
+mkdir -p "test/test_${TNAME}/in"
+mkdir -p "test/test_${TNAME}/out"
 vim ${1}
