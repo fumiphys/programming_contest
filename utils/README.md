@@ -1,4 +1,4 @@
-# atcoder
+# utils
 utils for programming contest
 
 ## use template
