@@ -2,9 +2,9 @@
 library for programming contest
 
 ## Contents
- - template
+ - [template](template/)
 	- template file
- - succinct_data_structure
+ - [succinct_data_structure](succinct_data_structure/)
 	- union_find
- - graph
+ - [graph](graph/)
  	- dijkstra
