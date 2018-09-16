@@ -39,8 +39,8 @@ struct Graph_ {
 						pair<T, int> p = q.top(); q.pop();
 						int at = p.second;
 						T distance = p.first;
+            if(used[at])continue;
 						used[at] = true;
-						if(distance > dis[at])continue;
 						for(auto itr = edge[at].begin(); itr != edge[at].end(); ++itr){
 								int to = (*itr).first;
 								T cost = (*itr).second;
@@ -54,7 +54,7 @@ struct Graph_ {
 				return dis[t];
 		}
 		void adde(int at, int to, T cost){
-				edge[to].push_back(make_pair(at, cost));
+				edge[at].push_back(make_pair(to, cost));
 		}
 };
 
@@ -105,6 +105,15 @@ int main(int argc, char const* argv[])
 	assert(graphl.dis[1] == (ll)1 * 1e9);
 	assert(graphl.dis[2] == (ll)5 * 1e9);
 	assert(graphl.dis[3] == (ll)2 * 1e9);
+
+  // difkstra for max
+  GraphI graph_ng(3);
+  graph_ng.adde(0, 1, 1);
+  graph_ng.adde(1, 2, 1);
+  graph_ng.dijkstra(0);
+  assert(graph_ng.dis[0] == 0);
+  assert(graph_ng.dis[1] == 1);
+  assert(graph_ng.dis[2] == 2);
 	cout << "-- test for dijkstra end: Success --" << endl;
 	return 0;
 }
