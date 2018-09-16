@@ -1,5 +1,7 @@
 /*
  * dijkstra algorithm
+ * condition:
+ *  no negative edge
  */
 
 #include <algorithm>
@@ -106,7 +108,7 @@ int main(int argc, char const* argv[])
 	assert(graphl.dis[2] == (ll)5 * 1e9);
 	assert(graphl.dis[3] == (ll)2 * 1e9);
 
-  // difkstra for max
+  // difkstra for directed graph
   GraphI graph_ng(3);
   graph_ng.adde(0, 1, 1);
   graph_ng.adde(1, 2, 1);
