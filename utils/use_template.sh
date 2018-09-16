@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 TEMPLATE_FILE="$(cd $(dirname $0); cd ..; pwd)/template/template.cpp"
 
 if [ $# -ne 1 ]; then
@@ -7,8 +7,14 @@ if [ $# -ne 1 ]; then
 fi
 
 if [ -e ${1} ]; then
-		echo "file exists"
-		exit 1
+		echo -n "file exists. overwrite? [y/n] "
+    read OVERWRITE
+
+    case $OVERWRITE in
+      "" | "Y" | "y" | "yes" | "Yes" | "YES" ) echo "file will be overwritten";;
+      * ) echo "stop script!"
+          exit 1;;
+    esac
 fi
 
 cp ${TEMPLATE_FILE} ${1}
