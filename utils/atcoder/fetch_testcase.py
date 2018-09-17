@@ -13,12 +13,12 @@ import urllib.request
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 4:
         print("exactly three arguments are needed.")
         sys.exit()
 
     # directory for test case
-    test_path = "./test/test_{}/".format(sys.argv[1])
+    test_path = "{}/test/test_{}/".format(sys.argv[3], sys.argv[1])
 
     # get HTML
     html = urllib.request.urlopen(sys.argv[2])

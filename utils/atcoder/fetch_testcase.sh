@@ -12,4 +12,7 @@ mkdir -p "test/test_${1}/in"
 mkdir -p "test/test_${1}/out"
 
 # fetch page
-python3 fetch_testcase.py ${1} ${2}
+SCRIPT_FILE="$(cd $(dirname $0); pwd)"
+echo ${SCRIPT_FILE}
+echo "$(pwd)"
+python3 "${SCRIPT_FILE}/fetch_testcase.py" ${1} ${2} "$(pwd)"
