@@ -1,6 +1,18 @@
 #!/bin/bash
 # automatic test for atcoder
 
+# kill child process
+killpstree(){
+  local children=`pgrep -P $1 | awk '{print $1}'`
+  for child in $children
+  do
+    killpstree $child
+  done
+  kill $1
+}
+
+trap "killpstree $$" EXIT
+
 # check argument
 if [ $# -ne 1 ]; then
   echo "need only one argument"
