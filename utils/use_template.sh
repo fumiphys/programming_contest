@@ -13,7 +13,8 @@ if [ -e ${1} ]; then
     case $OVERWRITE in
       "" | "Y" | "y" | "yes" | "Yes" | "YES" ) echo "file will be overwritten";;
       * ) echo "stop script!"
-          exit 1;;
+          vim ${1}
+          exit 0;;
     esac
 fi
 
