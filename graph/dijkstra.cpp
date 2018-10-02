@@ -58,6 +58,17 @@ struct Graph_ {
   void adde(int at, int to, T cost){
     edge[at].push_back(make_pair(to, cost));
   }
+  [[deprecated("This function takes O(edge[at].size()).")]]
+  void remove(int at, int to){
+    int index = -1;
+    for(int i = 0; i < edge[at].size(); i++){
+      if(edge[at][i].first == to){
+        index = i;
+        break;
+      }
+    }
+    edge[at].erase(edge[at].begin() + index);
+  }
 };
 
 typedef struct Graph_<int> GraphI;
