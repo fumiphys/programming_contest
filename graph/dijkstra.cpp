@@ -16,48 +16,48 @@ typedef long long int ll;
 
 template <typename T>
 struct Graph_ {
-		int n;
-		vector<vector<pair<int, T> > > edge;
-		vector<T> dis;
-		Graph_(int ns) {
-				n = ns;
-				edge.resize(n);
-				dis.resize(n);
-		}
-		void dijkstra(int s){
-				dijkstra(s, 0);
-		}
-		T dijkstra(int s, int t){
-				// initialize
-				fill(dis.begin(), dis.end(), -1);
-				vector<bool> used;
-				used.resize(n);
-				fill(used.begin(), used.end(), false);
-				dis[s] = 0;
-				// dijkstra
-				priority_queue<pair<T, int>, vector<pair<T, int> >, greater<pair<T, int> > > q;
-				q.push(make_pair(0, s));
-				while(!q.empty()){
-						pair<T, int> p = q.top(); q.pop();
-						int at = p.second;
-						T distance = p.first;
-            if(used[at])continue;
-						used[at] = true;
-						for(auto itr = edge[at].begin(); itr != edge[at].end(); ++itr){
-								int to = (*itr).first;
-								T cost = (*itr).second;
-								if(used[to])continue;
-								if(dis[to] == -1 || dis[to] > distance + cost){
-										q.push(make_pair(distance + cost, to));
-										dis[to] = distance + cost;
-								}
-						}
-				}
-				return dis[t];
-		}
-		void adde(int at, int to, T cost){
-				edge[at].push_back(make_pair(to, cost));
-		}
+  int n;
+  vector<vector<pair<int, T> > > edge;
+  vector<T> dis;
+  Graph_(int ns) {
+    n = ns;
+    edge.resize(n);
+    dis.resize(n);
+  }
+  void dijkstra(int s){
+    dijkstra(s, 0);
+  }
+  T dijkstra(int s, int t){
+    // initialize
+    fill(dis.begin(), dis.end(), -1);
+    vector<bool> used;
+    used.resize(n);
+    fill(used.begin(), used.end(), false);
+    dis[s] = 0;
+    // dijkstra
+    priority_queue<pair<T, int>, vector<pair<T, int> >, greater<pair<T, int> > > q;
+    q.push(make_pair(0, s));
+    while(!q.empty()){
+      pair<T, int> p = q.top(); q.pop();
+      int at = p.second;
+      T distance = p.first;
+      if(used[at])continue;
+      used[at] = true;
+      for(auto itr = edge[at].begin(); itr != edge[at].end(); ++itr){
+        int to = (*itr).first;
+        T cost = (*itr).second;
+        if(used[to])continue;
+        if(dis[to] == -1 || dis[to] > distance + cost){
+          q.push(make_pair(distance + cost, to));
+          dis[to] = distance + cost;
+        }
+      }
+    }
+    return dis[t];
+  }
+  void adde(int at, int to, T cost){
+    edge[at].push_back(make_pair(to, cost));
+  }
 };
 
 typedef struct Graph_<int> GraphI;
