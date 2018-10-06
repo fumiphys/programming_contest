@@ -8,6 +8,11 @@ library for programming contest
 	- union_find
  - [graph](graph/)
  	- dijkstra
+ - [print](print/)
+  - extend cout
+
+## TODO
+ - benchmark
 
 ## Links
  - [atcoder](https://beta.atcoder.jp/users/fumiphys)
