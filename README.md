@@ -9,7 +9,7 @@ library for programming contest
  - [graph](graph/)
  	- dijkstra
  - [print](print/)
-  - extend cout
+ 	- extend cout
 
 ## TODO
  - benchmark
