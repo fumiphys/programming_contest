@@ -42,7 +42,9 @@ g++ "${1}.cpp" -o "_${1}" -std=c++11 -O2
 
 # judge test case
 for file in `\find "./test/test_${1}/in" -maxdepth 1 -name 'in*.txt'`; do
+  echo "......................................"
   echo " -- input: ${file}"
   echo " -- output: ${file///in//out}"
-  diff <("./_${1}" < ${file}) "${file///in//out}"
+  echo "......................................"
+  diff --new-line-format='+ %L' --old-line-format='- %L' --unchanged-line-format='  %L' <("./_${1}" < ${file}) "${file///in//out}"
 done
