@@ -33,22 +33,12 @@ if __name__ == '__main__':
     input_count = 1
     for inp in input_list:
         inptag = inp.nextSibling
-        inpcount = 0
-        while type(inptag) == bs4.element.NavigableString and \
-                inpcount < 10:
-                    inptag = inptag.nextSibling
-                    inpcount += 1
         with codecs.open(test_path + "in/in{}.txt".format(input_count), "w", "utf-8") as writer:
-            writer.write(inptag.text)
-        input_count = input_count + 1
+            writer.write(inp.findNext('pre').text)
+        input_count += 1
     output_count = 1
     for outp in output_list:
         outptag = outp.nextSibling
-        outpcount = 0
-        while type(outptag) == bs4.element.NavigableString and \
-                outpcount < 10:
-                    outptag = outptag.nextSibling
-                    outpcount += 1
         with codecs.open(test_path + "out/out{}.txt".format(output_count), "w", "utf-8") as writer:
-            writer.write(outptag.text)
-        output_count = output_count + 1
+            writer.write(outp.findNext('pre').text)
+        output_count += 1
