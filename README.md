@@ -10,6 +10,8 @@ library for programming contest
  	- dijkstra
  - [print](print/)
  	- extend cout
+ - [math](math/)
+ 	- power
 
 ## TODO
  - benchmark
