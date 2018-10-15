@@ -43,24 +43,24 @@ typedef struct UnionFind_ {
 
 int main(int argc, char const* argv[])
 {
-	cout << "-- test for union find start --" << endl;
+  cout << "-- test for union find start --" << endl;
 
-	int n = 10;
-	UnionFind unionfind(10);
+  int n = 10;
+  UnionFind unionfind(10);
 
-	/* initialization */
-	assert(unionfind.find(0) == 0);
-	assert(unionfind.find(2) == 2);
-	assert(unionfind.find(5) == 5);
+  /* initialization */
+  assert(unionfind.find(0) == 0);
+  assert(unionfind.find(2) == 2);
+  assert(unionfind.find(5) == 5);
 
-	/* unite */
-	assert(unionfind.unite(0, 1));
-	assert(unionfind.unite(7, 8));
-	assert(!unionfind.unite(7, 8));
+  /* unite */
+  assert(unionfind.unite(0, 1));
+  assert(unionfind.unite(7, 8));
+  assert(!unionfind.unite(7, 8));
 
-	assert(unionfind.same(0, 1));
-	assert(!unionfind.same(0, 2));
+  assert(unionfind.same(0, 1));
+  assert(!unionfind.same(0, 2));
 
-	cout << "-- test for union find end: Success! --" << endl;
-	return 0;
+  cout << "-- test for union find end: Success! --" << endl;
+  return 0;
 }
