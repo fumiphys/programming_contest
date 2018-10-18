@@ -47,6 +47,9 @@ struct Graph_ {
     }
     return 0;
   }
+  T min_cut(int s, int t){
+    return max_flow(s, t);
+  }
   T max_flow(int s, int t){
     T inf = numeric_limits<T>::max();
     T flow = 0;
