@@ -24,6 +24,7 @@ typedef pair<ll, int> Pl;
 typedef pair<ll, ll> Pll;
 const int inf = 1e9;
 const ll linf = 1LL << 50;
+const double EPS = 1e-10;
 
 int main(int argc, char const* argv[])
 {
