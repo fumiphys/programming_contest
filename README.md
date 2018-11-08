@@ -14,6 +14,7 @@ library for programming contest
  	- extend cout
  - [math](math/)
  	- power
+ - [character_strings](character_strings/)
 
 ## TODO
  - benchmark
