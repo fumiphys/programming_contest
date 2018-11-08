@@ -15,6 +15,7 @@ library for programming contest
  - [math](math/)
  	- power
  - [character_strings](character_strings/)
+  - text_search
 
 ## TODO
  - benchmark

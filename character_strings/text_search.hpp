@@ -3,8 +3,6 @@
  *   brute force
  *   KMP
  *   BM
- * condition:
- *  no negative edge
  */
 
 #include <cassert>

@@ -1,7 +1,5 @@
 /*
- * dijkstra algorithm
- * condition:
- *  no negative edge
+ * text search
  */
 
 #include <cassert>
