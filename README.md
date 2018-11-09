@@ -16,6 +16,7 @@ library for programming contest
  	- power
  - [character_strings](character_strings/)
   - text_search
+  - suffix_array
 
 ## TODO
  - benchmark
