@@ -2,7 +2,7 @@
 ## text_search
 search pattern from text  
   - brute force
-  - KMP (TODO)
+  - KMP
   - MB (TODO)
 
 ## suffix_array

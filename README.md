@@ -11,7 +11,6 @@ library for programming contest
 
 ## TODO
  - benchmark
- - KMP
  - BM
  - SA-IS
 
