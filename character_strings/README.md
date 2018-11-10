@@ -3,7 +3,7 @@
 search pattern from text  
   - brute force
   - KMP
-  - MB (TODO)
+  - MB
 
 ## suffix_array
 construct suffix array
