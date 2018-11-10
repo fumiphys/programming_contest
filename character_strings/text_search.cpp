@@ -7,21 +7,8 @@
 #include <random>
 #include <vector>
 #include "text_search.hpp"
+#include "string_utils.hpp"
 using namespace std;
-
-
-string generate_random_string(int len){
-  string s = "";
-  random_device rnd;
-  mt19937 mt(rnd());
-  uniform_int_distribution<> rand_alphabet(0, 25);
-  for(int i = 0; i < len; i++){
-    s += char(rand_alphabet(mt) + 'a');
-  }
-
-  return s;
-}
-
 
 int main(int argc, char const* argv[])
 {
