@@ -9,3 +9,7 @@ search pattern from text
 construct suffix array
   - Manber Myers
   - SA-IS (TODO)
+
+## Burrows Wheeler Transformation
+  - from suffix array
+  - directly (TODO)
