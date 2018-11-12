@@ -3,12 +3,14 @@
  *   brute force
  *   KMP
  *   BM
+ *   suffix array
  */
 
 #include <cassert>
 #include <iostream>
 #include <vector>
 #include <unordered_map>
+#include "suffix_array.hpp"
 using namespace std;
 
 // s: text, t: pattern
@@ -95,5 +97,27 @@ vector<int> bm_search(string s, string t){
     }
   }
 
+  return res;
+}
+
+vector<int> sa_search(string s, string t){
+  SAManberMyers sa(s);
+  vector<int> res;
+  t += "$";
+  s += "$";
+  int ld = -1;
+  int rd = sa.sa.size() - 1;
+  while(rd - ld > 1){
+    int md = (rd + ld) / 2;
+    if(s.substr(sa.sa[md]) < t)ld = md;
+    else rd = md;
+  }
+  t = t.substr(0, t.size() - 1);
+  while(true){
+    if(s.substr(sa.sa[rd], t.size()) != t)break;
+    res.push_back(sa.sa[rd]);
+    rd++;
+  }
+  sort(res.begin(), res.end());
   return res;
 }
