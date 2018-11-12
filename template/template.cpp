@@ -12,6 +12,7 @@
 #include <utility>
 #include <cmath>
 #include <climits>
+#include <bitset>
 
 #define ll long long int
 #define pb push_back
