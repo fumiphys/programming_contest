@@ -4,6 +4,7 @@ search pattern from text
   - brute force
   - KMP
   - MB
+  - suffix array
 
 ## suffix_array
 construct suffix array
