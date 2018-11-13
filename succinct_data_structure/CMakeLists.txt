@@ -1,0 +1,3 @@
+cmake_minimum_required(VERSION 2.8)
+
+add_executable(fully_indexable_dictionary fully_indexable_dictionary.cpp)
