@@ -3,7 +3,7 @@
 search pattern from text  
   - brute force
   - KMP
-  - MB
+  - BM
   - suffix array
 
 ## suffix_array
