@@ -8,6 +8,7 @@ library for programming contest
  - [print](print/)
  - [math](math/)
  - [character_strings](character_strings/)
+ - [succinct_data_structure](succinct_data_structure/)
 
 ## TODO
  - benchmark
