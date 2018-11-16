@@ -1,0 +1,6 @@
+set xlabel "size of input string"
+set ylabel "execution time(s)"
+pl "text_search_benchmark.data" u 1:2 w l title "brute force"
+repl "text_search_benchmark.data" u 1:3 w l title "KMP"
+repl "text_search_benchmark.data" u 1:4 w l title "BM"
+repl "text_search_benchmark.data" u 1:($5/100) w l title "suffix array / 100"
