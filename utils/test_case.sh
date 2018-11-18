@@ -38,13 +38,14 @@ fi
 
 # compile source
 # compile option: -std=c++11
-g++ "${1}.cpp" -o "_${1}" -std=c++11 -O2
+printf "\e[32mCompilation ...\e[m\n"
+time g++ "${1}.cpp" -o "_${1}" -std=c++11 -O2
 
 # judge test case
 for file in `\find "./test/test_${1}/in" -maxdepth 1 -name 'in*.txt'`; do
-  echo "......................................"
-  echo " -- input: ${file}"
-  echo " -- output: ${file///in//out}"
-  echo "......................................"
-  diff --new-line-format='+ %L' --old-line-format='- %L' --unchanged-line-format='  %L' <("./_${1}" < ${file}) "${file///in//out}"
+  printf "\e[32m......................................\e[m\n"
+  printf "\e[32m -- input: ${file}\e[m\n"
+  printf "\e[32m -- output: ${file///in//out}\e[m\n"
+  printf "\e[32m......................................\e[m\n"
+  time diff --new-line-format='+ %L' --old-line-format='- %L' --unchanged-line-format='  %L' <("./_${1}" < ${file}) "${file///in//out}"
 done
