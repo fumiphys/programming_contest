@@ -7,3 +7,4 @@
 
 ## algebra
   - greatest common devider
+  - extgcd
