@@ -4,3 +4,6 @@
 
 ## power
   - power by doubling
+
+## algebra
+  - greatest common devider
