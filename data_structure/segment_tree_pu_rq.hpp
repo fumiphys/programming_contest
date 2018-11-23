@@ -26,11 +26,11 @@ struct SegmentTree_ {
     vec = vector<T>(2*n -1, def);
 
     // initialize segment tree
-    for(int i = 0; i < n_; i++){
+    for(int i = 0; i < v.size(); i++){
       vec[i + n - 1] = v[i];
-      for(int i = n - 2; i >= 0; i--){
-        vec[i] = f(vec[2*i+1], vec[2*i+2]);
-      }
+    }
+    for(int i = n - 2; i >= 0; i--){
+      vec[i] = f(vec[2*i+1], vec[2*i+2]);
     }
   }
   void update(int k, E val){
