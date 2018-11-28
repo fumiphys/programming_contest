@@ -2,9 +2,9 @@
 utils for programming contest
 
 ## use template
- - run script
+ - run script (and fetch test case (see atcoder))
  ```
-./use_template.sh {filename} 
+./use_template.sh {filename} {URL}
  ```
 
 ## test case
