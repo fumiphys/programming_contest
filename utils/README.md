@@ -15,5 +15,10 @@ utils for programming contest
   ./test_case.sh {a, b, c...}
  ```
 
+ - add test case
+ ```
+  ./add_testcase.sh {a, b, c...} {filename}
+ ```
+
 ## atcoder
  - [atcoder](atcoder/)
