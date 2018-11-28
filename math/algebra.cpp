@@ -37,6 +37,25 @@ int main(int argc, char const* argv[])
     assert(gcd<int>(a, b) == extgcd<int>(a, b, x, y));
   }
 
+  // chinese reminder theorem
+  vector<int> b, m;
+  b.push_back(2);
+  b.push_back(3);
+  m.push_back(3);
+  m.push_back(5);
+  pair<int, int> p = chinese_reminder_theorem(b, m);
+  assert(p.first == 8);
+  assert(p.second == 15);
+  b.clear();
+  b.push_back(1);
+  b.push_back(2);
+  m.clear();
+  m.push_back(2);
+  m.push_back(4);
+  p = chinese_reminder_theorem(b, m);
+  assert(p.first == 0);
+  assert(p.second == -1);
+
   cout << "-- test for algebra end: Success --" << endl;
   return 0;
 }

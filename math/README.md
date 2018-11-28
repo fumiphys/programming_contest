@@ -8,3 +8,4 @@
 ## algebra
   - greatest common devider
   - extgcd
+  - chinese reminder theorem
