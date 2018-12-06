@@ -73,3 +73,4 @@ struct Graph_ {
 
 typedef struct Graph_<int> GraphI;
 typedef struct Graph_<ll> GraphL;
+typedef struct Graph_<double> GraphD;
