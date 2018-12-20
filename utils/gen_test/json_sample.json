@@ -1,0 +1,7 @@
+{
+  "n": {"type": "int", "range": "1:10"},
+  "m": {"type": "int", "range": "10000000000000:10000000000000000"},
+  "k": {"type": "double", "range": "2.5:3.5"},
+  "a": {"type": "array(int, n)", "range": "1:1000"},
+  "b": {"type": "array(double, n)", "range": "1:1.5"}
+}

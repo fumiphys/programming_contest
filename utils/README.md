@@ -20,5 +20,15 @@ utils for programming contest
   ./add_testcase.sh {a, b, c...} {filename}
  ```
 
+## generate test case
+ - file format
+ ```
+ {
+   # n: integer in [1, 1000)
+   "n": {"type": "int", "range": "1:1000"}
+   "a": {"type": "array(int, n)", "range": "1:10000"}
+ }
+ ```
+
 ## atcoder
  - [atcoder](atcoder/)
