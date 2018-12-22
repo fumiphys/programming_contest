@@ -1,5 +1,5 @@
 #!/bin/bash
-TEMPLATE_FILE="$(cd $(dirname $0); cd ..; pwd)/template/template.cpp"
+TEMPLATE_FILE="$(cd $(dirname $0); cd ../..; pwd)/template/template.cpp"
 ATCODER_FTES="$(cd $(dirname $0); pwd)/atcoder/fetch_testcase.sh"
 
 if [ $# -lt 1 ]; then
