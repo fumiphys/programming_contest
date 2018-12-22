@@ -22,7 +22,7 @@ if [ -e ${FILENAME} ]; then
     case $OVERWRITE in
       "" | "Y" | "y" | "yes" | "Yes" | "YES" ) echo "file will be overwritten";;
       * ) echo "stop script!"
-          vim ${FILENAME}
+          vim ${FILENAME} -c "vert terminal" -c "wincmd r" -c "wincmd h"
           exit 0;;
     esac
 fi
@@ -34,4 +34,4 @@ mkdir -p test
 mkdir -p "test/test_${TNAME}"
 mkdir -p "test/test_${TNAME}/in"
 mkdir -p "test/test_${TNAME}/out"
-vim ${FILENAME}
+vim ${FILENAME} -c "vert terminal" -c "wincmd r" -c "wincmd h"
