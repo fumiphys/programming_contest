@@ -36,8 +36,8 @@ if __name__ == '__main__':
     for i in range(len(in_list)):
         with codecs.open('{}/in/in{}.txt'.format(test_path, str(i)),
                          'w', 'utf-8') as writer:
-            writer.write(in_list[i])
+            writer.write(in_list[i].replace('\n', '\r\n'))
     for i in range(len(out_list)):
         with codecs.open('{}/out/out{}.txt'.format(test_path, str(i)),
                          'w', 'utf-8') as writer:
-            writer.write(out_list[i])
+            writer.write(out_list[i].replace('\n', '\r\n'))
