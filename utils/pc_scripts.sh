@@ -18,7 +18,7 @@ function gtes() {
 }
 
 function ftes() {
-  ${SCRIPT_DIR}/atcoder/fetch_testcase.sh "$@"
+  ${SCRIPT_DIR}/fetch_testcase.sh "$@"
 }
 
 function ates() {

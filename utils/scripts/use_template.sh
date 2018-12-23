@@ -1,6 +1,6 @@
 #!/bin/bash
 TEMPLATE_FILE="$(cd $(dirname $0); cd ../..; pwd)/template/template.cpp"
-ATCODER_FTES="$(cd $(dirname $0); pwd)/atcoder/fetch_testcase.sh"
+FTES_FILE="$(cd $(dirname $0); pwd)/fetch_testcase.sh"
 
 if [ $# -lt 1 ]; then
 		echo "need only one argument"
@@ -9,7 +9,7 @@ fi
 
 # config for AtCoder
 if [ $# -eq 2 ]; then
-  bash ${ATCODER_FTES} ${1} ${2} &
+  bash ${FTES_FILE} ${1} ${2} &
 fi
 
 # change filename
