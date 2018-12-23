@@ -20,6 +20,11 @@ utils for programming contest
   ./add_testcase.sh {a, b, c...} {filename}
  ```
 
+ - fetch testcase
+```
+./fetch_testcase.sh {a, b, c...} {url}
+```
+
 ## generate test case
  - file format
  ```
@@ -30,5 +35,7 @@ utils for programming contest
  }
  ```
 
-## atcoder
+## other resources
  - [atcoder](atcoder/)
+ - [aoj](aoj/)
+ - [codeforces](codeforces/)
