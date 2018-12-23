@@ -1,4 +1,4 @@
-# fetch test cases from aoj
+# fetch test cases from codeforces
 
 if [ $# -ne 2 ]; then
   echo "need exactly two arguments"
