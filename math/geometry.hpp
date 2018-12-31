@@ -10,7 +10,7 @@
 using namespace std;
 typedef long long ll;
 typedef pair<int, int> P;
-typedef pair<double, double> Pb;
+typedef pair<double, double> Pd;
 
 const double EPS = 1e-10;
 
@@ -26,15 +26,15 @@ bool crossing(P p1, P p2, P q1, P q2){
   return (pq1 * pq2 < EPS && qp1 * qp2 < EPS);
 }
 
-double cross(const Pb &o, const Pb &a, const Pb &b){
+double cross(const Pd &o, const Pd &a, const Pd &b){
   return (a.first - o.first) * (b.second - o.second) - (a.second - o.second) * (b.first - o.first);
 }
 
-vector<Pb> convex_hull(vector<Pb> vec){
+vector<Pd> convex_hull(vector<Pd> vec){
   int n = vec.size(), k = 0;
   if(n <= 3)return vec;
 
-  vector<Pb> ch(2 * n);
+  vector<Pd> ch(2 * n);
   sort(vec.begin(), vec.end());
 
   // lower

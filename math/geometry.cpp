@@ -23,7 +23,7 @@ int main(int argc, char const* argv[])
   assert(crossing(mk(1, 3), mk(3, 1), mk(0, 0), mk(3, 3)));
 
   // convex hull
-  vector<Pb> vec;
+  vector<Pd> vec;
   vec.pb(mk(0., 0.));
   vec.pb(mk(-2., 1.));
   vec.pb(mk(-2., -2.));
@@ -32,7 +32,7 @@ int main(int argc, char const* argv[])
   vec.pb(mk(3., 0.));
   vec.pb(mk(1., -1.));
   vec.pb(mk(2., -2.));
-  vector<Pb> ch = convex_hull(vec);
+  vector<Pd> ch = convex_hull(vec);
 
   assert(ch.size() == 5);
   assert(ch[0] == mk(-2., -2.));
