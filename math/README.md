@@ -1,6 +1,7 @@
 # math
 ## geometry
   - crossing
+  - convex hull (by graham)
 
 ## power
   - power by doubling
