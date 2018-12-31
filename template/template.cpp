@@ -31,6 +31,7 @@ using namespace std;
 typedef pair<int, int> P;
 typedef pair<ll, int> Pl;
 typedef pair<ll, ll> Pll;
+typedef pair<double, double> Pd;
  
 // constants
 const int inf = 1e9;
