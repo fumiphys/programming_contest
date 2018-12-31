@@ -32,7 +32,7 @@ double cross(const Pd &o, const Pd &a, const Pd &b){
 
 vector<Pd> convex_hull(vector<Pd> vec){
   int n = vec.size(), k = 0;
-  if(n <= 3)return vec;
+  if(n < 3)return vec;
 
   vector<Pd> ch(2 * n);
   sort(vec.begin(), vec.end());
