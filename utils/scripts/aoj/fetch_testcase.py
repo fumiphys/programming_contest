@@ -21,7 +21,7 @@ if __name__ == '__main__':
     test_path = "{}/test/test_{}/".format(sys.argv[3], sys.argv[1])
 
     # use api
-    problem_id = re.search(r"id=([0-9]+)/?$", sys.argv[2])
+    problem_id = re.search(r"id=([0-9a-zA-Z_]+)/?$", sys.argv[2])
     if not problem_id:
         print("failed to load test case")
         sys.exit(1)
