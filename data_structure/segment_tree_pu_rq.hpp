@@ -13,6 +13,7 @@ struct SegmentTree_ {
   int n;
   T def;
   vector<T> vec;
+  SegmentTree_(){}
   SegmentTree_(int n_, function<T(T, T)> f_, function<T(T, E)> g_, T def_, vector<T> v=vector<T>()){
     f = f_;
     g = g_;
