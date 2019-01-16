@@ -21,6 +21,6 @@ int main(int argc, char const* argv[])
   graph.adde(3, 4, 8);
   int res = graph.max_flow(0, 4);
   assert(res == 11);
-  cout << "-- test for Ford Fulkerson end --" << endl;
+  cout << "-- test for Ford Fulkerson end: Success --" << endl;
   return 0;
 }

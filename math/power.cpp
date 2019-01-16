@@ -21,6 +21,6 @@ int main(int argc, char const* argv[])
 
   assert(inverse(1, mod) == 1);
   assert(inverse(2, mod) == 5e8 + 4);
-  cout << "-- test for power end --" << endl;
+  cout << "-- test for power end: Success --" << endl;
   return 0;
 }

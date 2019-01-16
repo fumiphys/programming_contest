@@ -41,6 +41,6 @@ int main(int argc, char const* argv[])
   assert(ch[3] == mk(0., 3.));
   assert(ch[4] == mk(-2., 1.));
     
-  cout << "-- test for geometry end --" << endl;
+  cout << "-- test for geometry end: Success --" << endl;
   return 0;
 }
