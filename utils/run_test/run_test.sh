@@ -19,6 +19,9 @@ printf '\e[32mTest for math ...\e[m\n'
 ./math/geometry
 ./math/power
 ./math/algebra
+./math/prime
+printf '\e[32mTest for sort ...\e[m\n'
+./sort/insertion
 printf '\e[32mTest for succinct_data_structure ...\e[m\n'
 ./succinct_data_structure/fully_indexable_dictionary
 ./succinct_data_structure/louds
