@@ -9,15 +9,16 @@
 using namespace std;
 typedef long long ll;
 
-int power(int a, int n, int mod) {
-  int res = 1;
-  int tmp = n;
-  int curr = a;
+template <typename T>
+T power(T a, T n, T mod) {
+  T res = 1;
+  T tmp = n;
+  T curr = a;
   while(tmp){
     if(tmp % 2 == 1){
-      res = int((ll)res * curr % mod);
+      res = (T)((ll)res * curr % mod);
     }
-    curr = int((ll)curr * curr % mod);
+    curr = (T)((ll)curr * curr % mod);
     tmp >>= 1;
   }
 
@@ -25,6 +26,7 @@ int power(int a, int n, int mod) {
 }
 
 // this function can be used when x and mod is coprime
-int inverse(int x, int mod) {
-  return power(x, mod - 2, mod);
+template <typename T>
+T inverse(T x, T mod) {
+  return power<T>(x, mod - 2, mod);
 }
