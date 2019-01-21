@@ -20,6 +20,7 @@ printf '\e[32mTest for math ...\e[m\n'
 ./math/power
 ./math/algebra
 ./math/prime
+./math/convex_hull_trick
 printf '\e[32mTest for sort ...\e[m\n'
 ./sort/insertion
 ./sort/selection

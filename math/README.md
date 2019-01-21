@@ -14,3 +14,6 @@
   - greatest common devider
   - extgcd
   - chinese reminder theorem
+
+## convex hull trick
+  - monotonious update of lines
