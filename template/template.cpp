@@ -47,6 +47,7 @@ const int mod = 1e9 + 7;
 template <class T>bool chmax(T &a, const T &b){if(a < b){a = b; return 1;} return 0;}
 template <class T>bool chmin(T &a, const T &b){if(a > b){a = b; return 1;} return 0;}
 
+
 int main(int argc, char const* argv[])
 {
 	
