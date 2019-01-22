@@ -37,6 +37,7 @@ typedef pair<double, double> Pd;
 const int inf = 1e9;
 const ll linf = 1LL << 50;
 const double EPS = 1e-10;
+const int mod = 1e9 + 7;
 
 // solve
 
