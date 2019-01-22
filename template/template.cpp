@@ -22,8 +22,12 @@
 #define pb push_back
 #define mk make_pair
 #define pq priority_queue
-#define FOR(i, a, b) for(int i=(a); i<(b);++i)
+#define FOR(i, a, b) for(int i=(a);i<(b);++i)
 #define rep(i, n) FOR(i, 0, n)
+#define rrep(i, n) for(int i=((int)(n)-1);i>=0;i--)
+#define all(x) (x).begin(),(x).end()
+#define sz(x) ((int)(x).size())
+#define UNIQUE(v) v.erase(unique(v.begin(), v.end()), v.end())
 
 using namespace std;
 
@@ -40,6 +44,8 @@ const double EPS = 1e-10;
 const int mod = 1e9 + 7;
 
 // solve
+template <class T>bool chmax(T &a, const T &b){if(a < b){a = b; return 1;} return 0;}
+template <class T>bool chmin(T &a, const T &b){if(a > b){a = b; return 1;} return 0;}
 
 int main(int argc, char const* argv[])
 {
