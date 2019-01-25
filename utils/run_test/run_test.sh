@@ -11,6 +11,9 @@ printf '\e[32mTest for character_strings ...\e[m\n'
 ./character_strings/text_search
 printf '\e[32mTest for data_structrue ...\e[m\n'
 ./data_structure/union_find
+./data_structure/binary_indexed_tree
+./data_structure/lazy_segment_tree
+./data_structure/segment_tree_pu_rq
 printf '\e[32mTest for graph ...\e[m\n'
 ./graph/dijkstra
 ./graph/Ford_Fulkerson

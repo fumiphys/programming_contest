@@ -3,5 +3,6 @@
   - union find
 ## segment_tree
   - point update, range query
+  - lazy segment tree
 ## binary_indexed_tree
   - binary indexed tree
