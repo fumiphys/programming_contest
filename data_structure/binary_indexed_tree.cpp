@@ -9,7 +9,7 @@ using namespace std;
 
 int main(int argc, char const* argv[])
 {
-  cout << "test for binary indexed tree start --" << endl;
+  cout << "-- test for binary indexed tree start --" << endl;
   BITI biti(10);
   assert(biti.sum(0) == 0);
   assert(biti.sum(1) == 0);
@@ -30,6 +30,6 @@ int main(int argc, char const* argv[])
   assert(bitl.sum(0) == 1e9);
   assert(bitl.sum(1) == 1e9);
   assert(bitl.sum(2) == 1e9 + 1e10);
-  cout << "test for binary indexed tree end: Success --" << endl;
+  cout << "-- test for binary indexed tree end: Success --" << endl;
   return 0;
 }

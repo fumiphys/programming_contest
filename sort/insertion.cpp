@@ -11,7 +11,7 @@ using ll = long long;
 
 int main(int argc, char const* argv[])
 {
-  cout << "test for insertion sort start --" << endl;
+  cout << "-- test for insertion sort start --" << endl;
   vector<int> a = {3, 5, 1, 2, 4};
   insertion_sort(a);
   assert(a[0] == 1);
@@ -27,6 +27,6 @@ int main(int argc, char const* argv[])
   assert(b[2] == (ll)1<<30);
   assert(b[3] == (ll)1<<40);
   assert(b[4] == (ll)1<<50);
-  cout << "test for insertion sort end: Success --" << endl;
+  cout << "-- test for insertion sort end: Success --" << endl;
   return 0;
 }

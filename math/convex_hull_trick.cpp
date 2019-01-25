@@ -10,7 +10,7 @@ using namespace std;
 
 int main(int argc, char const* argv[])
 {
-  cout << "test for convex hull trick start -- " << endl;
+  cout << "-- test for convex hull trick start -- " << endl;
   ConvexHullTrickI cht;
   cht.add(make_pair(2, 0));
   assert(cht.val(2) == 4);
@@ -38,6 +38,6 @@ int main(int argc, char const* argv[])
   chl.add(make_pair(-1e9, 0));
   assert(chl.val(2) == -2e9);
   assert(chl.val(-2) == -4e9);
-  cout << "test for convex hull trick end: Success -- " << endl;
+  cout << "-- test for convex hull trick end: Success -- " << endl;
   return 0;
 }
