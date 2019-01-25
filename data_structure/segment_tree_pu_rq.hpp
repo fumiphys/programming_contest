@@ -34,7 +34,7 @@ struct SegmentTree_ {
       vec[i] = f(vec[2*i+1], vec[2*i+2]);
     }
   }
-  void update(int k, E val){
+  void update(int k, const E &val){
     k = k + n - 1;
     vec[k] = g(vec[k], val);
     while(k > 0){
