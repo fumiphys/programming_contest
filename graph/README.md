@@ -7,3 +7,6 @@
 
 ## Ford_Fulkerson
   - Ford Fulkerson method
+
+## bipartile
+  - check bipartile

@@ -18,6 +18,7 @@ printf '\e[32mTest for graph ...\e[m\n'
 ./graph/dijkstra
 ./graph/Ford_Fulkerson
 ./graph/warshall_floyd
+./graph/bipartile
 printf '\e[32mTest for math ...\e[m\n'
 ./math/geometry
 ./math/power
