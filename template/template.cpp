@@ -16,6 +16,7 @@
 #include <cmath>
 #include <climits>
 #include <bitset>
+#include <list>
 
 // macros
 #define ll long long int
