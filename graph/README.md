@@ -10,3 +10,6 @@
 
 ## bipartile
   - check bipartile
+
+## topological dag
+  - topological sort

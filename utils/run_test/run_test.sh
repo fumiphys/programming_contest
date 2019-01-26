@@ -19,6 +19,7 @@ printf '\e[32mTest for graph ...\e[m\n'
 ./graph/Ford_Fulkerson
 ./graph/warshall_floyd
 ./graph/bipartile
+./graph/topological_dag
 printf '\e[32mTest for math ...\e[m\n'
 ./math/geometry
 ./math/power
