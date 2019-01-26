@@ -11,6 +11,18 @@ library for programming contest
  - [succinct_data_structure](succinct_data_structure/)
  - [sort](sort/)
 
+## usage
+```
+cd build
+cmake ..
+make
+```
+  - to add new library,
+    - 1. implement library and write test
+    - 2. add to CMakeLists.txt
+    - 3. if test has passed, add test to utils/run_test/run_test.sh
+    - 4. add snippet to vim/cpp.snip
+
 ## TODO
  - benchmark
  - SA-IS
