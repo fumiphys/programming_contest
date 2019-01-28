@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <cassert>
-#include "louds.hpp"
+#include "../louds.hpp"
 
 using namespace std;
 

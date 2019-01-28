@@ -1,19 +1,19 @@
 /*
- * Shell sort
+ * Insertion sort
  */
 
 #include <iostream>
 #include <vector>
 #include <cassert>
-#include "shell.hpp"
+#include "../insertion.hpp"
 using namespace std;
 using ll = long long;
 
 int main(int argc, char const* argv[])
 {
-  cout << "-- test for shell sort start --" << endl;
+  cout << "-- test for insertion sort start --" << endl;
   vector<int> a = {3, 5, 1, 2, 4};
-  shell_sort(a);
+  insertion_sort(a);
   assert(a[0] == 1);
   assert(a[1] == 2);
   assert(a[2] == 3);
@@ -21,12 +21,12 @@ int main(int argc, char const* argv[])
   assert(a[4] == 5);
 
   vector<ll> b = {(ll)1<<10, (ll)1<<40, (ll)1<<30, (ll)1<<20, (ll)1<<50};
-  shell_sort(b);
+  insertion_sort(b);
   assert(b[0] == (ll)1<<10);
   assert(b[1] == (ll)1<<20);
   assert(b[2] == (ll)1<<30);
   assert(b[3] == (ll)1<<40);
   assert(b[4] == (ll)1<<50);
-  cout << "-- test for shell sort end: Success --" << endl;
+  cout << "-- test for insertion sort end: Success --" << endl;
   return 0;
 }

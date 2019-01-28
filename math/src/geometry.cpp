@@ -6,7 +6,7 @@
 #include <iostream>
 #include <cassert>
 #include <utility>
-#include "geometry.hpp"
+#include "../geometry.hpp"
 
 #define mk make_pair
 #define pb push_back

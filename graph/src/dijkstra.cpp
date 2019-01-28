@@ -10,14 +10,14 @@
 #include <vector>
 #include <utility>
 #include <queue>
-#include "warshall_floyd.hpp"
+#include "../dijkstra.hpp"
 using namespace std;
 typedef long long int ll;
 
 
 int main(int argc, char const* argv[])
 {
-  cout << "-- test for warshall floyd start --" << endl;
+  cout << "-- test for dijkstra start --" << endl;
   GraphI graphi(4);
   // add edge
   graphi.adde(0, 1, 1);
@@ -32,11 +32,10 @@ int main(int argc, char const* argv[])
   graphi.adde(3, 0, 2);
   graphi.adde(3, 1, 5);
   graphi.adde(3, 2, 3);
-  // warshall floyd
-  graphi.warshall_floyd();
-  assert(graphi.d[1][3] == 3);
-  assert(graphi.d[0][2] == 5);
-  assert(graphi.d[0][1] == 1);
+  // dijkstra
+  assert(graphi.dijkstra(1, 3) == 3);
+  assert(graphi.dijkstra(0, 2) == 5);
+  assert(graphi.dijkstra(0, 1) == 1);
 
   // ll version
   GraphL graphl(4);
@@ -54,20 +53,20 @@ int main(int argc, char const* argv[])
   graphl.adde(3, 1, (ll)5 * 1e9);
   graphl.adde(3, 2, (ll)3 * 1e9);
 
-  graphl.warshall_floyd();
-  assert(graphl.d[0][0] == 0);
-  assert(graphl.d[0][1] == (ll)1 * 1e9);
-  assert(graphl.d[0][2] == (ll)5 * 1e9);
-  assert(graphl.d[0][3] == (ll)2 * 1e9);
+  graphl.dijkstra(0);
+  assert(graphl.dis[0] == 0);
+  assert(graphl.dis[1] == (ll)1 * 1e9);
+  assert(graphl.dis[2] == (ll)5 * 1e9);
+  assert(graphl.dis[3] == (ll)2 * 1e9);
 
-  // warshall floyd for directed graph
+  // difkstra for directed graph
   GraphI graph_ng(3);
   graph_ng.adde(0, 1, 1);
   graph_ng.adde(1, 2, 1);
-  graph_ng.warshall_floyd();
-  assert(graph_ng.d[0][0] == 0);
-  assert(graph_ng.d[0][1] == 1);
-  assert(graph_ng.d[0][2] == 2);
-  cout << "-- test for warshall floyd end: Success --" << endl;
+  graph_ng.dijkstra(0);
+  assert(graph_ng.dis[0] == 0);
+  assert(graph_ng.dis[1] == 1);
+  assert(graph_ng.dis[2] == 2);
+  cout << "-- test for dijkstra end: Success --" << endl;
   return 0;
 }

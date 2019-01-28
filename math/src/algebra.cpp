@@ -5,7 +5,7 @@
 #include <iostream>
 #include <cassert>
 #include <random>
-#include "algebra.hpp"
+#include "../algebra.hpp"
 using namespace std;
 using ll = long long;
 

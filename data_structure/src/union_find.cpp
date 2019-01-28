@@ -10,7 +10,7 @@
 #include <cassert>
 #include <iostream>
 #include <vector>
-#include "union_find.hpp"
+#include "../union_find.hpp"
 using namespace std;
 
 

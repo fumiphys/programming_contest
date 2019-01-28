@@ -6,7 +6,7 @@
 #include <cassert>
 #include <random>
 #include <set>
-#include "fully_indexable_dictionary.hpp"
+#include "../fully_indexable_dictionary.hpp"
 using namespace std;
 
 

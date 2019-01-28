@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <cassert>
-#include "binary_indexed_tree.hpp"
+#include "../binary_indexed_tree.hpp"
 using namespace std;
 
 int main(int argc, char const* argv[])

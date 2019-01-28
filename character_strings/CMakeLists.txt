@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
 
-add_executable(text_search text_search.cpp)
-add_executable(suffix_array suffix_array.cpp)
-add_executable(burrows_wheeler burrows_wheeler.cpp)
+add_executable(text_search src/text_search.cpp)
+add_executable(suffix_array src/suffix_array.cpp)
+add_executable(burrows_wheeler src/burrows_wheeler.cpp)

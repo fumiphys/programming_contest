@@ -4,7 +4,7 @@
 
 #include <cassert>
 #include <iostream>
-#include "suffix_array.hpp"
+#include "../suffix_array.hpp"
 using namespace std;
 
 

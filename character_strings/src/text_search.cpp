@@ -6,8 +6,8 @@
 #include <iostream>
 #include <random>
 #include <vector>
-#include "text_search.hpp"
-#include "string_utils.hpp"
+#include "../text_search.hpp"
+#include "../string_utils.hpp"
 using namespace std;
 
 int main(int argc, char const* argv[])

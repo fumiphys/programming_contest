@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <cassert>
-#include "bellman_ford.hpp"
+#include "../bellman_ford.hpp"
 using namespace std;
 using ll = long long;
 

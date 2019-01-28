@@ -5,7 +5,7 @@
 #include <cassert>
 #include <iostream>
 
-#include "lazy_segment_tree.hpp"
+#include "../lazy_segment_tree.hpp"
 using namespace std;
 
 int main(int argc, char const* argv[])

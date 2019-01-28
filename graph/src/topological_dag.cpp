@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <cassert>
-#include "topological_dag.hpp"
+#include "../topological_dag.hpp"
 using namespace std;
 
 int main(int argc, char const* argv[])

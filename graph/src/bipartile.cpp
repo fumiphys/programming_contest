@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include <cassert>
-#include "bipartile.hpp"
+#include "../bipartile.hpp"
 using namespace std;
 
 int main(int argc, char const* argv[])

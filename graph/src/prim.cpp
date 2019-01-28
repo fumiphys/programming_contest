@@ -4,13 +4,13 @@
 
 #include <iostream>
 #include <cassert>
-#include "kruskal.hpp"
+#include "../prim.hpp"
 using namespace std;
 using ll = long long;
 
 int main(int argc, char const* argv[])
 {
-  cout << "-- test for kruskal start --" << endl;
+  cout << "-- test for prim start --" << endl;
   GraphI graphi(7);
   graphi.adde(0, 2, 1);
   graphi.adde(1, 2, 2);
@@ -21,7 +21,7 @@ int main(int argc, char const* argv[])
   graphi.adde(3, 6, 5);
   graphi.adde(4, 5, 5);
   graphi.adde(5, 6, 8);
-  assert(graphi.kruskal() == 17);
+  assert(graphi.prim() == 17);
 
   Graph<ll> graphl(7);
   graphl.adde(0, 2, (ll)1e9);
@@ -33,7 +33,7 @@ int main(int argc, char const* argv[])
   graphl.adde(3, 6, (ll)5e9);
   graphl.adde(4, 5, (ll)5e9);
   graphl.adde(5, 6, (ll)8e9);
-  assert(graphl.kruskal() == (ll)17e9);
-  cout << "-- test for kruskal end: Success --" << endl;
+  assert(graphl.prim() == (ll)17e9);
+  cout << "-- test for prim end: Success --" << endl;
   return 0;
 }

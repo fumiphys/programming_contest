@@ -5,7 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <cassert>
-#include "bubble.hpp"
+#include "../bubble.hpp"
 using namespace std;
 using ll = long long;
 

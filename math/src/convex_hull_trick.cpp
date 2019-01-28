@@ -5,7 +5,7 @@
 #include <iostream>
 #include <cassert>
 #include <utility>
-#include "convex_hull_trick.hpp"
+#include "../convex_hull_trick.hpp"
 using namespace std;
 
 int main(int argc, char const* argv[])

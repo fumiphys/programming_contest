@@ -5,8 +5,8 @@
 #include <cassert>
 #include <iostream>
 #include <random>
-#include "burrows_wheeler.hpp"
-#include "string_utils.hpp"
+#include "../burrows_wheeler.hpp"
+#include "../string_utils.hpp"
 using namespace std;
 
 int main(int argc, char const* argv[])

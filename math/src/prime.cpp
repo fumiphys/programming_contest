@@ -5,7 +5,7 @@
 
 #include <iostream>
 #include <cassert>
-#include "prime.hpp"
+#include "../prime.hpp"
 
 using namespace std;
 typedef long long ll;

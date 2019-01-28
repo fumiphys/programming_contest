@@ -5,7 +5,7 @@
 
 #include <iostream>
 #include <cassert>
-#include "power.hpp"
+#include "../power.hpp"
 
 using namespace std;
 typedef long long ll;
