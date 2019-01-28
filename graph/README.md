@@ -16,3 +16,6 @@
 
 ## topological dag
   - topological sort
+
+## Prim
+  - Minimum Spanning Tree (Prim)

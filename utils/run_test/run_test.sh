@@ -21,6 +21,7 @@ printf '\e[32mTest for graph ...\e[m\n'
 ./graph/bipartile
 ./graph/topological_dag
 ./graph/bellman_ford
+./graph/prim
 printf '\e[32mTest for math ...\e[m\n'
 ./math/geometry
 ./math/power
