@@ -19,3 +19,6 @@
 
 ## Prim
   - Minimum Spanning Tree (Prim)
+
+## Kruskal
+  - Minimum Spanning Tree (Kruskal)

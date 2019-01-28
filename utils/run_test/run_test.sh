@@ -22,6 +22,7 @@ printf '\e[32mTest for graph ...\e[m\n'
 ./graph/topological_dag
 ./graph/bellman_ford
 ./graph/prim
+./graph/kruskal
 printf '\e[32mTest for math ...\e[m\n'
 ./math/geometry
 ./math/power
