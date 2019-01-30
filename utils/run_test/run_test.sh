@@ -34,6 +34,7 @@ printf '\e[32mTest for sort ...\e[m\n'
 ./sort/selection
 ./sort/shell
 ./sort/bubble
+./sort/min_k
 printf '\e[32mTest for succinct_data_structure ...\e[m\n'
 ./succinct_data_structure/fully_indexable_dictionary
 ./succinct_data_structure/louds
