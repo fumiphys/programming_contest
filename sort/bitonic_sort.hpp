@@ -26,3 +26,20 @@ void bitonic_sort(vector<T> &vec){
   vec.resize(n, numeric_limits<T>::max());
   bitonic_sort<T>(vec, 0, n);
 }
+
+template <typename T>
+vector<T> bitonic_sort_shakutori(vector<T> &vec){
+  vector<T> res(vec.size());
+  int l = 0, r = vec.size() - 1;
+  for(int i = 0; i < vec.size(); i++){
+    if(vec[l] < vec[r]){
+      res[i] = vec[l];
+      l++;
+    }
+    else{
+      res[i] = vec[r];
+      r--;
+    }
+  }
+  return res;
+}
