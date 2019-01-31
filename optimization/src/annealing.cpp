@@ -24,7 +24,7 @@ struct AnPara: Annealing<double, cord>{
   uniform_real_distribution<> randini;
   uniform_real_distribution<> randnor;
   uniform_real_distribution<> randp;
-  double beta = 1.;
+  double beta = 0.1;
   AnPara(): Annealing(){init();}
   void init(){
     curr = numeric_limits<double>::max();
@@ -38,13 +38,15 @@ struct AnPara: Annealing<double, cord>{
   }
   void move(){
     cord diff = (cord){randnor(mt), randnor(mt)};
+    double prev = vals[vals.size()-1];
     if(check_in(pos + diff)){
-      double prev = vals[vals.size()-1];
       double th = eval(pos + diff);
       if(randp(mt) < exp(-(th - prev) / beta)){
         pos = pos + diff;
         vals.push_back(th);
         update(th);
+      }else{
+        vals.push_back(prev);
       }
     }
   }
@@ -75,7 +77,7 @@ int main(int argc, char const* argv[])
   int n = 1000;
   AnPara anpara;
   anpara.run(n);
-  for(int i = 0; i < n; i++){
+  for(int i = 0; i < anpara.vals.size(); i++){
     cout << i << " " << anpara.vals[i] << endl;
   }
   cout << "-- sample for annealing end: Success --" << endl;
