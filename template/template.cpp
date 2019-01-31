@@ -17,6 +17,7 @@
 #include <climits>
 #include <bitset>
 #include <list>
+#include <random>
 
 // macros
 #define ll long long int
