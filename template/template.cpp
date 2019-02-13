@@ -21,7 +21,7 @@
 
 // macros
 #define ll long long int
-#define pb push_back
+#define pb emplace_back
 #define mk make_pair
 #define pq priority_queue
 #define FOR(i, a, b) for(int i=(a);i<(b);++i)
