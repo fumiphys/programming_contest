@@ -52,6 +52,8 @@ template <class T>bool chmin(T &a, const T &b){if(a > b){a = b; return 1;} retur
 
 int main(int argc, char const* argv[])
 {
-	
+  ios_base::sync_with_stdio(false);
+  cin.tie(0);
+
 	return 0;
 }
