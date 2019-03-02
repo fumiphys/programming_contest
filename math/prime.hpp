@@ -12,6 +12,7 @@ typedef long long ll;
 
 template <typename T>
 bool is_prime(T x){
+  if(x == 1)return false;
   for(ll i = 2; i * i <= x; i++){
     if(x % i == 0)return false;
   }

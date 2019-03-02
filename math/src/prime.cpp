@@ -14,6 +14,7 @@ typedef long long ll;
 int main(int argc, char const* argv[])
 {
   cout << "-- test for prime start --" << endl;
+  assert(!is_prime(1));
   assert(is_prime(2));
   assert(is_prime(3));
   assert(!is_prime(4));
