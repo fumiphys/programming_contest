@@ -31,7 +31,7 @@ struct Graph_ {
     vec[at].pb((edge<T>){to, cap, (int)vec[to].size()});
     vec[to].pb((edge<T>){at, 0, (int)vec[at].size() - 1});
   }
-  T dfs(int s, int t, int f){
+  T dfs(int s, int t, T f){
     if(s == t)return f;
     used[s] = true;
     for(int i = 0; i < vec[s].size(); i++){
