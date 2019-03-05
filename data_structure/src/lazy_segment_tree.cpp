@@ -23,6 +23,14 @@ int main(int argc, char const* argv[])
   assert(seg.query(2, 4) == 5);
   seg.update(6, 9, 3);
   assert(seg.query(4, 7) == 18);
+
+  seg = LazySegmentTreeI(n, [](int a, int b){return a + b;},
+      0, [](int a, int b){return b;}, -1, [](int a, int b, int c){return b * c;}, vector<int>(5, 0));
+  seg.update(0, 2, 1);
+  assert(seg.query(0, 2) == 2);
+  assert(seg.query(0, 3) == 2);
+  seg.update(0, 3, 1);
+  assert(seg.query(0, 3) == 3);
   cout << "-- test for lazy segment tree end: Success --" << endl;
   return 0;
 }
