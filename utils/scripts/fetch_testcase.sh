@@ -10,6 +10,7 @@ fi
 ATCODER_URL="https://atcoder.jp"
 AOJ_URL="http://judge.u-aizu.ac.jp/onlinejudge"
 CODEFORCES_URL="https://codeforces.com"
+YUKICODER_URL="https://yukicoder.me"
 
 if [[ ${2} =~ ${ATCODER_URL} ]]; then
   ${SCRIPT_FILE}/atcoder/fetch_testcase.sh ${1} ${2}
@@ -17,6 +18,8 @@ elif [[ ${2} =~ ${AOJ_URL} ]]; then
   ${SCRIPT_FILE}/aoj/fetch_testcase.sh ${1} ${2}
 elif [[ ${2} =~ ${CODEFORCES_URL} ]]; then
   ${SCRIPT_FILE}/codeforces/fetch_testcase.sh ${1} ${2}
+elif [[ ${2} =~ ${YUKICODER_URL} ]]; then
+  ${SCRIPT_FILE}/yukicoder/fetch_testcase.sh ${1} ${2}
 fi
 
 # make directory for test case
