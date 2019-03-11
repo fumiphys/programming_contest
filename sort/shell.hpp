@@ -2,6 +2,7 @@
  * Shell sort
  */
 
+#include <algorithm>
 #include <vector>
 using namespace std;
 
