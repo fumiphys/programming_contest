@@ -12,10 +12,10 @@ jobs:
           command: 'apt update && apt install -y sudo && rm -rf /var/lib/at/lists*'
       - run:
           name: install gcc
-          command: 'apt update && apt install -y gcc g++'
+          command: 'sudo apt update && sudo apt install -y gcc g++'
       - run:
           name: install cmake
-          command: 'apt update && sudo apt install -y cmake'
+          command: 'sudo apt update && sudo apt install -y cmake'
       - run:
           name: library test
           command: ./utils/run_test/run_test.sh
