@@ -3,7 +3,7 @@
  */
 
 #include <cassert>
-#include <cstdint>
+#include <climits>
 #include <iostream>
 
 #include "../segment_tree_pu_rq.hpp"
