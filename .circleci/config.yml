@@ -3,9 +3,6 @@ jobs:
   build:
     docker:
       - image: debian:stretch
-    branches:
-      only:
-        - ci_use
 
     steps:
       - checkout
