@@ -1,6 +1,8 @@
 # programming_contest
 library for programming contest
 
+[![CircleCI](https://circleci.com/gh/fumiphys/programming_contest.svg?style=svg)](https://circleci.com/gh/fumiphys/programming_contest)
+
 ## Contents
  - [template](template/)
  - [data_structure](data_structure/)
