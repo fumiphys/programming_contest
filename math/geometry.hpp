@@ -3,6 +3,7 @@
  * author: fumiphys
  */
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 #include <utility>
