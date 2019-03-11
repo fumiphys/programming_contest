@@ -2,6 +2,7 @@
  * suffix array
  */
 
+#include <algorithm>
 #include <cassert>
 #include <iostream>
 #include <string>
