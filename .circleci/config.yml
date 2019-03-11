@@ -8,9 +8,5 @@ jobs:
       - checkout
 
       - run:
-          name: Greeting
-          command: echo Hello, world.
-
-      - run:
-          name: Print the Current Time
-          command: date
+          name: library test
+          command: ./utils/run_test/run_test.sh
