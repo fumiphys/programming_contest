@@ -3,6 +3,7 @@
  * v1 <= v2 <= ... <= vi >= vi+1 >= ... vn
  */
 
+#include <limits>
 #include <vector>
 #include <numeric>
 using namespace std;
