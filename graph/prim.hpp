@@ -2,7 +2,7 @@
  * Prim method
  */
 
-#include <climits>
+#include <limits>
 #include <vector>
 #include <utility>
 #include <numeric>
