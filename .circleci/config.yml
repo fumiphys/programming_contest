@@ -12,7 +12,7 @@ jobs:
 
       - run:
           name: install cmake
-          command: 'sudo apt update && sudo apt install -y cmake'
+          command: 'apt update && apt install -y cmake'
       - run:
           name: library test
           command: ./utils/run_test/run_test.sh
