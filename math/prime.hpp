@@ -3,9 +3,11 @@
  * author: fumiphys
  */
 
+#include <algorithm>
 #include <iostream>
 #include <vector>
 #include <cassert>
+#include <map>
 
 using namespace std;
 typedef long long ll;
@@ -32,4 +34,22 @@ vector<T> list_prime(T n){
     }
   }
   return res;
+}
+
+template <typename T>
+vector<T> devisor(T n){
+  vector<T> res;
+  for(T i = 1; i * i <= n; i++){
+    if(n % i == 0){
+      res.push_back(i);
+      if(n != i * i)res.push_back(n / i);
+    }
+  }
+  sort(res.begin(), res.end());
+  return res;
+}
+
+template <typename T>
+map<T, int> factorize(T n){
+
 }
