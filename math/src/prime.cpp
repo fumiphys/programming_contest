@@ -108,6 +108,15 @@ int main(int argc, char const* argv[])
   assert(dl[61] == 7805314);
   assert(dl[62] == 27318599);
   assert(dl[63] == 54637198);
+
+  map<int, int> mp = factorize(24);
+  assert(mp.size() == 2);
+  assert(mp[2] == 3);
+  assert(mp[3] == 1);
+
+  map<ll, int> mpl = factorize<ll>((ll)1e9+7);
+  assert(mpl.size() == 1);
+  assert(mpl[(ll)1e9+7] == 1);
   cout << "-- test for prime end: Success --" << endl;
   return 0;
 }

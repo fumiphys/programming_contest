@@ -218,7 +218,7 @@ snippet sa_search_def
     return res;
   }
 snippet BIT_use
-  BITI biti(10);
+  BITI bt(10);
 
 snippet BIT_def
   template<typename T>
@@ -247,7 +247,7 @@ snippet BIT_def
   typedef struct BIT_<long long> BITL;
 
 snippet segtree_use
-  SegmentTreeI segtree = SegmentTreeI(n, [](int a, int b){return min(a, b);},
+  SegmentTreeI seg = SegmentTreeI(n, [](int a, int b){return min(a, b);},
       [](int a,int b){return b;}, INT_MAX, v);
 
 snippet segtree_def
@@ -305,7 +305,7 @@ snippet segtree_def
   using SegmentTreeI = SegmentTree<int, int>;
 
 snippet unionfind_use
-  UnionFind unionfind(10);
+  UnionFind uf(10);
 
 snippet unionfind_def
   typedef struct UnionFind_ {
@@ -1186,3 +1186,38 @@ snippet merge_def
 
 snippet merge_use
   merge_sort(vec);
+
+snippet devisor_def
+  template <typename T>
+  vector<T> devisor(T n){
+    vector<T> res;
+    for(T i = 1; i * i <= n; i++){
+      if(n % i == 0){
+        res.push_back(i);
+        if(n != i * i)res.push_back(n / i);
+      }
+    }
+    sort(res.begin(), res.end());
+    return res;
+  }
+
+snippet devisor_use
+  vector<int> d = devisor(n);
+
+snippet factorize_def
+  template <typename T>
+  map<T, int> factorize(T n){
+    map<T, int> res;
+    T tmp = n;
+    for(T i = 2; i * i <= n; i++){
+      while(tmp % i == 0){
+        ++res[i];
+        tmp /= i;
+      }
+    }
+    if(tmp != 1)res[tmp] = 1;
+    return res;
+  }
+
+snippet factorize_use
+  map<int, int> mp = factorize(n);

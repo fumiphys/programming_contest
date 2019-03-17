@@ -9,6 +9,8 @@
 ## prime
   - check is the number is a prime number
   - list all prime number lower than or equals to a number
+  - list devisors
+  - prime factorization
 
 ## algebra
   - greatest common devider
