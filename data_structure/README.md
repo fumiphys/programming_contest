@@ -6,3 +6,5 @@
   - lazy segment tree
 ## binary_indexed_tree
   - binary indexed tree
+## int128
+  - stream output for \_\_int128\_t
