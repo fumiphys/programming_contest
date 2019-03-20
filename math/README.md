@@ -11,6 +11,7 @@
   - list all prime number lower than or equals to a number
   - list devisors
   - prime factorization
+  - millar rabin algorithm
 
 ## algebra
   - greatest common devider

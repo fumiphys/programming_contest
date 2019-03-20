@@ -24,6 +24,16 @@ int main(int argc, char const* argv[])
   assert(is_prime((ll)(1e9+7)));
   assert(!is_prime(200004));
 
+  assert(!millar_rabin(1));
+  assert(millar_rabin(2));
+  assert(millar_rabin(3));
+  assert(!millar_rabin(4));
+  assert(millar_rabin(23));
+  assert(!millar_rabin(27));
+
+  assert(millar_rabin((ll)(1e9+7)));
+  assert(!millar_rabin(200004));
+
   vector<int> p = list_prime(15);
   assert(p.size() == 6);
   assert(p[0] == 2);
