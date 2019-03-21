@@ -1,6 +1,7 @@
 /*
  * matrix library
  */
+#include <bitset>
 #include <cmath>
 #include <limits>
 #include <vector>
@@ -121,7 +122,7 @@ struct MatrixP{
 
 // answer in res
 template <typename T, int mod = int(1e9+7)>
-int linear_eq(MatrixP<T>& A, vector<T>& b){
+int linear_eq(MatrixP<T>& A, vector<T>& b, vector<T> &res){
   int m = A.size(), n = A[0].size();
   MatrixP<T, mod> M(m, n + 1);
   for(int i = 0; i < m; i++){
@@ -134,7 +135,54 @@ int linear_eq(MatrixP<T>& A, vector<T>& b){
   for(int row = rank; row < m; row++){
     if(M[row][n] != 0)return -1;
   }
-  vector<T> res;
+  res.assign(n, 0);
+  for(int i = 0; i < rank; i++)res[i] = M[i][n];
+  return rank;
+}
+
+const int MAX_H = 510, MAX_W = 510;
+struct MatrixB {
+  int H, W;
+  bitset<MAX_W> val[MAX_H];
+  MatrixB(int m = 1, int n = 1): H(m), W(n){}
+  inline bitset<MAX_W>& operator[](size_t i){return val[i];}
+  int gauss_jordan(bool is_extended = false){
+    int rank = 0;
+    for(int col = 0; col < W; col++){
+      if(col == W - 1 && is_extended)break;
+      int pivot = -1;
+      for(int row = rank; row < H; row++){
+        if(val[row][col]){
+          pivot = row;
+          break;
+        }
+      }
+      if(pivot == -1)continue;
+      swap(val[pivot], val[rank]);
+      for(int row = 0; row < H; row++){
+        if(row != rank && val[row][col])val[row] ^= val[rank];
+      }
+      rank++;
+    }
+    return rank;
+  }
+};
+
+int linear_eq(MatrixB &A, vector<int> b, vector<int> & res){
+  int m = A.H, n = A.W;
+  MatrixB M(m, n + 1);
+  for(int i = 0; i < m; i++){
+    for(int j = 0; j < n; j++){
+      M[i][j] = A[i][j];
+    }
+    M[i][n] = b[i];
+  }
+  int rank = M.gauss_jordan(true);
+
+  for(int row = rank; row < m; row++){
+    if(M[row][n])return -1;
+  }
+
   res.assign(n, 0);
   for(int i = 0; i < rank; i++)res[i] = M[i][n];
   return rank;

@@ -1321,3 +1321,134 @@ snippet gauss_jordan_use
 
 snippet linear_eq_use
   vector<T> res = linear_eq(A, b);
+
+snippet gauss_jordanp_def
+  template <typename T, int mod = int(1e9+7)>
+  struct MatrixP{
+    vector<vector<T> > val;
+    MatrixP(int n, int m, T def = 0): val(n, vector<T>(m, def)){}
+    inline vector<T> &operator[](size_t i){return val[i];};
+    size_t size() const {return val.size();}
+    int gauss_jordan(bool is_extended = false){
+      int m = val.size(), n = val[0].size();
+      int rank = 0;
+      for(int row = 0; row < m; row++){
+        for(int col = 0; col < n; col++){
+          val[row][col] = (val[row][col] % mod + mod) % mod;
+        }
+      }
+      for(int col = 0; col < n; col++){
+        if(col == n - 1 && is_extended)break;
+
+        int pivot = -1;
+        for(int row = rank; row < m; row++){
+          if(val[row][col] != 0){
+            pivot = row;
+            break;
+          }
+        }
+        if(pivot == -1)continue;
+        swap(val[rank], val[pivot]);
+
+        T fac = power(val[rank][col], mod - 2, mod);
+        for(int col2 = 0; col2 < n; col2++){
+          val[rank][col2] * fac % mod;
+        }
+
+        for(int row = 0; row < m; row++){
+          if(row != rank && val[row][col] != 0){
+            T fac = val[row][col];
+            for(int col2 = 0; col2 < n; col2++){
+              val[row][col2] -= val[rank][col2] * fac % mod;
+              if(val[row][col2])val[row][col2] += mod;
+            }
+          }
+        }
+
+        rank++;
+      }
+      return rank;
+    }
+  };
+
+snippet gauss_jordanp_use
+  int rank = M.gauss_jordan();
+
+snippet linear_eqp_def
+  template <typename T, int mod = int(1e9+7)>
+  int linear_eq(MatrixP<T>& A, vector<T>& b, vector<T> &res){
+    int m = A.size(), n = A[0].size();
+    MatrixP<T, mod> M(m, n + 1);
+    for(int i = 0; i < m; i++){
+      for(int j = 0; j < n; j++){
+        M[i][j] = A[i][j];
+      }
+      M[i][n] = b[i];
+    }
+    int rank = M.gauss_jordan(true);
+    for(int row = rank; row < m; row++){
+      if(M[row][n] != 0)return -1;
+    }
+    res.assign(n, 0);
+    for(int i = 0; i < rank; i++)res[i] = M[i][n];
+    return rank;
+  }
+
+snippet linear_eqp_use
+  int rank = linear_eq(A, b, res);
+
+snippet gauss_jordanb_def
+  const int MAX_H = 510, MAX_W = 510;
+  struct MatrixB {
+    int H, W;
+    bitset<MAX_W> val[MAX_H];
+    MatrixB(int m = 1, int n = 1): H(m), W(n){}
+    inline bitset<MAX_W>& operator[](size_t i){return val[i];}
+    int gauss_jordan(bool is_extended = false){
+      int rank = 0;
+      for(int col = 0; col < W; col++){
+        if(col == W - 1 && is_extended)break;
+        int pivot = -1;
+        for(int row = rank; row < H; row++){
+          if(val[row][col]){
+            pivot = row;
+            break;
+          }
+        }
+        if(pivot == -1)continue;
+        swap(val[pivot], val[rank]);
+        for(int row = 0; row < H; row++){
+          if(row != rank && val[row][col])val[row] ^= val[rank];
+        }
+        rank++;
+      }
+      return rank;
+    }
+  };
+
+snippet gauss_jordanb_use
+  int rank = M.gauss_jordan();
+
+snippet linear_eqb_def
+  int linear_eq(MatrixB &A, vector<int> b, vector<int> & res){
+    int m = A.H, n = A.W;
+    MatrixB M(m, n + 1);
+    for(int i = 0; i < m; i++){
+      for(int j = 0; j < n; j++){
+        M[i][j] = A[i][j];
+      }
+      M[i][n] = b[i];
+    }
+    int rank = M.gauss_jordan(true);
+
+    for(int row = rank; row < m; row++){
+      if(M[row][n])return -1;
+    }
+
+    res.assign(n, 0);
+    for(int i = 0; i < rank; i++)res[i] = M[i][n];
+    return rank;
+  }
+
+snippet linear_eqb_use
+  int rank = M.linear_eq(A, b, res);

@@ -23,3 +23,5 @@
 
 ## matrix
   - gauss jordan
+  - gauss jordan (mod p) : not verified
+  - gauss jordan (bit) : not verified
