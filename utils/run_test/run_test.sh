@@ -29,6 +29,7 @@ printf '\e[32mTest for math ...\e[m\n'
 ./math/algebra
 ./math/prime
 ./math/convex_hull_trick
+./math/matrix
 printf '\e[32mTest for sort ...\e[m\n'
 ./sort/insertion
 ./sort/selection
