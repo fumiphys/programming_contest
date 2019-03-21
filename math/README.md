@@ -20,3 +20,6 @@
 
 ## convex hull trick
   - monotonious update of lines
+
+## matrix
+  - gauss jordan
