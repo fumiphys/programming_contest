@@ -8,3 +8,5 @@
   - binary indexed tree
 ## int128
   - stream output for \_\_int128\_t
+## Treap
+  - Treap
