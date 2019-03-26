@@ -23,6 +23,13 @@ int main(int argc, char const* argv[])
   assert(vecl[1] == (long long)4e10);
   assert(vecl[2] == (long long)6e10);
   assert(vecl[3] == (long long)4e10);
+
+  vector<int> v = {1, 0, 2, 4};
+  fast_moebius(v);
+  assert(v[0] == 3);
+  assert(v[1] == -4);
+  assert(v[2] == -2);
+  assert(v[3] == 4);
   cout << "-- test for bit end: Success --" << endl;
   return 0;
 }
