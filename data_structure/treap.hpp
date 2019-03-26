@@ -192,7 +192,6 @@ struct ImplicitTreap{
     split(t, key + 1, t1, t2);
     split(t1, key, t1, t3);
     merge(t, t1, t2);
-    delete t2;
   }
   void update(Tree t, int l, int r, E x){
     Tree t1, t2, t3;
@@ -277,5 +276,14 @@ struct ImplicitTreap{
     merge(t1, t1, t3);
     merge(root, t1, t2);
     return res;
+  }
+  int at(Tree t, T x){
+    if(!t)return 0;
+    if(t->val == x)return cnt(t->l);
+    else if(t->val > x)return at(t->l, x);
+    else return cnt(t->l) + 1 + at(t->r, x);
+  }
+  int at(T x){
+    return at(root, x);
   }
 };
