@@ -37,8 +37,8 @@ struct Treap{
     }
   }
   void merge(Tree &t, Tree l, Tree r){
-    if(!l)return r;
-    if(!r)return l;
+    if(!l)t = r;
+    if(!r)t = l;
     if(l->pri > r->pri){
       merge(l->r, l->r, r);
       t = l;
