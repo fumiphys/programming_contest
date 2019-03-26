@@ -212,16 +212,16 @@ struct ImplicitTreap{
     merge(t, t1, t2);
     return res;
   }
-  int find(Tree t, T x, int of, bool left=true){
+  int find_(Tree t, T x, int of, bool left=true){
     if(f(t->acc, x) == x)return -1;
     if(left){
-      if(t->l && f(t->l->acc, x) != x)return find(t->l, x, of, left);
-      if(f(t->val, x) != x)return of + cnt(t->l);
-      return find(t->r, x, of + cnt(t->l) + 1, left);
+      if(t->l && f(t->l->acc, x) != x)return find_(t->l, x, of, left);
+      if(f(t->acc, x) != x)return of + cnt(t->l);
+      return find_(t->r, x, of + cnt(t->l) + 1, left);
     }else{
-      if(t->r && f(t->r->acc, x) != x)return find(t->r, x, of + cnt(t->l) + 1, left);
-      if(f(t->val, x) != x)return of + cnt(t->l);
-      return find(t->l, x, of, left);
+      if(t->r && f(t->r->acc, x) != x)return find_(t->r, x, of + cnt(t->l) + 1, left);
+      if(f(t->acc, x) != x)return of + cnt(t->l);
+      return find_(t->l, x, of, left);
     }
   }
   void reverse(Tree t, int l, int r){
@@ -255,7 +255,7 @@ struct ImplicitTreap{
     Tree t1, t2, t3;
     split(root, l, t1, t2);
     split(t2, r - l, t2, t3);
-    int res = find(t2, x, l, left);
+    int res = find_(t2, x, l, left);
     merge(t2, t2, t3);
     merge(root, t1, t2);
     return res;
