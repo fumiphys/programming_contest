@@ -10,3 +10,4 @@
   - stream output for \_\_int128\_t
 ## Treap
   - Treap
+  - Implicit Treap

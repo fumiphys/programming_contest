@@ -1578,3 +1578,198 @@ snippet fast_moebius_def
 
 snippet fast_moebius_use
   fast_moebius(vec);
+
+snippet implicit_treap_def
+  template <typename T, typename E>
+  struct ImplicitTreap{
+    random_device rnd;
+    T def = 0;
+    E l_def = 0;
+    function<T(T, T)> f;
+    function<E(E, E)> g;
+    function<T(T, E, int)> p;
+
+    struct Node{
+      T val, acc;
+      E lazy;
+      int cnt, pri;
+      bool rev;
+      Node *l, *r;
+      Node(T val, int pri, T def, E l_def): val(val), acc(def), lazy(l_def), cnt(1), pri(pri), rev(false), l(nullptr), r(nullptr){}
+    };
+    using Tree = Node *;
+    Tree root = nullptr;
+    ImplicitTreap(T def, E l_def, function<T(T, T)> f, function<E(E, E)> g, function<T(T, E, int)> p): def(def), l_def(l_def), f(f), g(g), p(p){}
+    int cnt(Tree t){
+      if(!t)return 0;
+      return t->cnt;
+    }
+    T acc(Tree t){
+      if(!t)return def;
+      return t->acc;
+    }
+    void update_cnt(Tree t){
+      if(t){
+        t->cnt = 1 + cnt(t->l) + cnt(t->r);
+      }
+    }
+    void update_acc(Tree t){
+      if(t){
+        t->acc = f(t->val, f(acc(t->l), acc(t->r)));
+      }
+    }
+    void pushup(Tree t){
+      update_cnt(t);
+      update_acc(t);
+    }
+    void pushdown(Tree t){
+      if(t){
+        if(t->rev){
+          t->rev = false;
+          swap(t->l, t->r);
+          if(t->l)t->l->rev ^= 1;
+          if(t->r)t->r->rev ^= 1;
+        }
+        if(t->lazy != l_def){
+          if(t->l){
+            t->l->lazy = g(t->l->lazy, t->lazy);
+            t->l->acc = p(t->l->acc, t->lazy, cnt(t->l));
+          }
+          if(t->r){
+            t->r->lazy = g(t->r->lazy, t->lazy);
+            t->r->acc = p(t->r->acc, t->lazy, cnt(t->r));
+          }
+          t->val = p(t->val, t->lazy, 1);
+          t->lazy = l_def;
+        }
+      }
+      pushup(t);
+    }
+    void split(Tree t, int key, Tree &l, Tree &r){
+      if(!t){
+        l = r = nullptr;
+        return;
+      }
+      pushdown(t);
+      int ikey = cnt(t->l) + 1;
+      if(key < ikey)split(t->l, key, l, t->l), r = t;
+      else split(t->r, key - ikey, t->r, r), l = t;
+      pushup(t);
+    }
+    void merge(Tree &t, Tree l, Tree r){
+      pushdown(l);
+      pushdown(r);
+      if(!l || !r){
+        if(l)t = l;
+        else t = r;
+        return;
+      }
+      if(l->pri > r->pri){
+        merge(l->r, l->r, r), t = l;
+      }else{
+        merge(r->l, l, r->l), t = r;
+      }
+      pushup(t);
+    }
+    void insert(Tree &t, int key, Tree item){
+      Tree t1, t2;
+      split(t, key, t1, t2);
+      merge(t1, t1, item);
+      merge(t, t1, t2);
+    }
+    void erase(Tree &t, int key){
+      Tree t1, t2, t3;
+      split(t, key + 1, t1, t2);
+      split(t1, key, t1, t3);
+      merge(t, t1, t2);
+      delete t2;
+    }
+    void update(Tree t, int l, int r, E x){
+      Tree t1, t2, t3;
+      split(t, l, t1, t2);
+      split(t2, r - l, t2, t3);
+      t2->lazy = g(t2->lazy, x);
+      t2->acc = p(t2->acc, x, cnt(t2));
+      merge(t2, t2, t3);
+      merge(t, t1, t2);
+    }
+    T query(Tree t, int l, int r){
+      Tree t1, t2, t3;
+      split(t, l, t1, t2);
+      split(t2, r - l, t2, t3);
+      T res = t2->acc;
+      merge(t2, t2, t3);
+      merge(t, t1, t2);
+      return res;
+    }
+    int find(Tree t, T x, int of, bool left=true){
+      if(f(t->acc, x) == x)return -1;
+      if(left){
+        if(t->l && f(t->l->acc, x) != x)return find(t->l, x, of, left);
+        if(f(t->val, x) != x)return of + cnt(t->l);
+        return find(t->r, x, of + cnt(t->l) + 1, left);
+      }else{
+        if(t->r && f(t->r->acc, x) != x)return find(t->r, x, of + cnt(t->l) + 1, left);
+        if(f(t->val, x) != x)return of + cnt(t->l);
+        return find(t->l, x, of, left);
+      }
+    }
+    void reverse(Tree t, int l, int r){
+      if(l > r)return;
+      Tree t1, t2, t3;
+      split(t, l, t1, t2);
+      split(t2, r - l, t2, t3);
+      t2->rev ^= 1;
+      merge(t2, t2, t3);
+      merge(t, t1, t2);
+    }
+    // m is top
+    void rotate(Tree t, int l, int m, int r){
+      reverse(t, l, r);
+      reverse(t, l, l + r - m);
+      reverse(t, l + r - m, r);
+    }
+    int size(){
+      return cnt(root);
+    }
+    void insert(int pos, T x){
+      insert(root, pos, new Node(x, rnd(), def, l_def));
+    }
+    void update(int l, int r, T x){
+      update(root, l, r, x);
+    }
+    T query(int l, int r){
+      return query(root, l, r);
+    }
+    int find(int l, int r, T x, bool left=true){
+      Tree t1, t2, t3;
+      split(root, l, t1, t2);
+      split(t2, r - l, t2, t3);
+      int res = find(t2, x, l, left);
+      merge(t2, t2, t3);
+      merge(root, t1, t2);
+      return res;
+    }
+    void erase(int pos){
+      erase(root, pos);
+    }
+    void reverse(int l, int r){
+      reverse(root, l, r);
+    }
+    void rotate(int l, int m, int r){
+      rotate(root, l, m, r);
+    }
+    T operator[](int pos){
+      Tree t1, t2, t3;
+      split(root, pos + 1, t1, t2);
+      split(t1, pos, t1, t3);
+      T res = t3->acc;
+      merge(t1, t1, t3);
+      merge(root, t1, t2);
+      return res;
+    }
+  };
+
+snippet implicit_treap_use
+  ImplicitTreap<int, int> itr(0, 0, [](int a, int b){return a + b;},
+      [](int a, int b){return a + b;}, [](int a, int b, int c){return a + b * c;});
