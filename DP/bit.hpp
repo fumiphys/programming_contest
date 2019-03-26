@@ -6,6 +6,7 @@ using namespace std;
 
 /*
  * f(U) = \sum_{U\in T}f(T)
+ * for f(U) = \sum_{T\in U}f(T), use f[j | i] += f[j];
  */
 template <typename T>
 void fast_zeta(vector<T> &f){

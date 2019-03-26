@@ -43,3 +43,5 @@ printf '\e[32mTest for succinct_data_structure ...\e[m\n'
 ./succinct_data_structure/louds
 printf '\e[32mTest for print ...\e[m\n'
 ./convenient/extend_cout
+printf '\e[32mTest for DP ...\e[m\n'
+./DP/bit
