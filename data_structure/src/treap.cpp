@@ -62,6 +62,10 @@ int main(int argc, char const* argv[])
   assert(itr[0] == 9);
   assert(itr[1] == 4);
   assert(itr[2] == 6);
+  /* for min query
+   * ImplicitTreap<ll, ll> itr(linf, linf, [](ll a, ll b){return min(a, b);},
+   *    [](ll a, ll b){return b;}, [](ll a, ll b, int c){return b;});
+   */
   cout << "-- test for Treap end: Success --" << endl;
   return 0;
 }
