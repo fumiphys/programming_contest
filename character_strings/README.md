@@ -14,3 +14,6 @@ construct suffix array
 ## Burrows Wheeler Transformation
   - from suffix array
   - directly (TODO)
+
+## Rolling Hash
+  - rolling hash
