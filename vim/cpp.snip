@@ -209,7 +209,7 @@ snippet sa_search_def
       else rd = md;
     }
     t = t.substr(0, t.size() - 1);
-    while(true){
+    while(rd < sa.sa.size()){
       if(s.substr(sa.sa[rd], t.size()) != t)break;
       res.push_back(sa.sa[rd]);
       rd++;
@@ -217,6 +217,7 @@ snippet sa_search_def
     sort(res.begin(), res.end());
     return res;
   }
+
 snippet BIT_use
   BITI bt(10);
 
