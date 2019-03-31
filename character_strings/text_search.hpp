@@ -115,7 +115,7 @@ vector<int> sa_search(string s, string t){
     else rd = md;
   }
   t = t.substr(0, t.size() - 1);
-  while(true){
+  while(rd < sa.sa.size()){
     if(s.substr(sa.sa[rd], t.size()) != t)break;
     res.push_back(sa.sa[rd]);
     rd++;
