@@ -12,6 +12,7 @@
 #include <vector>
 #include <unordered_map>
 #include "suffix_array.hpp"
+#include "rolling_hash.hpp"
 using namespace std;
 
 // s: text, t: pattern
@@ -120,5 +121,15 @@ vector<int> sa_search(string s, string t){
     rd++;
   }
   sort(res.begin(), res.end());
+  return res;
+}
+
+vector<int> rh_search(string s, string t){
+  RollingHash<> rs = RollingHash<>(s);
+  RollingHash<> rt = RollingHash<>(t);
+  vector<int> res;
+  for(int i = 0; i + t.size() <= s.size(); i++){
+    if(rs.match(i, i + t.size(), rt, 0, t.size()))res.push_back(i);
+  }
   return res;
 }
