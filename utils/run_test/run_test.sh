@@ -16,6 +16,7 @@ printf '\e[32mTest for data_structrue ...\e[m\n'
 ./data_structure/lazy_segment_tree
 ./data_structure/segment_tree_pu_rq
 ./data_structure/bigint
+./data_structure/mergable_range_set
 printf '\e[32mTest for graph ...\e[m\n'
 ./graph/dijkstra
 ./graph/Ford_Fulkerson
