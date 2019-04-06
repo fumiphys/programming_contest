@@ -1,6 +1,8 @@
 // includes
+#include <cassert>
 #include <cstdio>
 #include <cstdint>
+#include <cstring>
 #include <iostream>
 #include <iomanip>
 #include <string>
