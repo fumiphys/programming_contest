@@ -24,6 +24,7 @@ struct BigInt{
     from_string(s);
   }
   void from_string(const string &s){
+    digit.clear();
     int i;
     for(i = (int)s.size() - BW; i >= 0; i-=BW){
       digit.emplace_back(stol(s.substr(i, BW)));
@@ -36,7 +37,7 @@ struct BigInt{
     for(int i = 0; i < digit.size(); i++){
       while(digit[i] < 0){
         if(i + 1 == digit.size())digit.emplace_back(0);
-        digit[i+1]++;
+        digit[i+1]--;
         digit[i] += B;
       }
       ll a = digit[i] + c;
@@ -47,7 +48,7 @@ struct BigInt{
       digit.emplace_back(c % B);
       c /= B;
     }
-    for(int i = (int)digit.size() - 1; i >= 0; i--){
+    for(int i = (int)digit.size() - 1; i >= 1; i--){
       if(digit[i] == 0){
         digit.pop_back();
       }else{
@@ -64,7 +65,6 @@ struct BigInt{
     return *this;
   }
   BigInt& operator=(const string &s){
-    digit.resize(1, 0);
     from_string(s);
     return *this;
   }
