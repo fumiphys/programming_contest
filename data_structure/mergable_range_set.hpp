@@ -18,19 +18,19 @@ struct MergableRangeSet{
   void merge(){
     auto itr = st.begin();
     while(itr != st.end()){
-      int l1 = itr->first;
-      int r1 = itr->second;
+      T l1 = itr->first;
+      T r1 = itr->second;
       ++itr;
       if(itr == st.end())break;
-      int l2 = itr->first;
-      int r2 = itr->second;
+      T l2 = itr->first;
+      T r2 = itr->second;
       if(l2 <= r1){
         auto prev = itr;
         --prev;
         st.erase(itr);
         st.erase(prev);
-        st.insert(make_pair(l1, r2));
-        itr = st.lower_bound(make_pair(l1, r2));
+        st.insert(make_pair(l1, max(r1, r2)));
+        itr = st.lower_bound(make_pair(l1, max(r1, r2)));
       }
     }
   }
