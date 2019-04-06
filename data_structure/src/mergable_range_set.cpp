@@ -41,6 +41,16 @@ int main(int argc, char const* argv[])
   auto itm = m.begin();
   assert(itm->first == 0);
   assert(itm->second == 3);
+  m.add(6, 7);
+  assert(m.size() == 2);
+  m.add(4, 6);
+  assert(m.size() == 2);
+  itm = m.begin();
+  assert(itm->first == 0);
+  assert(itm->second == 3);
+  itm++;
+  assert(itm->first == 4);
+  assert(itm->second == 7);
   cout << "-- test for mergable range set end: Success --" << endl;
   return 0;
 }
