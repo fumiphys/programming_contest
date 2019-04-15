@@ -4,6 +4,7 @@
 # `source {this file}`
 
 SCRIPT_DIR="$(cd $(dirname $0); pwd)/scripts"
+CONTEXTFILE="/tmp/procon_context"
 
 function utem() {
   ${SCRIPT_DIR}/use_template.sh "$@"
@@ -23,4 +24,10 @@ function ftes() {
 
 function ates() {
   ${SCRIPT_DIR}/add_test/add_testcase.sh "$@"
+}
+
+function chcon() {
+  NEWSCRIPT="$1"
+  echo ${NEWSCRIPT} > ${CONTEXTFILE}
+  cp ${SCRIPT_DIR}/make/Makefile .
 }
