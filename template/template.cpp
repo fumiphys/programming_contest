@@ -1,25 +1,5 @@
 // includes
-#include <cassert>
-#include <cstdio>
-#include <cstdint>
-#include <cstring>
-#include <iostream>
-#include <iomanip>
-#include <string>
-#include <queue>
-#include <stack>
-#include <vector>
-#include <set>
-#include <map>
-#include <unordered_map>
-#include <algorithm>
-#include <utility>
-#include <functional>
-#include <cmath>
-#include <climits>
-#include <bitset>
-#include <list>
-#include <random>
+#include <bits/stdc++.h>
 
 // macros
 #define ll long long int
@@ -32,7 +12,8 @@
 #define all(x) (x).begin(),(x).end()
 #define sz(x) ((int)(x).size())
 #define UNIQUE(v) v.erase(unique(v.begin(), v.end()), v.end())
-
+#define FI first
+#define SE second
 using namespace std;
 
 //  types
@@ -50,6 +31,7 @@ const int mod = 1e9 + 7;
 // solve
 template <class T>bool chmax(T &a, const T &b){if(a < b){a = b; return 1;} return 0;}
 template <class T>bool chmin(T &a, const T &b){if(a > b){a = b; return 1;} return 0;}
+template <typename T> istream &operator>>(istream &is, vector<T> &vec){for(auto &v: vec)is >> v; return is;}
 
 
 int main(int argc, char const* argv[])
