@@ -4,10 +4,10 @@ UTEM := ~/github/programming_contest/utils/scripts/use_template.sh
 TCAS := ~/github/programming_contest/utils/scripts/test_case.sh
 FTES := ~/github/programming_contest/utils/scripts/fetch_testcase.sh
 ATES := ~/github/programming_contest/utils/scripts/add_test/add_testcase.sh
-FU := ""
-AF := ""
+FU := 
+AF := 
 
-.PHONY: new run fetch add clean
+.PHONY: new run fetch add clean copy
 
 new: $(CONTEXTFILE)
 	@$(UTEM) $(SCRIPT) $(FU)
@@ -20,6 +20,9 @@ fetch: $(CONTEXTFILE)
 
 add: $(CONTEXTFILE)
 	@$(ATES) $(SCRIPT) $(AF)
+
+copy: $(CONTEXTFILE)
+	@pbcopy < $(SCRIPT).cpp
 
 clean: $(CONTEXTFILE)
 	@rm _$(SCRIPT) 2>/dev/null || echo "No compiled binary"
