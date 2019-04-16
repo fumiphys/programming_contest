@@ -7,15 +7,20 @@ ATES := ~/github/programming_contest/utils/scripts/add_test/add_testcase.sh
 FU := 
 AF := 
 
-.PHONY: new run fetch add clean copy
+.PHONY: new run fetch add clean copy exec all
+
+all: ./_$(SCRIPT)
+
+./_$(SCRIPT): $(SCRIPT).cpp
+	@time g++ $(SCRIPT).cpp -o _$(SCRIPT) -std=c++14 -O2 -g -fsanitize=undefined
 
 new: $(CONTEXTFILE)
 	@$(UTEM) $(SCRIPT) $(FU)
 
-run: $(CONTEXTFILE)
+run: $(CONTEXTFILE) ./_$(SCRIPT)
 	@$(TCAS) $(SCRIPT) || echo "Test failed"
 
-exec: $(CONTEXTFILE)
+exec: $(CONTEXTFILE) ./_$(SCRIPT)
 	@time ./_$(SCRIPT)
 
 fetch: $(CONTEXTFILE)

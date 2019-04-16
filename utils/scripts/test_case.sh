@@ -38,8 +38,8 @@ fi
 
 # compile source
 # compile option: -std=c++11
-printf "\e[32mCompilation ...\e[m\n"
-time g++ "${1}.cpp" -o "_${1}" -std=c++14 -O2 -g -fsanitize=undefined
+# printf "\e[32mCompilation ...\e[m\n"
+# time g++ "${1}.cpp" -o "_${1}" -std=c++14 -O2 -g -fsanitize=undefined
 
 # judge test case
 for file in `\find "./test/test_${1}/in" -maxdepth 1 -name 'in*.txt'`; do
