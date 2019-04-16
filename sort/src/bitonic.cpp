@@ -5,7 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <cassert>
-#include "../bitonic_sort.hpp"
+#include "../bitonic.hpp"
 using namespace std;
 using ll = long long;
 
