@@ -12,7 +12,7 @@ AF :=
 all: ./_$(SCRIPT)
 
 ./_$(SCRIPT): $(SCRIPT).cpp
-	@time g++ $(SCRIPT).cpp -o _$(SCRIPT) -std=c++14 -O2 -g -fsanitize=undefined
+	time g++ $(SCRIPT).cpp -o _$(SCRIPT) -std=c++14 -O2 -g -fsanitize=undefined
 
 new: $(CONTEXTFILE)
 	@$(UTEM) $(SCRIPT) $(FU)
