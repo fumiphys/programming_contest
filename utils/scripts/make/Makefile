@@ -15,6 +15,9 @@ new: $(CONTEXTFILE)
 run: $(CONTEXTFILE)
 	@$(TCAS) $(SCRIPT) || echo "Test failed"
 
+exec: $(CONTEXTFILE)
+	@time ./_$(SCRIPT)
+
 fetch: $(CONTEXTFILE)
 	@$(FTES) $(SCRIPT) $(FU)
 
