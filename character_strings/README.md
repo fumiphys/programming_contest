@@ -17,3 +17,6 @@ construct suffix array
 
 ## Rolling Hash
   - rolling hash
+
+## Trie
+  - trie
