@@ -25,6 +25,8 @@ int main(int argc, char const* argv[])
   root->insert("ab");
   assert(root->find("ab"));
   assert(!root->find("a"));
+  root->insert("AB");
+  assert(root->find("AB"));
   cout << "-- test for Trie end: Success --" << endl;
   return 0;
 }
