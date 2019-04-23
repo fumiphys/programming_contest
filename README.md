@@ -12,7 +12,7 @@ Library for programming contest
  - [math](math/README.md)
  - [optimization](optimization/README.md)
  - [sort](sort/README.md)
- - [succinct\data\_structure](succinct_data_structure/README.md)
+ - [succinct\_data\_structure](succinct_data_structure/README.md)
  - [template](template/README.md)
  - [utils](utils/README.md)
 
