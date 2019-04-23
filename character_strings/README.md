@@ -1,22 +1,42 @@
-# character_strings
-## text_search
-search pattern from text  
-  - brute force
-  - KMP
-  - BM
-  - suffix array
+# character\_strings
+library for strings
 
-## suffix_array
-construct suffix array
+## Burrows Wheeler Transformation
+[burrows\_wheeler.hpp](https://github.com/fumiphys/programming_contest/blob/master/character_strings/burrows_wheeler.hpp)  
+各文字を接尾辞でsort
+  - bwt\_sa (construct from suffix array)
+  - inverse\_bwt (restore string)
+  - construct directly (TODO)
+
+## Rolling Hash
+[rolling\_hash.hpp](https://github.com/fumiphys/programming_contest/blob/master/character_strings/rolling_hash.hpp)  
+ハッシュを用いた文字列検索アルゴリズム
+  - RollingHash  
+  verify: [AOJ(String Search)](https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_B)
+
+## Utils for String
+[string\_utils.hpp](https://github.com/fumiphys/programming_contest/blob/master/character_strings/string_utils.hpp)  
+固定長のランダムな文字列を生成する
+  - generate\_random\_string
+
+## Suffix Array
+[suffix\_array.hpp](https://github.com/fumiphys/programming_contest/blob/master/character_strings/suffix_array.hpp)  
+接尾辞配列の構築
   - Manber Myers
   - SA-IS (TODO)
 
-## Burrows Wheeler Transformation
-  - from suffix array
-  - directly (TODO)
-
-## Rolling Hash
-  - rolling hash
+## Text Search
+[text\_search.hpp](https://github.com/fumiphys/programming_contest/blob/master/character_strings/text_search.hpp)  
+文字列検索
+  - find\_text (brute force)  
+  verify: [AOJ(Naive String Search)](https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_A)
+  - kmp\_search (KMP)
+  - bm\_search (BM)
+  - sa\_search (suffix array)
+  - rh\_search (rolling hash)  
+  verify: [AOJ(String Search)](https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_B)
 
 ## Trie
+[trie.hpp](https://github.com/fumiphys/programming_contest/blob/master/character_strings/trie.hpp)  
+文字列を格納しておくための木
   - trie
