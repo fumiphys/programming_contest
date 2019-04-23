@@ -34,6 +34,8 @@ printf '\e[32mTest for math ...\e[m\n'
 ./math/prime
 ./math/convex_hull_trick
 ./math/matrix
+./math/interpolation
+./math/modint
 printf '\e[32mTest for sort ...\e[m\n'
 ./sort/insertion
 ./sort/selection
