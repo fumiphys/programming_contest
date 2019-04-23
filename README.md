@@ -25,8 +25,8 @@ make
   - to add new library,
     -  implement library and write simple test
     -  add to CMakeLists.txt
-    -  if test has passed, add test to [test script](utils/run_test/run_test.sh)
-    -  add snippet to [vim setting](vim/cpp.snip)
+    -  if test has passed, add test to [test script](https://github.com/fumiphys/programming_contest/blob/master/utils/run_test/run_test.sh)
+    -  add snippet to [vim setting](https://github.com/fumiphys/programming_contest/blob/master/vim/cpp.snip)
 
 ## TODO
  - SA-IS, BWT (direct implementation)
