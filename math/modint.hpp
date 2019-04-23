@@ -28,10 +28,12 @@ struct ModInt {
   }
   ModInt& operator*=(const ModInt &y){
     x = (x * y.x) % MOD;
+    if(x < 0)x += MOD;
     return *this;
   }
   ModInt& operator/=(const ModInt &y){
     x = (x * y.inverse().x) % MOD;
+    if(x < 0)x += MOD;
     return *this;
   }
   ModInt inverse() const{
