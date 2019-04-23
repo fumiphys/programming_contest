@@ -38,6 +38,37 @@ struct LagrangeInterpolationD{
 using LID = LagrangeInterpolationD;
 
 template <typename T>
+struct LagrangeInterpolationM{
+  int n = 0;
+  vector<T> x, y;
+  vector<T> nume;
+  LagrangeInterpolationM(const vector<T> &x, const vector<T> &y): x(x), y(y){
+    n = x.size() - 1;
+    nume.resize(n + 1);
+    for(int i = 0; i <= n; i++){
+      T t = T(1);
+      for(int j = 0; j <= n; j++){
+        if(i == j)continue;
+        t = t * (x[i] - x[j]);
+      }
+      nume[i] = t.inverse();
+    }
+  }
+  T val(T t){
+    T a = T(1);
+    for(int i = 0; i <= n; i++){
+      if(t == x[i])return y[i];
+      a = a * (t - x[i]);
+    }
+    T res = T(0);
+    for(int i = 0; i <= n; i++){
+      res += y[i] * nume[i] * (a / (t - x[i]));
+    }
+    return res;
+  }
+};
+
+template <typename T>
 struct LagrangeInterpolationN{
   int n = 0;
   vector<T> ifrac;

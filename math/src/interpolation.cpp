@@ -34,6 +34,11 @@ int main(int argc, char const* argv[])
   v[2] = MM(7);
   LagrangeInterpolationN<MM> lin(v);
   assert(lin.val(3) == 13);
+
+  vector<MM> a(3);
+  for(int i = 0; i < 3; i++)a[i] = i;
+  LagrangeInterpolationM<MM> lim(a, v);
+  assert(lim.val(3) == 13);
   cout << "test for interpolation end: Success --" << endl;
   return 0;
 }
