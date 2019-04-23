@@ -22,7 +22,7 @@ void fast_zeta(vector<T> &f){
 
 /*
  * f(U) = \sum_{U\in T}(-1)^(|T\U|)f(T)
- * for f(U) = \sum_{U\in T}f(T), use f[j | i] -= f[j];
+ * for f(U) = \sum_{T\in U}f(T), use f[j | i] -= f[j];
  */
 template <typename T>
 void fast_moebius(vector<T> &f){
