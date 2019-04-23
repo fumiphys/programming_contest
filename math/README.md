@@ -28,6 +28,7 @@
 
 # interpolation
   - lagrange interpolation for double
+  - lagrange interpolation for [0..N]
 
 # ModInt
   - modint
