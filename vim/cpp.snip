@@ -2309,3 +2309,43 @@ snippet modint_def
 
 snippet modint_use
   ModInt m(3);
+
+snippet lagrangeinterpolationN_def
+  template <typename T>
+  struct LagrangeInterpolationN{
+    int n = 0;
+    vector<T> ifrac;
+    vector<T> y;
+    vector<T> coeff;
+    LagrangeInterpolationN(const vector<T> &y): y(y){
+      n = y.size() - 1;
+      ifrac.resize(n + 1);
+      coeff.resize(n + 1);
+      ifrac[0] = T(1);
+      for(int i = 1; i <= n; i++){
+        ifrac[i] = T(i) * ifrac[i-1];
+      }
+      for(int i = 0; i <= n; i++)ifrac[i] = ifrac[i].inverse();
+      for(int i = 0; i <= n; i++){
+        T tmp = y[i] * ifrac[i] * ifrac[n-i];
+        if((n-i) % 2 == 1)tmp *= T(-1);
+        coeff[i] = tmp;
+      }
+    }
+    T val(int t){
+      if(t >= 0 && t <= n)return y[t];
+      T a = T(1);
+      for(int i = 0; i <= n; i++){
+        a = a * T(t - i);
+      }
+      T res = T(0);
+      for(int i = 0; i <= n; i++){
+        res += a * coeff[i] / T(t - i);
+      }
+      return res;
+    }
+  };
+
+snippet lagrangeinterpolation_use
+  LagrangeInterpolationN<ModInt<mod>> lin(a);
+  lin.val(3);
