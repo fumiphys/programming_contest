@@ -25,3 +25,9 @@
   - gauss jordan
   - gauss jordan (mod p) : not verified
   - gauss jordan (bit) : not verified
+
+# interpolation
+  - lagrange interpolation for double
+
+# ModInt
+  - modint
