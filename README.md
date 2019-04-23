@@ -1,33 +1,37 @@
-# programming_contest
-library for programming contest
+# programming\_contest
+Library for programming contest
 
 [![CircleCI](https://circleci.com/gh/fumiphys/programming_contest.svg?style=svg)](https://circleci.com/gh/fumiphys/programming_contest)
 
 ## Contents
- - [template](template/)
- - [data_structure](data_structure/)
- - [graph](graph/)
- - [print](print/)
- - [math](math/)
- - [character_strings](character_strings/)
- - [succinct_data_structure](succinct_data_structure/)
- - [sort](sort/)
+ - [DP](DP/README.md)
+ - [character\_strings](character_strings/README.md)
+ - [convenient](convenient/README.md)
+ - [data\_structure](data_structure/README.md)
+ - [graph](graph/README.md)
+ - [math](math/README.md)
+ - [optimization](optimization/README.md)
+ - [sort](sort/README.md)
+ - [succinct\data\_structure](succinct_data_structure/README.md)
+ - [template](template/README.md)
+ - [utils](utils/README.md)
 
 ## usage
 ```
-cd build
+mkdir build && cd build
 cmake ..
 make
 ```
   - to add new library,
-    - 1. implement library and write test
-    - 2. add to CMakeLists.txt
-    - 3. if test has passed, add test to utils/run_test/run_test.sh
-    - 4. add snippet to vim/cpp.snip
+    -  implement library and write simple test
+    -  add to CMakeLists.txt
+    -  if test has passed, add test to [test script](utils/run_test/run_test.sh)
+    -  add snippet to [vim setting](vim/cpp.snip)
 
 ## TODO
- - benchmark
- - SA-IS
+ - SA-IS, BWT (direct implementation)
+ - Bug fix for KMP, BM
+ - FFT, Convolution
 
 ## Links
  - [atcoder](https://beta.atcoder.jp/users/fumiphys)
