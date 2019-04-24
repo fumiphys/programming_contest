@@ -8,7 +8,7 @@ if [ $# -ne 2 ]; then
 fi
 
 ATCODER_URL="https://atcoder.jp"
-AOJ_URL="http://judge.u-aizu.ac.jp/onlinejudge"
+AOJ_URL="https://onlinejudge.u-aizu.ac.jp/"
 CODEFORCES_URL="https://codeforces.com"
 YUKICODER_URL="https://yukicoder.me"
 
