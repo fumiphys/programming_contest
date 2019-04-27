@@ -30,12 +30,15 @@ library for strings
 文字列検索
   - find\_text (brute force)  
   verify: [AOJ(Naive String Search)](https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_A)
-  - kmp\_search (KMP)
-  - bm\_search (BM)
+  - kmp\_search (KMP)  
+  verify: [AOJ(Naive String Search)](https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_A)
+  - bm\_search (BM)  
+  verify: [AOJ(Naive String Search)](https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_A)
   - sa\_search (suffix array)
   - rh\_search (rolling hash)  
   verify: [AOJ(String Search)](https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_B)
-  - z\_search (Z algorithm)
+  - z\_search (Z algorithm)  
+  verify: [AOJ(String Search)](https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_B)
 
 ## Trie
 [trie.hpp](https://github.com/fumiphys/programming_contest/blob/master/character_strings/trie.hpp)  
