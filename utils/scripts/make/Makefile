@@ -9,7 +9,7 @@ AF :=
 
 .PHONY: new run fetch add clean copy exec all
 
-all: ./_$(SCRIPT)
+all: run
 
 ./_$(SCRIPT): $(SCRIPT).cpp
 	time g++ $(SCRIPT).cpp -o _$(SCRIPT) -std=c++14 -O2 -g -fsanitize=undefined
