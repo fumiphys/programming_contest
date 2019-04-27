@@ -13,6 +13,7 @@
 #include <unordered_map>
 #include "suffix_array.hpp"
 #include "rolling_hash.hpp"
+#include "z.hpp"
 using namespace std;
 
 // s: text, t: pattern
@@ -130,6 +131,18 @@ vector<int> rh_search(string s, string t){
   vector<int> res;
   for(int i = 0; i + t.size() <= s.size(); i++){
     if(rs.match(i, i + t.size(), rt, 0, t.size()))res.push_back(i);
+  }
+  return res;
+}
+
+vector<int> z_search(string s, string t){
+  string u = t;
+  u += "$";
+  u += s;
+  vector<int> z = zarray(u);
+  vector<int> res;
+  for(int i = 1; i < u.size(); i++){
+    if(z[i] >= t.size())res.push_back(i - int(t.size()) - 1);
   }
   return res;
 }

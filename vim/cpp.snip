@@ -2349,3 +2349,41 @@ snippet lagrangeinterpolationN_def
 snippet lagrangeinterpolation_use
   LagrangeInterpolationN<ModInt<mod>> lin(a);
   lin.val(3);
+
+snippet zalgo_def
+  vector<int> zarray(const string &s){
+    int n = s.size();
+    vector<int> z(n, 0);
+    int c = 0;
+    for(int i = 1; i < n; i++){
+      if(i + z[i - c] < c + z[c]){
+        z[i] = z[i - c];
+      }else{
+        int j = max(0, c + z[c] - i);
+        while(i + j < n && s[j] == s[i + j])j++;
+        z[i] = j;
+        c = i;
+      }
+    }
+    z[0] = n;
+    return z;
+  }
+
+snippet zalgo_use
+  auto p = zarray(s);
+
+snippet z_search_def
+  vector<int> z_search(string s, string t){
+    string u = t;
+    u += "$";
+    u += s;
+    vector<int> z = zarray(u);
+    vector<int> res;
+    for(int i = 1; i < u.size(); i++){
+      if(z[i] >= t.size())res.push_back(i - int(t.size()) - 1);
+    }
+    return res;
+  }
+
+snippet z_search_use
+  auto p = z_search(s, t);

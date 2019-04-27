@@ -51,7 +51,7 @@ int main(int argc, char const* argv[])
   assert(res[1] == 6);
   cout << "-- test for kmp_search end: Success --" << endl;
 
-  cout << "-- test for kmp_search start --" << endl;
+  cout << "-- test for bm_search start --" << endl;
   s = "abcdefgh";
   t = "cd";
   res = bm_search(s, t);
@@ -72,7 +72,7 @@ int main(int argc, char const* argv[])
   assert(res.size() == 2);
   assert(res[0] == 0);
   assert(res[1] == 6);
-  cout << "-- test for kmp_search end: Success --" << endl;
+  cout << "-- test for bm_search end: Success --" << endl;
 
   cout << "-- test for sa_search start --" << endl;
   s = "abcdefgh";
@@ -120,6 +120,29 @@ int main(int argc, char const* argv[])
   assert(res[1] == 6);
   cout << "-- test for rh_search end: Success --" << endl;
 
+  cout << "-- test for z_search start --" << endl;
+  s = "abcdefgh";
+  t = "cd";
+  res = z_search(s, t);
+  assert(res.size() == 1);
+  assert(res[0] == 2);
+
+  s = "ababbaba";
+  t = "ba";
+  res = z_search(s, t);
+  assert(res.size() == 3);
+  assert(res[0] == 1);
+  assert(res[1] == 4);
+  assert(res[2] == 6);
+
+  s = "ababbbababbb";
+  t = "ababb";
+  res = z_search(s, t);
+  assert(res.size() == 2);
+  assert(res[0] == 0);
+  assert(res[1] == 6);
+  cout << "-- test for z_search end: Success --" << endl;
+
   cout << "-- comparing four methods --" << endl;
   // compare three algorithm
   for(int i = 0; i < 100; i++){
@@ -129,6 +152,7 @@ int main(int argc, char const* argv[])
     assert(kmp_search(s, t) == bm_search(s, t));
     assert(bm_search(s, t) == sa_search(s, t));
     assert(sa_search(s, t) == rh_search(s, t));
+    assert(rh_search(s, t) == z_search(s, t));
   }
   cout << "-- comparing four methods end: Success --" << endl;
   return 0;

@@ -35,8 +35,14 @@ library for strings
   - sa\_search (suffix array)
   - rh\_search (rolling hash)  
   verify: [AOJ(String Search)](https://onlinejudge.u-aizu.ac.jp/courses/lesson/1/ALDS1/14/ALDS1_14_B)
+  - z\_search (Z algorithm)
 
 ## Trie
 [trie.hpp](https://github.com/fumiphys/programming_contest/blob/master/character_strings/trie.hpp)  
 文字列を格納しておくための木
   - trie
+
+## Z-Algorithm
+[z.hpp](https://github.com/fumiphys/programming_contest/blob/master/character_strings/z.hpp)  
+文字列sとs[i:]の共通接頭辞の長さを線形時間で求める.
+  - zarray (calculate Z array)
