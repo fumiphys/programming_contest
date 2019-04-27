@@ -103,8 +103,7 @@ vector<int> bm_search(string s, string t){
   return res;
 }
 
-vector<int> sa_search(string s, string t){
-  SAManberMyers sa(s);
+vector<int> sa_search_(SAManberMyers &sa, string s, string t){
   vector<int> res;
   t += "$";
   s += "$";
@@ -122,6 +121,12 @@ vector<int> sa_search(string s, string t){
     rd++;
   }
   sort(res.begin(), res.end());
+  return res;
+}
+
+vector<int> sa_search(string s, string t){
+  SAManberMyers sa(s);
+  vector<int> res = sa_search_(sa, s, t);
   return res;
 }
 
