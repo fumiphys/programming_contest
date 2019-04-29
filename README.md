@@ -32,6 +32,9 @@ make
  - SA-IS, BWT (direct implementation)
  - Bug fix for KMP, BM
  - FFT, Convolution
+ - minimum cost flow
+ - maximum flow (dinic)
+ - minimum spanning tree (Boruvka's algorithm)
 
 ## Links
  - [atcoder](https://beta.atcoder.jp/users/fumiphys)

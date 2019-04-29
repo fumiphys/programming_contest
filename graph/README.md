@@ -1,24 +1,48 @@
 # graph
+library for graph
 ## dijkstra
-  - dijkstra
+[dijkstra.hpp](https://github.com/fumiphys/programming_contest/blob/master/graph/dijkstra.hpp)  
+非負辺グラフに対する1点始点最短経路問題
+  - dijkstra method  
+  verify: [AOJ(Single Source Shortest Path)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_A)
  
-## Bellman_ford
-  - bellman ford method
+## Bellman\_ford
+[bellman\_ford.hpp](https://github.com/fumiphys/programming_contest/blob/master/graph/bellman_ford.hpp)  
+グラフに対する1点始点最短経路問題(非負もOK), 閉路検出.
+  - bellman ford method  
+  verify: [AOJ(Single Source Shortest Path(Negative Edges))](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_B)
 
-## warshall_floyd
-  - warshall floyd method
+## warshall\_floyd
+[warshall\_floyd.hpp](https://github.com/fumiphys/programming_contest/blob/master/graph/warshall_floyd.hpp)  
+グラフに対する全点対最短経路問題, 閉路検出(d[i][i]<0なら閉路)  
+  - warshall floyd method  
+  verify: [AOJ(All Pairs Shortest Path)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_C)
 
-## Ford_Fulkerson
-  - Ford Fulkerson method
+## Ford\_Fulkerson
+[Ford\_Fulkerson.hpp](https://github.com/fumiphys/programming_contest/blob/master/graph/Ford_Fulkerson.hpp)  
+最大流, 最小カット問題  
+  - Ford Fulkerson method  
+  verify: [AOJ(Maximum Flow)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A)
 
 ## bipartile
+[bipartile.hpp](https://github.com/fumiphys/programming_contest/blob/master/graph/bipartile.hpp)  
+グラフが2部グラフか判定する
   - check bipartile
 
 ## topological dag
-  - topological sort
+[topological\_dag.hpp](https://github.com/fumiphys/programming_contest/blob/master/graph/topological_dag.hpp)  
+トポロジカルソート  
+  - topological sort  
+  verify: [AOJ(Topological Sort)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/4/GRL_4_B)
 
 ## Prim
-  - Minimum Spanning Tree (Prim)
+[prim.hpp](https://github.com/fumiphys/programming_contest/blob/master/graph/prim.hpp)  
+最小全域木(木を拡張していく)
+  - Minimum Spanning Tree (Prim)  
+  verify: [AOJ(Minimum Spanning Tree)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/2/GRL_2_A)
 
 ## Kruskal
-  - Minimum Spanning Tree (Kruskal)
+[kruskal.hpp](https://github.com/fumiphys/programming_contest/blob/master/graph/kruskal.hpp)  
+最小全域木(最小コストの辺から見ていく)
+  - Minimum Spanning Tree (Kruskal)  
+  verify: [AOJ(Minimum Spanning Tree)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/2/GRL_2_A)
