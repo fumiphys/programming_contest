@@ -56,6 +56,25 @@ int main(int argc, char const* argv[])
   assert(p.first == 0);
   assert(p.second == -1);
 
+  // factorial
+  Factorial fac(1000);
+  const int mod = 1e9 + 7;
+  assert(fac[0] == 1);
+  assert(fac[1] == 1);
+  assert(fac[2] == 2);
+  assert(fac[3] == 6);
+  assert(fac[4] == 24);
+
+  assert(fac.inv(0) == 1);
+  assert(fac.inv(2) == (long long)(5e8+4));
+
+  assert(fac.comb(4, 2) == 6);
+  assert(fac.comb(5, 2) == 10);
+  assert(fac.perm(4, 2) == 12);
+  assert(fac.perm(5, 2) == 20);
+  assert(fac.h(4, 2) == 10);
+  assert(fac.h(0, 0) == 1);
+
   cout << "-- test for algebra end: Success --" << endl;
   return 0;
 }

@@ -17,6 +17,7 @@
   - greatest common devider
   - extgcd
   - chinese reminder theorem
+  - factorial, combination, permutation, h
 
 ## convex hull trick
   - monotonious update of lines
