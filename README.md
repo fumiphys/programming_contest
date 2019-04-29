@@ -37,7 +37,6 @@ make
  - minimum spanning tree (Boruvka's algorithm)
  - power for general data stucture
  - verification of BigInt
- - rep macro for vector, map...
 
 ## Links
  - [atcoder](https://beta.atcoder.jp/users/fumiphys)
