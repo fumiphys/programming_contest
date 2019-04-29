@@ -37,7 +37,6 @@ make
  - minimum spanning tree (Boruvka's algorithm)
  - power for general data stucture
  - verification of BigInt
- - cout for vector, map...
  - rep macro for vector, map...
 
 ## Links

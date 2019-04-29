@@ -14,6 +14,8 @@
 #define UNIQUE(v) v.erase(unique(v.begin(), v.end()), v.end())
 #define FI first
 #define SE second
+#define dump(a, n) for(int i = 0; i < n; i++)cout << a[i] << "\n "[i + 1 != n];
+#define dump2(a, n, m) for(int i = 0; i < n; i++)for(int j = 0; j < m; j++)cout << a[i][j] << "\n "[j + 1 != m];
 using namespace std;
 
 //  types
