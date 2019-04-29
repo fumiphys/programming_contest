@@ -4,9 +4,14 @@
 [bigint.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/bigint.hpp)  
 多倍長整数
   - BigInt (0以上の数のみ)  
-  verify: [AOJ(National Budget)](https://onlinejudge.u-aizu.ac.jp/problems/0015)
+  verify: [AOJ(National Budget)](https://onlinejudge.u-aizu.ac.jp/problems/0015)  
+  verify: [AOJ(Addition of Big Integers)](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/2/NTL_2_A)  
+  verify: [AOJ(Difference of Big Integers)](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/2/NTL_2_B)  
+  verify: [AOJ(Multiplication of Big Integers)](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/2/NTL_2_C)  
   - SBigInt (signed)  
-  verify: []()
+  verify: [AOJ(Addition of Big Integers)](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/2/NTL_2_A)  
+  verify: [AOJ(Difference of Big Integers)](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/2/NTL_2_B)  
+  verify: [AOJ(Multiplication of Big Integers)](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/2/NTL_2_C)  
 
 ## Binary Indexed Tree
 [binary\_indexed\_tree.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/binary_indexed_tree.hpp)  
