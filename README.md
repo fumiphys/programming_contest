@@ -36,7 +36,7 @@ make
  - maximum flow (dinic)
  - minimum spanning tree (Boruvka's algorithm)
  - power for general data stucture
- - verification of BigInt
+ - verification of BigInt, acceleration of multiplication, division
 
 ## Links
  - [atcoder](https://beta.atcoder.jp/users/fumiphys)
