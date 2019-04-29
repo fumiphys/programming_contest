@@ -79,6 +79,7 @@ struct Factorial{
     return inv_[i];
   }
   long long comb(int n, int k){
+    if(n < k)return 0;
     long long res = fac[n];
     res = res * inv_[n-k] % MOD;
     res = res * inv_[k] % MOD;
