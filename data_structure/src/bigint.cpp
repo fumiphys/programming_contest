@@ -57,6 +57,15 @@ int main(int argc, char const* argv[])
   assert(sqrt(J) == BigInt(4));
   BigInt K = BigInt("1862193003452393504281");
   assert(sqrt(K) == BigInt("43153134341"));
+
+  SBigInt sb("1234567890");
+  SBigInt sc("1000000000");
+  assert(sb + sc == SBigInt("2234567890"));
+  sc = SBigInt("-1000000000");
+  assert(sb + sc == SBigInt("234567890"));
+  sc = SBigInt(-4);
+  assert(sb * sc == SBigInt("-4938271560"));
+  assert((sb * sc) / sc == sb);
   cout << "-- test for BigInt end: Success --" << endl;
   return 0;
 }

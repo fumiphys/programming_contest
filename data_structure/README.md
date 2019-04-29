@@ -5,6 +5,8 @@
 多倍長整数
   - BigInt (0以上の数のみ)  
   verify: [AOJ(National Budget)](https://onlinejudge.u-aizu.ac.jp/problems/0015)
+  - SBigInt (signed)  
+  verify: []()
 
 ## Binary Indexed Tree
 [binary\_indexed\_tree.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/binary_indexed_tree.hpp)  

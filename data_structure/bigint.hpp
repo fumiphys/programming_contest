@@ -256,3 +256,72 @@ BigInt sqrt(BigInt x){
   }
   return l;
 }
+
+struct SBigInt{
+  bool neg = false;
+  BigInt b = 0;
+  SBigInt(){}
+  SBigInt(ll a): b(BigInt(abs(a))){
+    if(a < 0)neg = true;
+  }
+  SBigInt(const string &s){
+    string t = s;
+    if(t[0] == '-'){
+      neg = true;
+      t = t.substr(1, t.size() - 1);
+    }
+    b = BigInt(t);
+  }
+  bool operator==(const SBigInt &r) const{
+    return (neg == r.neg) && (b == r.b);
+  }
+  bool operator!=(const SBigInt &r) const{
+    return (neg != r.neg) || (b != r.b);
+  }
+  SBigInt operator-(){
+    SBigInt res = *this;
+    res.neg = !res.neg;
+    return res;
+  }
+};
+
+SBigInt operator+(SBigInt x, SBigInt y){
+  SBigInt res;
+  if(x.neg == y.neg){
+    res.b = x.b + y.b;
+    res.neg = x.neg;
+  }else{
+    if(x.b > y.b){
+      res.b = x.b - y.b;
+      res.neg = x.neg;
+    }else{
+      res.b = y.b - x.b;
+      res.neg = y.neg;
+    }
+  }
+  return res;
+}
+
+SBigInt operator-(SBigInt x, SBigInt y){
+  return x + (- y);
+}
+
+SBigInt operator*(SBigInt x, SBigInt y){
+  SBigInt res;
+  res.neg = !(x.neg == y.neg);
+  res.b = x.b * y.b;
+  return res;
+}
+
+SBigInt operator/(SBigInt x, SBigInt y){
+  SBigInt res;
+  res.neg = !(x.neg == y.neg);
+  res.b = x.b / y.b;
+  return res;
+}
+
+ostream &operator<<(ostream &os, const SBigInt &b){
+  if(b.neg)os << "-";
+  os << b.b;
+  return os;
+}
