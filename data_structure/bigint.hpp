@@ -272,6 +272,9 @@ struct SBigInt{
     }
     b = BigInt(t);
   }
+  void check_zero(){
+    if(b == ZERO)neg = false;
+  }
   bool operator==(const SBigInt &r) const{
     return (neg == r.neg) && (b == r.b);
   }
@@ -281,6 +284,7 @@ struct SBigInt{
   SBigInt operator-(){
     SBigInt res = *this;
     res.neg = !res.neg;
+    res.check_zero();
     return res;
   }
 };
@@ -299,17 +303,21 @@ SBigInt operator+(SBigInt x, SBigInt y){
       res.neg = y.neg;
     }
   }
+  res.check_zero();
   return res;
 }
 
 SBigInt operator-(SBigInt x, SBigInt y){
-  return x + (- y);
+  SBigInt res = x + (- y);
+  res.check_zero();
+  return res;
 }
 
 SBigInt operator*(SBigInt x, SBigInt y){
   SBigInt res;
   res.neg = !(x.neg == y.neg);
   res.b = x.b * y.b;
+  res.check_zero();
   return res;
 }
 
@@ -317,6 +325,7 @@ SBigInt operator/(SBigInt x, SBigInt y){
   SBigInt res;
   res.neg = !(x.neg == y.neg);
   res.b = x.b / y.b;
+  res.check_zero();
   return res;
 }
 
