@@ -1939,7 +1939,7 @@ snippet bigint_def
     return is;
   }
 
-  bool operator<(BigInt x, BigInt y){
+  bool operator<(const BigInt &x, const BigInt &y){
     if(x.digit.size() != y.digit.size())return x.digit.size() < y.digit.size();
     for(int i = x.digit.size() - 1; i >= 0; i--){
       if(x.digit[i] != y.digit[i])return x.digit[i] < y.digit[i];
@@ -1947,47 +1947,50 @@ snippet bigint_def
     return false;
   }
 
-  bool operator>(BigInt x, BigInt y){
+  bool operator>(const BigInt &x, const BigInt y){
     return y < x;
   }
 
-  bool operator<=(BigInt x, BigInt y){
+  bool operator<=(const BigInt &x, const BigInt &y){
     return !(y < x);
   }
 
-  bool operator>=(BigInt x, BigInt y){
+  bool operator>=(const BigInt &x, const BigInt &y){
     return !(x < y);
   }
 
-  bool operator!=(BigInt x, BigInt y){
+  bool operator!=(const BigInt &x, const BigInt &y){
     return x < y || y < x;
   }
 
-  bool operator==(BigInt x, BigInt y){
+  bool operator==(const BigInt &x, const BigInt &y){
     return !(x < y) && !(y < x);
   }
 
-  BigInt operator+(BigInt x, ll a){
-    x.digit[0] += a;
-    x.normalize();
-    return x;
+  BigInt operator+(const BigInt &x, ll a){
+    BigInt res = x;
+    res.digit[0] += a;
+    res.normalize();
+    return res;
   }
 
-  BigInt operator+(BigInt x, BigInt y){
-    while(x.digit.size() < y.digit.size())x.digit.emplace_back(0);
-    for(int i = 0; i < y.digit.size(); i++)x.digit[i] += y.digit[i];
-    x.normalize();
-    return x;
+  BigInt operator+(const BigInt &x, const BigInt &y){
+    BigInt res = x;
+    while(res.digit.size() < y.digit.size())res.digit.emplace_back(0);
+    for(int i = 0; i < y.digit.size(); i++)res.digit[i] += y.digit[i];
+    res.normalize();
+    return res;
   }
 
-  BigInt operator-(BigInt x, BigInt y){
-    assert(x.digit.size() >= y.digit.size());
-    for(int i = 0; i < y.digit.size(); i++)x.digit[i] -= y.digit[i];
-    x.normalize();
-    return x;
+  BigInt operator-(const BigInt &x, const BigInt &y){
+    BigInt res = x;
+    assert(res.digit.size() >= y.digit.size());
+    for(int i = 0; i < y.digit.size(); i++)res.digit[i] -= y.digit[i];
+    res.normalize();
+    return res;
   }
 
-  BigInt operator*(BigInt x, BigInt y){
+  BigInt operator*(const BigInt &x, const BigInt &y){
     BigInt z;
     z.digit.assign(x.digit.size() + y.digit.size(), 0);
     for(int i = 0; i < x.digit.size(); i++){
@@ -1999,64 +2002,67 @@ snippet bigint_def
     return z;
   }
 
-  BigInt operator*(BigInt x, ll a){
-    for(int i = 0; i < x.digit.size(); i++)x.digit[i] *= a;
-    x.normalize();
-    return x;
+  BigInt operator*(const BigInt &x, ll a){
+    BigInt res = x;
+    for(int i = 0; i < res.digit.size(); i++)res.digit[i] *= a;
+    res.normalize();
+    return res;
   }
 
-  pair<BigInt, ll> divmod(BigInt x, ll a){
+  pair<BigInt, ll> divmod(const BigInt &x, ll a){
     ll c = 0;
-    for(int i = (int)x.digit.size() - 1; i >= 0; i--){
-      ll t = B * c + x.digit[i];
-      x.digit[i] = t / a;
+    BigInt res = x;
+    for(int i = (int)res.digit.size() - 1; i >= 0; i--){
+      ll t = B * c + res.digit[i];
+      res.digit[i] = t / a;
       c = t % a;
     }
-    x.normalize();
-    return make_pair(x, c);
+    res.normalize();
+    return make_pair(res, c);
   }
 
-  BigInt operator/(BigInt x, ll a){
+  BigInt operator/(const BigInt &x, ll a){
     return divmod(x, a).first;
   }
 
-  BigInt operator%(BigInt x, ll a){
+  BigInt operator%(const BigInt &x, ll a){
     return divmod(x, a).second;
   }
 
-  pair<BigInt, BigInt> divmod(BigInt x, BigInt y){
+  pair<BigInt, BigInt> divmod(const BigInt &x, const BigInt &y){
+    BigInt rx = x, ry = y;
     if(x.digit.size() < y.digit.size())return make_pair(ZERO, x);
     int F = B / (y.digit[y.digit.size() - 1] + 1);
-    x = x * F; y = y * F;
+    rx = rx * F; ry = ry * F;
     BigInt z;
-    z.digit.assign(x.digit.size() - y.digit.size() + 1, 0);
-    for(int k = (int)z.digit.size() - 1, i = (int)x.digit.size() - 1; k >= 0; k--, i--){
-      z.digit[k] = (i + 1 < x.digit.size() ? x.digit[i+1]: 0) * B + x.digit[i];
-      z.digit[k] /= y.digit[y.digit.size() - 1];
+    z.digit.assign(rx.digit.size() - ry.digit.size() + 1, 0);
+    for(int k = (int)z.digit.size() - 1, i = (int)rx.digit.size() - 1; k >= 0; k--, i--){
+      z.digit[k] = (i + 1 < rx.digit.size() ? rx.digit[i+1]: 0) * B + rx.digit[i];
+      z.digit[k] /= ry.digit[ry.digit.size() - 1];
       BigInt t;
-      t.digit.assign(k + y.digit.size(), 0);
-      for(int m = 0; m < y.digit.size(); m++){
-        t.digit[k+m] = z.digit[k] * y.digit[m];
+      t.digit.assign(k + ry.digit.size(), 0);
+      for(int m = 0; m < ry.digit.size(); m++){
+        t.digit[k+m] = z.digit[k] * ry.digit[m];
       }
       t.normalize();
-      while(x < t){
+      while(rx < t){
         z.digit[k] -= 1;
-        for(int m = 0; m < y.digit.size(); m++){
-          t.digit[k+m] -= y.digit[m];
+        for(int m = 0; m < ry.digit.size(); m++){
+          t.digit[k+m] -= ry.digit[m];
         }
         t.normalize();
       }
-      x = x - t;
+      rx = rx - t;
     }
     z.normalize();
-    return make_pair(z, x / F);
+    return make_pair(z, rx / F);
   }
 
-  BigInt operator/(BigInt x, BigInt y){
+  BigInt operator/(const BigInt &x, const BigInt &y){
     return divmod(x, y).first;
   }
 
-  BigInt operator%(BigInt x, BigInt y){
+  BigInt operator%(const BigInt &x, const BigInt &y){
     return divmod(x, y).second;
   }
 
@@ -2065,27 +2071,27 @@ snippet bigint_def
     return x;
   }
 
-  BigInt &operator+=(BigInt &x, BigInt y){
+  BigInt &operator+=(BigInt &x, const BigInt &y){
     x = x + y;
     return x;
   }
 
-  BigInt &operator-=(BigInt &x, BigInt y){
+  BigInt &operator-=(BigInt &x, const BigInt &y){
     x = x - y;
     return x;
   }
 
-  BigInt& operator*=(BigInt &x, BigInt y){
+  BigInt& operator*=(BigInt &x, const BigInt &y){
     x = x * y;
     return x;
   }
 
-  BigInt& operator/=(BigInt &x, BigInt y){
+  BigInt& operator/=(BigInt &x, const BigInt &y){
     x = x / y;
     return x;
   }
 
-  BigInt& operator%=(BigInt &x, BigInt y){
+  BigInt& operator%=(BigInt &x, const BigInt &y){
     x = x % y;
     return x;
   }
@@ -2100,7 +2106,7 @@ snippet bigint_def
     return x;
   }
 
-  BigInt sqrt(BigInt x){
+  BigInt sqrt(const BigInt &x){
     BigInt l = 1;
     BigInt r = x;
     while(r - l > BigInt(1)){
@@ -2432,6 +2438,7 @@ snippet factorial_def
       return inv_[i];
     }
     long long comb(int n, int k){
+      if(n < k)return 0;
       long long res = fac[n];
       res = res * inv_[n-k] % MOD;
       res = res * inv_[k] % MOD;
@@ -2451,3 +2458,85 @@ snippet factorial_def
 
 snippet factorial_use
   Factorial fac(n);
+
+snippet sbigint_def
+  struct SBigInt{
+    bool neg = false;
+    BigInt b = 0;
+    SBigInt(){}
+    SBigInt(ll a): b(BigInt(abs(a))){
+      if(a < 0)neg = true;
+    }
+    SBigInt(const string &s){
+      string t = s;
+      if(t[0] == '-'){
+        neg = true;
+        t = t.substr(1, t.size() - 1);
+      }
+      b = BigInt(t);
+    }
+    void check_zero(){
+      if(b == ZERO)neg = false;
+    }
+    bool operator==(const SBigInt &r) const{
+      return (neg == r.neg) && (b == r.b);
+    }
+    bool operator!=(const SBigInt &r) const{
+      return (neg != r.neg) || (b != r.b);
+    }
+    SBigInt operator-() const{
+      SBigInt res = *this;
+      res.neg = !res.neg;
+      res.check_zero();
+      return res;
+    }
+  };
+
+  SBigInt operator+(const SBigInt &x, const SBigInt &y){
+    SBigInt res;
+    if(x.neg == y.neg){
+      res.b = x.b + y.b;
+      res.neg = x.neg;
+    }else{
+      if(x.b > y.b){
+        res.b = x.b - y.b;
+        res.neg = x.neg;
+      }else{
+        res.b = y.b - x.b;
+        res.neg = y.neg;
+      }
+    }
+    res.check_zero();
+    return res;
+  }
+
+  SBigInt operator-(const SBigInt &x, const SBigInt &y){
+    SBigInt res = x + (- y);
+    res.check_zero();
+    return res;
+  }
+
+  SBigInt operator*(const SBigInt &x, const SBigInt &y){
+    SBigInt res;
+    res.neg = !(x.neg == y.neg);
+    res.b = x.b * y.b;
+    res.check_zero();
+    return res;
+  }
+
+  SBigInt operator/(const SBigInt &x, const SBigInt &y){
+    SBigInt res;
+    res.neg = !(x.neg == y.neg);
+    res.b = x.b / y.b;
+    res.check_zero();
+    return res;
+  }
+
+  ostream &operator<<(ostream &os, const SBigInt &b){
+    if(b.neg)os << "-";
+    os << b.b;
+    return os;
+  }
+
+snippet sbigint_use
+  SBigInt("-3");
