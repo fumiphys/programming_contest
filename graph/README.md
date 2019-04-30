@@ -18,8 +18,8 @@ library for graph
   - warshall floyd method  
   verify: [AOJ(All Pairs Shortest Path)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/1/GRL_1_C)
 
-## Ford\_Fulkerson
-[Ford\_Fulkerson.hpp](https://github.com/fumiphys/programming_contest/blob/master/graph/Ford_Fulkerson.hpp)  
+## ford\_fulkerson
+[ford\_fulkerson.hpp](https://github.com/fumiphys/programming_contest/blob/master/graph/ford_fulkerson.hpp)  
 最大流, 最小カット問題  
   - Ford Fulkerson method  
   verify: [AOJ(Maximum Flow)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A)

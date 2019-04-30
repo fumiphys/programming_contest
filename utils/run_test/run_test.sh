@@ -21,7 +21,7 @@ printf '\e[32mTest for data_structrue ...\e[m\n'
 ./data_structure/mergable_range_set
 printf '\e[32mTest for graph ...\e[m\n'
 ./graph/dijkstra
-./graph/Ford_Fulkerson
+./graph/ford_fulkerson
 ./graph/warshall_floyd
 ./graph/bipartile
 ./graph/topological_dag

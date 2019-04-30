@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 add_executable(dijkstra src/dijkstra.cpp)
-add_executable(Ford_Fulkerson src/Ford_Fulkerson.cpp)
+add_executable(ford_fulkerson src/ford_fulkerson.cpp)
 add_executable(warshall_floyd src/warshall_floyd.cpp)
 add_executable(bipartile src/bipartile.cpp)
 add_executable(topological_dag src/topological_dag.cpp)

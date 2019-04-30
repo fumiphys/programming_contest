@@ -5,7 +5,7 @@
 
 #include <iostream>
 #include <cassert>
-#include "../Ford_Fulkerson.hpp"
+#include "../ford_fulkerson.hpp"
 
 
 int main(int argc, char const* argv[])
