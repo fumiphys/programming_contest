@@ -44,15 +44,27 @@ library for math
   - monotonious update of lines
 
 ## matrix
+[matrix.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/matrix.hpp)  
+ガウスの掃き出し法
   - gauss jordan
-  - gauss jordan (mod p) : not verified
-  - gauss jordan (bit) : not verified
+  - gauss jordan (mod p)
+  - gauss jordan (bit)
 
 # interpolation
+[interpolation.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/interpolation.hpp)  
+多項式補間
   - lagrange interpolation for double
   - lagrange interpolation for T (ex. modint)
   - lagrange interpolation for [0..N]  
   verify: [AtCoder(見たことのない多項式)](https://atcoder.jp/contests/arc033/tasks/arc033_4)
 
 # ModInt
+[modint.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/modint.hpp)  
+剰余体での演算
   - modint
+
+# Convolution
+[convolution.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/convolution.hpp)  
+FFT, Convolution
+  - convolution
+  - fft (dft, idft)
