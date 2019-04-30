@@ -50,7 +50,7 @@ library for math
   - gauss jordan (mod p)
   - gauss jordan (bit)
 
-# interpolation
+## interpolation
 [interpolation.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/interpolation.hpp)  
 多項式補間
   - lagrange interpolation for double
@@ -58,12 +58,12 @@ library for math
   - lagrange interpolation for [0..N]  
   verify: [AtCoder(見たことのない多項式)](https://atcoder.jp/contests/arc033/tasks/arc033_4)
 
-# ModInt
+## ModInt
 [modint.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/modint.hpp)  
 剰余体での演算
   - modint
 
-# Convolution
+## Convolution
 [convolution.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/convolution.hpp)  
 FFT, Convolution
   - convolution  
