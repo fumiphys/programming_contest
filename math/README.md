@@ -31,7 +31,8 @@ library for math
   verify: [AOJ(Least Common Multiple)](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_C)
   - extgcd  
   verify: [Extended Euclid Algorithm](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_E)
-  - chinese reminder theorem
+  - chinese reminder theorem  
+  verify: [yukicoder(中華風 (Easy))](https://yukicoder.me/problems/no/186)
   - factorial, combination, permutation, h  
   verify: [yukicoder(組み合わせの数)](https://yukicoder.me/problems/no/117)
 
