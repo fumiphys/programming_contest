@@ -70,6 +70,21 @@ long long modlog(long long a, long long b, long long m){
   return -1;
 }
 
+template <typename T>
+long long garner(vector<T> b, vector<T> m, T MOD){
+  m.emplace_back(MOD);
+  vector<long long> coef(m.size(), 1);
+  vector<long long> consts(m.size(), 0);
+  for(int i = 0; i < b.size(); i++){
+    long long t = ((b[i] - consts[i]) % m[i]) * modinv<long long>(coef[i], m[i]) % m[i];
+    for(int j = i + 1; j < m.size(); j++){
+      consts[j] = (consts[j] + t * coef[j] % m[j]) % m[j];
+      coef[j] = coef[j] * m[i] % m[j];
+    }
+  }
+  return consts.back();
+}
+
 template<typename T>
 pair<T, T> chinese_reminder_theorem(vector<T> b, vector<T> m){
   T r = 0, M = 1;

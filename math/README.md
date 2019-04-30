@@ -32,6 +32,7 @@ library for math
   - extgcd  
   verify: [Extended Euclid Algorithm](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_E)
   - modinv  
+  - Garner Algorithm
   - chinese reminder theorem  
   verify: [yukicoder(中華風 (Easy))](https://yukicoder.me/problems/no/186)
   - factorial, combination, permutation, h  

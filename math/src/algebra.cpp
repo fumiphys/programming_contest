@@ -78,6 +78,25 @@ int main(int argc, char const* argv[])
   assert(p.first == 0);
   assert(p.second == -1);
 
+  // garner
+  b.push_back(2);
+  b.push_back(3);
+  m.push_back(3);
+  m.push_back(5);
+  long long res = garner(b, m, 15);
+  assert(res == 8);
+
+  b.clear();
+  m.clear();
+  m.push_back(5);
+  m.push_back(7);
+  m.push_back(11);
+  b.push_back(4);
+  b.push_back(1);
+  b.push_back(2);
+  res = garner(b, m, 13);
+  assert(res == 4);
+
   // factorial
   Factorial fac(1000);
   assert(fac[0] == 1);
