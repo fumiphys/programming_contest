@@ -51,6 +51,14 @@ int main(int argc, char const* argv[])
     assert(power<long long>(a, mod - 2, mod) == modinv<long long>(a, mod));
   }
 
+  // modlog
+  assert(modlog(3, 1, 7) == 6);
+  assert(modlog(3, 2, 7) == 2);
+  assert(modlog(3, 3, 7) == 1);
+  assert(modlog(3, 4, 7) == 4);
+  assert(modlog(3, 5, 7) == 5);
+  assert(modlog(3, 6, 7) == 3);
+
   // chinese reminder theorem
   vector<int> b, m;
   b.push_back(2);

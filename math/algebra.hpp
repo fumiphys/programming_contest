@@ -7,6 +7,7 @@
 #include <iostream>
 #include <utility>
 #include <vector>
+#include <map>
 #include "power.hpp"
 using namespace std;
 
@@ -36,6 +37,37 @@ T modinv(T a, T m){
   x %= m;
   if(x < 0)x += m;
   return x;
+}
+
+long long modlog(long long a, long long b, long long m){
+  a %= m;
+  b %= m;
+
+  long long l = -1, r = m;
+  while(r - l > 1){
+    long long md = (l + r) / 2;
+    if(md * md >= m)r = md;
+    else l = md;
+  }
+  long long sm = r;
+
+  map<long long, long long> mp;
+  long long curr = 1;
+  for(long long i = 0; i < sm; i++){
+    mp[curr] = max(mp[curr], i);
+    curr = curr * a % m;
+  }
+
+  long long A = power<long long>(modinv(a, m), sm, m);
+  curr = b;
+  for(long long i = 0; i < sm; i++){
+    if(mp.find(curr) != mp.end()){
+      long long res = i * sm + mp[curr];
+      if(res > 0)return res;
+    }
+    curr = curr * A % m;
+  }
+  return -1;
 }
 
 template<typename T>
