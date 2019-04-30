@@ -1,6 +1,8 @@
 /*
  * Topological sort for DAG
  */
+#ifndef _TOPOLOGICAL_SORT_H_
+#define _TOPOLOGICAL_SORT_H_
 
 #include <vector>
 #include <stack>
@@ -37,3 +39,5 @@ struct Graph{
     return res;
   }
 };
+
+#endif

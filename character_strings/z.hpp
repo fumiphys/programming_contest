@@ -1,6 +1,9 @@
 /*
  * library for Z algorithm
  */
+#ifndef _Z_H_
+#define _Z_H_
+
 #include <string>
 #include <vector>
 using namespace std;
@@ -22,3 +25,5 @@ vector<int> zarray(const string &s){
   z[0] = n;
   return z;
 }
+
+#endif

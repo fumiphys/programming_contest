@@ -1,6 +1,9 @@
 /*
  * Mergable Range set
  */
+#ifndef _MERGABLE_RANGE_SET_H_
+#define _MERGABLE_RANGE_SET_H_
+
 #include <set>
 #include <utility>
 using namespace std;
@@ -44,3 +47,5 @@ struct MergableRangeSet{
     return st.size();
   }
 };
+
+#endif

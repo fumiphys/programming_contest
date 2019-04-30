@@ -1,6 +1,8 @@
 /*
  * warshall floyd method
  */
+#ifndef _WARSHALL_FLOYD_H_
+#define _WARSHALL_FLOYD_H_
 
 #include <algorithm>
 #include <cassert>
@@ -43,3 +45,5 @@ struct Graph_ {
 
 typedef struct Graph_<int> GraphI;
 typedef struct Graph_<ll> GraphL;
+
+#endif

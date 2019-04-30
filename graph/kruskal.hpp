@@ -1,6 +1,8 @@
 /*
  * Kruskal Method
  */
+#ifndef _KRUSKAL_H_
+#define _KRUSKAL_H_
 
 #include <vector>
 #include <utility>
@@ -75,3 +77,5 @@ struct Graph {
 };
 
 using GraphI = Graph<int>;
+
+#endif

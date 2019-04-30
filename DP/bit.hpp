@@ -1,6 +1,10 @@
 /*
  * library for bit DP
  */
+
+#ifndef _BIT_H_
+#define _BIT_H_
+
 #include <vector>
 using namespace std;
 
@@ -35,3 +39,5 @@ void fast_moebius(vector<T> &f){
     }
   }
 }
+
+#endif

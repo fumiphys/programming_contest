@@ -1,6 +1,8 @@
 /*
  * algebra library
  */
+#ifndef _ALGEBRA_H_
+#define _ALGEBRA_H_
 
 #include <iostream>
 #include <utility>
@@ -107,3 +109,5 @@ struct Factorial{
     return comb(n + k - 1, k);
   }
 };
+
+#endif

@@ -1,6 +1,8 @@
 /*
  * lazy segment tree
  */
+#ifndef _LAZY_SEGMENT_TREE_H_
+#define _LAZY_SEGMENT_TREE_H_
 
 #include <functional>
 #include <vector>
@@ -84,3 +86,5 @@ struct LazySegmentTree_ {
 template<typename T, typename E>
 using LazySegmentTree = struct LazySegmentTree_<T, E>;
 using LazySegmentTreeI = LazySegmentTree<int, int>;
+
+#endif

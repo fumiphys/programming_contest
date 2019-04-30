@@ -2,6 +2,8 @@
  * succinct tree by LOUDS
  * all notes are 1-based
  */
+#ifndef _LOUDS_H_
+#define _LOUDS_H_
 
 #include <iostream>
 #include <queue>
@@ -72,3 +74,5 @@ LOUDS construct_louds(GraphI graph){
   louds.build();
   return louds;
 }
+
+#endif

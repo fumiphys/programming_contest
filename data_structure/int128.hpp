@@ -1,3 +1,9 @@
+/*
+ * Library for 128bit integer
+ */
+#ifndef _INT128_H_
+#define _INT128_H_
+
 #include <iostream>
 using namespace std;
 
@@ -28,3 +34,5 @@ __int128_t to_int128(string s){
   }
   return res;
 }
+
+#endif

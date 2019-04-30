@@ -2,6 +2,8 @@
  * calculate k-th number
  * k: 0-indexed
  */
+#ifndef _MIN_K_H_
+#define _MIN_K_H_
 
 #include <algorithm>
 #include <vector>
@@ -33,3 +35,5 @@ T min_k(vector<T> vec, int k){
   else if(s1.size() + s2.size() > k)return mm;
   else return min_k(s3, k - int(s1.size()) - int(s2.size()));
 }
+
+#endif

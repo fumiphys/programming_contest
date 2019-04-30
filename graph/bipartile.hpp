@@ -1,6 +1,8 @@
 /*
  * Bipartile graph
  */
+#ifndef _BIPARTILE_H_
+#define _BIPARTILE_H_
 
 #include <vector>
 using namespace std;
@@ -38,3 +40,5 @@ struct GraphI {
     return true;
   }
 };
+
+#endif

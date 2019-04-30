@@ -2,6 +2,8 @@
  * bitonic sort (non-parallel)
  * v1 <= v2 <= ... <= vi >= vi+1 >= ... vn
  */
+#ifndef _BITONIC_H_
+#define _BITONIC_H_
 
 #include <limits>
 #include <vector>
@@ -44,3 +46,5 @@ vector<T> bitonic_sort_shakutori(vector<T> &vec){
   }
   return res;
 }
+
+#endif

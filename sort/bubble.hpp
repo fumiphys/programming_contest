@@ -1,6 +1,8 @@
 /*
  * Bubble sort
  */
+#ifndef _BUBBLE_H_
+#define _BUBBLE_H_
 
 #include <vector>
 using namespace std;
@@ -18,3 +20,5 @@ void bubble_sort(vector<T> &a){
     }
   }
 }
+
+#endif

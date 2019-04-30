@@ -3,6 +3,8 @@
  * This is not the optimized library
  * (using vector, fixed-size bit like int, size of L and S blocks are fixed)
  */
+#ifndef _FULLY_INDEXABLE_DICTIONALY_H_
+#define _FULLY_INDEXABLE_DICTIONALY_H_
 
 #include <cstdint>
 #include <cmath>
@@ -65,3 +67,5 @@ typedef struct SuccinctBitVector_ {
     return -1;
   }
 } SuccinctBitVector;
+
+#endif

@@ -1,6 +1,9 @@
 /*
  * matrix library
  */
+#ifndef _MATRIX_H_
+#define _MATRIX_H_
+
 #include <bitset>
 #include <cmath>
 #include <limits>
@@ -187,3 +190,5 @@ int linear_eq(MatrixB &A, vector<int> b, vector<int> & res){
   for(int i = 0; i < rank; i++)res[i] = M[i][n];
   return rank;
 }
+
+#endif

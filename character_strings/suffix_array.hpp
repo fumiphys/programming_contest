@@ -1,6 +1,8 @@
 /*
  * suffix array
  */
+#ifndef _SUFFIX_ARRAY_H_
+#define _SUFFIX_ARRAY_H_
 
 #include <algorithm>
 #include <cassert>
@@ -51,3 +53,5 @@ typedef struct SAManberMyers_ {
     }
   }
 } SAManberMyers;
+
+#endif

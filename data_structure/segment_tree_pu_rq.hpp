@@ -1,6 +1,8 @@
 /*
  * segment tree for point update and range query
  */
+#ifndef _SEGMENT_TREE_PU_RQ_H_
+#define _SEGMENT_TREE_PU_RQ_H_
 
 #include <functional>
 #include <vector>
@@ -58,3 +60,5 @@ struct SegmentTree_ {
 template<typename T, typename E>
 using SegmentTree = struct SegmentTree_<T, E>;
 using SegmentTreeI = SegmentTree<int, int>;
+
+#endif

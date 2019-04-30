@@ -1,6 +1,8 @@
 /*
  * Burrow Wheeler Transformation
  */
+#ifndef _BURROWS_WHEELER_H_
+#define _BURROWS_WHEELER_H_
 
 #include <cassert>
 #include <iostream>
@@ -52,3 +54,5 @@ string inverse_bwt(string s) {
 
   return res.substr(1, res.size() - 1);
 }
+
+#endif

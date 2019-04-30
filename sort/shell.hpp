@@ -1,6 +1,8 @@
 /*
  * Shell sort
  */
+#ifndef _SHELL_H_
+#define _SHELL_H_
 
 #include <algorithm>
 #include <vector>
@@ -32,3 +34,5 @@ void shell_sort(vector<T> &a){
     insertion_g_sort(a, G[i]);
   }
 }
+
+#endif

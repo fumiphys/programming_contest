@@ -1,6 +1,8 @@
 /*
  * Library for Trie
  */
+#ifndef _TRIE_H_
+#define _TRIE_H_
 
 #include <string>
 using namespace std;
@@ -42,3 +44,5 @@ struct Trie{
     return find(s, 0);
   }
 };
+
+#endif

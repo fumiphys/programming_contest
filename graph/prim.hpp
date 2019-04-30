@@ -1,6 +1,8 @@
 /*
  * Prim method
  */
+#ifndef _PRIM_H_
+#define _PRIM_H_
 
 #include <limits>
 #include <vector>
@@ -49,3 +51,5 @@ struct Graph{
 };
 
 using GraphI = Graph<int>;
+
+#endif

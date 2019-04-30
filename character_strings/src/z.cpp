@@ -10,7 +10,7 @@ using namespace std;
 
 int main(int argc, char const* argv[])
 {
-  cout << "test for z start --" << endl;
+  cout << "-- test for z start --" << endl;
   string s = "aaabaaaab";
   auto p = zarray(s);
   assert(p[0] == 9);
@@ -30,6 +30,6 @@ int main(int argc, char const* argv[])
   assert(p[2] == 0);
   assert(p[3] == 2);
   assert(p[4] == 0);
-  cout << "test for z end: Success --" << endl;
+  cout << "-- test for z end: Success --" << endl;
   return 0;
 }

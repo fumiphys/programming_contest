@@ -1,6 +1,8 @@
 /*
  * Selection sort
  */
+#ifndef _SELECTION_H_
+#define _SELECTION_H_
 
 #include <vector>
 using namespace std;
@@ -17,3 +19,5 @@ void selection_sort(vector<T> &a){
     swap(a[i], a[minj]);
   }
 }
+
+#endif

@@ -1,6 +1,9 @@
 /*
  * Library for Interpolation
  */
+#ifndef _INTERPOLATION_H_
+#define _INTERPOLATION_H_
+
 #include <vector>
 using namespace std;
 
@@ -102,3 +105,5 @@ struct LagrangeInterpolationN{
     return res;
   }
 };
+
+#endif

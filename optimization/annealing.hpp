@@ -1,6 +1,8 @@
 /*
  * Annealing
  */
+#ifndef _ANNEALING_H_
+#define _ANNEALING_H_
 
 #include <vector>
 #include <numeric>
@@ -36,3 +38,5 @@ struct Annealing{
     return curr;
   }
 };
+
+#endif

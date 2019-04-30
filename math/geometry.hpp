@@ -2,6 +2,8 @@
  * library for math function
  * author: fumiphys
  */
+#ifndef _GEOMETRY_H_
+#define _GEOMETRY_H_
 
 #include <algorithm>
 #include <iostream>
@@ -54,3 +56,5 @@ vector<Pd> convex_hull(vector<Pd> vec){
   return ch;
 
 }
+
+#endif

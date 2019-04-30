@@ -3,6 +3,8 @@
  * condition:
  *  no negative edge
  */
+#ifndef _DIJKSTRA_H_
+#define _DIJKSTRA_H_
 
 #include <algorithm>
 #include <cassert>
@@ -74,3 +76,5 @@ struct Graph_ {
 typedef struct Graph_<int> GraphI;
 typedef struct Graph_<ll> GraphL;
 typedef struct Graph_<double> GraphD;
+
+#endif

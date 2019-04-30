@@ -1,6 +1,8 @@
 /*
  * BIT (binary indexed tree)
  */
+#ifndef _BINARY_INDEXED_TREE_H_
+#define _BINARY_INDEXED_TREE_H_
 
 #include <vector>
 
@@ -30,3 +32,5 @@ struct BIT_{
 
 typedef struct BIT_<int> BITI;
 typedef struct BIT_<long long> BITL;
+
+#endif

@@ -6,6 +6,8 @@
  * 	same : check if two edge belong to the same group
  * This file if only for int.
  */
+#ifndef _UNION_FIND_H_
+#define _UNION_FIND_H_
 
 #include <cassert>
 #include <iostream>
@@ -39,3 +41,5 @@ typedef struct UnionFind_ {
     return true;
 	}
 } UnionFind;
+
+#endif

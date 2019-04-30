@@ -1,6 +1,8 @@
 /*
  * Bellman Ford Method
  */
+#ifndef _BELLMAN_FORD_H_
+#define _BELLMAN_FORD_H_
 
 #include <limits>
 #include <vector>
@@ -40,3 +42,5 @@ struct Graph{
     return true;
   }
 };
+
+#endif

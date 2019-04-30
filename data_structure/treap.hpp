@@ -1,6 +1,9 @@
 /*
  * treap
  */
+#ifndef _TREAP_H_
+#define _TREAP_H_
+
 #include <random>
 #include <functional>
 using namespace std;
@@ -287,3 +290,5 @@ struct ImplicitTreap{
     return at(root, x);
   }
 };
+
+#endif

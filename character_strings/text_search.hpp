@@ -5,6 +5,8 @@
  *   BM
  *   suffix array
  */
+#ifndef _TEXT_SEARCH_H_
+#define _TEXT_SEARCH_H_
 
 #include <algorithm>
 #include <cassert>
@@ -151,3 +153,5 @@ vector<int> z_search(string s, string t){
   }
   return res;
 }
+
+#endif

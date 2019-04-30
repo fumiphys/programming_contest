@@ -2,6 +2,8 @@
  * library for math function
  * author: fumiphys
  */
+#ifndef _PRIME_H_
+#define _PRIME_H_
 
 #include <algorithm>
 #include <iostream>
@@ -87,3 +89,5 @@ bool millar_rabin(T n){
   }
   return true;
 }
+
+#endif

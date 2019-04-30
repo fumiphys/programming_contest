@@ -2,6 +2,8 @@
  * Convex hull trick for monomonic function
  * you should sort by slope
  */
+#ifndef _CONVEX_HULL_TRICK_H_
+#define _CONVEX_HULL_TRICK_H_
 
 #include <vector>
 #include <utility>
@@ -38,3 +40,5 @@ struct ConvexHullTrick_ {
 
 using ConvexHullTrickI = ConvexHullTrick_<int>;
 using ConvexHullTrickL = ConvexHullTrick_<long long>;
+
+#endif

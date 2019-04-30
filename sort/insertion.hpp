@@ -1,6 +1,8 @@
 /*
  * Insertion sort
  */
+#ifndef _INSERTION_H_
+#define _INSERTION_H_
 
 #include <vector>
 using namespace std;
@@ -17,3 +19,5 @@ void insertion_sort(vector<T> &a){
     a[j + 1] = key;
   }
 }
+
+#endif

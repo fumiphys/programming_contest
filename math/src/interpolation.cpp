@@ -15,7 +15,7 @@ using MM = ModInt<mod>;
 
 int main(int argc, char const* argv[])
 {
-  cout << "test for interpolation start --" << endl;
+  cout << "-- test for interpolation start --" << endl;
   double EPS = 1e-10;
   vector<double> x(3), y(3);
   x[0] = 1.;
@@ -39,6 +39,6 @@ int main(int argc, char const* argv[])
   for(int i = 0; i < 3; i++)a[i] = i;
   LagrangeInterpolationM<MM> lim(a, v);
   assert(lim.val(3) == 13);
-  cout << "test for interpolation end: Success --" << endl;
+  cout << "-- test for interpolation end: Success --" << endl;
   return 0;
 }

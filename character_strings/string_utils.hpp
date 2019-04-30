@@ -1,6 +1,8 @@
 /*
  * utils for strings
  */
+#ifndef _STRING_UTILS_H_
+#define _STRING_UTILS_H_
 
 #include <string>
 #include <random>
@@ -18,3 +20,4 @@ string generate_random_string(int len){
   return s;
 }
 
+#endif

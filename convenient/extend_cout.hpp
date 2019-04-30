@@ -1,3 +1,8 @@
+/*
+ * Library for extend cout
+ */
+#ifndef _EXTEND_COUT_H_
+#define _EXTEND_COUT_H_
 #include <iostream>
 #include <utility>
 
@@ -13,3 +18,5 @@ void excout(Head&& head, Tail&&... tail){
   else cout << head;
   excout(forward<Tail>(tail)...);
 }
+
+#endif

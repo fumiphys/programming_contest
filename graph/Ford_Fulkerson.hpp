@@ -2,6 +2,9 @@
  * Ford Fulkerson algorithm
  * author fumiphys
  */
+#ifndef _FORD_FULKERSON_H_
+#define _FORD_FULKERSON_H_
+
 #include <iostream>
 #include <vector>
 #include <utility>
@@ -65,3 +68,5 @@ struct Graph_ {
 
 typedef Graph_<int> GraphI;
 typedef Graph_<ll> GraphL;
+
+#endif

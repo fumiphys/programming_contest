@@ -1,6 +1,8 @@
 /*
  * library for Big Integer
  */
+#ifndef _BIGINT_H_
+#define _BIGINT_H_
 
 #include <cassert>
 #include <iostream>
@@ -340,3 +342,5 @@ ostream &operator<<(ostream &os, const SBigInt &b){
   os << b.b;
   return os;
 }
+
+#endif

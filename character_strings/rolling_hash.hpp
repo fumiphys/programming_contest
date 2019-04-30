@@ -1,6 +1,9 @@
 /*
  * Rolling Hash
  */
+#ifndef _ROLLING_HASH_H_
+#define _ROLLING_HASH_H_
+
 #include <vector>
 #include <string>
 using namespace std;
@@ -44,3 +47,5 @@ struct RollingHash{
     return res;
   }
 };
+
+#endif

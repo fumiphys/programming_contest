@@ -1,6 +1,9 @@
 /*
  * Library for ModInt
  */
+#ifndef _MODINT_H_
+#define _MODINT_H_
+
 #include <iostream>
 using namespace std;
 using ll = long long;
@@ -78,3 +81,5 @@ struct ModInt {
     return is;
   }
 };
+
+#endif

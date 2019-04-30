@@ -1,6 +1,9 @@
 /*
  * merge sort
  */
+#ifndef _MERGE_H_
+#define _MERGE_H_
+
 #include <limits>
 #include <numeric>
 #include <vector>
@@ -41,3 +44,5 @@ template <typename T>
 void merge_sort(vector<T> &a){
   merge_sort<T>(a, 0, a.size());
 }
+
+#endif
