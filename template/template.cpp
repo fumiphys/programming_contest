@@ -25,6 +25,7 @@ typedef pair<int, int> P;
 typedef pair<ll, int> Pl;
 typedef pair<ll, ll> Pll;
 typedef pair<double, double> Pd;
+typedef complex<double> cd;
  
 // constants
 const int inf = 1e9;
