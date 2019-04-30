@@ -38,6 +38,8 @@ pair<T, T> chinese_reminder_theorem(vector<T> b, vector<T> m){
     r += M * tmp;
     M *= m[i] / d;
   }
+  r %= M;
+  if(r < 0)r += M;
   return make_pair(r % M, M);
 }
 
