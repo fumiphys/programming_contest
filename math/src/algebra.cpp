@@ -6,6 +6,7 @@
 #include <cassert>
 #include <random>
 #include "../algebra.hpp"
+#include "../power.hpp"
 using namespace std;
 using ll = long long;
 
@@ -37,6 +38,19 @@ int main(int argc, char const* argv[])
     assert(gcd<int>(a, b) == extgcd<int>(a, b, x, y));
   }
 
+  // modinv
+  const int mod = int(1e9 + 7);
+  assert(modinv(2, mod) == int(5e8+4));
+  assert(modinv(1, 13) == 1);
+  assert(modinv(2, 13) == 7);
+  assert(modinv(3, 13) == 9);
+  assert(modinv(4, 13) == 10);
+  assert(modinv(5, 13) == 8);
+  for(int i = 0; i < 100; i++){
+    long long a = rand_num(mt);
+    assert(power<long long>(a, mod - 2, mod) == modinv<long long>(a, mod));
+  }
+
   // chinese reminder theorem
   vector<int> b, m;
   b.push_back(2);
@@ -58,7 +72,6 @@ int main(int argc, char const* argv[])
 
   // factorial
   Factorial fac(1000);
-  const int mod = 1e9 + 7;
   assert(fac[0] == 1);
   assert(fac[1] == 1);
   assert(fac[2] == 2);

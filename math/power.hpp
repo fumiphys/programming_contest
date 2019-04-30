@@ -3,6 +3,8 @@
  * author: fumiphys
  */
 
+#ifndef _POWER_H_
+#define _POWER_H_
 #include <iostream>
 #include <cassert>
 
@@ -30,3 +32,5 @@ template <typename T>
 T inverse(T x, T mod) {
   return power<T>(x, mod - 2, mod);
 }
+
+#endif
