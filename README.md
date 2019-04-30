@@ -31,7 +31,6 @@ make
 ## TODO
  - SA-IS, BWT (direct implementation)
  - Bug fix for KMP, BM
- - FFT, Convolution
  - minimum cost flow
  - maximum flow (dinic)
  - minimum spanning tree (Boruvka's algorithm)
