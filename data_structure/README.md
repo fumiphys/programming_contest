@@ -57,3 +57,5 @@
 素集合データ構造 (uniteとfindを高速に行う)
   - union find  
   verify: [AOJ(Disjoint Set: Union Find Tree)](https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A)
+  - weighted union find  
+  verify: [AOJ(Weighted Union Find Trees)](https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_B)
