@@ -49,4 +49,5 @@ library for strings
 ## Z-Algorithm
 [z.hpp](https://github.com/fumiphys/programming_contest/blob/master/character_strings/z.hpp)  
 文字列sとs[i:]の共通接頭辞の長さを線形時間で求める.
-  - zarray (calculate Z array)
+  - zarray (calculate Z array)  
+  verify: [Atcoder(ABCAC)](https://atcoder.jp/contests/arc055/tasks/arc055_c)
