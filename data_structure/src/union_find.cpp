@@ -34,6 +34,18 @@ int main(int argc, char const* argv[])
   assert(unionfind.same(0, 1));
   assert(!unionfind.same(0, 2));
 
+  WeightedUnionFind wuf(n);
+  assert(wuf.find(0) == 0);
+  assert(wuf.find(1) == 1);
+  assert(wuf.find(2) == 2);
+  
+  assert(!wuf.same(0, 1));
+
+  assert(wuf.unite(0, 1, 1));
+  assert(wuf.same(0, 1));
+  assert(wuf.weight(1) == 1);
+  assert(wuf.diff(0, 1) == 1);
+
   cout << "-- test for union find end: Success! --" << endl;
   return 0;
 }
