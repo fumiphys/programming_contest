@@ -25,6 +25,7 @@ struct Graph_ {
   int n;
   vector<bool> used;
   vector<vector<edge<T>> > vec;
+  Graph_(){}
   Graph_(int ns) {
     n = ns;
     used.resize(n);
