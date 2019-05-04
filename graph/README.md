@@ -51,3 +51,9 @@ library for graph
 最小全域木(最小コストの辺から見ていく)
   - Minimum Spanning Tree (Kruskal)  
   verify: [AOJ(Minimum Spanning Tree)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/2/GRL_2_A)
+
+## Boruvka
+[boruvka.hpp](https://github.com/fumiphys/programming_contest/blob/master/graph/boruvka.hpp)  
+最小全域木(森を連結していく)
+  - Minimum Spanning Tree (Boruvka)  
+  verify: [AOJ(Minimum Spanning Tree)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/2/GRL_2_A)
