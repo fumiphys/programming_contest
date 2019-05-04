@@ -17,6 +17,7 @@ using namespace std;
 typedef struct UnionFind_ {
 	vector<int> par;
 	vector<int> rank_;
+  UnionFind_(){}
 	UnionFind_(int n): rank_(n, 0) {
     for(int i = 0; i < n; i++)par.push_back(i);
 	}
