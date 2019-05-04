@@ -28,6 +28,7 @@ printf '\e[32mTest for graph ...\e[m\n'
 ./graph/bellman_ford
 ./graph/prim
 ./graph/kruskal
+./graph/boruvka
 printf '\e[32mTest for math ...\e[m\n'
 ./math/geometry
 ./math/power
