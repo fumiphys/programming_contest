@@ -2835,3 +2835,35 @@ snippet boruvka_use
   GraphI graph(n);
   graph.adde(from, to, cost);
   graph.boruvka();
+
+snippet RMQ_use
+  SegmentTreeL seg = SegmentTreeL(n, [](ll a, ll b){return min(a, b);},
+      [](ll a,ll b){return b;}, INF, V);
+
+snippet RSQ_use
+  SegmentTreeL seg = SegmentTreeL(n, [](ll a, ll b){return a + b;},
+      [](ll a,ll b){return a + b;}, 0, V);
+
+snippet RUQ_use
+  LazySegmentTreeL seg = LazySegmentTreeL(n, [](ll a, ll b){return a + b;},
+      0, [](ll a, ll b){return b;}, NAN, [](ll a, ll b, int c){return b * c;}, vector<ll>(n, DEF));
+
+snippet RAQ_use
+  LazySegmentTreeL seg = LazySegmentTreeL(n, [](ll a, ll b){return a + b;},
+      0, [](ll a, ll b){return a + b;}, 0, [](ll a, ll b, int c){return a + b * c;}, vector<ll>(n, DEF));
+
+snippet RMQRUQ_use
+  LazySegmentTreeL seg = LazySegmentTreeL(n, [](ll a, ll b){return min(a, b);},
+      INF, [](ll a, ll b){return b;}, NAN, [](ll a, ll b, int c){return b;}, vector<ll>(n, DEF));
+
+snippet RSQRAQ_use
+  LazySegmentTreeL seg = LazySegmentTreeL(n, [](ll a, ll b){return a + b;},
+      0, [](ll a, ll b){return a + b;}, 0, [](ll a, ll b, int c){return a + b * c;}, vector<ll>(n, DEF));
+
+snippet RMQRAQ_use
+  LazySegmentTreeL seg = LazySegmentTreeL(n, [](ll a, ll b){return min(a, b);},
+      INF, [](ll a, ll b){return a + b;}, 0, [](ll a, ll b, int c){return a + b;}, vector<ll>(n, DEF));
+
+snippet RSQRUQ_use
+  LazySegmentTreeL seg = LazySegmentTreeL(n, [](ll a, ll b){return a + b;},
+      0, [](ll a, ll b){return b;}, NAN, [](ll a, ll b, int c){return b * c;}, vector<ll>(n, DEF));
