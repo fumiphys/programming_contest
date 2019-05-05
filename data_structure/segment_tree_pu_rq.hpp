@@ -60,5 +60,6 @@ struct SegmentTree_ {
 template<typename T, typename E>
 using SegmentTree = struct SegmentTree_<T, E>;
 using SegmentTreeI = SegmentTree<int, int>;
+using SegmentTreeL = SegmentTree<long long, long long>;
 
 #endif

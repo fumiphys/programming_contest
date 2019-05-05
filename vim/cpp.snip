@@ -309,6 +309,7 @@ snippet segtree_def
   template<typename T, typename E>
   using SegmentTree = struct SegmentTree_<T, E>;
   using SegmentTreeI = SegmentTree<int, int>;
+  using SegmentTreeL = SegmentTree<long long, long long>;
 
 snippet unionfind_use
   UnionFind uf(10);
@@ -916,6 +917,7 @@ snippet lazyseg_def
   template<typename T, typename E>
   using LazySegmentTree = struct LazySegmentTree_<T, E>;
   using LazySegmentTreeI = LazySegmentTree<int, int>;
+  using LazySegmentTreeL = LazySegmentTree<long long, long long>;
 
 snippet lazyseg_use
   LazySegmentTreeI seg = LazySegmentTreeI(n, [](int a, int b){return a + b;},

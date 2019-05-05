@@ -86,5 +86,6 @@ struct LazySegmentTree_ {
 template<typename T, typename E>
 using LazySegmentTree = struct LazySegmentTree_<T, E>;
 using LazySegmentTreeI = LazySegmentTree<int, int>;
+using LazySegmentTreeL = LazySegmentTree<long long, long long>;
 
 #endif
