@@ -23,6 +23,8 @@ library for math
   verify: [AOJ(Prime Factorize)](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A)
   - millar rabin algorithm  
   verify: [yukicoder(tatyamと素数大富豪)](https://yukicoder.me/problems/no/774)
+  - euler's phi function  
+  verify: [AOJ(Euler's Phi Function)](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_D)
 
 ## algebra
 [algebra.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/algebra.hpp)  
