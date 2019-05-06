@@ -32,7 +32,10 @@ add: $(CONTEXTFILE)
 copy: $(CONTEXTFILE)
 	@pbcopy < $(SCRIPT).cpp
 
+cc:
+	@cat /tmp/procon_context
+
 clean: $(CONTEXTFILE)
 	@rm _$(SCRIPT) 2>/dev/null || echo "No compiled binary"
 	@rm -r _$(SCRIPT).dSYM 2>/dev/null || echo "No dSYM"
-	@rm compile_commands.json 2>/dev/null || echo "No compile_commands.json"
+	@rm .cquery 2>/dev/null || echo "No .cquery"

@@ -30,4 +30,8 @@ function chcon() {
   NEWSCRIPT="$1"
   echo ${NEWSCRIPT} > ${CONTEXTFILE}
   cp ${SCRIPT_DIR}/make/Makefile .
+  mkdir -p test
+  mkdir -p "test/test_${NEWSCRIPT}"
+  mkdir -p "test/test_${NEWSCRIPT}/in"
+  mkdir -p "test/test_${NEWSCRIPT}/out"
 }

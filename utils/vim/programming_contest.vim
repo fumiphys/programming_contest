@@ -2,6 +2,10 @@ function! ProconEnv()
   vert terminal
   wincmd r
   wincmd h
+  call InitScript()
+endfunction
+
+function! InitScript()
   5,20 fo
   37,47 fo
   normal G

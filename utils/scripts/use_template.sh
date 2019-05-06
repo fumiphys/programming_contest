@@ -29,9 +29,4 @@ fi
 
 cp ${TEMPLATE_FILE} ${FILENAME}
 
-TNAME=${FILENAME%.*}
-mkdir -p test
-mkdir -p "test/test_${TNAME}"
-mkdir -p "test/test_${TNAME}/in"
-mkdir -p "test/test_${TNAME}/out"
 vim ${FILENAME} -c "call ProconEnv()"
