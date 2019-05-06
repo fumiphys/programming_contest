@@ -40,3 +40,11 @@ command! -nargs=1 Fetch call FetchTest(<f-args>)
 function! FetchTest(url)
   silent echo system(s:fetch_script . ' ' . g:procon_context_name . ' ' . a:url . ' &')
 endfunction
+
+" run test
+command! -nargs=0 RunTest call RunTest()
+
+function! RunTest()
+  let s:buf = term_list()[0]
+  call term_sendkeys(s:buf, "make\<CR>")
+endfunction
