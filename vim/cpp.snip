@@ -2867,3 +2867,18 @@ snippet RMQRAQ_use
 snippet RSQRUQ_use
   LazySegmentTreeL seg = LazySegmentTreeL(n, [](ll a, ll b){return a + b;},
       0, [](ll a, ll b){return b;}, NAN, [](ll a, ll b, int c){return b * c;}, vector<ll>(n, DEF));
+
+snippet euler_phi_def
+  long long euler_phi(long long n){
+    ll res = n;
+    auto mp = factorize(n);
+    const int MOD = 1e9 + 7;
+    for(auto itr = mp.begin(); itr != mp.end(); ++itr){
+      long long p = itr->first;
+      res = res * ((p-1) * modinv<long long>(p, MOD) % MOD) % MOD;
+    }
+    return res;
+  }
+
+snippet euler_phi_use
+  long long k = euler_phi(n);
