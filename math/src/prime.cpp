@@ -127,6 +127,10 @@ int main(int argc, char const* argv[])
   map<ll, int> mpl = factorize<ll>((ll)1e9+7);
   assert(mpl.size() == 1);
   assert(mpl[(ll)1e9+7] == 1);
+
+  assert(euler_phi(2) == 1);
+  assert(euler_phi(5) == 4);
+
   cout << "-- test for prime end: Success --" << endl;
   return 0;
 }

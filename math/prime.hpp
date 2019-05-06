@@ -11,6 +11,7 @@
 #include <cassert>
 #include <map>
 #include "power.hpp"
+#include "algebra.hpp"
 
 using namespace std;
 typedef long long ll;
@@ -88,6 +89,17 @@ bool millar_rabin(T n){
     if(!suspect<T>(test[i], s, d, n))return false;
   }
   return true;
+}
+
+long long euler_phi(long long n){
+  ll res = n;
+  auto mp = factorize(n);
+  const int MOD = 1e9 + 7;
+  for(auto itr = mp.begin(); itr != mp.end(); ++itr){
+    long long p = itr->first;
+    res = res * ((p-1) * modinv<long long>(p, MOD) % MOD) % MOD;
+  }
+  return res;
 }
 
 #endif
