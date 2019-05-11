@@ -9,7 +9,7 @@
 #define FOR(i, a, b) for(int i=(a);i<(b);++i)
 #define rep(i, n) FOR(i, 0, n)
 #define rrep(i, n) for(int i=((int)(n)-1);i>=0;i--)
-#define irep(st, itr) for(auto itr = (st).begin(); itr != (st).end(); ++itr)
+#define irep(itr, st) for(auto itr = (st).begin(); itr != (st).end(); ++itr)
 #define vrep(v, i) for(int i = 0; i < (v).size(); i++)
 #define all(x) (x).begin(),(x).end()
 #define sz(x) ((int)(x).size())
