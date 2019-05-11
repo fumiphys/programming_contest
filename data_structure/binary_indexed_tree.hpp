@@ -22,6 +22,7 @@ struct BIT_{
     }
   }
   T sum(int a){
+    if(a < 0)return 0;
     T res = 0;
     for(int x = a; x >= 0; x = (x & (x + 1)) - 1){
       res += bit[x];
