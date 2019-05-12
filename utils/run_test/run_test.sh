@@ -47,6 +47,7 @@ printf '\e[32mTest for sort ...\e[m\n'
 ./sort/min_k
 ./sort/bitonic
 ./sort/merge
+./sort/counting
 printf '\e[32mTest for succinct_data_structure ...\e[m\n'
 ./succinct_data_structure/fully_indexable_dictionary
 ./succinct_data_structure/louds
