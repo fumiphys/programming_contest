@@ -15,8 +15,7 @@ using namespace std;
 
 template <int MOD = int(1e9+7)>
 struct LMatrix{
-  using ll = long long;
-  vector<vector<ll>> v;
+  vector<vector<long long>> v;
   int n, m;
   LMatrix(int n_, int m_ = -1): n(n_), m(m_){
     if(m < 0)m = n;
@@ -31,10 +30,10 @@ struct LMatrix{
       }
     }
   }
-  vector<ll> &operator[](size_t i){
+  vector<long long> &operator[](size_t i){
     return v[i];
   }
-  const vector<ll> &operator[](size_t i) const{
+  const vector<long long> &operator[](size_t i) const{
     return v[i];
   }
   LMatrix operator*(const LMatrix &r) const{
@@ -88,9 +87,9 @@ struct LMatrix{
     assert(n == 2 && m == 2);
     long long det = v[0][0] * v[1][1] % MOD - v[0][1] * v[1][0] % MOD;
     if(det < 0)det += MOD;
-    assert(det == 1);
+    assert(det != 0);
     LMatrix res(2, 2);
-    long long inv = modinv(det, (ll)MOD);
+    long long inv = modinv(det, (long long)MOD);
     res[0][0] = v[1][1];
     res[1][1] = v[0][0];
     res[1][0] = - v[1][0];
