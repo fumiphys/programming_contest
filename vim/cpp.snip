@@ -2882,3 +2882,22 @@ snippet euler_phi_def
 
 snippet euler_phi_use
   long long k = euler_phi(n);
+
+snippet coordinate_compression_def
+  template <typename T>
+  struct CoordinateCompression{
+    map<T, int> mp;
+    vector<T> v;
+    CoordinateCompression(vector<T> &x){
+      v.resize(x.size());
+      copy(x.begin(), x.end(), v.begin());
+      sort(v.begin(), v.end());
+      v.erase(unique(v.begin(), v.end()), v.end());
+      for(int i = 0; i < v.size(); i++){
+        mp[v[i]] = i;
+      }
+    }
+  };
+
+snippet coordinate_compression_use
+  CoordinateCompression cc(v);
