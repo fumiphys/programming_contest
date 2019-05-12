@@ -23,4 +23,7 @@ struct CoordinateCompression{
   }
 };
 
+using CoordinateCompressionI = CoordinateCompression<int>;
+using CoordinateCompressionL = CoordinateCompression<long long>;
+
 #endif

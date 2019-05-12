@@ -2899,5 +2899,8 @@ snippet coordinate_compression_def
     }
   };
 
+  using CoordinateCompressionI = CoordinateCompression<int>;
+  using CoordinateCompressionL = CoordinateCompression<long long>;
+
 snippet coordinate_compression_use
-  CoordinateCompression cc(v);
+  CoordinateCompressionL cc(v);
