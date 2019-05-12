@@ -50,6 +50,44 @@ int main(int argc, char const* argv[])
   v[1][0] = 1;
   auto prod = r * v;
   assert(prod[0][0] == 8);
+  const int MOD = int(1e9+7);
+  LMatrix<> A(2, 2), B(2, 2);
+  A[0][0] = 1;
+  A[1][0] = 1;
+  A[0][1] = 1;
+  A[1][1] = 2;
+  B[0][0] = 3;
+  B[1][0] = 3;
+  B[0][1] = 2;
+  B[1][1] = 3;
+  auto C = A + B;
+  for(int i = 0; i < 2; i++){
+    for(int j = 0; j < 2; j++){
+      assert(C[i][j] == A[i][j] + B[i][j]);
+    }
+  }
+  C = A - B;
+  for(int i = 0; i < 2; i++){
+    for(int j = 0; j < 2; j++){
+      long long tmp = (A[i][j] - B[i][j]) % MOD;
+      if(tmp < 0)tmp += MOD;
+      assert(C[i][j] == tmp);
+    }
+  }
+
+  C = A.inv2();
+  auto D = A * C;
+  assert(D[0][0] == 1);
+  assert(D[1][0] == 0);
+  assert(D[0][1] == 0);
+  assert(D[1][1] == 1);
+
+  D = 3 * A;
+  for(int i = 0; i < 2; i++){
+    for(int j = 0; j < 2; j++){
+      assert(D[i][j] == 3 * A[i][j] % MOD);
+    }
+  }
 
   cout << "-- test for matrix end: Success --" << endl;
   return 0;

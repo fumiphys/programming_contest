@@ -9,6 +9,7 @@
 #include <cmath>
 #include <limits>
 #include <vector>
+#include "algebra.hpp"
 #include "power.hpp"
 using namespace std;
 
@@ -33,7 +34,10 @@ struct LMatrix{
   vector<ll> &operator[](size_t i){
     return v[i];
   }
-  LMatrix operator*(const LMatrix &r){
+  const vector<ll> &operator[](size_t i) const{
+    return v[i];
+  }
+  LMatrix operator*(const LMatrix &r) const{
     assert(m == r.n);
     int l = r.m;
     LMatrix res(n, l);
@@ -47,7 +51,65 @@ struct LMatrix{
     }
     return res;
   }
+  LMatrix operator+(const LMatrix &r) const{
+    assert(n == r.n);
+    assert(m == r.m);
+    LMatrix res(n, m);
+    for(int i = 0; i < n; i++){
+      for(int j = 0; j < m; j++){
+        res[i][j] = (v[i][j] + r[i][j]) % MOD;
+      }
+    }
+    return res;
+  }
+  LMatrix operator-(const LMatrix &r) const{
+    assert(n == r.n);
+    assert(m == r.m);
+    LMatrix res(n, m);
+    for(int i = 0; i < n; i++){
+      for(int j = 0; j < m; j++){
+        res[i][j] = (v[i][j] - r[i][j]) % MOD;
+        if(res[i][j] < 0)res[i][j] += MOD;
+      }
+    }
+    return res;
+  }
+  template <typename T>
+  LMatrix operator*(T a) const{
+    LMatrix res = *this;
+    for(int i = 0; i < n; i++){
+      for(int j = 0; j < n; j++){
+        res[i][j] = a * res[i][j] % MOD;
+      }
+    }
+    return res;
+  }
+  LMatrix inv2() const{
+    assert(n == 2 && m == 2);
+    long long det = v[0][0] * v[1][1] % MOD - v[0][1] * v[1][0] % MOD;
+    if(det < 0)det += MOD;
+    assert(det == 1);
+    LMatrix res(2, 2);
+    long long inv = modinv(det, (ll)MOD);
+    res[0][0] = v[1][1];
+    res[1][1] = v[0][0];
+    res[1][0] = - v[1][0];
+    res[0][1] = - v[0][1];
+    for(int i = 0; i < n; i++){
+      for(int j = 0; j < m; j++){
+        res[i][j] %= MOD;
+        res[i][j] = res[i][j] * inv % MOD;
+        if(res[i][j] < 0)res[i][j] += MOD;
+      }
+    }
+    return res;
+  }
 };
+
+template <typename T, int MOD = int(1e9+7)>
+LMatrix<MOD> operator*(T a, const LMatrix<MOD> b){
+  return b * a;
+}
 
 template <int MOD = int(1e9+7)>
 LMatrix<MOD> powerm(LMatrix<MOD> &a, long long n){

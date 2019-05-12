@@ -47,10 +47,11 @@ library for math
 
 ## matrix
 [matrix.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/matrix.hpp)  
-ガウスの掃き出し法
+ガウスの掃き出し法など
   - gauss jordan
   - gauss jordan (mod p)
-  - gauss jordan (bit)
+  - gauss jordan (bit)  
+  - matrix power
 
 ## interpolation
 [interpolation.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/interpolation.hpp)  
