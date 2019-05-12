@@ -2904,3 +2904,60 @@ snippet coordinate_compression_def
 
 snippet coordinate_compression_use
   CoordinateCompressionL cc(v);
+
+snippet lmatrix_def
+  template <int MOD = int(1e9+7)>
+  struct LMatrix{
+    using ll = long long;
+    vector<vector<ll>> v;
+    int n, m;
+    LMatrix(int n_, int m_ = -1): n(n_), m(m_){
+      if(m < 0)m = n;
+      v.resize(n);
+      for(int i = 0; i < n; i++)v[i].resize(m);
+    }
+    void identity(){
+      assert(n == m);
+      for(int i = 0; i < n; i++){
+        for(int j = 0; j < n; j++){
+          v[i][j] = (i == j ? 1: 0);
+        }
+      }
+    }
+    vector<ll> &operator[](size_t i){
+      return v[i];
+    }
+    LMatrix operator*(const LMatrix &r){
+      assert(m == r.n);
+      int l = r.m;
+      LMatrix res(n, l);
+      for(int i = 0; i < n; i++){
+        for(int j = 0; j < l; j++){
+          res.v[i][j] = 0;
+          for(int k = 0; k < m; k++){
+            res.v[i][j] = (res.v[i][j] + v[i][k] * r.v[k][j] % MOD) % MOD;
+          }
+        }
+      }
+      return res;
+    }
+  };
+
+  template <int MOD = int(1e9+7)>
+  LMatrix<MOD> powerm(LMatrix<MOD> &a, long long n){
+    long long tmp = n;
+    LMatrix<MOD> curr = a;
+    LMatrix<MOD> res(a.n);
+    res.identity();
+    while(tmp){
+      if(tmp % 2 == 1){
+        res = res * curr;
+      }
+      curr = curr * curr;
+      tmp /= 2;
+    }
+    return res;
+  }
+
+snippet lmatrix_use
+  LMatrix<> l(2, 2);
