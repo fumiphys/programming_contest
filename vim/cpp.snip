@@ -3021,3 +3021,20 @@ snippet lmatrix_def
 
 snippet lmatrix_use
   LMatrix<> l(2, 2);
+
+snippet counting_sort_def
+  void counting_sort(vector<int> &x, int k){
+    vector<int> v(k + 1);
+    for(int i = 0; i < x.size(); i++){
+      v[x[i]]++;
+    }
+    int at = 0;
+    for(int i = 0; i < v.size(); i++){
+      for(int j = 0; j < v[i]; j++){
+        x[at++] = i;
+      }
+    }
+  }
+
+snippet counting_sort_use
+  counting_sort(v);
