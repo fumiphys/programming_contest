@@ -9,7 +9,7 @@ function! InitScript()
   5,21 fo
   40,50 fo
   normal G
-  normal 54G
+  normal 57G
   call Gen_comjson()
 endfunction
 
