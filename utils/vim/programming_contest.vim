@@ -6,8 +6,8 @@ function! ProconEnv()
 endfunction
 
 function! InitScript()
-  5,20 fo
-  37,47 fo
+  5,21 fo
+  40,50 fo
   normal G
   normal 54G
   call Gen_comjson()

@@ -18,6 +18,7 @@
 #define SE second
 #define dump(a, n) for(int i = 0; i < n; i++)cout << a[i] << "\n "[i + 1 != n];
 #define dump2(a, n, m) for(int i = 0; i < n; i++)for(int j = 0; j < m; j++)cout << a[i][j] << "\n "[j + 1 != m];
+#define bit(n) (1LL<<(n))
 using namespace std;
 
 //  types
@@ -32,6 +33,8 @@ const int inf = 1e9;
 const ll linf = 1LL << 50;
 const double EPS = 1e-10;
 const int mod = 1e9 + 7;
+const int dx[4] = {-1, 0, 1, 0};
+const int dy[4] = {0, -1, 0, 1};
 
 // solve
 template <class T>bool chmax(T &a, const T &b){if(a < b){a = b; return 1;} return 0;}
