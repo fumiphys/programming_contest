@@ -23,6 +23,9 @@ run: $(CONTEXTFILE) ./_$(SCRIPT)
 exec: $(CONTEXTFILE) ./_$(SCRIPT)
 	@time ./_$(SCRIPT)
 
+edit: $(CONTEXTFILE)
+	vim $(SCRIPT).cpp -c "call ProconEnv()"
+
 fetch: $(CONTEXTFILE)
 	@$(FTES) $(SCRIPT) $(FU)
 
