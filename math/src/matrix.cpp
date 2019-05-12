@@ -38,6 +38,19 @@ int main(int argc, char const* argv[])
   vector<double> nb{3, 9};
   vector<double> nx = linear_eq(n, nb);
   assert(check(nx, {2, 1}));
+
+  LMatrix<> l(2, 2);
+  l[0][0] = 1;
+  l[1][0] = 1;
+  l[0][1] = 1;
+  l[1][1] = 0;
+  auto r = powerm(l, 4);
+  LMatrix<> v(2, 1);
+  v[0][0] = 1;
+  v[1][0] = 1;
+  auto prod = r * v;
+  assert(prod[0][0] == 8);
+
   cout << "-- test for matrix end: Success --" << endl;
   return 0;
 }
