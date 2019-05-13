@@ -75,3 +75,9 @@ library for graph
 最小費用流アルゴリズム(最短路を構築していく. ポテンシャルを導入してdijkstraを使う)
   - Minimum Cost Flow  
   verify: [AOJ(Minimum Cost Flow)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_B)
+
+## Successive Shortest Path
+[successive\_shortest\_path.hpp](https://github.com/fumiphys/programming_contest/blob/master/graph/successive_shortest_path.hpp)  
+最小費用流アルゴリズム(最短路を構築していく. ベルマンフォードを使う)
+  - Minimum Cost Flow  
+  verify: [AOJ(Minimum Cost Flow)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_B)

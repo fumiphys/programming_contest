@@ -32,6 +32,7 @@ printf '\e[32mTest for graph ...\e[m\n'
 ./graph/edmonds_karp
 ./graph/dinic
 ./graph/primal_dual
+./graph/successive_shortest_path
 printf '\e[32mTest for math ...\e[m\n'
 ./math/geometry
 ./math/power
