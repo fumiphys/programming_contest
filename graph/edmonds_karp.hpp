@@ -7,6 +7,8 @@
 #include <vector>
 #include <queue>
 #include <utility>
+#include <algorithm>
+#include <limits>
 using namespace std;
 
 template <typename T>
