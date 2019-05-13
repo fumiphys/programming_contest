@@ -31,7 +31,6 @@ make
 ## TODO
  - SA-IS, BWT (direct implementation)
  - Bug fix for KMP, BM
- - minimum cost flow
  - power for general data stucture
  - verification of BigInt, acceleration of multiplication, division
 

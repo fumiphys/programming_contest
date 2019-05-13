@@ -31,6 +31,7 @@ printf '\e[32mTest for graph ...\e[m\n'
 ./graph/boruvka
 ./graph/edmonds_karp
 ./graph/dinic
+./graph/primal_dual
 printf '\e[32mTest for math ...\e[m\n'
 ./math/geometry
 ./math/power

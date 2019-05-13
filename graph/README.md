@@ -69,3 +69,9 @@ library for graph
 最大流アルゴリズム(BFS+DFS)
   - Maximum Flow  
   verify: [AOJ(Maximum Flow)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A)
+
+## Primal Dual
+[primal\_dual.hpp](https://github.com/fumiphys/programming_contest/blob/master/graph/primal_dual.hpp)  
+最小費用流アルゴリズム(最短路を構築していく. ポテンシャルを導入してdijkstraを使う)
+  - Minimum Cost Flow  
+  verify: [AOJ(Minimum Cost Flow)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_B)
