@@ -32,8 +32,6 @@ make
  - SA-IS, BWT (direct implementation)
  - Bug fix for KMP, BM
  - minimum cost flow
- - maximum flow (dinic)
- - minimum spanning tree (Boruvka's algorithm)
  - power for general data stucture
  - verification of BigInt, acceleration of multiplication, division
 
