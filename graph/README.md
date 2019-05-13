@@ -63,3 +63,9 @@ library for graph
 最大流アルゴリズム(最短路から更新していく)
   - Maximum Flow  
   verify: [AOJ(Maximum Flow)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A)
+
+## Dinic
+[dinic.hpp](https://github.com/fumiphys/programming_contest/blob/master/graph/dinic.hpp)  
+最大流アルゴリズム(BFS+DFS)
+  - Maximum Flow  
+  verify: [AOJ(Maximum Flow)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_A)
