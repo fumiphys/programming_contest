@@ -32,6 +32,10 @@ fetch: $(CONTEXTFILE)
 add: $(CONTEXTFILE)
 	@$(ATES) $(SCRIPT) $(AF)
 
+af: $(CONTEXTFILE)
+	@vim _$(SCRIPT)_add.txt
+	@$(ATES) $(SCRIPT) _$(SCRIPT)_add.txt
+
 copy: $(CONTEXTFILE)
 	@pbcopy < $(SCRIPT).cpp
 
