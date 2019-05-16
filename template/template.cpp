@@ -20,6 +20,9 @@
 #define dump(a, n) for(int i = 0; i < n; i++)cout << a[i] << "\n "[i + 1 != n];
 #define dump2(a, n, m) for(int i = 0; i < n; i++)for(int j = 0; j < m; j++)cout << a[i][j] << "\n "[j + 1 != m];
 #define bit(n) (1LL<<(n))
+#define INT(n) int n; cin >> n;
+#define LL(n) ll n; cin >> n;
+#define DOUBLE(n) double n; cin >> n;
 using namespace std;
 
 //  types
