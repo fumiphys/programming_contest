@@ -53,9 +53,14 @@
   verify: [yukicoder(平らな農地)](https://yukicoder.me/problems/no/738)
 
 ## Union Find
-[union\_find.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/treap.hpp)  
+[union\_find.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/union_find.hpp)  
 素集合データ構造 (uniteとfindを高速に行う)
   - union find  
   verify: [AOJ(Disjoint Set: Union Find Tree)](https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_A)
   - weighted union find  
   verify: [AOJ(Weighted Union Find Trees)](https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/1/DSL_1_B)
+
+## Wavelet Matrix
+[wavelet\_matrix.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/wavelet_matrix.hpp)  
+文字列などの索引
+  - Wavelet Matrix
