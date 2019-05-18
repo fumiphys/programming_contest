@@ -7,6 +7,9 @@
 #include <vector>
 #include <string>
 #include <utility>
+#include <tuple>
+#include <queue>
+#include <stack>
 #include "../succinct_data_structure/fully_indexable_dictionary.hpp"
 #include "../character_strings/convert.hpp"
 using namespace std;
@@ -26,6 +29,7 @@ struct WaveletMatrix{
   vector<SuccinctBitVector> mat;
   vector<int> zc;
   vector<int> bl, br;
+  vector<vector<T>> sum;
   WaveletMatrix(int m, vector<T> s){
     len = s.size();
     while((1LL<< n) <= m)n++;
@@ -33,6 +37,9 @@ struct WaveletMatrix{
     zc.resize(n);
     bl.resize(n);
     br.resize(n);
+    sum.resize(n + 1, vector<T>(len + 1, 0));
+
+    for(int i = 0; i < len; i++)sum[0][i + 1] = sum[0][i] + s[i];
 
     vector<T> l(len), r(len);
     for(int i = 0; i < n; i++){
@@ -50,6 +57,7 @@ struct WaveletMatrix{
       mat[i].build();
       swap(l, s);
       for(int j = 0; j < ri; j++)s[li + j] = r[j];
+      for(int j = 0; j < len; j++)sum[i+1][j+1] = sum[i+1][j] + s[j];
     }
   }
   T access(int i){
@@ -105,19 +113,191 @@ struct WaveletMatrix{
     }
     return res;
   }
-  int freq_dfs(int d, int s, int e, T val, T a, T b){
-    if(s == e)return 0;
-    if(d == n)return (a <= val && val < b) ? e - s: 0;
-    T nv = 1LL << (n - d - 1) | val;
-    T nnv = ((1LL << (n - d - 1)) - 1) | nv;
-    if(nnv < a || b <= val)return 0;
-    if(a <= val && nnv < b)return e - s;
-    int sc = mat[d].rank(1, s);
-    int ec = mat[d].rank(1, e);
-    return freq_dfs(d+1, s-sc, e-ec, val, a, b) + freq_dfs(d+1, sc+zc[d], ec+zc[d], nv, a, b);
+  // equal, lt, gt
+  tuple<int, int, int> rankall(T x, int s, int e){
+    if(s >= e)return make_tuple(0, 0, 0);
+    int rank_lt = 0, rank_gt = 0;
+    for(int i = 0; i < n && s < e; i++){
+      bool bit = (x >> (n - i - 1)) & 1;
+      int s0 = mat[i].rank(0, s);
+      int s1 = s - s0;
+      int e0 = mat[i].rank(0, e);
+      int e1 = e - e0;
+      if(bit){
+        rank_lt += e0 - s0;
+        s = zc[i] + s1;
+        e = zc[i] + e1;
+      }else{
+        rank_gt += e1 - s1;
+        s = s0;
+        e = e0;
+      }
+    }
+    return make_tuple(e - s - rank_lt - rank_gt, rank_lt, rank_gt);
   }
   int rangefreq(int s, int e, T mini, T maxi){
-    return freq_dfs(0, s, e, 0, mini, maxi);
+    tuple<int, int, int> maxi_t = rankall(maxi, s, e);
+    tuple<int, int, int> mini_t = rankall(mini, s, e);
+    return get<1>(maxi_t) - get<1>(mini_t);
+  }
+  int ranklt(T x, int s, int e){
+    return get<1>(rankall(x, s, e));
+  }
+  int rankgt(T x, int s, int e){
+    return get<2>(rankall(x, s, e));
+  }
+  T rangemax(int s, int e){
+    return quantile(s, e, 0);
+  }
+  T rangemin(int s, int e){
+    return quantile(s, e, e - s - 1);
+  }
+  vector<pair<T, int>> topk(int s, int e, int k){
+    vector<pair<T, int>> res;
+    using v_t = tuple<int, int, int, int, T>;
+    auto comp = [](const v_t &a, const v_t &b){
+      if(get<0>(a) != get<0>(b))return get<0>(a) < get<0>(b);
+      if(get<3>(a) != get<3>(b))return get<3>(a) > get<3>(b);
+      return get<3>(a) > get<3>(b);
+    };
+    priority_queue<v_t, vector<v_t>, decltype(comp)> pq(comp);
+    pq.push(make_tuple(e - s, s, e, 0, 0));
+    while(!pq.empty()){
+      auto p = pq.top(); pq.pop();
+      int width, li, ri, dep;
+      T val;
+      tie(width, li, ri, dep, val) = p;
+      if(dep >= n){
+        res.emplace_back(make_pair(val, ri - li));
+        if(res.size() >= k)break;
+        continue;
+      }
+      int l0 = mat[dep].rank(0, li);
+      int r0 = mat[dep].rank(0, ri);
+      if(l0 < r0)pq.push(make_tuple(r0 - l0, l0, r0, dep + 1, val));
+      int l1 = zc[dep] + mat[dep].rank(1, li);
+      int r1 = zc[dep] + mat[dep].rank(1, ri);
+      if(l1 < r1)pq.push(make_tuple(r1 - l1, l1, r1, dep + 1, val | (1LL << (n - dep - 1))));
+    }
+    return res;
+  }
+  T rangesum(int s, int e, int depth, T val, T x, T y){
+    if(s == e)return 0;
+    if(depth == n){
+      if(x <= val && val < y)return val * (e - s);
+      return 0;
+    }
+    T nv = (1LL << (n - depth - 1)) | val;
+    T nnv = ((1LL << (n - depth - 1)) - 1) | nv;
+    if(nnv < x || y <= val)return 0;
+    if(x <= val && nnv < y)return sum[depth][e] - sum[depth][s];
+    int s0 = mat[depth].rank(0, s);
+    int s1 = s - s0;
+    int e0 = mat[depth].rank(0, e);
+    int e1 = e - e0;
+    return rangesum(s0, e0, depth + 1, val, x, y) + rangesum(zc[depth] + s1, zc[depth] + e1, depth + 1, nv, x, y);
+  }
+  T rangesum(int s, int e, T x, T y){
+    return rangesum(s, e, 0, 0, x, y);
+  }
+  T prev(int s, int e, T x, T y){
+    y--;
+    using v_t = tuple<int, int, int, T, bool>;
+    stack<v_t> st;
+    st.push(make_tuple(s, e, 0, 0, true));
+    while(!st.empty()){
+      auto p = st.top(); st.pop();
+      int li, ri, depth;
+      T val;
+      bool tight;
+      tie(li, ri, depth, val, tight) = p;
+
+      if(depth == n){
+        if(val >= x)return val;
+        continue;
+      }
+      
+      bool bit = (y >> (n - depth - 1)) & 1;
+      int l0 = mat[depth].rank(0, li);
+      int l1 = li - l0;
+      int r0 = mat[depth].rank(0, ri);
+      int r1 = ri - r0;
+      if(l0 != r0){
+        st.push(make_tuple(l0, r0, depth + 1, (val << 1), tight && !bit));
+      }
+      if(l1 != r1){
+        if(!tight || bit){
+          st.push(make_tuple(zc[depth] + l1, zc[depth] + r1, depth + 1, ((val<<1)|1), tight));
+        }
+      }
+    }
+    return -1;
+  }
+  T next(int s, int e, T x, T y){
+    using v_t = tuple<int, int, int, T, bool>;
+    stack<v_t> st;
+    st.push(make_tuple(s, e, 0, 0, true));
+    while(!st.empty()){
+      auto p = st.top(); st.pop();
+      int li, ri, depth;
+      T val;
+      bool tight;
+      tie(li, ri, depth, val, tight) = p;
+      if(depth == n){
+        if(val < y)return val;
+        continue;
+      }
+      
+      bool bit = (x >> (n - depth - 1)) & 1;
+      int l0 = mat[depth].rank(0, li);
+      int l1 = li - l0;
+      int r0 = mat[depth].rank(0, ri);
+      int r1 = ri - r0;
+      if(l1 != r1){
+        st.push(make_tuple(zc[depth] + l1, zc[depth] + r1, depth + 1, ((val<<1)|1), tight && bit));
+      }
+      if(l0 != r0){
+        if(!tight || !bit){
+          st.push(make_tuple(l0, r0, depth + 1, (val << 1), tight));
+        }
+      }
+    }
+    return -1;
+  }
+  vector<tuple<T, int, int>> intersect(int s1, int e1, int s2, int e2){
+    using v_t = tuple<int, int, int, int, int, T>;
+    vector<tuple<T, int, int>> res;
+    queue<v_t> q;
+    q.push(make_tuple(s1, e1, s2, e2, 0, 0));
+    while(!q.empty()){
+      auto p = q.front(); q.pop();
+      int s_1, e_1, s_2, e_2, depth;
+      T val;
+      tie(s_1, e_1, s_2, e_2, depth, val) = p;
+      if(depth == n){
+        res.emplace_back(make_tuple(val, e_1 - s_1, e_2 - s_2));
+        continue;
+      }
+
+      int s1_0 = mat[depth].rank(0, s_1);
+      int e1_0 = mat[depth].rank(0, e_1);
+      int s2_0 = mat[depth].rank(0, s_2);
+      int e2_0 = mat[depth].rank(0, e_2);
+
+      if(s1_0 != e1_0 && s2_0 != e2_0){
+        q.push(make_tuple(s1_0, e1_0, s2_0, e2_0, depth + 1, val));
+      }
+
+      int s1_1 = s_1 - s1_0 + zc[depth];
+      int e1_1 = e_1 - e1_0 + zc[depth];
+      int s2_1 = s_2 - s2_0 + zc[depth];
+      int e2_1 = e_2 - e2_0 + zc[depth];
+
+      if(s1_1 != e1_1 && s2_1 != e2_1){
+        q.push(make_tuple(s1_1, e1_1, s2_1, e2_1, depth + 1, val | (1LL << (n - depth - 1))));
+      }
+    }
+    return res;
   }
 };
 

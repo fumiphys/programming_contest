@@ -39,6 +39,49 @@ int main(int argc, char const* argv[])
 
   assert(w.rangefreq(0, 5, 0, 1) == 2);
   assert(w.rangefreq(2, 7, 0, 10) == 4);
+
+  assert(w.rangemax(0, 5) == 17);
+  assert(w.rangemax(3, 7) == 3);
+
+  assert(w.rangemin(0, 5) == 0);
+  assert(w.rangemin(8, 10) == 1);
+
+  assert(w.ranklt(5, 0, 5) == 4);
+  assert(w.rankgt(5, 0, 5) == 1);
+  assert(w.ranklt(2, 3, 7) == 2);
+  assert(w.rankgt(2, 3, 7) == 1);
+
+  auto p = w.topk(0, 5, 3);
+  assert(p[0].first == 0);
+  assert(p[0].second == 2);
+  p = w.topk(0, 11, 3);
+  assert(p[0].first == 0);
+  assert(p[0].second == 5);
+  assert(p[1].first == 1);
+  assert(p[1].second == 2);
+  assert(p[2].first == 17);
+  assert(p[2].second == 2);
+
+  assert(w.rangesum(0, 5, 0, 20) == 20);
+  assert(w.rangesum(0, 5, 0, 5) == 3);
+  assert(w.rangesum(0, 5, 0, 2) == 1);
+  assert(w.rangesum(0, 5, 0, 1) == 0);
+
+  assert(w.prev(0, 5, 0, 20) == 17);
+  assert(w.prev(0, 5, 0, 5) == 2);
+
+  assert(w.next(0, 5, 1, 18) == 1);
+  assert(w.next(0, 5, 18, 20) == -1);
+  assert(w.next(0, 5, 6, 20) == 17);
+
+  auto in = w.intersect(0, 5, 3, 7);
+  assert(in.size() == 2);
+  assert(get<0>(in[0]) == 0);
+  assert(get<1>(in[0]) == 2);
+  assert(get<2>(in[0]) == 2);
+  assert(get<0>(in[1]) == 2);
+  assert(get<1>(in[1]) == 1);
+  assert(get<2>(in[1]) == 1);
   cout << "-- test for wavelet matrix end: Success --" << endl;
   return 0;
 }
