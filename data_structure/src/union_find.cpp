@@ -46,6 +46,6 @@ int main(int argc, char const* argv[])
   assert(wuf.weight(1) == 1);
   assert(wuf.diff(0, 1) == 1);
 
-  cout << "-- test for union find end: Success! --" << endl;
+  cout << "-- test for union find end: Success --" << endl;
   return 0;
 }
