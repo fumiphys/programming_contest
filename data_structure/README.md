@@ -63,4 +63,7 @@
 ## Wavelet Matrix
 [wavelet\_matrix.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/wavelet_matrix.hpp)  
 文字列などの索引
-  - Wavelet Matrix
+  - Wavelet Matrix  
+  verify: [AOJ(Hard Beans)](https://onlinejudge.u-aizu.ac.jp/problems/1549)  
+  verify: [yukicoder(平らな農地)](https://yukicoder.me/problems/no/738)  
+  verify: [AOJ(宝探し)](https://onlinejudge.u-aizu.ac.jp/problems/2426)  
