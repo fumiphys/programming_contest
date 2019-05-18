@@ -51,3 +51,7 @@ library for strings
 文字列sとs[i:]の共通接頭辞の長さを線形時間で求める.
   - zarray (calculate Z array)  
   verify: [Atcoder(ABCAC)](https://atcoder.jp/contests/arc055/tasks/arc055_c)
+
+## convert
+[convert.hpp](https://github.com/fumiphys/programming_contest/blob/master/character_strings/convert.hpp)  
+charとintを相互変換する
