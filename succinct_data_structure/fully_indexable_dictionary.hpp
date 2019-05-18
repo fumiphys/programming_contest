@@ -18,6 +18,7 @@ typedef struct SuccinctBitVector_ {
   const int l = 256;
   vector<uint32_t> B;
   vector<unsigned> L, S;
+  SuccinctBitVector_(){}
   SuccinctBitVector_(int size_){
     size = size_;
     B.assign((size + block - 1) / block, 0U);

@@ -12,6 +12,7 @@ printf '\e[32mTest for character_strings ...\e[m\n'
 ./character_strings/rolling_hash
 ./character_strings/trie
 ./character_strings/z
+./character_strings/convert
 printf '\e[32mTest for data_structrue ...\e[m\n'
 ./data_structure/union_find
 ./data_structure/binary_indexed_tree
