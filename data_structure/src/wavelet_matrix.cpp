@@ -1,6 +1,7 @@
 /*
  * Library for Wavelet Matrix
  */
+#include <algorithm>
 #include <iostream>
 #include <cassert>
 #include <string>
@@ -82,6 +83,20 @@ int main(int argc, char const* argv[])
   assert(get<0>(in[1]) == 2);
   assert(get<1>(in[1]) == 1);
   assert(get<2>(in[1]) == 1);
+
+  auto m = w.maximum(0, 5, 2);
+  assert(m.size() == 2);
+  assert(m[0] == 17);
+  assert(m[1] == 2);
+  m = w.maximum(3, 7, 3);
+  assert(m.size() == 3);
+  assert(m[0] == 3);
+  assert(m[1] == 2);
+  assert(m[2] == 0);
+
+  auto f = w.freq_list(0, 8, 1, 4);
+  assert(f.size() == 3);
+  assert(find(f.begin(), f.end(), make_pair(1, 1)) != f.end());
   cout << "-- test for wavelet matrix end: Success --" << endl;
   return 0;
 }

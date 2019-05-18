@@ -3617,6 +3617,54 @@ snippet wavelet_matrix_def
       }
       return res;
     }
+    void max_dfs(int d, int s, int e, int &k, T val, vector<T> &vs){
+      if(s >= e || !k)return;
+      if(d == n){
+        while(s++ < e && k > 0)vs.emplace_back(val), k--;
+        return;
+      }
+      int l1 = mat[d].rank(1, s);
+      int r1 = mat[d].rank(1, e);
+      max_dfs(d + 1, zc[d] + l1, zc[d] + r1, k, (1LL<<(n-d-1))|val, vs);
+      max_dfs(d + 1, s - l1, e - r1, k, val, vs);
+    }
+    vector<T> maximum(int s, int e, int k){
+      if(e - s < k)k = e - s;
+      if(k < 0)return {};
+      vector<T> res;
+      max_dfs(0, s, e, k, 0, res);
+      return res;
+    }
+    void list_dfs(int d, int s, int e, T val, T a, T b, vector<pair<T, int>> &vs){
+      if(val >= b || e - s <= 0)return;
+      if(d == n){
+        if(a <= val){
+          vs.emplace_back(make_pair(val, e - s));
+        }
+        return;
+      }
+        T nv = val | (1LL<<(n-d-1)), nnv = nv | ((1LL<<(n-d-1))-1);
+        if(nnv < a)return;
+        int l0 = mat[d].rank(1, s);
+        int r0 = mat[d].rank(1, e);
+        list_dfs(d + 1, s - l0, e - r0, val, a, b, vs);
+        list_dfs(d + 1, zc[d] + l0, zc[d] + r0, nv, a, b, vs);
+    }
+    vector<pair<T, int>> freq_list(int s, int e, T a, T b){
+      vector<pair<T, int>> res;
+      list_dfs(0, s, e, 0, a, b, res);
+      return res;
+    }
+    vector<pair<int, T>> get_rect(int s, int e, T a, T b){
+      vector<pair<T, int>> fl = freq_list(s, e, a, b);
+      vector<pair<int, T>> res;
+      for(auto &e: fl){
+        for(int i = 0; i < e.second; i++){
+          res.emplace_back(make_pair(select(e.first, i, s), e.first));
+        }
+      }
+      return res;
+    }
   };
 
 snippet wavelet_matrix_use
