@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <vector>
 #include <string>
+#include <utility>
 #include "../succinct_data_structure/fully_indexable_dictionary.hpp"
 #include "../character_strings/convert.hpp"
 using namespace std;
@@ -59,6 +60,9 @@ struct WaveletMatrix{
       i = zc[j] * bit + mat[j].rank(bit, i);
     }
     return res;
+  }
+  T operator[](int i){
+    return access(i);
   }
   int rank(T val, int i){
     int l = 0, r = i;
