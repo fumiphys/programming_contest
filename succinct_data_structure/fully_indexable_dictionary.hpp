@@ -14,8 +14,8 @@ using namespace std;
 
 typedef struct SuccinctBitVector_ {
   int size;
-  const int block = 32;
-  const int l = 256;
+  int block = 32;
+  int l = 256;
   vector<uint32_t> B;
   vector<unsigned> L, S;
   SuccinctBitVector_(){}
@@ -39,33 +39,31 @@ typedef struct SuccinctBitVector_ {
   bool access(int at){
     return (B[at / block] >> (at % block)) & 1U;
   }
+  bool operator[](int at){
+    return access(at);
+  }
   // this is rank1
   int rank(int at){
-    return S[at / block] + __builtin_popcount((B[at / block] & ((1U << (at % block)) - 1)));
+    return L[at / l] + S[at / block] + __builtin_popcount((B[at / block] & ((1U << (at % block)) - 1)));
   }
-  // this is select1
+  int rank(bool val, int at){
+    return (val ? rank(at): at - rank(at));
+  }
+  int select(bool val, int x){
+    if(x < 0 || x >= rank(val, size))return -1;
+    int ld = 0, rd = size;
+    while(rd - ld > 1){
+      int md = (rd + ld) / 2;
+      if(rank(val, md) >= x + 1)rd = md;
+      else ld = md;
+    }
+    return rd - 1;
+  }
   int select(int x){
-    // binary search for L
-    int lld = 0, lrd = L.size();
-    while(lrd - lld > 1){
-      int md = (lld + lrd) / 2;
-      if(L[md] <= x)lld = md;
-      else lrd = md;
-    }
-    // binary search for S
-    int sld = lld * l / block;
-    int srd = min((lld + 1) * l / block, (int)S.size());
-    while(srd - sld > 1){
-      int md = (sld + srd) / 2;
-      if(L[lld] + S[md] <= x)sld = md;
-      else srd = md;
-    }
-    int tcount = L[lld] + S[sld];
-    for(int i = 0; i < block; i++){
-      if(((B[sld] >> i) & 1U) == 1)tcount++;
-      if(tcount == x + 1)return sld * block + i;
-    }
-    return -1;
+    return select(1, x);
+  }
+  int select(bool val, int x, int l){
+    return select(val, x + rank(val, l));
   }
 } SuccinctBitVector;
 
