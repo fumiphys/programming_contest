@@ -143,7 +143,7 @@ int main(int argc, char const* argv[])
   assert(res[1] == 6);
   cout << "-- test for z_search end: Success --" << endl;
 
-  cout << "-- comparing four methods --" << endl;
+  cout << "-- comparing six methods --" << endl;
   // compare three algorithm
   for(int i = 0; i < 100; i++){
     s = generate_random_string(100);
@@ -154,6 +154,6 @@ int main(int argc, char const* argv[])
     assert(sa_search(s, t) == rh_search(s, t));
     assert(rh_search(s, t) == z_search(s, t));
   }
-  cout << "-- comparing four methods end: Success --" << endl;
+  cout << "-- comparing six methods end: Success --" << endl;
   return 0;
 }
