@@ -67,17 +67,12 @@ struct Graph{
   }
   void compose(){
     scc_edge.resize(cnt);
-    map<int, vector<int>> mp;
-    for(int i = 0; i < n; i++)mp[id[i]].emplace_back(i);
-    for(auto itr = mp.begin(); itr != mp.end(); ++itr){
-      set<int> st;
-      int at = id[(itr->second)[0]];
-      for(auto v: itr->second){
-        for(auto e: edge[v]){
-          if(id[e] != at && st.find(id[e]) == st.end()){
-            scc_edge[at].emplace_back(id[e]);
-            st.insert(id[e]);
-          }
+    vector<set<int>> st(cnt);
+    for(int i = 0; i < n; i++){
+      for(auto e: edge[i]){
+        if(id[e] != id[i] && st[id[i]].find(id[e]) == st[id[i]].end()){
+          scc_edge[id[i]].emplace_back(id[e]);
+          st[id[i]].insert(id[e]);
         }
       }
     }
