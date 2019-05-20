@@ -81,3 +81,9 @@ library for graph
 最小費用流アルゴリズム(最短路を構築していく. ベルマンフォードを使う)
   - Minimum Cost Flow  
   verify: [AOJ(Minimum Cost Flow)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/6/GRL_6_B)
+
+## Strongly Connected Components
+[strongly\_connected\_componens.hpp](https://github.com/fumiphys/programming_contest/blob/master/graph/strongly_connected_components.hpp)  
+強連結成分分解
+  - kosaraju  
+  verify: [AOJ(Strongly Connected Components)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C)
