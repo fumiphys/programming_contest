@@ -8,7 +8,7 @@ using namespace std;
 
 int main(int argc, char const* argv[])
 {
-  cout << "test for strongly connected components start --" << endl;
+  cout << "-- test for strongly connected components start --" << endl;
   Graph graph(7);
   graph.adde(0, 1);
   graph.adde(1, 2);
@@ -32,6 +32,6 @@ int main(int argc, char const* argv[])
   assert(graph.scc_edge[1].size() == 2);
   assert(graph.scc_edge[1][0] == 3);
   assert(graph.scc_edge[1][1] == 2);
-  cout << "test for strongly connected components end: Success --" << endl;
+  cout << "-- test for strongly connected components end: Success --" << endl;
   return 0;
 }
