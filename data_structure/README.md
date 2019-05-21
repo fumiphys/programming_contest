@@ -15,9 +15,12 @@
 
 ## Binary Indexed Tree
 [binary\_indexed\_tree.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/binary_indexed_tree.hpp)  
-端からの和の取得, 一点への加算がO(logN)でできるデータ構造
+端からの和の取得, 一点への加算がO(logN)でできるデータ構造  
+2次元版は更新がある時のみ使う.
   - BIT  
-  verify: [AOJ(Range Sum Ouery)](https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B)
+  verify: [AOJ(Range Sum Ouery)](https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B)  
+  - Two dimensional BIT  
+  verify: [AtCoder(惑星探査)](https://atcoder.jp/contests/joi2011ho/tasks/joi2011ho1)
 
 ## int128\_t
 [int128.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/int128.hpp)  
