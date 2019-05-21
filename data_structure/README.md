@@ -67,3 +67,4 @@
   verify: [AOJ(Hard Beans)](https://onlinejudge.u-aizu.ac.jp/problems/1549)  
   verify: [yukicoder(平らな農地)](https://yukicoder.me/problems/no/738)  
   verify: [AOJ(宝探し)](https://onlinejudge.u-aizu.ac.jp/problems/2426)  
+  verify: [AOJ(Dungeon(I))](https://onlinejudge.u-aizu.ac.jp/problems/1505)  
