@@ -79,4 +79,28 @@ struct Graph{
   }
 };
 
+struct TwoSAT{
+  Graph graph;
+  int n;
+  TwoSAT(){}
+  TwoSAT(int n): n(n){
+    graph = Graph(2 * n);
+  }
+  int no_t(int i){
+    if(i < n)return i + n;
+    else return i - n;
+  }
+  void add_relation(int i, int j){
+    graph.adde(no_t(i), j);
+    graph.adde(no_t(j), i);
+  }
+  bool two_satisfiability(){
+    graph.kosaraju();
+    for(int i = 0; i < n; i++){
+      if(graph.id[i] == graph.id[no_t(i)])return false;
+    }
+    return true;
+  }
+};
+
 #endif

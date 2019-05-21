@@ -33,5 +33,19 @@ int main(int argc, char const* argv[])
   assert(graph.scc_edge[1][0] == 3);
   assert(graph.scc_edge[1][1] == 2);
   cout << "-- test for strongly connected components end: Success --" << endl;
+
+  cout << "-- test for 2-SAT start --" << endl;
+  TwoSAT ts(3);
+  ts.add_relation(0, ts.no_t(1));
+  ts.add_relation(1, 2);
+  ts.add_relation(ts.no_t(2), ts.no_t(0));
+  assert(ts.two_satisfiability());
+  ts = TwoSAT(2);
+  ts.add_relation(0, 1);
+  ts.add_relation(ts.no_t(0), 1);
+  ts.add_relation(0, ts.no_t(1));
+  ts.add_relation(ts.no_t(0), ts.no_t(1));
+  assert(!ts.two_satisfiability());
+  cout << "-- test for 2-SAT end: Success --" << endl;
   return 0;
 }

@@ -84,6 +84,8 @@ library for graph
 
 ## Strongly Connected Components
 [strongly\_connected\_componens.hpp](https://github.com/fumiphys/programming_contest/blob/master/graph/strongly_connected_components.hpp)  
-強連結成分分解
+強連結成分分解  
+2-SATは全clauseが2つの論理式のORとなっているもののみ  
   - kosaraju  
-  verify: [AOJ(Strongly Connected Components)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C)
+  verify: [AOJ(Strongly Connected Components)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_C)  
+  - two satisfiability
