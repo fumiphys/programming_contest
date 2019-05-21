@@ -34,4 +34,30 @@ struct BIT_{
 typedef struct BIT_<int> BITI;
 typedef struct BIT_<long long> BITL;
 
+template <typename T>
+struct TwoBIT{
+  int n = 0, m = 0;
+  vector<vector<T>> bit;
+  TwoBIT(int n, int m): n(n), m(m){
+    bit.assign(n, vector<T>(m, 0));
+  }
+  void add(int a, int b, T w){
+    for(int x = a; x < n; x |= (x + 1)){
+      for(int y = b; y < m; y |= (y + 1)){
+        bit[x][y] += w;
+      }
+    }
+  }
+  T sum(int a, int b){
+    if(a < 0 || b < 0)return 0;
+    T res = 0;
+    for(int x = a; x >= 0; x = (x & (x + 1)) - 1){
+      for(int y = b; y >= 0; y = (y & (y + 1)) - 1){
+        res += bit[x][y];
+      }
+    }
+    return res;
+  }
+};
+
 #endif

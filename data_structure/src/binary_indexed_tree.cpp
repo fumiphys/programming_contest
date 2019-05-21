@@ -31,5 +31,17 @@ int main(int argc, char const* argv[])
   assert(bitl.sum(1) == 1e9);
   assert(bitl.sum(2) == 1e9 + 1e10);
   cout << "-- test for binary indexed tree end: Success --" << endl;
+
+  cout << "-- test for two dimensional binary indexed tree start --" << endl;
+  TwoBIT<int> tb(10, 10);
+  assert(tb.sum(4, 5) == 0);
+  tb.add(1, 3, 3);
+  assert(tb.sum(1, 3) == 3);
+  assert(tb.sum(9, 9) == 3);
+  assert(tb.sum(0, 3) == 0);
+  tb.add(4, 6, 5);
+  assert(tb.sum(4, 6) == 8);
+  assert(tb.sum(4, 5) == 3);
+  cout << "-- test for two dimensional binary indexed tree end: Success --" << endl;
   return 0;
 }
