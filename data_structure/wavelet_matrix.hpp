@@ -30,7 +30,7 @@ struct WaveletMatrix{
   vector<int> zc;
   vector<int> bl, br;
   vector<vector<T>> sum;
-  WaveletMatrix(int m, vector<T> s){
+  WaveletMatrix(T m, vector<T> s){
     len = s.size();
     while((1LL<< n) <= m)n++;
     mat.resize(n);
