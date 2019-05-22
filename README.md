@@ -14,6 +14,7 @@ Library for programming contest
  - [sort](sort/README.md)
  - [succinct\_data\_structure](succinct_data_structure/README.md)
  - [template](template/README.md)
+ - [tree](tree/README.md)
  - [utils](utils/README.md)
 
 ## usage
