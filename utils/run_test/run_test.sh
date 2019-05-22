@@ -63,3 +63,5 @@ printf '\e[32mTest for print ...\e[m\n'
 ./convenient/compression
 printf '\e[32mTest for DP ...\e[m\n'
 ./DP/bit
+printf '\e[32mTest for tree ...\e[m\n'
+./tree/lowest_common_ancestor
