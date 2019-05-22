@@ -8,14 +8,14 @@
 using namespace std;
 
 struct Tree{
-  int n = 0, m = 1;
+  int n = 0, m = 0;
   vector<vector<int>> edge;
   vector<vector<int>> par;
   vector<bool> vis;
   vector<int> h;
   Tree(){}
   Tree(int n): n(n){
-    while(m <= n)m *= 2;
+    while((1LL<<m) <= n)m++;
     edge.resize(n);
     par.assign(m + 1, vector<int>(n, 0));
     vis.resize(n, false);
