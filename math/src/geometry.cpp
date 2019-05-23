@@ -40,6 +40,17 @@ int main(int argc, char const* argv[])
   assert(ch[2] == mk(3., 0.));
   assert(ch[3] == mk(0., 3.));
   assert(ch[4] == mk(-2., 1.));
+
+  // plane equation
+  point3d pa, pb, pc;
+  pa.x = 1., pa.y = 2., pa.z = -2.;
+  pb.x = 3., pb.y = -2., pb.z = 1.;
+  pc.x = 5., pc.y = 1., pc.z = -4.;
+  plane3d pl = get_eq(pa, pb, pc);
+  assert(abs(pl.a - 11.) < EPS);
+  assert(abs(pl.b - 16.) < EPS);
+  assert(abs(pl.c - 14.) < EPS);
+  assert(abs(pl.d + 15.) < EPS);
     
   cout << "-- test for geometry end: Success --" << endl;
   return 0;
