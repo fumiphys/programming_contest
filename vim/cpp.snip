@@ -3887,3 +3887,38 @@ snippet lowest_common_ancestor_use
   t.adde(u, v);
   t.build();
   t.lca(u, v);
+
+snippet plane_eq_def
+  struct point3d{
+    double x, y, z;
+    point3d(){}
+    point3d(double x, double y, double z): x(x), y(y), z(z){}
+  };
+
+  struct plane3d{
+    double a, b, c, d;
+    double norm = 1.;
+    plane3d(){}
+    plane3d(double a, double b, double c, double d): a(a), b(b), c(c), d(d){
+      build();
+    }
+    void build(){
+      norm = sqrt(a * a + b * b + c * c);
+    }
+    double dis(point3d p){
+      return abs(a * p.x + b * p.y + c * p.z + d) / norm;
+    }
+  };
+
+  plane3d get_eq(point3d pa, point3d pb, point3d pc){
+    plane3d res;
+    res.a = (pb.y - pa.y) * (pc.z - pa.z) - (pc.y - pa.y) * (pb.z - pa.z);
+    res.b = (pb.z - pa.z) * (pc.x - pa.x) - (pc.z - pa.z) * (pb.x - pa.x);
+    res.c = (pb.x - pa.x) * (pc.y - pa.y) - (pc.x - pa.x) * (pb.y - pa.y);
+    res.d = - (res.a * pa.x + res.b * pa.y + res.c * pa.z);
+    res.build();
+    return res;
+  }
+
+snippet plane_eq_use
+  plane3d pl = get_eq(p1, p2, p3);
