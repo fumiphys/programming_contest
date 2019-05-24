@@ -72,6 +72,40 @@ int main(int argc, char const* argv[])
   assert(abs(inner_product(a, b) - 5.) < EPS);
   assert(abs(cosine(point2d(1., 0.), point2d(0., 1.))) < EPS);
   assert(abs(outer_product(point2d(1., 2.), point2d(3., 4.)) + 2.) < EPS);
+
+  // point3d
+  point3d A(1., 1., 1.), B(2., 3., 4.);
+  point3d C = A + B;
+  assert(abs(C.x - A.x - B.x) < EPS);
+  assert(abs(C.y - A.y - B.y) < EPS);
+  assert(abs(C.z - A.z - B.z) < EPS);
+  C = A - B;
+  assert(abs(C.x - A.x + B.x) < EPS);
+  assert(abs(C.y - A.y + B.y) < EPS);
+  assert(abs(C.z - A.z + B.z) < EPS);
+  C = 3. * A;
+  assert(abs(C.x - 3. * A.x) < EPS);
+  assert(abs(C.y - 3. * A.y) < EPS);
+  assert(abs(C.y - 3. * A.y) < EPS);
+  C = A / 2.;
+  assert(abs(C.x - A.x / 2) < EPS);
+  assert(abs(C.y - A.y / 2) < EPS);
+  assert(abs(C.z - A.z / 2) < EPS);
+  A += B;
+  assert(abs(A.x - 3.) < EPS);
+  assert(abs(A.y - 4.) < EPS);
+  assert(abs(A.z - 5.) < EPS);
+  A -= B;
+  assert(abs(A.x - 1.) < EPS);
+  assert(abs(A.y - 1.) < EPS);
+  assert(abs(A.z - 1.) < EPS);
+  assert(abs(dis(A, B) - sqrt(14.)) < EPS);
+  assert(abs(inner_product(A, B) - 9.) < EPS);
+  assert(abs(cosine(point3d(1., 0., 1.), point3d(0., 1., 0.))) < EPS);
+  point3d D = outer_product(A, B);
+  assert(abs(D.x - 1.) < EPS);
+  assert(abs(D.y + 2.) < EPS);
+  assert(abs(D.z - 1.) < EPS);
   cout << "-- test for geometry end: Success --" << endl;
   return 0;
 }

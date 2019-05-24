@@ -108,7 +108,62 @@ struct point3d{
   double x, y, z;
   point3d(){}
   point3d(double x, double y, double z): x(x), y(y), z(z){}
+  point3d operator+(const point3d &r) const{
+    return point3d(x + r.x, y + r.y, z + r.z);
+  }
+  point3d operator-(const point3d &r) const{
+    return point3d(x - r.x, y - r.y, z - r.z);
+  }
+  point3d& operator+=(const point3d &r){
+    *this = *this + r;
+    return *this;
+  }
+  point3d& operator-=(const point3d &r){
+    *this = *this - r;
+    return *this;
+  }
+  bool operator==(const point3d &r) const{
+    return abs(x - r.x) < EPS && abs(y - r.y) < EPS && abs(z - r.z) < EPS;
+  }
+  bool operator!=(const point3d &r) const{
+    return !(*this == r);
+  }
+  bool operator<(const point3d &r) const{
+    if(abs(x - r.x) >= EPS)return x < r.x;
+    if(abs(y - r.y) >= EPS)return y < r.y;
+    return z < r.z;
+  }
 };
+
+point3d operator*(double x, const point3d &p){
+  return point3d(x * p.x, x * p.y, x * p.z);
+}
+
+point3d operator/(const point3d &p, double x){
+  return point3d(p.x / x, p.y / x, p.z / x);
+}
+
+double norm(const point3d &a){
+  return sqrt(a.x * a.x + a.y * a.y + a.z * a.z);
+}
+
+double dis(const point3d &a, const point3d &b){
+  point3d c = a - b;
+  return norm(c);
+}
+
+double inner_product(const point3d &a, const point3d &b){
+  return a.x * b.x + a.y * b.y + a.z * b.z;
+}
+
+point3d outer_product(const point3d &a, const point3d &b){
+  return point3d(a.y * b.z - a.z * b.y,
+      a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
+}
+
+double cosine(const point3d &a, const point3d &b){
+  return inner_product(a, b) / norm(a) / norm(b);
+}
 
 struct plane3d{
   double a, b, c, d;
@@ -126,10 +181,9 @@ struct plane3d{
 };
 
 plane3d get_eq(point3d pa, point3d pb, point3d pc){
+  point3d re = outer_product(pb - pa, pc - pa);
   plane3d res;
-  res.a = (pb.y - pa.y) * (pc.z - pa.z) - (pc.y - pa.y) * (pb.z - pa.z);
-  res.b = (pb.z - pa.z) * (pc.x - pa.x) - (pc.z - pa.z) * (pb.x - pa.x);
-  res.c = (pb.x - pa.x) * (pc.y - pa.y) - (pc.x - pa.x) * (pb.y - pa.y);
+  res.a = re.x, res.b = re.y, res.c = re.z;
   res.d = - (res.a * pa.x + res.b * pa.y + res.c * pa.z);
   res.build();
   return res;
