@@ -105,9 +105,21 @@ point2d operator/(const point2d &p, double x){
   return point2d(p.x / x, p.y / x);
 }
 
-double norm(const point2d &a, const point2d &b){
+double norm(const point2d &a){
+  return sqrt(a.x * a.x + a.y * a.y);
+}
+
+double dis(const point2d &a, const point2d &b){
   point2d c = a - b;
-  return sqrt(c.x * c.x + c.y * c.y);
+  return norm(c);
+}
+
+double inner_product(const point2d &a, const point2d &b){
+  return a.x * b.x + a.y * b.y;
+}
+
+double cosine(const point2d &a, const point2d &b){
+  return inner_product(a, b) / norm(a) / norm(b);
 }
 
 #endif
