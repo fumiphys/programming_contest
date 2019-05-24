@@ -3999,7 +3999,7 @@ snippet point3d_def
 snippet point3d_use
   point3d(1., 1., 1.);
 
-snippet plane_eq_def
+snippet plane3d_def
   struct plane3d{
     double a, b, c, d;
     double norm = 1.;
@@ -4021,7 +4021,7 @@ snippet plane_eq_def
     }
   };
 
-snippet plane_eq_use
+snippet plane3d_use
   plane3d pl(pa, pb, pc);
 
 snippet projection_def
@@ -4043,3 +4043,42 @@ snippet reflection_def
 
 snippet reflection_use
   point2d pr = reflection(p, p1, p2);
+
+snippet plane2d_def
+  struct plane2d{
+    double a, b, c;
+    double norm;
+    plane2d(){}
+    plane2d(double a, double b, double c): a(a), b(b), c(c){}
+    plane2d(const point2d &p, const point2d &q){
+      point2d l = p - q;
+      a = l.y, b = - l.x;
+      c = - a * p.x - b * p.y;
+      build();
+    }
+    void build(){
+      norm = sqrt(a * a + b * b);
+    }
+    double dis(const point2d &p){
+      return abs(a * p.x + b * p.y + c) / norm;
+    }
+  };
+
+snippet plane2d_use
+  plane2d pl = plane2d(pa, pb);
+
+snippet paralell_def
+  bool parallel(const plane2d &p, const plane2d &q){
+    return abs(p.a * q.b - p.b * q.a) < EPS;
+  }
+
+snippet parallel_use
+  bool b = parallel(pla, plb);
+
+snippet orthogonal_def
+  bool orthogonal(const plane2d &p, const plane2d &q){
+    return abs(p.a * q.a + p.b * q.b) < EPS;
+  }
+
+snippet orthogonal_use
+  bool b = orthogonal(pla, plb);
