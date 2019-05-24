@@ -10,7 +10,9 @@ library for math
   - plane equation  
   verify: [yukicoder(点と平面との距離)](https://yukicoder.me/problems/no/132)  
   - projection  
-  verify: [AOJ(Projection)](https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_1_A)
+  verify: [AOJ(Projection)](https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_1_A)  
+  - reflection  
+  verify: [AOJ(Reflection)](https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_1_B)
 
 ## power
 [power.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/power.hpp)  
