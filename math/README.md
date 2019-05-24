@@ -4,6 +4,7 @@ library for math
 [geometry.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/geometry.hpp)  
 幾何に関するライブラリ
   - point2d: 2次元座標, ベクトル  
+  - point3d: 3次元座標, ベクトル  
   - convex hull (by graham, upper, lowerのwhile条件式の等号を外すと内角180度に対応できる)  
   verify: [AOJ(Convex Hull)](https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/4/CGL_4_A)  
   - plane equation  
