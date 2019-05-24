@@ -184,6 +184,9 @@ struct plane3d{
   double dis(point3d p){
     return abs(a * p.x + b * p.y + c * p.z + d) / norm;
   }
+  double val(const point3d &p){
+    return a * p.x + b * p.y + c * p.z + d;
+  }
 };
 
 point2d projection(const point2d &p, const point2d &p1, const point2d &p2){
@@ -215,6 +218,9 @@ struct plane2d{
   double dis(const point2d &p){
     return abs(a * p.x + b * p.y + c) / norm;
   }
+  double val(const point2d &p){
+    return a * p.x + b * p.y + c;
+  }
 };
 
 bool parallel(const plane2d &p, const plane2d &q){
@@ -223,6 +229,19 @@ bool parallel(const plane2d &p, const plane2d &q){
 
 bool orthogonal(const plane2d &p, const plane2d &q){
   return abs(p.a * q.a + p.b * q.b) < EPS;
+}
+
+bool intersection(const point2d &p1, const point2d &p2, const point2d &p3, const point2d &p4){
+  plane2d pl1(p1, p2), pl2(p3, p4);
+  if(abs(pl1.val(p3)) < EPS && min(p1.x, p2.x) <= p3.x && p3.x <= max(p1.x, p2.x) &&
+      min(p1.y, p2.y) <= p3.y && p3.y <= max(p1.y, p2.y))return true;
+  if(abs(pl1.val(p4)) < EPS && min(p1.x, p2.x) <= p4.x && p4.x <= max(p1.x, p2.x) &&
+      min(p1.y, p2.y) <= p4.y && p4.y <= max(p1.y, p2.y))return true;
+  if(abs(pl2.val(p1)) < EPS && min(p3.x, p4.x) <= p1.x && p1.x <= max(p3.x, p4.x) &&
+      min(p3.y, p4.y) <= p1.y && p1.y <= max(p3.y, p4.y))return true;
+  if(abs(pl2.val(p2)) < EPS && min(p3.x, p4.x) <= p2.x && p2.x <= max(p3.x, p4.x) &&
+      min(p3.y, p4.y) <= p2.y && p2.y <= max(p3.y, p4.y))return true;
+  return pl1.val(p3) * pl1.val(p4) <= - EPS && pl2.val(p1) * pl2.val(p2) <= - EPS;
 }
 
 #endif
