@@ -4037,3 +4037,12 @@ snippet projection_def
 
 snippet projection_use
   point2d pr = projection(p, p1, p2);
+
+snippet reflection_def
+  point2d reflection(const point2d &p, const point2d &p1, const point2d &p2){
+    point2d pr = projection(p, p1, p2);
+    return p + 2. * (pr - p);
+  }
+
+snippet reflection_use
+  point2d pr = reflection(p, p1, p2);
