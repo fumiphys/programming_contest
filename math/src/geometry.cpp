@@ -111,6 +111,11 @@ int main(int argc, char const* argv[])
   point2d p = projection(point2d(3, 1), point2d(0, 0), point2d(5, 0));
   assert(abs(p.x - 3.) < EPS);
   assert(abs(p.y) < EPS);
+
+  // reflection
+  p = reflection(point2d(1, 0), point2d(0, 0), point2d(2, 2));
+  assert(abs(p.x) < EPS);
+  assert(abs(p.y - 1.) < EPS);
   cout << "-- test for geometry end: Success --" << endl;
   return 0;
 }

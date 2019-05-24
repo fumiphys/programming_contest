@@ -196,4 +196,9 @@ point2d projection(const point2d &p, const point2d &p1, const point2d &p2){
   return p1 + (dis(p, p1) * cosi / norm(p2 - p1)) * (p2 - p1);
 }
 
+point2d reflection(const point2d &p, const point2d &p1, const point2d &p2){
+  point2d pr = projection(p, p1, p2);
+  return p + 2. * (pr - p);
+}
+
 #endif
