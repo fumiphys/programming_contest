@@ -172,6 +172,12 @@ struct plane3d{
   plane3d(double a, double b, double c, double d): a(a), b(b), c(c), d(d){
     build();
   }
+  plane3d(const point3d pa, const point3d pb, const point3d pc){
+    point3d re = outer_product(pb - pa, pc - pa);
+    a = re.x, b = re.y, c = re.z;
+    d = - (a * pa.x + b * pa.y + c * pa.z);
+    build();
+  }
   void build(){
     norm = sqrt(a * a + b * b + c * c);
   }
@@ -179,15 +185,6 @@ struct plane3d{
     return abs(a * p.x + b * p.y + c * p.z + d) / norm;
   }
 };
-
-plane3d get_eq(point3d pa, point3d pb, point3d pc){
-  point3d re = outer_product(pb - pa, pc - pa);
-  plane3d res;
-  res.a = re.x, res.b = re.y, res.c = re.z;
-  res.d = - (res.a * pa.x + res.b * pa.y + res.c * pa.z);
-  res.build();
-  return res;
-}
 
 point2d projection(const point2d &p, const point2d &p1, const point2d &p2){
   point2d p2p1 = p2 - p1, pp1 = p - p1;
@@ -200,5 +197,14 @@ point2d reflection(const point2d &p, const point2d &p1, const point2d &p2){
   point2d pr = projection(p, p1, p2);
   return p + 2. * (pr - p);
 }
+
+struct plane2d{
+  double a, b, c;
+  plane2d(){}
+  plane2d(double a, double b, double c): a(a), b(b), c(c){}
+  plane2d(const point2d &p, const point2d &q){
+
+  }
+};
 
 #endif

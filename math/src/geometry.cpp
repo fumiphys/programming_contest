@@ -42,7 +42,7 @@ int main(int argc, char const* argv[])
   pa.x = 1., pa.y = 2., pa.z = -2.;
   pb.x = 3., pb.y = -2., pb.z = 1.;
   pc.x = 5., pc.y = 1., pc.z = -4.;
-  plane3d pl = get_eq(pa, pb, pc);
+  plane3d pl(pa, pb, pc);
   assert(abs(pl.a - 11.) < EPS);
   assert(abs(pl.b - 16.) < EPS);
   assert(abs(pl.c - 14.) < EPS);
