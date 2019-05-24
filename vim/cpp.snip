@@ -4019,6 +4019,9 @@ snippet plane3d_def
     double dis(point3d p){
       return abs(a * p.x + b * p.y + c * p.z + d) / norm;
     }
+    double val(const point3d &p){
+      return a * p.x + b * p.y + c * p.z + d;
+    }
   };
 
 snippet plane3d_use
@@ -4061,6 +4064,9 @@ snippet plane2d_def
     }
     double dis(const point2d &p){
       return abs(a * p.x + b * p.y + c) / norm;
+    }
+    double val(const point2d &p){
+      return a * p.x + b * p.y + c;
     }
   };
 
