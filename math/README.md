@@ -14,7 +14,9 @@ library for math
   - reflection  
   verify: [AOJ(Reflection)](https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_1_B)  
   - parallel, orthogonal  
-  verify: [AOJ(Parallel/Orthogonal)](https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/2/CGL_2_A)
+  verify: [AOJ(Parallel/Orthogonal)](https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/2/CGL_2_A)  
+  - intersection  
+  verify: [AOJ(Intersection)](https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/2/CGL_2_B)
 
 ## power
 [power.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/power.hpp)  
