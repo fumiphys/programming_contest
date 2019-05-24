@@ -18,18 +18,6 @@ typedef pair<double, double> Pd;
 
 const double EPS = 1e-10;
 
-bool crossing(P p1, P p2, P q1, P q2){
-  double pq1 = (q1.first - p1.first) * (q2.second - p1.second)
-    - (q1.second - p1.second) * (q2.first - p1.first);
-  double pq2 = (q1.first - p2.first) * (q2.second - p2.second)
-    - (q1.second - p2.second) * (q2.first - p2.first);
-  double qp1 = (p1.first - q1.first) * (p2.second - q1.second)
-    - (p1.second - q1.second) * (p2.first - q1.first);
-  double qp2 = (p1.first - q2.first) * (p2.second - q2.second)
-    - (p1.second - q2.second) * (p2.first - q2.first);
-  return (pq1 * pq2 < EPS && qp1 * qp2 < EPS);
-}
-
 double cross(const Pd &o, const Pd &a, const Pd &b){
   return (a.first - o.first) * (b.second - o.second) - (a.second - o.second) * (b.first - o.first);
 }
@@ -87,6 +75,39 @@ plane3d get_eq(point3d pa, point3d pb, point3d pc){
   res.d = - (res.a * pa.x + res.b * pa.y + res.c * pa.z);
   res.build();
   return res;
+}
+
+struct point2d{
+  double x, y;
+  point2d(){}
+  point2d(double x, double y): x(x), y(y){}
+  point2d operator+(const point2d &r) const{
+    return point2d(x + r.x, y + r.y);
+  }
+  point2d operator-(const point2d &r) const{
+    return point2d(x - r.x, y - r.y);
+  }
+  point2d& operator+=(const point2d &r){
+    *this = *this + r;
+    return *this;
+  }
+  point2d& operator-=(const point2d &r){
+    *this = *this - r;
+    return *this;
+  }
+};
+
+point2d operator*(double x, const point2d &p){
+  return point2d(x * p.x, x * p.y);
+}
+
+point2d operator/(const point2d &p, double x){
+  return point2d(p.x / x, p.y / x);
+}
+
+double norm(const point2d &a, const point2d &b){
+  point2d c = a - b;
+  return sqrt(c.x * c.x + c.y * c.y);
 }
 
 #endif

@@ -18,10 +18,6 @@ typedef long long ll;
 int main(int argc, char const* argv[])
 {
   cout << "-- test for geometry start --" << endl;
-  // crossing
-  assert(!crossing(mk(1, 3), mk(3, 1), mk(0, 0), mk(1, 1)));
-  assert(crossing(mk(1, 3), mk(3, 1), mk(0, 0), mk(3, 3)));
-
   // convex hull
   vector<Pd> vec;
   vec.pb(mk(0., 0.));
@@ -52,6 +48,26 @@ int main(int argc, char const* argv[])
   assert(abs(pl.c - 14.) < EPS);
   assert(abs(pl.d + 15.) < EPS);
     
+  // point2d
+  point2d a(1., 1.), b(2., 3.);
+  point2d c = a + b;
+  assert(abs(c.x - a.x - b.x) < EPS);
+  assert(abs(c.y - a.y - b.y) < EPS);
+  c = a - b;
+  assert(abs(c.x - a.x + b.x) < EPS);
+  assert(abs(c.y - a.y + b.y) < EPS);
+  c = 3. * a;
+  assert(abs(c.x - 3. * a.x) < EPS);
+  assert(abs(c.y - 3. * a.y) < EPS);
+  c = a / 2.;
+  assert(abs(c.x - a.x / 2) < EPS);
+  assert(abs(c.y - a.y / 2) < EPS);
+  a += b;
+  assert(abs(a.x - 3.) < EPS);
+  assert(abs(a.y - 4.) < EPS);
+  a -= b;
+  assert(abs(a.x - 1.) < EPS);
+  assert(abs(a.y - 1.) < EPS);
   cout << "-- test for geometry end: Success --" << endl;
   return 0;
 }
