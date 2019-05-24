@@ -36,6 +36,16 @@ struct point2d{
     *this = *this - r;
     return *this;
   }
+  bool operator==(const point2d &r) const{
+    return abs(x - r.x) < EPS && abs(y - r.y) < EPS;
+  }
+  bool operator!=(const point2d &r) const{
+    return !(*this == r);
+  }
+  bool operator<(const point2d &r) const{
+    if(abs(x - r.x) >= EPS)return x < r.x;
+    return y < r.y;
+  }
 };
 
 point2d operator*(double x, const point2d &p){
@@ -67,15 +77,15 @@ double cosine(const point2d &a, const point2d &b){
   return inner_product(a, b) / norm(a) / norm(b);
 }
 
-double cross(const Pd &o, const Pd &a, const Pd &b){
-  return (a.first - o.first) * (b.second - o.second) - (a.second - o.second) * (b.first - o.first);
+double cross(const point2d &o, const point2d &a, const point2d &b){
+  return outer_product(a - o, b - o);
 }
 
-vector<Pd> convex_hull(vector<Pd> vec){
+vector<point2d> convex_hull(vector<point2d> vec){
   int n = vec.size(), k = 0;
   if(n < 3)return vec;
 
-  vector<Pd> ch(2 * n);
+  vector<point2d> ch(2 * n);
   sort(vec.begin(), vec.end());
 
   // lower
@@ -85,14 +95,13 @@ vector<Pd> convex_hull(vector<Pd> vec){
   }
 
   // upper
-  for(int i = n - 1, t = k + 1; i > 0; --i){
+  for(int i = n - 1, t = k + 1; i > 0; i--){
     while(k >= t && cross(ch[k-2], ch[k-1], vec[i-1]) <= 0.)k--;
     ch[k++] = vec[i-1];
   }
 
-  ch.resize(k - 1);
+  ch.resize(k-1);
   return ch;
-
 }
 
 struct point3d{

@@ -19,23 +19,23 @@ int main(int argc, char const* argv[])
 {
   cout << "-- test for geometry start --" << endl;
   // convex hull
-  vector<Pd> vec;
-  vec.pb(mk(0., 0.));
-  vec.pb(mk(-2., 1.));
-  vec.pb(mk(-2., -2.));
-  vec.pb(mk(0., 3.));
-  vec.pb(mk(1., 1.));
-  vec.pb(mk(3., 0.));
-  vec.pb(mk(1., -1.));
-  vec.pb(mk(2., -2.));
-  vector<Pd> ch = convex_hull(vec);
+  vector<point2d> vec;
+  vec.pb(point2d(0., 0.));
+  vec.pb(point2d(-2., 1.));
+  vec.pb(point2d(-2., -2.));
+  vec.pb(point2d(0., 3.));
+  vec.pb(point2d(1., 1.));
+  vec.pb(point2d(3., 0.));
+  vec.pb(point2d(1., -1.));
+  vec.pb(point2d(2., -2.));
+  vector<point2d> ch = convex_hull(vec);
 
   assert(ch.size() == 5);
-  assert(ch[0] == mk(-2., -2.));
-  assert(ch[1] == mk(2., -2.));
-  assert(ch[2] == mk(3., 0.));
-  assert(ch[3] == mk(0., 3.));
-  assert(ch[4] == mk(-2., 1.));
+  assert(ch[0] == point2d(-2., -2.));
+  assert(ch[1] == point2d(2., -2.));
+  assert(ch[2] == point2d(3., 0.));
+  assert(ch[3] == point2d(0., 3.));
+  assert(ch[4] == point2d(-2., 1.));
 
   // plane equation
   point3d pa, pb, pc;
