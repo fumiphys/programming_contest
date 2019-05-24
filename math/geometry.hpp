@@ -200,11 +200,29 @@ point2d reflection(const point2d &p, const point2d &p1, const point2d &p2){
 
 struct plane2d{
   double a, b, c;
+  double norm;
   plane2d(){}
   plane2d(double a, double b, double c): a(a), b(b), c(c){}
   plane2d(const point2d &p, const point2d &q){
-
+    point2d l = p - q;
+    a = l.y, b = - l.x;
+    c = - a * p.x - b * p.y;
+    build();
+  }
+  void build(){
+    norm = sqrt(a * a + b * b);
+  }
+  double dis(const point2d &p){
+    return abs(a * p.x + b * p.y + c) / norm;
   }
 };
+
+bool parallel(const plane2d &p, const plane2d &q){
+  return abs(p.a * q.b - p.b * q.a) < EPS;
+}
+
+bool orthogonal(const plane2d &p, const plane2d &q){
+  return abs(p.a * q.a + p.b * q.b) < EPS;
+}
 
 #endif

@@ -116,6 +116,17 @@ int main(int argc, char const* argv[])
   p = reflection(point2d(1, 0), point2d(0, 0), point2d(2, 2));
   assert(abs(p.x) < EPS);
   assert(abs(p.y - 1.) < EPS);
+
+  // plane 2d equation
+  point2d pA(0, 1), pB(1, 2);
+  plane2d pl2 = plane2d(pA, pB);
+  assert(abs(pl2.a * pA.x + pl2.b * pA.y + pl2.c) < EPS);
+  assert(abs(pl2.a * pB.x + pl2.b * pB.y + pl2.c) < EPS);
+
+  plane2d pla(1, 1, 0), plb(1, -1, 0), plc(2, 2, 4);
+  assert(!parallel(pla, plb));
+  assert(orthogonal(pla, plb));
+  assert(parallel(pla, plc));
   cout << "-- test for geometry end: Success --" << endl;
   return 0;
 }
