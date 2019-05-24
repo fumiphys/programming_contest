@@ -18,6 +18,55 @@ typedef pair<double, double> Pd;
 
 const double EPS = 1e-10;
 
+struct point2d{
+  double x, y;
+  point2d(){}
+  point2d(double x, double y): x(x), y(y){}
+  point2d operator+(const point2d &r) const{
+    return point2d(x + r.x, y + r.y);
+  }
+  point2d operator-(const point2d &r) const{
+    return point2d(x - r.x, y - r.y);
+  }
+  point2d& operator+=(const point2d &r){
+    *this = *this + r;
+    return *this;
+  }
+  point2d& operator-=(const point2d &r){
+    *this = *this - r;
+    return *this;
+  }
+};
+
+point2d operator*(double x, const point2d &p){
+  return point2d(x * p.x, x * p.y);
+}
+
+point2d operator/(const point2d &p, double x){
+  return point2d(p.x / x, p.y / x);
+}
+
+double norm(const point2d &a){
+  return sqrt(a.x * a.x + a.y * a.y);
+}
+
+double dis(const point2d &a, const point2d &b){
+  point2d c = a - b;
+  return norm(c);
+}
+
+double inner_product(const point2d &a, const point2d &b){
+  return a.x * b.x + a.y * b.y;
+}
+
+double outer_product(const point2d &a, const point2d &b){
+  return a.x * b.y - a.y * b.x;
+}
+
+double cosine(const point2d &a, const point2d &b){
+  return inner_product(a, b) / norm(a) / norm(b);
+}
+
 double cross(const Pd &o, const Pd &a, const Pd &b){
   return (a.first - o.first) * (b.second - o.second) - (a.second - o.second) * (b.first - o.first);
 }
@@ -75,51 +124,6 @@ plane3d get_eq(point3d pa, point3d pb, point3d pc){
   res.d = - (res.a * pa.x + res.b * pa.y + res.c * pa.z);
   res.build();
   return res;
-}
-
-struct point2d{
-  double x, y;
-  point2d(){}
-  point2d(double x, double y): x(x), y(y){}
-  point2d operator+(const point2d &r) const{
-    return point2d(x + r.x, y + r.y);
-  }
-  point2d operator-(const point2d &r) const{
-    return point2d(x - r.x, y - r.y);
-  }
-  point2d& operator+=(const point2d &r){
-    *this = *this + r;
-    return *this;
-  }
-  point2d& operator-=(const point2d &r){
-    *this = *this - r;
-    return *this;
-  }
-};
-
-point2d operator*(double x, const point2d &p){
-  return point2d(x * p.x, x * p.y);
-}
-
-point2d operator/(const point2d &p, double x){
-  return point2d(p.x / x, p.y / x);
-}
-
-double norm(const point2d &a){
-  return sqrt(a.x * a.x + a.y * a.y);
-}
-
-double dis(const point2d &a, const point2d &b){
-  point2d c = a - b;
-  return norm(c);
-}
-
-double inner_product(const point2d &a, const point2d &b){
-  return a.x * b.x + a.y * b.y;
-}
-
-double cosine(const point2d &a, const point2d &b){
-  return inner_product(a, b) / norm(a) / norm(b);
 }
 
 #endif

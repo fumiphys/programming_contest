@@ -71,6 +71,7 @@ int main(int argc, char const* argv[])
   assert(abs(dis(a, b) - sqrt(5)) < EPS);
   assert(abs(inner_product(a, b) - 5.) < EPS);
   assert(abs(cosine(point2d(1., 0.), point2d(0., 1.))) < EPS);
+  assert(abs(outer_product(point2d(1., 2.), point2d(3., 4.)) + 2.) < EPS);
   cout << "-- test for geometry end: Success --" << endl;
   return 0;
 }
