@@ -189,4 +189,11 @@ plane3d get_eq(point3d pa, point3d pb, point3d pc){
   return res;
 }
 
+point2d projection(const point2d &p, const point2d &p1, const point2d &p2){
+  point2d p2p1 = p2 - p1, pp1 = p - p1;
+  if(abs(inner_product(p2p1, pp1)) < EPS)return p1;
+  double cosi = cosine(p2p1, pp1);
+  return p1 + (dis(p, p1) * cosi / norm(p2 - p1)) * (p2 - p1);
+}
+
 #endif

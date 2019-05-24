@@ -106,6 +106,11 @@ int main(int argc, char const* argv[])
   assert(abs(D.x - 1.) < EPS);
   assert(abs(D.y + 2.) < EPS);
   assert(abs(D.z - 1.) < EPS);
+
+  // projection
+  point2d p = projection(point2d(3, 1), point2d(0, 0), point2d(5, 0));
+  assert(abs(p.x - 3.) < EPS);
+  assert(abs(p.y) < EPS);
   cout << "-- test for geometry end: Success --" << endl;
   return 0;
 }
