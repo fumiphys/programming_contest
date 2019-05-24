@@ -12,7 +12,9 @@ library for math
   - projection  
   verify: [AOJ(Projection)](https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_1_A)  
   - reflection  
-  verify: [AOJ(Reflection)](https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_1_B)
+  verify: [AOJ(Reflection)](https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/all/CGL_1_B)  
+  - parallel, orthogonal  
+  verify: [AOJ(Parallel/Orthogonal)](https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/2/CGL_2_A)
 
 ## power
 [power.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/power.hpp)  
