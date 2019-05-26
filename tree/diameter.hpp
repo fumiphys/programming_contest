@@ -1,0 +1,61 @@
+/*
+ * Library for Diameter
+ */
+#ifndef _DIAMETER_H_
+#define _DIAMETER_H_
+#include <vector>
+using namespace std;
+
+template <typename T>
+struct edge{
+  int from, to;
+  T w;
+  edge(){}
+  edge(int from, int to, T w): from(from), to(to), w(w){}
+};
+
+template <typename T>
+struct Tree{
+  int n = 0;
+  vector<vector<edge<T>>> edges;
+  vector<T> dis;
+  Tree(){}
+  Tree(int n): n(n){
+    edges.resize(n);
+    dis.resize(n);
+  }
+  void adde(int from, int to, T cost){
+    edges[from].emplace_back(edge<T>(from, to, cost));
+  }
+  void dfs(int i){
+    for(auto e: edges[i]){
+      if(dis[e.to] == -1){
+        dis[e.to] = dis[i] + e.w;
+        dfs(e.to);
+      }
+    }
+  }
+  T diameter(){
+    dis.assign(n, -1);
+    dis[0] = 0;
+    dfs(0);
+    int at = 0;
+    T maxi = -1;
+    for(int i = 0; i < n; i++){
+      if(maxi < dis[i]){
+        maxi = dis[i];
+        at = i;
+      }
+    }
+    dis.assign(n, -1);
+    dis[at] = 0;
+    dfs(at);
+    T res = -1;
+    for(int i = 0; i < n; i++){
+      res = max(res, dis[i]);
+    }
+    return res;
+  }
+};
+
+#endif
