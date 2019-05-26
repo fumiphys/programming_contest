@@ -66,3 +66,4 @@ printf '\e[32mTest for DP ...\e[m\n'
 printf '\e[32mTest for tree ...\e[m\n'
 ./tree/lowest_common_ancestor
 ./tree/euler_tour
+./tree/diameter
