@@ -11,3 +11,8 @@ dfsの順に木を区間に対応させる.
   - Euler Tour  
   verify: [yukicoder(クリスマスツリー)](https://yukicoder.me/problems/no/778)  
   verify: [AOJ(Range Query on a Tree)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_D)
+
+## Diameter
+木の直径を求める
+  - Diameter  
+  verify: [AOJ(Diameter of a Tree)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_A)
