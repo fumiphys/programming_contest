@@ -8,9 +8,11 @@ arguments:
 from bs4 import BeautifulSoup
 import bs4
 import codecs
+import os
 import re
 import sys
 import urllib.request
+import http.cookiejar
 
 
 if __name__ == '__main__':
@@ -20,6 +22,13 @@ if __name__ == '__main__':
 
     # directory for test case
     test_path = "{}/test/test_{}/".format(sys.argv[3], sys.argv[1])
+
+    cookie_file = "/tmp/login.cookie"
+    cj = http.cookiejar.MozillaCookieJar()
+    if os.path.exists(cookie_file):
+        cj.load(cookie_file)
+    opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
+    urllib.request.install_opener(opener)
 
     # get HTML
     html = urllib.request.urlopen(sys.argv[2])
