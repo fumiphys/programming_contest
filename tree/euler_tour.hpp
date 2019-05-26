@@ -8,34 +8,32 @@ using namespace std;
 
 struct Tree{
   int n = 0;
-  // child: [id[i] + 1, f[i]]
   vector<vector<int>> edges;
-  vector<int> e, id, f;
-  int at = 0;
+  vector<int> b, e;
+  vector<int> v;
   Tree(){}
   Tree(int n): n(n){
     edges.resize(n);
+    b.resize(n);
     e.resize(n);
-    id.resize(n);
-    f.resize(n);
+    v.reserve(2 * n - 1);
   }
   void adde(int from, int to){
     edges[from].emplace_back(to);
   }
   void dfs(int i){
-    e[at] = i;
-    id[i] = at;
-    at++;
+    v.emplace_back(i);
+    b[i] = int(v.size()) - 1;
     for(auto c: edges[i]){
-      if(id[c] == -1)dfs(c);
+      if(b[c] == -1)dfs(c);
+      v.emplace_back(i);
     }
-    f[i] = at;
+    e[i] = int(v.size()) - 1;
   }
   void build(int r = 0){
+    b.assign(n, -1);
     e.assign(n, -1);
-    id.assign(n, -1);
-    f.assign(n, -1);
-    at = 0;
+    v.resize(0);
     dfs(r);
   }
 };

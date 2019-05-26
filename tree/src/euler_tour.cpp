@@ -17,13 +17,33 @@ int main(int argc, char const* argv[])
   t.adde(4, 5);
   t.adde(4, 6);
   t.build();
-  for(int i = 0; i < 7; i++){
-    assert(t.e[i] == i);
-    assert(t.id[i] == i);
-  }
-  assert(t.f[0] == 7);
-  assert(t.f[1] == 4);
-  assert(t.f[4] == 7);
+  assert(t.v[0] == 0);
+  assert(t.v[1] == 1);
+  assert(t.v[2] == 2);
+  assert(t.v[3] == 1);
+  assert(t.v[4] == 3);
+  assert(t.v[5] == 1);
+  assert(t.v[6] == 0);
+  assert(t.v[7] == 4);
+  assert(t.v[8] == 5);
+  assert(t.v[9] == 4);
+  assert(t.v[10] == 6);
+  assert(t.v[11] == 4);
+  assert(t.v[12] == 0);
+  assert(t.b[0] == 0);
+  assert(t.e[0] == 12);
+  assert(t.b[1] == 1);
+  assert(t.e[1] == 5);
+  assert(t.b[2] == 2);
+  assert(t.e[2] == 2);
+  assert(t.b[3] == 4);
+  assert(t.e[3] == 4);
+  assert(t.b[4] == 7);
+  assert(t.e[4] == 11);
+  assert(t.b[5] == 8);
+  assert(t.e[5] == 8);
+  assert(t.b[6] == 10);
+  assert(t.e[6] == 10);
   cout << "-- test for euler tour end: Success --" << endl;
   return 0;
 }
