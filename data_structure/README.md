@@ -20,7 +20,8 @@
   - BIT  
   verify: [AOJ(Range Sum Ouery)](https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_B)  
   - 二分探索  
-  verify: [yukicoder(かっこいい電車)](https://yukicoder.me/problems/no/833)
+  verify: [yukicoder(かっこいい電車)](https://yukicoder.me/problems/no/833)  
+  verify: [AtCoder(データ構造)](https://atcoder.jp/contests/arc033/tasks/arc033_3)
   - Two dimensional BIT  
   verify: [AtCoder(惑星探査)](https://atcoder.jp/contests/joi2011ho/tasks/joi2011ho1)  
   - Range update Point query BIT  
