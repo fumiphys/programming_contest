@@ -30,6 +30,18 @@ struct BIT_{
     }
     return res;
   }
+  int lower_bound(T w){
+    int x = 0;
+    int m = 1;
+    while(m <= n)m *= 2;
+    for(int k = m; k > 0; k /= 2){
+      if(x + k <= n && bit[x+k-1] < w){
+        w -= bit[x+k-1];
+        x += k;
+      }
+    }
+    return x;
+  }
 };
 
 typedef struct BIT_<int> BITI;

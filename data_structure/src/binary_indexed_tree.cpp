@@ -23,6 +23,13 @@ int main(int argc, char const* argv[])
   assert(biti.sum(0) == 5);
   assert(biti.sum(1) == 8);
   assert(biti.sum(2) == 14);
+  assert(biti.lower_bound(4) == 0);
+  assert(biti.lower_bound(5) == 0);
+  assert(biti.lower_bound(6) == 1);
+  assert(biti.lower_bound(8) == 1);
+  assert(biti.lower_bound(9) == 2);
+  assert(biti.lower_bound(14) == 2);
+  assert(biti.lower_bound(15) == 10);
   
   BITL bitl(5);
   bitl.add(0, 1e9);
