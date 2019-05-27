@@ -4237,3 +4237,29 @@ snippet RUPQ_BIT_use
   RUPQ_BIT<int> rb(n);
   rb.add(a, b, w);
   rb.get(i);
+
+snippet RURQ_BIT_def
+  template <typename T>
+  struct RURQ_BIT{
+    int n;
+    BIT_<T> btp, btq;
+    RURQ_BIT(){}
+    RURQ_BIT(int n): n(n){
+      btp = BIT_<T>(n);
+      btq = BIT_<T>(n);
+    }
+    void add(int a, int b, T w){
+      btp.add(a, - w * a);
+      btp.add(b, w * b);
+      btq.add(a, w);
+      btq.add(b, - w);
+    }
+    T sum(int i){
+      return btp.sum(i) + btq.sum(i) * (i + 1);
+    }
+  };
+
+snippet RURQ_BIT_use
+  RURQ_BIT<int> rrb(n);
+  rrb.add(a, b, w);
+  rrb.sum(i);
