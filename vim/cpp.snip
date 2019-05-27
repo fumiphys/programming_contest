@@ -231,6 +231,7 @@ snippet BIT_def
   struct BIT_{
     int n;
     vector<T> bit;
+    BIT_(){}
     BIT_(int n_){
       n = n_;
       bit = vector<T>(n+1, 0);
@@ -4201,3 +4202,26 @@ snippet diameter_use
   Tree t(n);
   t.adde(from, to, cost);
   t.diameter();
+
+snippet RUPQ_BIT_def
+  template <typename T>
+  struct RUPQ_BIT{
+    int n;
+    BIT_<T> bt;
+    RUPQ_BIT(){}
+    RUPQ_BIT(int n): n(n){
+      bt = BIT_<T>(n);
+    }
+    void add(int a, int b, T w){
+      bt.add(a, w);
+      bt.add(b, - w);
+    }
+    T get(int i){
+      return bt.sum(i);
+    }
+  };
+
+snippet RUPQ_BIT_use
+  RUPQ_BIT<int> rb(n);
+  rb.add(a, b, w);
+  rb.get(i);
