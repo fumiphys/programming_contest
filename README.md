@@ -34,6 +34,8 @@ make
  - Bug fix for KMP, BM
  - power for general data stucture
  - verification of BigInt, acceleration of multiplication, division
+ - Binary Search Tree
+ - kd Tree
 
 ## Links
  - [atcoder](https://beta.atcoder.jp/users/fumiphys)
