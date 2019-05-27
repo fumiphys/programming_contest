@@ -62,5 +62,22 @@ int main(int argc, char const* argv[])
   assert(rb.get(3) == 1);
   assert(rb.get(5) == 0);
   cout << "-- test for range update point query binary indexed tree end: Success --" << endl;
+
+  cout << "-- test for range update range query binary indexed tree start --" << endl;
+  RURQ_BIT<int> rrb(10);
+  rrb.add(0, 3, 1);
+  assert(rrb.sum(0) == 1);
+  assert(rrb.sum(1) == 2);
+  assert(rrb.sum(2) == 3);
+  assert(rrb.sum(3) == 3);
+  rrb.add(2, 6, 2);
+  assert(rrb.sum(0) == 1);
+  assert(rrb.sum(1) == 2);
+  assert(rrb.sum(2) == 5);
+  assert(rrb.sum(3) == 7);
+  assert(rrb.sum(4) == 9);
+  assert(rrb.sum(5) == 11);
+  assert(rrb.sum(6) == 11);
+  cout << "-- test for range update range query binary indexed tree end: Success --" << endl;
   return 0;
 }
