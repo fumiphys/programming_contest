@@ -24,7 +24,9 @@
   - Two dimensional BIT  
   verify: [AtCoder(惑星探査)](https://atcoder.jp/contests/joi2011ho/tasks/joi2011ho1)  
   - Range update Point query BIT  
-  verify: [AOJ(Range Add Query(RAQ))](https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_E)
+  verify: [AOJ(Range Add Query(RAQ))](https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_E)  
+  - Range update Range query BIT  
+  verify: [AOJ(RSQ and RAQ)](https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/2/DSL_2_G)
 
 ## int128\_t
 [int128.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/int128.hpp)  
