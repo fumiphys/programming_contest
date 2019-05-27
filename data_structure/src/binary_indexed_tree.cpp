@@ -43,5 +43,17 @@ int main(int argc, char const* argv[])
   assert(tb.sum(4, 6) == 8);
   assert(tb.sum(4, 5) == 3);
   cout << "-- test for two dimensional binary indexed tree end: Success --" << endl;
+
+  cout << "-- test for range update point query binary indexed tree start --" << endl;
+  RUPQ_BIT<int> rb(10);
+  rb.add(0, 3, 1);
+  assert(rb.get(0) == 1);
+  assert(rb.get(3) == 0);
+  rb.add(2, 5, 1);
+  assert(rb.get(1) == 1);
+  assert(rb.get(2) == 2);
+  assert(rb.get(3) == 1);
+  assert(rb.get(5) == 0);
+  cout << "-- test for range update point query binary indexed tree end: Success --" << endl;
   return 0;
 }

@@ -12,6 +12,7 @@ template<typename T>
 struct BIT_{
   int n;
   vector<T> bit;
+  BIT_(){}
   BIT_(int n_){
     n = n_;
     bit = vector<T>(n+1, 0);
@@ -57,6 +58,24 @@ struct TwoBIT{
       }
     }
     return res;
+  }
+};
+
+// range update, point query
+template <typename T>
+struct RUPQ_BIT{
+  int n;
+  BIT_<T> bt;
+  RUPQ_BIT(){}
+  RUPQ_BIT(int n): n(n){
+    bt = BIT_<T>(n);
+  }
+  void add(int a, int b, T w){
+    bt.add(a, w);
+    bt.add(b, - w);
+  }
+  T get(int i){
+    return bt.sum(i);
   }
 };
 
