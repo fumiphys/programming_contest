@@ -4266,13 +4266,15 @@ snippet RURQ_BIT_use
 
 snippet closest_pair_def
   double closest_pair(vector<point2d> &a, int l, int r){
-    double d = dinf;
+    double d = numeric_limits<double>::max();
     if(r - l == 1)return d;
 
     int m = (l + r) / 2;
     double x = a[m].x;
     d = min(closest_pair(a, l, m), closest_pair(a, m, r));
-    inplace_merge(a.begin() + l, a.begin() + m, a.begin() + r);
+    inplace_merge(a.begin() + l, a.begin() + m, a.begin() + r, [](const point2d &u, const point2d &v){
+      return u.y < v.y;
+      });
 
     vector<point2d> v;
     for(int i = l; i < r; i++){

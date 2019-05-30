@@ -16,7 +16,6 @@ typedef long long ll;
 typedef pair<int, int> P;
 typedef pair<double, double> Pd;
 
-const double dinf = 1e30;
 const double EPS = 1e-10;
 
 struct point2d{
@@ -246,13 +245,15 @@ bool intersection(const point2d &p1, const point2d &p2, const point2d &p3, const
 }
 
 double closest_pair(vector<point2d> &a, int l, int r){
-  double d = dinf;
+  double d = numeric_limits<double>::max();
   if(r - l == 1)return d;
 
   int m = (l + r) / 2;
   double x = a[m].x;
   d = min(closest_pair(a, l, m), closest_pair(a, m, r));
-  inplace_merge(a.begin() + l, a.begin() + m, a.begin() + r);
+  inplace_merge(a.begin() + l, a.begin() + m, a.begin() + r, [](const point2d &u, const point2d &v){
+      return u.y < v.y;
+      });
 
   vector<point2d> v;
   for(int i = l; i < r; i++){
