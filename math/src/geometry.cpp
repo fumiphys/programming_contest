@@ -132,5 +132,18 @@ int main(int argc, char const* argv[])
   assert(intersection(point2d(0, 0), point2d(2, 2), point2d(1, 0), point2d(0, 1)));
   assert(!intersection(point2d(0, 0), point2d(2, 2), point2d(0, 4), point2d(0, 1)));
   cout << "-- test for geometry end: Success --" << endl;
+
+  cout << "-- test for closest pair start --" << endl;
+  vector<point2d> cv1(2);
+  cv1[0] = point2d(0, 0);
+  cv1[1] = point2d(1, 0);
+  assert(abs(closest_pair(cv1) - 1.) < EPS);
+
+  vector<point2d> cv2(3);
+  cv2[0] = point2d(0, 0);
+  cv2[1] = point2d(2, 0);
+  cv2[2] = point2d(1, 1);
+  assert(abs(closest_pair(cv2) - sqrt(2)) < EPS);
+  cout << "-- test for closest pair end: Success --" << endl;
   return 0;
 }

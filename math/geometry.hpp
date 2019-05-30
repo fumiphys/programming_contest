@@ -16,6 +16,7 @@ typedef long long ll;
 typedef pair<int, int> P;
 typedef pair<double, double> Pd;
 
+const double dinf = 1e30;
 const double EPS = 1e-10;
 
 struct point2d{
@@ -242,6 +243,37 @@ bool intersection(const point2d &p1, const point2d &p2, const point2d &p3, const
   if(abs(pl2.val(p2)) < EPS && min(p3.x, p4.x) <= p2.x && p2.x <= max(p3.x, p4.x) &&
       min(p3.y, p4.y) <= p2.y && p2.y <= max(p3.y, p4.y))return true;
   return pl1.val(p3) * pl1.val(p4) <= - EPS && pl2.val(p1) * pl2.val(p2) <= - EPS;
+}
+
+double closest_pair(vector<point2d> &a, int l, int r){
+  double d = dinf;
+  if(r - l == 1)return d;
+
+  int m = (l + r) / 2;
+  double x = a[m].x;
+  d = min(closest_pair(a, l, m), closest_pair(a, m, r));
+  inplace_merge(a.begin() + l, a.begin() + m, a.begin() + r);
+
+  vector<point2d> v;
+  for(int i = l; i < r; i++){
+    if(abs(x - a[i].x) >= d)continue;
+    for(int j = 0; j < v.size(); j++){
+      double dx = a[i].x - v[v.size()-j-1].x;
+      double dy = a[i].y - v[v.size()-j-1].y;
+      if(dy >= d)break;
+      d = min(d, sqrt(dx * dx + dy * dy));
+    }
+    v.push_back(a[i]);
+  }
+  return d;
+}
+
+double closest_pair(vector<point2d> &a){
+  sort(a.begin(), a.end(), [](const point2d &u, const point2d &v){
+      if(u.x != v.x)return u.x < v.x;
+      return u.y < v.y;
+      });
+  return closest_pair(a, 0, int(a.size()));
 }
 
 #endif
