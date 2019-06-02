@@ -4301,18 +4301,17 @@ snippet closest_pair_use
 snippet ntt_def
   template <int MOD, int g>
   struct NTT{
-    using ll = long long;
     int get_mod(){
       return MOD;
     }
-    void _ntt(vector<ll> &f, bool inv=false){
+    void _ntt(vector<long long> &f, bool inv=false){
       int n = f.size(), mask = n - 1;
-      int h = power<ll>(g, (MOD - 1) / n, MOD);
+      int h = power<long long>(g, (MOD - 1) / n, MOD);
       if(inv)h = modinv(h, MOD);
-      vector<ll> tmp(n);
+      vector<long long> tmp(n);
       for(int i = n >> 1; i >= 1; i >>= 1){
-        ll zeta = power<ll>(h, i, MOD);
-        ll w = 1;
+        long long zeta = power<long long>(h, i, MOD);
+        long long w = 1;
         for(int j = 0; j < n; j += i){
           for(int k = 0; k < i; k++){
             tmp[j+k] = (f[((j<<1)&mask)+k] + w * f[(((j<<1)+i)&mask)+k] % MOD) % MOD;
@@ -4322,16 +4321,16 @@ snippet ntt_def
         swap(f, tmp);
       }
     }
-    void ntt(vector<ll> &f){
+    void ntt(vector<long long> &f){
       _ntt(f, false);
     }
-    void intt(vector<ll> &f){
+    void intt(vector<long long> &f){
       _ntt(f, true);
       int n = f.size();
       int ni = modinv(n, MOD);
       for(int i = 0; i < n; i++)f[i] = f[i] * ni % MOD;
     }
-    vector<ll> convolution(vector<ll> f, vector<ll> h){
+    vector<long long> convolution(vector<long long> f, vector<long long> h){
       int n = 1;
       while(n < int(f.size() + h.size()))n *= 2;
       f.resize(n, 0); h.resize(n, 0);
