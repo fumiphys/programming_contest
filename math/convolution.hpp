@@ -6,6 +6,8 @@
 
 #include <complex>
 #include <vector>
+#include "power.hpp"
+#include "algebra.hpp"
 using namespace std;
 using cd = complex<double>;
 
@@ -52,7 +54,7 @@ void dft(vector<cd> &f){
 
 void idft(vector<cd> &f){
   fft(f, true);
-  for(int i = 0; i < f.size(); i++)f[i] = f[i] / cd(f.size());
+  for(size_t i = 0; i < f.size(); i++)f[i] = f[i] / cd(f.size());
 }
 
 template <typename T>
@@ -73,6 +75,77 @@ vector<T> convolution(vector<T> &f, vector<T> &g){
     h[i] = T(round(H[i].real()));
   }
   return h;
+}
+
+template <int MOD, int g>
+struct NTT{
+  int get_mod(){
+    return MOD;
+  }
+  void _ntt(vector<long long> &f, bool inv=false){
+    int n = f.size(), mask = n - 1;
+    int h = power<long long>(g, (MOD - 1) / n, MOD);
+    if(inv)h = modinv(h, MOD);
+    vector<long long> tmp(n);
+    for(int i = n >> 1; i >= 1; i >>= 1){
+      long long zeta = power<long long>(h, i, MOD);
+      long long w = 1;
+      for(int j = 0; j < n; j += i){
+        for(int k = 0; k < i; k++){
+          tmp[j+k] = (f[((j<<1)&mask)+k] + w * f[(((j<<1)+i)&mask)+k] % MOD) % MOD;
+        }
+        w = w * zeta % MOD;
+      }
+      swap(f, tmp);
+    }
+  }
+  void ntt(vector<long long> &f){
+    _ntt(f, false);
+  }
+  void intt(vector<long long> &f){
+    _ntt(f, true);
+    int n = f.size();
+    int ni = modinv(n, MOD);
+    for(int i = 0; i < n; i++)f[i] = f[i] * ni % MOD;
+  }
+  vector<long long> convolution(vector<long long> f, vector<long long> h){
+    int n = 1;
+    while(n < int(f.size() + h.size()))n *= 2;
+    f.resize(n, 0); h.resize(n, 0);
+    ntt(f);
+    ntt(h);
+    for(int i = 0; i < n; i++)f[i] = f[i] * h[i] % MOD;
+    intt(f);
+    return f;
+  }
+};
+
+using NTT1 = NTT<167772161, 3>;
+using NTT2 = NTT<469762049, 3>;
+using NTT3 = NTT<1224736769, 3>;
+
+vector<long long> arbitrary_mod_convolution(vector<long long> f, vector<long long> g, int MOD){
+  for(size_t i = 0; i < f.size(); i++)f[i] %= MOD;
+  for(size_t i = 0; i < g.size(); i++)g[i] %= MOD;
+  NTT1 ntt1;
+  NTT2 ntt2;
+  NTT3 ntt3;
+  auto x1 = ntt1.convolution(f, g);
+  auto x2 = ntt2.convolution(f, g);
+  auto x3 = ntt3.convolution(f, g);
+
+  vector<long long> res(x1.size());
+  vector<long long> b(3), m(3);
+  m[0] = ntt1.get_mod();
+  m[1] = ntt2.get_mod();
+  m[2] = ntt3.get_mod();
+  for(size_t i = 0; i < x1.size(); i++){
+    b[0] = x1[i];
+    b[1] = x2[i];
+    b[2] = x3[i];
+    res[i] = garner<long long>(b, m, MOD);
+  }
+  return res;
 }
 
 #endif
