@@ -86,4 +86,6 @@ FFT, Convolution
   - convolution  
   verify: [AtCoder(高速フーリエ変換)](https://atcoder.jp/contests/atc001/tasks/fft_c)
   - fft (dft, idft)  
-  verify: [AtCoder(高速フーリエ変換)](https://atcoder.jp/contests/atc001/tasks/fft_c)
+  verify: [AtCoder(高速フーリエ変換)](https://atcoder.jp/contests/atc001/tasks/fft_c)  
+  - NTT, arbitrary mod convolution  
+  verify: [AtCoder(高速フーリエ変換)](https://atcoder.jp/contests/atc001/tasks/fft_c)  
