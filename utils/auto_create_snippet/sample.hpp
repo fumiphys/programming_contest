@@ -8,6 +8,9 @@ void print(){
 }
 // end library
 
+int two(int x){
+  return 2 * x;
+}
 
 // begin library dump here
 // usage of this library: dump();
