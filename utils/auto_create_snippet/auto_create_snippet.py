@@ -1,10 +1,14 @@
 '''auto create vim snippet
 '''
 import codecs
+import glob
+import os
 import re
+import sys
 
 # default values
 encoding = "utf-8"
+root_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "../../")
 begin_pattern = r"^// begin library (\w+) here"
 use_pattern = r"^// usage of this library: (.+)"
 end_pattern = r"^// end library"
@@ -18,6 +22,7 @@ def add_snippet(filename, writer):
     curr_use = ""
     start = False
     library = ""
+    library_list = []
     with codecs.open(filename, 'r', encoding) as reader:
         for line in reader:
             if not start:
@@ -25,6 +30,9 @@ def add_snippet(filename, writer):
                 if res:
                     start = True
                     library = res.group(1)
+                    if library in library_list:
+                        print("duplicate snippet name: exit")
+                        sys.exit()
             else:
                 res = re.match(use_pattern, line)
                 if res:
@@ -44,6 +52,7 @@ def add_snippet(filename, writer):
                     writer.write("\n")
                     curr_def = ""
                     curr_use = ""
+                    library_list.append(library)
                     library = ""
                     start = False
                 else:
@@ -52,5 +61,7 @@ def add_snippet(filename, writer):
 
 
 if __name__ == '__main__':
+    filelist = glob.glob("{}/*/*.hpp".format(root_path))
     with codecs.open(out_file, 'w', encoding) as writer:
-        add_snippet("sample.hpp", writer)
+        for filename in filelist:
+            add_snippet(filename, writer)

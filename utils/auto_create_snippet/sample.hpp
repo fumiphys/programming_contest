@@ -19,3 +19,12 @@ void dump(){
   cout << "dump" << endl;
 }
 // end library
+
+
+// begin library dump here
+// usage of this library: dump();
+// usage of this library: dump();
+void dump(){
+  cout << "dump" << endl;
+}
+// end library
