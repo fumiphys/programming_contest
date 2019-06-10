@@ -4372,3 +4372,16 @@ snippet ntt_def
 
 snippet ntt_use
   auto v = arbitrary_mod_convolution(f, g, MOD);
+
+snippet stern_brocot_tree_def
+  template <typename T>
+  void stern_brocot_tree(T max_sum, T pl=0, T ql=1, T pr=1, T qr=0){
+    T pm = pl + pr, qm = ql + qr;
+    if(pm + qm > max_sum)return;
+    stern_brocot_tree(max_sum, pl, ql, pm, qm);
+    // some operation
+    stern_brocot_tree(max_sum, pm, qm, pr, qr);
+  }
+
+snippet stern_brocot_tree_use
+  stern_brocot_tree(5);
