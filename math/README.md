@@ -93,4 +93,5 @@ FFT, Convolution
 
 ## Rational
 有理数ライブラリ
-  - stern brocot tree
+  - stern brocot tree  
+  verify: [yukicoder(貯金箱の消失)](https://yukicoder.me/problems/no/152)
