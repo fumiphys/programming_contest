@@ -89,3 +89,8 @@ FFT, Convolution
   verify: [AtCoder(高速フーリエ変換)](https://atcoder.jp/contests/atc001/tasks/fft_c)  
   - NTT, arbitrary mod convolution  
   verify: [AtCoder(高速フーリエ変換)](https://atcoder.jp/contests/atc001/tasks/fft_c)  
+
+
+## Rational
+有理数ライブラリ
+  - stern brocot tree
