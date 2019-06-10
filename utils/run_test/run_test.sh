@@ -46,6 +46,7 @@ printf '\e[32mTest for math ...\e[m\n'
 ./math/interpolation
 ./math/modint
 ./math/convolution
+./math/rational
 printf '\e[32mTest for sort ...\e[m\n'
 ./sort/insertion
 ./sort/selection
