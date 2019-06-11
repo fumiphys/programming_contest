@@ -62,6 +62,7 @@ printf '\e[32mTest for succinct_data_structure ...\e[m\n'
 printf '\e[32mTest for print ...\e[m\n'
 ./convenient/extend_cout
 ./convenient/compression
+./convenient/recurrence
 printf '\e[32mTest for DP ...\e[m\n'
 ./DP/bit
 printf '\e[32mTest for tree ...\e[m\n'
