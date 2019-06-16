@@ -1,5 +1,5 @@
 <snippet>
-	<content><![CDATA[
+<content><![CDATA[
 // includes
 #include <bits/stdc++.h>
 
@@ -61,11 +61,11 @@ int main(int argc, char const* argv[])
   ios_base::sync_with_stdio(false);
   cin.tie(0);
   cout << fixed << setprecision(20);
-  ${0:}
+
   return 0;
 }
 ]]></content>
-	<tabTrigger>procontemplate</tabTrigger>
-	<scope>source.c++</scope>
-	<description>template for procon</description>
+<tabTrigger>procontemplate</tabTrigger>
+<scope>source.c++</scope>
+<description>template for procon</description>
 </snippet>

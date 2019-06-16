@@ -83,8 +83,28 @@ def add_snippet(filename):
                 else:
                     curr_def += line
 
+template_file = "{}/template/template.cpp".format(root_path)
+template_out = "{}/sublime/cpp_template.sublime-snippet".format(root_path)
+def add_template_snippet():
+    with codecs.open(template_file, 'r', encoding) as reader, \
+          codecs.open(template_out, 'w', encoding) as writer:
+        writer.write(snippet_start)
+        writer.write("\n")
+        cont = ""
+        for line in reader:
+            cont += line
+        writer.write(contents.format(cont))
+        writer.write("<tabTrigger>procontemplate</tabTrigger>")
+        writer.write("\n")
+        writer.write(scope)
+        writer.write("\n")
+        writer.write("<description>template for procon</description>")
+        writer.write("\n")
+        writer.write(snippet_end)
+
 
 if __name__ == '__main__':
     filelist = glob.glob("{}/*/*.hpp".format(root_path))
     for filename in filelist:
         add_snippet(filename)
+    add_template_snippet()
