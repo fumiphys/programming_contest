@@ -1,0 +1,8 @@
+<snippet>
+	<content><![CDATA[
+cerr << ${1:} << " " << ${2:} << endl;
+]]></content>
+	<tabTrigger>cerr2</tabTrigger>
+	<scope>source.c++</scope>
+	<description>cerr two arguments</description>
+</snippet>

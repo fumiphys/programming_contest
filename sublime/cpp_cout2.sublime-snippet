@@ -1,8 +1,0 @@
-<snippet>
-	<content><![CDATA[
-cout << ${1:} << " " << ${2:} << endl;
-]]></content>
-	<tabTrigger>cout2</tabTrigger>
-	<scope>source.c++</scope>
-	<description>cout two arguments</description>
-</snippet>
