@@ -1,0 +1,9 @@
+<snippet>
+<content><![CDATA[
+circle c(point2d(x, y), r);
+circle_crossing_state(c1, c2);
+]]></content>
+<tabTrigger>circle_use</tabTrigger>
+<scope>source.c++</scope>
+<description>circle usage</description>
+</snippet>
