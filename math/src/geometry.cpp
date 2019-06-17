@@ -145,5 +145,19 @@ int main(int argc, char const* argv[])
   cv2[2] = point2d(1, 1);
   assert(abs(closest_pair(cv2) - sqrt(2)) < EPS);
   cout << "-- test for closest pair end: Success --" << endl;
+
+  cout << "-- test for circle intersection start --" << endl;
+  circle c1(point2d(0., 0.), 1.);
+  circle c2(point2d(2., 0.), 2.);
+  assert(circle_crossing(c1, c2) == INTERSECT);
+  circle c3(point2d(2., 0.), 1.);
+  assert(circle_crossing(c1, c3) == CIRCUMSCRIBE);
+  circle c4(point2d(0.5, 0.), 0.5);
+  assert(circle_crossing(c1, c4) == INSCRIBED);
+  circle c5(point2d(0., 0.), 0.5);
+  assert(circle_crossing(c1, c5) == INCLUDED);
+  circle c6(point2d(10., 10.), 0.5);
+  assert(circle_crossing(c1, c6) == NOTCROSS);
+  cout << "-- test for circle intersection end: Success --" << endl;
   return 0;
 }

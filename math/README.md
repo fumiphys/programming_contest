@@ -20,6 +20,8 @@ library for math
   - closest pair  
   verify: [AOJ(Closest Pair)](https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/5/CGL_5_A)  
   verify: [AtCoder(Big Bang)](https://atcoder.jp/contests/abc022/tasks/abc022_d)  
+  - circle intersection  
+  verify: [AOJ(Intersection)](https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/7/CGL_7_A)
 
 ## power
 [power.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/power.hpp)  

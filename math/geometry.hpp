@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <cmath>
 #include <iostream>
+#include <iomanip>
 #include <vector>
 #include <utility>
 
@@ -276,5 +277,34 @@ double closest_pair(vector<point2d> &a){
       });
   return closest_pair(a, 0, int(a.size()));
 }
+
+// begin library circle here
+// usage of this library: circle c(point2d(x, y), r);
+// usage of this library: circle_crossing_state(c1, c2);
+struct circle{
+  point2d c;
+  double r;
+  circle(){}
+  circle(point2d c, double r): c(c), r(r){}
+};
+
+enum circle_crossing_state{
+  NOTCROSS = 4,
+  CIRCUMSCRIBE = 3,
+  INTERSECT = 2,
+  INSCRIBED = 1,
+  INCLUDED = 0,
+};
+
+circle_crossing_state circle_crossing(const circle &a, const circle &b){
+  double d = dis(a.c, b.c);
+  cout << setprecision(20);
+  if(d > a.r + b.r + EPS)return NOTCROSS;
+  if(abs(d - (a.r + b.r)) < EPS)return CIRCUMSCRIBE;
+  if(abs(d - abs(a.r - b.r)) < EPS)return INSCRIBED;
+  if(d + EPS < abs(a.r - b.r))return INCLUDED;
+  return INTERSECT;
+}
+// end library
 
 #endif
