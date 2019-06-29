@@ -1,4 +1,4 @@
-'''auto create sublime
+'''auto create spacemacs snippet
 '''
 import codecs
 import glob
@@ -12,17 +12,13 @@ root_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "../../")
 begin_pattern = r"^// begin library (\w+) here"
 use_pattern = r"^// usage of this library: (.+)"
 end_pattern = r"^// end library"
-def_sentence = "<tabTrigger>{}_def</tabTrigger>"
-use_sentence = "<tabTrigger>{}_use</tabTrigger>"
-contents = """<content><![CDATA[
-{}]]></content>
-"""
-snippet_start = "<snippet>"
-scope = "<scope>source.c++</scope>"
-def_description = "<description>{} definition</description>"
-use_description = "<description>{} usage</description>"
-snippet_end = "</snippet>"
-out_file = "{}/sublime/".format(root_path) + "cpp_{}_{}.sublime-snippet"
+def_sentence = "# name: {library}_def\n# key: {library}_def"
+use_sentence = "# name: {library}_use\n# key: {library}_use"
+contents = """# --
+{}"""
+snippet_start = "# -*- mode: snippet -*-"
+snippet_end = ""
+out_file = "{}/spacemacs/".format(root_path) + "{}_{}"
 
 
 def add_snippet(filename):
@@ -55,24 +51,16 @@ def add_snippet(filename):
                             codecs.open(def_file, 'w', encoding) as def_writer:
                         def_writer.write(snippet_start)
                         def_writer.write("\n")
+                        def_writer.write(def_sentence.format(library=library))
+                        def_writer.write("\n")
                         def_writer.write(contents.format(curr_def))
-                        def_writer.write(def_sentence.format(library))
-                        def_writer.write("\n")
-                        def_writer.write(scope)
-                        def_writer.write("\n")
-                        def_writer.write(def_description.format(library))
-                        def_writer.write("\n")
                         def_writer.write(snippet_end)
 
                         use_writer.write(snippet_start)
                         use_writer.write("\n")
+                        use_writer.write(use_sentence.format(library=library))
+                        use_writer.write("\n")
                         use_writer.write(contents.format(curr_use))
-                        use_writer.write(use_sentence.format(library))
-                        use_writer.write("\n")
-                        use_writer.write(scope)
-                        use_writer.write("\n")
-                        use_writer.write(use_description.format(library))
-                        use_writer.write("\n")
                         use_writer.write(snippet_end)
 
                     curr_def = ""
@@ -85,7 +73,7 @@ def add_snippet(filename):
 
 
 template_file = "{}/template/template.cpp".format(root_path)
-template_out = "{}/sublime/cpp_template.sublime-snippet".format(root_path)
+template_out = "{}/spacemacs/procontemplate".format(root_path)
 
 
 def add_template_snippet():
@@ -96,13 +84,11 @@ def add_template_snippet():
         cont = ""
         for line in reader:
             cont += line
+        writer.write("# name: procontemplate")
+        writer.write("\n")
+        writer.write("# key: procontemplate")
+        writer.write("\n")
         writer.write(contents.format(cont))
-        writer.write("<tabTrigger>procontemplate</tabTrigger>")
-        writer.write("\n")
-        writer.write(scope)
-        writer.write("\n")
-        writer.write("<description>template for procon</description>")
-        writer.write("\n")
         writer.write(snippet_end)
 
 

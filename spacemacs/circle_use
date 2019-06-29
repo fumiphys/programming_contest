@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: circle_use
+# key: circle_use
+# --
+circle c(point2d(x, y), r);
+circle_crossing_state(c1, c2);
