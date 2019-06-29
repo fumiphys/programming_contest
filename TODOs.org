@@ -1,3 +1,8 @@
 #+TODOs
 * TODO add snippet for spacemacs
  - finished: ~ union_find
+* TODO add library
+ - Heavy Light Decomposition
+ - Centroid Decomposition
+* TODO fix module for fetching testcase
+ - for AOJ
