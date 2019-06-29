@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: weighted_unionfind_use
+# key: weighted_unionfind_use
+# --
+WeightedUnionFind<ll> wuf(n);
+wuf.find(x);
+weight(x);
+same(x, y);
+unite(x, y, w);
+diff(x, y);

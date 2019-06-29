@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: unionfind_use
+# key: unionfind_use
+# --
+UnionFind uf(n);
+uf.unite(a, b);
+uf.same(a, b);
+uf.find(a);

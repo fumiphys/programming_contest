@@ -14,12 +14,18 @@
 #include <vector>
 using namespace std;
 
+// begin library unionfind here
+// usage of this library: UnionFind uf(n);
+// usage of this library: uf.unite(a, b);
+// usage of this library: uf.same(a, b);
+// usage of this library: uf.find(a);
 typedef struct UnionFind_ {
 	vector<int> par;
 	vector<int> rank_;
   UnionFind_(){}
-	UnionFind_(int n): rank_(n, 0) {
-    for(int i = 0; i < n; i++)par.push_back(i);
+	explicit UnionFind_(int n): rank_(n, 0) {
+    par.resize(n);
+    for(int i = 0; i < n; i++)par[i] = i;
 	}
 	int find(int x) {
     if(par[x] == x)return x;
@@ -42,7 +48,15 @@ typedef struct UnionFind_ {
     return true;
 	}
 } UnionFind;
+// end library
 
+// begin library weighted_unionfind here
+// usage of this library: WeightedUnionFind<ll> wuf(n);
+// usage of this library: wuf.find(x);
+// usage of this library: weight(x);
+// usage of this library: same(x, y);
+// usage of this library: unite(x, y, w);
+// usage of this library: diff(x, y);
 template <typename T>
 struct WeightedUnionFind_{
   int n;
@@ -86,6 +100,7 @@ struct WeightedUnionFind_{
     return weight(y) - weight(x);
   }
 };
+// end library
 
 using WeightedUnionFind = WeightedUnionFind_<int>;
 
