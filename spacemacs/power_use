@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: power_use
+# key: power_use
+# --
+power<ll>(p, n);

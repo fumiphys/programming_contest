@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: inverse_use
+# key: inverse_use
+# --
+inverse<ll>(x, mod);

@@ -11,6 +11,8 @@
 using namespace std;
 typedef long long ll;
 
+// begin library power here
+// usage of this library: power<ll>(p, n);
 template <typename T>
 T power(T a, T n, T mod) {
   T res = 1;
@@ -18,19 +20,24 @@ T power(T a, T n, T mod) {
   T curr = a;
   while(tmp){
     if(tmp % 2 == 1){
-      res = (T)((ll)res * curr % mod);
+      res = (T)(res * curr % mod);
     }
-    curr = (T)((ll)curr * curr % mod);
+    curr = (T)(curr * curr % mod);
     tmp >>= 1;
   }
 
   return res;
 }
+// end library
 
 // this function can be used when x and mod is coprime
+// for general case: use modinv<T>
+// begin library inverse here
+// usage of this library: inverse<ll>(x, mod);
 template <typename T>
 T inverse(T x, T mod) {
   return power<T>(x, mod - 2, mod);
 }
+// end library
 
 #endif

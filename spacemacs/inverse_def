@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: inverse_def
+# key: inverse_def
+# --
+template <typename T>
+T inverse(T x, T mod) {
+  return power<T>(x, mod - 2, mod);
+}
