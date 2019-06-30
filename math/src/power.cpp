@@ -17,10 +17,10 @@ int main(int argc, char const* argv[])
   const int mod = 1e9 + 7;
   assert(power(2, 3, mod) == 8);
   assert(power(7, 4, mod) == 2401);
-  assert(power(123, 5, mod) == (ll)28153056843 % mod);
+  assert(power<ll>(123, 5, mod) == (ll)28153056843 % mod);
 
-  assert(inverse(1, mod) == 1);
-  assert(inverse(2, mod) == 5e8 + 4);
+  assert(inverse<ll>(1, mod) == 1);
+  assert(inverse<ll>(2, mod) == 5e8 + 4);
   cout << "-- test for power end: Success --" << endl;
   return 0;
 }

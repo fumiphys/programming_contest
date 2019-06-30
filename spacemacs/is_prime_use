@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: is_prime_use
+# key: is_prime_use
+# --
+is_prime(x);

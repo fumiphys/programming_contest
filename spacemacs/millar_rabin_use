@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: millar_rabin_use
+# key: millar_rabin_use
+# --
+millar_rabin(x);

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: factorize_use
+# key: factorize_use
+# --
+auto m = factorize<ll>(x);

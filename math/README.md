@@ -32,7 +32,7 @@ library for math
 ## prime
 [prime.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/prime.hpp)  
 素数に関するモジュール  
-  - check is the number is a prime number
+  - check if the number is a prime number
   - list all prime number lower than or equals to a number
   - list devisors
   - prime factorization  

@@ -16,6 +16,8 @@
 using namespace std;
 typedef long long ll;
 
+// begin library is_prime here
+// usage of this library: is_prime(x);
 template <typename T>
 bool is_prime(T x){
   if(x == 1)return false;
@@ -24,7 +26,10 @@ bool is_prime(T x){
   }
   return true;
 }
+// end library
 
+// begin library list_prime here
+// usage of this library: auto p = list_prime(n);
 template <typename T>
 vector<T> list_prime(T n){
   vector<T> res;
@@ -39,7 +44,10 @@ vector<T> list_prime(T n){
   }
   return res;
 }
+// end library
 
+// begin library devisor here
+// usage of this library: auto d = devisor<ll>(x);
 template <typename T>
 vector<T> devisor(T n){
   vector<T> res;
@@ -52,7 +60,10 @@ vector<T> devisor(T n){
   sort(res.begin(), res.end());
   return res;
 }
+// end library
 
+// begin library factorize here
+// usage of this library: auto m = factorize<ll>(x);
 template <typename T>
 map<T, int> factorize(T n){
   map<T, int> res;
@@ -66,7 +77,10 @@ map<T, int> factorize(T n){
   if(tmp != 1)res[tmp] = 1;
   return res;
 }
+// end library
 
+// begin library millar_rabin here
+// usage of this library: millar_rabin(x);
 template <typename T>
 bool suspect(T a, int s, T d, T n){
   T x = power<T>(a, d, n);
@@ -90,7 +104,10 @@ bool millar_rabin(T n){
   }
   return true;
 }
+// end library
 
+// begin library euler_phi here
+// usage of this library: euler_phi(x);
 long long euler_phi(long long n){
   ll res = n;
   auto mp = factorize(n);
@@ -101,5 +118,6 @@ long long euler_phi(long long n){
   }
   return res;
 }
+// end library
 
 #endif

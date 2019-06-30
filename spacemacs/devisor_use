@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: devisor_use
+# key: devisor_use
+# --
+auto d = devisor<ll>(x);

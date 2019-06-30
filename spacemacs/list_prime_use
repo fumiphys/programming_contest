@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: list_prime_use
+# key: list_prime_use
+# --
+auto p = list_prime(n);

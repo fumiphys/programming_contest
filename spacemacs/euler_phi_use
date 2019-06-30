@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: euler_phi_use
+# key: euler_phi_use
+# --
+euler_phi(x);
