@@ -27,7 +27,7 @@ make
     -  implement library and write simple test
     -  add to CMakeLists.txt
     -  if test has passed, add test to [test script](https://github.com/fumiphys/programming_contest/blob/master/utils/run_test/run_test.sh)
-    -  add snippet to [vim setting](https://github.com/fumiphys/programming_contest/blob/master/vim/cpp.snip)
+    -  add snippet: run script for auto generating snippet
 
 ## TODO
  - SA-IS, BWT (direct implementation)
@@ -36,6 +36,7 @@ make
  - verification of BigInt, acceleration of multiplication, division
  - Binary Search Tree
  - kd Tree
+ - auto generate snippet
 
 ## Links
  - [atcoder](https://beta.atcoder.jp/users/fumiphys)
