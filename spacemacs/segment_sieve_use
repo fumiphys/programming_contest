@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: segment_sieve_use
+# key: segment_sieve_use
+# --
+auto p = segment_sieve<ll>(a, b);

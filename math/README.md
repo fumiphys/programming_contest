@@ -34,6 +34,7 @@ library for math
 素数に関するモジュール  
   - check if the number is a prime number
   - list all prime number lower than or equals to a number
+  - list all prime number in [a, b) (b - a should be small enough)
   - list devisors
   - prime factorization  
   verify: [AOJ(Prime Factorize)](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/1/NTL_1_A)
