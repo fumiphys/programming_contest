@@ -6,6 +6,7 @@
 #define _PRIME_H_
 
 #include <algorithm>
+#include <cmath>
 #include <iostream>
 #include <vector>
 #include <cassert>
@@ -41,6 +42,28 @@ vector<T> list_prime(T n){
         i_prime[i * j] = false;
       }
     }
+  }
+  return res;
+}
+// end library
+
+// begin library segment_sieve here
+// usage of this library: auto p = segment_sieve<ll>(a, b);
+vector<long long> segment_sieve(long long a, long long b){
+  vector<bool> is_prime(b - a, true);
+  long long B = (long long)(sqrt(b)) + 1;
+  vector<bool> is_prime_small(B + 1, true);
+  is_prime_small[0] = is_prime_small[1] = false;
+  for(int i = 0; i < b - a && i + a <= 1; i++)is_prime[i] = false;
+  for(int i = 2; i <= B; i++){
+    if(is_prime_small[i]){
+      for(long long j = max(2LL, (a + i - 1) / i); (long long)j * (long long)i < b; j++)is_prime[(long long)i * (long long)j - a] = false;
+      for(int j = 2; j * i <= B; j++)is_prime_small[i * j] = false;
+    }
+  }
+  vector<long long> res;
+  for(int i = 0; i < b - a; i++){
+    if(is_prime[i])res.push_back(i + a);
   }
   return res;
 }

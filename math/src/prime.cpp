@@ -131,6 +131,15 @@ int main(int argc, char const* argv[])
   assert(euler_phi(2) == 1);
   assert(euler_phi(5) == 4);
 
+  auto ps = segment_sieve(22, 37);
+  assert(ps.size() == 3);
+  assert(ps[0] == 23);
+  assert(ps[1] == 29);
+  assert(ps[2] == 31);
+
+  auto psb = segment_sieve(22801763489LL, 22801787297LL);
+  assert(psb.size() == 1000);
+
   cout << "-- test for prime end: Success --" << endl;
   return 0;
 }
