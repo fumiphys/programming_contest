@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: median_use
+# key: median_use
+# --
+Median<ll> m;
+m.add(x);
+pair<ll, ll> p = m.median();
+ll sum = m.median_sum();
