@@ -78,3 +78,8 @@
   verify: [yukicoder(平らな農地)](https://yukicoder.me/problems/no/738)  
   verify: [AOJ(宝探し)](https://onlinejudge.u-aizu.ac.jp/problems/2426)  
   verify: [AOJ(Dungeon(I))](https://onlinejudge.u-aizu.ac.jp/problems/1505)  
+
+## Median
+[median.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/median.hpp)
+中央値
+ - Median

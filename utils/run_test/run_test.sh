@@ -21,6 +21,7 @@ printf '\e[32mTest for data_structrue ...\e[m\n'
 ./data_structure/bigint
 ./data_structure/mergable_range_set
 ./data_structure/wavelet_matrix
+./data_structure/median
 printf '\e[32mTest for graph ...\e[m\n'
 ./graph/dijkstra
 ./graph/ford_fulkerson
