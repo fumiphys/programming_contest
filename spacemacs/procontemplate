@@ -29,22 +29,6 @@
 #define DOUBLE(n) double n; cin >> n;
 using namespace std;
 
-//  types
-typedef pair<int, int> P;
-typedef pair<ll, int> Pl;
-typedef pair<ll, ll> Pll;
-typedef pair<double, double> Pd;
-typedef complex<double> cd;
- 
-// constants
-const int inf = 1e9;
-const ll linf = 1LL << 50;
-const double EPS = 1e-10;
-const int mod = 1e9 + 7;
-const int dx[4] = {-1, 0, 1, 0};
-const int dy[4] = {0, -1, 0, 1};
-
-// solve
 template <class T>bool chmax(T &a, const T &b){if(a < b){a = b; return 1;} return 0;}
 template <class T>bool chmin(T &a, const T &b){if(a > b){a = b; return 1;} return 0;}
 template <typename T> istream &operator>>(istream &is, vector<T> &vec){for(auto &v: vec)is >> v; return is;}
@@ -56,6 +40,23 @@ template <typename T> ostream &operator<<(ostream &os, const unordered_multiset<
 template <typename T1, typename T2> ostream &operator<<(ostream &os, const pair<T1, T2> &p){os << p.first << " " << p.second; return os;}
 template <typename T1, typename T2> ostream &operator<<(ostream &os, const map<T1, T2> &mp){for(auto itr = mp.begin(); itr != mp.end(); ++itr){ os << itr->first << ":" << itr->second; auto titr = itr; if(++titr != mp.end())os << " "; } return os;}
 template <typename T1, typename T2> ostream &operator<<(ostream &os, const unordered_map<T1, T2> &mp){for(auto itr = mp.begin(); itr != mp.end(); ++itr){ os << itr->first << ":" << itr->second; auto titr = itr; if(++titr != mp.end())os << " "; } return os;}
+
+//  types
+typedef pair<int, int> P;
+typedef pair<ll, int> Pl;
+typedef pair<ll, ll> Pll;
+typedef pair<double, double> Pd;
+typedef complex<double> cd;
+
+// constants
+const int inf = 1e9;
+const ll linf = 1LL << 50;
+const double EPS = 1e-10;
+const int mod = 1e9 + 7;
+const int dx[4] = {-1, 0, 1, 0};
+const int dy[4] = {0, -1, 0, 1};
+ 
+// solve
 
 
 int main(int argc, char const* argv[])
