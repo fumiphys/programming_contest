@@ -16,6 +16,7 @@ Library for programming contest
  - [template](template/README.md)
  - [tree](tree/README.md)
  - [utils](utils/README.md)
+ - [notes](notes/README.md)
 
 ## usage
 ```
