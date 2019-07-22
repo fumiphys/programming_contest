@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: modinv_use
+# key: modinv_use
+# --
+modinv<ll>(x);

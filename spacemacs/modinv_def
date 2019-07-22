@@ -1,0 +1,24 @@
+# -*- mode: snippet -*-
+# name: modinv_def
+# key: modinv_def
+# --
+template<typename T>
+T extgcd(T a, T b, T &x, T &y){ 
+  T d = a;
+  if(b != 0){
+    d = extgcd(b, a % b, y, x);
+    y -= (a / b) * x;
+  }else{
+    x = 1, y = 0;
+  }
+  return d;
+}
+
+template <typename T>
+T modinv(T a, T m){
+  long long x = 0, y = 0;
+  extgcd<long long>(a, m, x, y);
+  x %= m;
+  if(x < 0)x += m;
+  return x;
+}

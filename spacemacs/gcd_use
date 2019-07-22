@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: gcd_use
+# key: gcd_use
+# --
+gcd<ll>(a, b);

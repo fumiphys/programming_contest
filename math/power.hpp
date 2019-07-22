@@ -34,6 +34,7 @@ T power(T a, T n, T mod) {
 // for general case: use modinv<T>
 // begin library inverse here
 // usage of this library: inverse<ll>(x, mod);
+// depends: power
 template <typename T>
 T inverse(T x, T mod) {
   return power<T>(x, mod - 2, mod);

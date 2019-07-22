@@ -11,13 +11,18 @@
 #include "power.hpp"
 using namespace std;
 
+// begin library gcd here
+// usage of this library: gcd<ll>(a, b);
 template<typename T>
 T gcd(T a, T b) {
   if(a > b)return gcd(b, a);
   if(a == 0)return b;
   return gcd(b % a, a);
 }
+// end library
 
+// begin library extgcd here
+// usage of this library: extgcd<ll>(a, b, x, y);
 template<typename T>
 T extgcd(T a, T b, T &x, T &y){ 
   T d = a;
@@ -29,7 +34,11 @@ T extgcd(T a, T b, T &x, T &y){
   }
   return d;
 }
+// end library
 
+// begin library modinv here
+// usage of this library: modinv<ll>(x);
+// depends: extgcd
 template <typename T>
 T modinv(T a, T m){
   long long x = 0, y = 0;
@@ -38,6 +47,7 @@ T modinv(T a, T m){
   if(x < 0)x += m;
   return x;
 }
+// end library
 
 long long modlog(long long a, long long b, long long m){
   a %= m;

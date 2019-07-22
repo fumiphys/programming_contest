@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: extgcd_use
+# key: extgcd_use
+# --
+extgcd<ll>(a, b, x, y);

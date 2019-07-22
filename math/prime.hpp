@@ -104,6 +104,7 @@ map<T, int> factorize(T n){
 
 // begin library millar_rabin here
 // usage of this library: millar_rabin(x);
+// depends: power
 template <typename T>
 bool suspect(T a, int s, T d, T n){
   T x = power<T>(a, d, n);
@@ -131,6 +132,8 @@ bool millar_rabin(T n){
 
 // begin library euler_phi here
 // usage of this library: euler_phi(x);
+// depends: factorize
+// depends: modinv
 long long euler_phi(long long n){
   ll res = n;
   auto mp = factorize(n);
