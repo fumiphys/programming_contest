@@ -30,6 +30,22 @@ make
     -  if test has passed, add test to [test script](https://github.com/fumiphys/programming_contest/blob/master/utils/run_test/run_test.sh)
     -  add snippet: run script for auto generating snippet
 
+## snippet
+```
+cd utils/auto_create_snippet
+python3 auto_create_snippet_spacemacs.py
+```
+
+ - snippet template
+```
+// begin library {library_name} here
+// usage of this library: {usage1}
+// usage of this library: {usage2}
+// depends: {dependent library}
+{library contents}
+// end library
+```
+
 ## TODO
  - SA-IS, BWT (direct implementation)
  - Bug fix for KMP, BM
