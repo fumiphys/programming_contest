@@ -2,7 +2,6 @@
 #include <bits/stdc++.h>
 
 // macros
-#define ll long long int
 #define pb emplace_back
 #define mk make_pair
 #define pq priority_queue
@@ -17,8 +16,6 @@
 #define UNIQUE(v) v.erase(unique(v.begin(), v.end()), v.end())
 #define FI first
 #define SE second
-#define dump(a, n) for(int i = 0; i < n; i++)cout << a[i] << "\n "[i + 1 != n];
-#define dump2(a, n, m) for(int i = 0; i < n; i++)for(int j = 0; j < m; j++)cout << a[i][j] << "\n "[j + 1 != m];
 #define bit(n) (1LL<<(n))
 #define INT(n) int n; cin >> n;
 #define LL(n) ll n; cin >> n;
@@ -38,11 +35,13 @@ template <typename T1, typename T2> ostream &operator<<(ostream &os, const map<T
 template <typename T1, typename T2> ostream &operator<<(ostream &os, const unordered_map<T1, T2> &mp){for(auto itr = mp.begin(); itr != mp.end(); ++itr){ os << itr->first << ":" << itr->second; auto titr = itr; if(++titr != mp.end())os << " "; } return os;}
 
 //  types
-typedef pair<int, int> P;
-typedef pair<ll, int> Pl;
-typedef pair<ll, ll> Pll;
-typedef pair<double, double> Pd;
-typedef complex<double> cd;
+using ll = long long int;
+using P = pair<int, int>;
+using Pli = pair<ll, int>;
+using Pil = pair<int, ll>;
+using Pll = pair<ll, ll>;
+using Pdd = pair<double, double>;
+using cd = complex<double>;
 
 // constants
 const int inf = 1e9;
@@ -51,7 +50,7 @@ const double EPS = 1e-10;
 const int mod = 1e9 + 7;
 const int dx[4] = {-1, 0, 1, 0};
 const int dy[4] = {0, -1, 0, 1};
- 
+
 // solve
 
 
