@@ -7,6 +7,7 @@
 #include <limits>
 #include <vector>
 #include <numeric>
+using ll = long long int;
 using namespace std;
 
 // begin library bellman_ford here
@@ -46,6 +47,9 @@ struct Graph{
     return true;
   }
 };
+
+using GraphL = Graph<ll>;
+using GraphI = Graph<int>;
 // end library
 
 #endif

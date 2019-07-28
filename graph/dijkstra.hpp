@@ -13,7 +13,7 @@
 #include <utility>
 #include <queue>
 using namespace std;
-typedef long long int ll;
+using ll = long long int;
 
 // begin library dijkstra here
 // usage of this library: graph.dijkstra(x);

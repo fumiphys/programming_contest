@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: warshall_floyd_use
+# key: warshall_floyd_use
+# --
+graph.warshall_floyd()

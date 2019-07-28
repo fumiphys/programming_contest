@@ -65,9 +65,9 @@ int main(int argc, char const* argv[])
   graph_ng.adde(0, 1, 1);
   graph_ng.adde(1, 2, 1);
   graph_ng.warshall_floyd();
-  assert(graph_ng.d[0][0] == 0);
-  assert(graph_ng.d[0][1] == 1);
-  assert(graph_ng.d[0][2] == 2);
+  assert(graph_ng[0][0] == 0);
+  assert(graph_ng[0][1] == 1);
+  assert(graph_ng[0][2] == 2);
   cout << "-- test for warshall floyd end: Success --" << endl;
   return 0;
 }

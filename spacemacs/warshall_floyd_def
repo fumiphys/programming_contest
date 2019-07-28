@@ -1,22 +1,7 @@
-/*
- * warshall floyd method
- */
-#ifndef _WARSHALL_FLOYD_H_
-#define _WARSHALL_FLOYD_H_
-
-#include <algorithm>
-#include <cassert>
-#include <climits>
-#include <iostream>
-#include <vector>
-#include <utility>
-#include <queue>
-using namespace std;
-using ll = long long int;
-
-
-// begin library warshall_floyd here
-// usage of this library: graph.warshall_floyd()
+# -*- mode: snippet -*-
+# name: warshall_floyd_def
+# key: warshall_floyd_def
+# --
 template <typename T>
 struct Graph {
   int n;
@@ -49,6 +34,3 @@ struct Graph {
 
 using GraphI = Graph<int>;
 using GraphL = Graph<ll>;
-// end library
-
-#endif

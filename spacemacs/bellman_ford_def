@@ -37,3 +37,6 @@ struct Graph{
     return true;
   }
 };
+
+using GraphL = Graph<ll>;
+using GraphI = Graph<int>;
