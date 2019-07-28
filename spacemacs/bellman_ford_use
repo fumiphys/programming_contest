@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: bellman_ford_use
+# key: bellman_ford_use
+# --
+bool b = graph.bellman_ford(x);

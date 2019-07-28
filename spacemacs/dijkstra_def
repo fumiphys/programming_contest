@@ -1,22 +1,7 @@
-/*
- * dijkstra algorithm
- * condition:
- *  no negative edge
- */
-#ifndef _DIJKSTRA_H_
-#define _DIJKSTRA_H_
-
-#include <algorithm>
-#include <cassert>
-#include <iostream>
-#include <vector>
-#include <utility>
-#include <queue>
-using namespace std;
-typedef long long int ll;
-
-// begin library dijkstra here
-// usage of this library: graph.dijkstra(x);
+# -*- mode: snippet -*-
+# name: dijkstra_def
+# key: dijkstra_def
+# --
 template <typename T>
 struct Graph {
   int n;
@@ -74,6 +59,3 @@ struct Graph {
 using GraphI = Graph<int>;
 using GraphL = Graph<ll>;
 using GraphD = Graph<double>;
-// end library
-
-#endif

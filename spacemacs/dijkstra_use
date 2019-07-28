@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: dijkstra_use
+# key: dijkstra_use
+# --
+graph.dijkstra(x);

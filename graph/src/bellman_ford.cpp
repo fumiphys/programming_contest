@@ -26,12 +26,12 @@ int main(int argc, char const* argv[])
   assert(graphi.d[4] == 3);
 
   Graph<int> graphi2(5);
-  graphi2.adde((edge<int>){0, 1, 1});
-  graphi2.adde((edge<int>){0, 4, 3});
-  graphi2.adde((edge<int>){1, 2, 2});
-  graphi2.adde((edge<int>){2, 4, 2});
-  graphi2.adde((edge<int>){3, 2, -5});
-  graphi2.adde((edge<int>){4, 3, 1});
+  graphi2.adde(0, 1, 1);
+  graphi2.adde(0, 4, 3);
+  graphi2.adde(1, 2, 2);
+  graphi2.adde(2, 4, 2);
+  graphi2.adde(3, 2, -5);
+  graphi2.adde(4, 3, 1);
   assert(!graphi2.bellman_ford(0));
 
   Graph<ll> graphl(5);
