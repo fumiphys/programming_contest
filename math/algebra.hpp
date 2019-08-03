@@ -81,6 +81,9 @@ long long modlog(long long a, long long b, long long m){
   return -1;
 }
 
+// begin library garner here
+// usage of this library: garner<long long>(b, m, mod);
+// depends: modinv
 template <typename T>
 long long garner(vector<T> b, vector<T> m, T MOD){
   m.emplace_back(MOD);
@@ -95,6 +98,7 @@ long long garner(vector<T> b, vector<T> m, T MOD){
   }
   return consts.back();
 }
+// end library
 
 // begin library chinese_reminder_theorem here
 // usage of this library: P p = chinese_reminder_theorem<long long, long long>(b, m);

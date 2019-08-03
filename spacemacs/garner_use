@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: garner_use
+# key: garner_use
+# --
+garner<long long>(b, m, mod);
