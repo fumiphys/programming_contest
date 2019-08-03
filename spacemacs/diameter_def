@@ -1,15 +1,7 @@
-/*
- * Library for Diameter
- */
-#ifndef _DIAMETER_H_
-#define _DIAMETER_H_
-#include <vector>
-using namespace std;
-
-// begin library diameter here
-// usage of this library: Tree<long long> t = Tree<long long>(n);
-// usage of this library: t.adde(u, v, w);
-// usage of this library: t.diameter();
+# -*- mode: snippet -*-
+# name: diameter_def
+# key: diameter_def
+# --
 template <typename T>
 struct edge{
   int from, to;
@@ -61,6 +53,3 @@ struct Tree{
     return res;
   }
 };
-// end library
-
-#endif

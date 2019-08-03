@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: diameter_use
+# key: diameter_use
+# --
+Tree<long long> t = Tree<long long>(n);
+t.adde(u, v, w);
+t.diameter();
