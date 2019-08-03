@@ -6,7 +6,7 @@ struct Graph{
   int n = 0;
   vector<vector<int> > edge;
   vector<int> in_deg;
-  Graph(int n): n(n){
+  explicit Graph(int n): n(n){
     edge.resize(n);
     in_deg.resize(n, 0);
   }
