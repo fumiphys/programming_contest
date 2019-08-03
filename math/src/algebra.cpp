@@ -18,7 +18,7 @@ int main(int argc, char const* argv[])
   assert(gcd<int>(8, 135) == 1);
   assert(gcd<int>(2589, 8231) == 1);
   assert(gcd<int>(123, 6) == 3);
-  
+
   assert(gcd<ll>(10000000, 5000000) == 5000000);
   assert(gcd<ll>(1e9 + 7, 1e9) == 1);
 
@@ -98,7 +98,8 @@ int main(int argc, char const* argv[])
   assert(res == 4);
 
   // factorial
-  Factorial fac(1000);
+  const long long mo = (long long)(1e9 + 7);
+  Factorial fac(1000, mo);
   assert(fac[0] == 1);
   assert(fac[1] == 1);
   assert(fac[2] == 2);

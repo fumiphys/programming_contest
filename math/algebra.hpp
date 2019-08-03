@@ -4,6 +4,7 @@
 #ifndef _ALGEBRA_H_
 #define _ALGEBRA_H_
 
+#include <cassert>
 #include <iostream>
 #include <utility>
 #include <vector>
@@ -111,12 +112,19 @@ pair<T, T> chinese_reminder_theorem(vector<T> b, vector<T> m){
   return make_pair(r % M, M);
 }
 
+// begin library factorial here
+// usage of this library: Factorial fac(n, mod);
+// usage of this library: fac.comb(n, k);
+// depends: power
 struct Factorial{
-  int n;
-  const int MOD = 1e9 + 7;
+  int n = 0;
+  static const long long mod_default = 1e9 + 7;
+  long long MOD = mod_default;
   vector<long long> fac;
   vector<long long> inv_;
-  Factorial(int n): n(n){
+  explicit Factorial(){}
+  explicit Factorial(int n, long long mod_=mod_default): n(n), MOD(mod_){
+    assert(MOD > 0 && n < MOD);
     fac.resize(n + 1);
     inv_.resize(n + 1);
     calc_factorial();
@@ -135,28 +143,28 @@ struct Factorial{
     }
   }
   long long& operator[](size_t i){
-    if(i < 0 || i > n){
+    if((int)i > n){
       cerr << "list index out of range" << endl;
       abort();
     }
     return fac[i];
   }
   long long inv(size_t i){
-    if(i < 0 || i > n){
+    if((int)i > n){
       cerr << "list index out of range" << endl;
       abort();
     }
     return inv_[i];
   }
   long long comb(int n, int k){
-    if(n < k)return 0;
+    if(n < 0 || k < 0 || n < k)return 0;
     long long res = fac[n];
     res = res * inv_[n-k] % MOD;
     res = res * inv_[k] % MOD;
     return res;
   }
   long long perm(int n, int k){
-    if(n < k)return 0;
+    if(n < 0 || k < 0 || n < k)return 0;
     long long res = fac[n];
     res = res * inv_[n-k] % MOD;
     return res;
@@ -166,5 +174,6 @@ struct Factorial{
     return comb(n + k - 1, k);
   }
 };
+// end library
 
 #endif
