@@ -1,17 +1,7 @@
-/*
- * Topological sort for DAG
- */
-#ifndef _TOPOLOGICAL_SORT_H_
-#define _TOPOLOGICAL_SORT_H_
-
-#include <vector>
-#include <stack>
-using namespace std;
-
-// begin library topological_sort here
-// usage of this library: Graph g(n);
-// usage of this library: g.adde(u, v);
-// usage of this library: auto t = g.topological_sort();
+# -*- mode: snippet -*-
+# name: topological_sort_def
+# key: topological_sort_def
+# --
 struct Graph{
   int n = 0;
   vector<vector<int> > edge;
@@ -42,6 +32,3 @@ struct Graph{
     return res;
   }
 };
-// end library
-
-#endif

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: topological_sort_use
+# key: topological_sort_use
+# --
+Graph g(n);
+g.adde(u, v);
+auto t = g.topological_sort();
