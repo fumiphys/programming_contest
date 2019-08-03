@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: factorial_use
+# key: factorial_use
+# --
+Factorial fac(n, mod);
+fac.comb(n, k);
