@@ -96,6 +96,9 @@ long long garner(vector<T> b, vector<T> m, T MOD){
   return consts.back();
 }
 
+// begin library chinese_reminder_theorem here
+// usage of this library: P p = chinese_reminder_theorem<long long, long long>(b, m);
+// depends: extgcd
 template<typename T>
 pair<T, T> chinese_reminder_theorem(vector<T> b, vector<T> m){
   T r = 0, M = 1;
@@ -111,6 +114,7 @@ pair<T, T> chinese_reminder_theorem(vector<T> b, vector<T> m){
   if(r < 0)r += M;
   return make_pair(r % M, M);
 }
+// end library
 
 // begin library factorial here
 // usage of this library: Factorial fac(n, mod);
