@@ -1,15 +1,7 @@
-/*
- * Library for compression
- */
-#ifndef _COMPRESSION_H_
-#define _COMPRESSION_H_
-#include <algorithm>
-#include <map>
-#include <vector>
-using namespace std;
-
-// begin library coordinate_compression here
-// usage of this library: CoordinateCompressionL cl = CoordinateCompressionL(v);
+# -*- mode: snippet -*-
+# name: coordinate_compression_def
+# key: coordinate_compression_def
+# --
 template <typename T>
 struct CoordinateCompression{
   map<T, int> mp;
@@ -27,6 +19,3 @@ struct CoordinateCompression{
 
 using CoordinateCompressionI = CoordinateCompression<int>;
 using CoordinateCompressionL = CoordinateCompression<long long>;
-// end library
-
-#endif

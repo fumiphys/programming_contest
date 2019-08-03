@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: extend_cout_use
+# key: extend_cout_use
+# --
+excout("a", 1, "b");

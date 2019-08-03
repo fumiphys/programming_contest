@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: coordinate_compression_use
+# key: coordinate_compression_use
+# --
+CoordinateCompressionL cl = CoordinateCompressionL(v);

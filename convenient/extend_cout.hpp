@@ -8,6 +8,8 @@
 
 using namespace std;
 
+// begin library extend_cout here
+// usage of this library: excout("a", 1, "b");
 void excout(){
   cout << endl;
 }
@@ -18,5 +20,6 @@ void excout(Head&& head, Tail&&... tail){
   else cout << head;
   excout(forward<Tail>(tail)...);
 }
+// end library
 
 #endif

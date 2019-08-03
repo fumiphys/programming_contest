@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: extend_cout_def
+# key: extend_cout_def
+# --
+void excout(){
+  cout << endl;
+}
+
+template <class Head, class... Tail>
+void excout(Head&& head, Tail&&... tail){
+  if(sizeof...(tail) != 0)cout << head << " ";
+  else cout << head;
+  excout(forward<Tail>(tail)...);
+}
