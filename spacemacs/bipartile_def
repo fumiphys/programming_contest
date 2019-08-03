@@ -1,16 +1,7 @@
-/*
- * Bipartile graph
- */
-#ifndef _BIPARTILE_H_
-#define _BIPARTILE_H_
-
-#include <vector>
-using namespace std;
-
-// begin library bipartile here
-// usage of this library: Graph g(n);
-// usage of this library: g.adde(u, v);
-// usage of this library: bool b = g.is_bipartile();
+# -*- mode: snippet -*-
+# name: bipartile_def
+# key: bipartile_def
+# --
 struct Graph {
   int n = 0;
   vector<int> color;
@@ -43,6 +34,3 @@ struct Graph {
     return true;
   }
 };
-// end library
-
-#endif

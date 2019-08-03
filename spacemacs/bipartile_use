@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: bipartile_use
+# key: bipartile_use
+# --
+Graph g(n);
+g.adde(u, v);
+bool b = g.is_bipartile();
