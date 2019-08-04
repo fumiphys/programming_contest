@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: point_query_tree_use
+# key: point_query_tree_use
+# --
+PointQueryTree<ll, ll> pqt = PointQueryTree<ll, ll>(n, [](ll a, ll b){return a + b;},)
+                                                    [](ll a, ll b){return a + b;},
+                                                    [](ll a){return -a;},
+                                                    0, vector<ll>());
