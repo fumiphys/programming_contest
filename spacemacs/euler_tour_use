@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: euler_tour_use
+# key: euler_tour_use
+# --
+EulerTourTree ett(n);
+ett.adde(u, v);
+ett.build();

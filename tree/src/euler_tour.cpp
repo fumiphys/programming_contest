@@ -9,7 +9,7 @@ using namespace std;
 int main(int argc, char const* argv[])
 {
   cout << "-- test for euler tour start --" << endl;
-  Tree t(7);
+  EulerTourTree t(7);
   t.adde(0, 1);
   t.adde(0, 4);
   t.adde(1, 2);

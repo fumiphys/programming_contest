@@ -1,15 +1,7 @@
-/*
- * Library for Euler Tour
- */
-#ifndef _EULER_TOUR_H_
-#define _EULER_TOUR_H_
-#include <vector>
-using namespace std;
-
-// begin library euler_tour here
-// usage of this library: EulerTourTree ett(n);
-// usage of this library: ett.adde(u, v);
-// usage of this library: ett.build();
+# -*- mode: snippet -*-
+# name: euler_tour_def
+# key: euler_tour_def
+# --
 struct EulerTourTree{
   int n = 0;
   vector<vector<int>> edges;
@@ -43,6 +35,3 @@ struct EulerTourTree{
     dfs(r);
   }
 };
-// end library
-
-#endif
