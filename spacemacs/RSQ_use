@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: RSQ_use
+# key: RSQ_use
+# --
+SegmentTreeL seg = SegmentTreeL(n, [](ll a, ll b){return a + b;},
+                                [](ll a,ll b){return a + b;}, 0, V);

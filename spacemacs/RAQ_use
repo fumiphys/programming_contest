@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: RAQ_use
+# key: RAQ_use
+# --
+LazySegmentTreeL seg = LazySegmentTreeL(n, [](ll a, ll b){return a + b;},
+                                        0, [](ll a, ll b){return a + b;},
+                                        0, [](ll a, ll b, int c){return a + b * c;},
+                                        vector<ll>(n, DEF));

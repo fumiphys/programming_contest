@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: RMQ_use
+# key: RMQ_use
+# --
+SegmentTreeL seg = SegmentTreeL(n, [](ll a, ll b){return min(a, b);},
+                                [](ll a,ll b){return b;}, INF, V);

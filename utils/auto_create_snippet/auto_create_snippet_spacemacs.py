@@ -37,13 +37,14 @@ class Library():
             self.contents += dl
             self.contents += "\n"
         self.contents += contents_tmp
-        with codecs.open(def_file, 'w', encoding) as writer:
-            writer.write(snippet_start)
-            writer.write("\n")
-            writer.write(def_sentence.format(library=self.library))
-            writer.write("\n")
-            writer.write(contents.format(self.contents))
-            writer.write(snippet_end)
+        if len(self.contents):
+            with codecs.open(def_file, 'w', encoding) as writer:
+                writer.write(snippet_start)
+                writer.write("\n")
+                writer.write(def_sentence.format(library=self.library))
+                writer.write("\n")
+                writer.write(contents.format(self.contents))
+                writer.write(snippet_end)
         with codecs.open(use_file, 'w', encoding) as writer:
             writer.write(snippet_start)
             writer.write("\n")
