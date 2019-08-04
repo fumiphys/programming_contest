@@ -9,7 +9,7 @@ using namespace std;
 int main(int argc, char const* argv[])
 {
   cout << "-- test for lowest common ancestor start --" << endl;
-  Tree t(8);
+  LCATree t(8);
   t.adde(0, 1);
   t.adde(0, 5);
   t.adde(1, 2);

@@ -1,17 +1,7 @@
-/*
- * Library for Lowest Common Ancestor
- */
-#ifndef _LOWEST_COMMON_ANCESTOR_H_
-#define _LOWEST_COMMON_ANCESTOR_H_
-#include <algorithm>
-#include <vector>
-using namespace std;
-
-// begin library lowest_common_ancestor here
-// usage of this library: LCATree t(n);
-// usage of this library: t.adde(u, v);
-// usage of this library: t.build();
-// usage of this library: t.lca(a, b);
+# -*- mode: snippet -*-
+# name: lowest_common_ancestor_def
+# key: lowest_common_ancestor_def
+# --
 struct LCATree{
   int n = 0, m = 0;
   vector<vector<int>> edge;
@@ -77,6 +67,3 @@ struct LCATree{
     return go_up(u, rd);
   }
 };
-// end library
-
-#endif

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: lowest_common_ancestor_use
+# key: lowest_common_ancestor_use
+# --
+LCATree t(n);
+t.adde(u, v);
+t.build();
+t.lca(a, b);
