@@ -1,16 +1,7 @@
-/*
- * segment tree for point update and range query
- */
-#ifndef _SEGMENT_TREE_PU_RQ_H_
-#define _SEGMENT_TREE_PU_RQ_H_
-
-#include <functional>
-#include <vector>
-using namespace std;
-
-// begin library segment_tree here
-// usage of this library: SegmentTreeL seg = SegmentTreeL(n, [](ll a, ll b){return min(a, b);},
-// usage of this library:                                 [](ll a,ll b){return b;}, INF, V);
+# -*- mode: snippet -*-
+# name: segment_tree_def
+# key: segment_tree_def
+# --
 template<typename T, typename E>
 struct SegmentTree_ {
   function<T(T, T)> f; // aggregate function
@@ -61,6 +52,3 @@ template<typename T, typename E>
 using SegmentTree = struct SegmentTree_<T, E>;
 using SegmentTreeI = SegmentTree<int, int>;
 using SegmentTreeL = SegmentTree<long long, long long>;
-// end library
-
-#endif

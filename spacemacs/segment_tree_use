@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: segment_tree_use
+# key: segment_tree_use
+# --
+SegmentTreeL seg = SegmentTreeL(n, [](ll a, ll b){return min(a, b);},
+                                [](ll a,ll b){return b;}, INF, V);
