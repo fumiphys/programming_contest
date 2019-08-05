@@ -1,18 +1,7 @@
-/*
- * lazy segment tree
- */
-#ifndef _LAZY_SEGMENT_TREE_H_
-#define _LAZY_SEGMENT_TREE_H_
-
-#include <functional>
-#include <vector>
-using namespace std;
-
-// begin library lazy_segment_tree here
-// usage of this library: LazySegmentTreeL seg = LazySegmentTreeL(n, [](ll a, ll b){return a + b;},
-// usage of this library:                                         0, [](ll a, ll b){return a + b;},
-// usage of this library:                                         0, [](ll a, ll b, int c){return a + b * c;},
-// usage of this library:                                         vector<ll>(n, DEF));
+# -*- mode: snippet -*-
+# name: lazy_segment_tree_def
+# key: lazy_segment_tree_def
+# --
 template<typename T, typename E>
 struct LazySegmentTree_ {
   function<T(T, T)> f; // aggregation
@@ -88,6 +77,3 @@ template<typename T, typename E>
 using LazySegmentTree = struct LazySegmentTree_<T, E>;
 using LazySegmentTreeI = LazySegmentTree<int, int>;
 using LazySegmentTreeL = LazySegmentTree<long long, long long>;
-// end library
-
-#endif
