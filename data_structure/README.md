@@ -38,6 +38,7 @@
 ## Lazy Segment Tree
 [lazy\_segment\_tree.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/lazy_segment_tree.hpp)  
 遅延評価セグメントツリー(区間更新, 区間取得)
+参考: [hatenablog](http://beet-aizu.hatenablog.com/entry/2017/12/01/225955)
   - LazySegmentTree  
   verify: [AOJ(Range Update Query)](https://onlinejudge.u-aizu.ac.jp/courses/library/3/DSL/all/DSL_2_D)
 
