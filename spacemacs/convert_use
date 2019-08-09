@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: convert_use
+# key: convert_use
+# --
+int d = dto_int(c);

@@ -1,12 +1,7 @@
-/*
- * Library for converting char <> int
- */
-#ifndef _CONVERT_H_
-#define _CONVERT_H_
-using namespace std;
-
-// begin library convert here
-// usage of this library: int d = dto_int(c);
+# -*- mode: snippet -*-
+# name: convert_def
+# key: convert_def
+# --
 int ato_int(char c){
   return int(c - 'a');
 }
@@ -32,6 +27,3 @@ int dto_int(char c){
 char to_dchar(int i){
   return char(i + '0');
 }
-// end library
-
-#endif // _CONVERT_H_
