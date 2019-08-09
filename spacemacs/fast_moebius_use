@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: fast_moebius_use
+# key: fast_moebius_use
+# --
+fast_moebius<ll>(g);

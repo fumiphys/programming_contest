@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: fast_zeta_use
+# key: fast_zeta_use
+# --
+fast_zeta<ll>(f);
