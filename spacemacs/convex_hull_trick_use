@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: convex_hull_trick_use
+# key: convex_hull_trick_use
+# --
+ConvexHullTrickL cht(comp);
+cht.add(make_pair(a, b));
+auto t = cht.val(x);

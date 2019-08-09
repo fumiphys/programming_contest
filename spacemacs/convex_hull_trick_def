@@ -1,19 +1,7 @@
-/*
- * Convex hull trick for monomonic function
- * you should sort by slope
- */
-#ifndef _CONVEX_HULL_TRICK_H_
-#define _CONVEX_HULL_TRICK_H_
-
-#include <vector>
-#include <utility>
-#include <functional>
-using namespace std;
-
-// begin library convex_hull_trick here
-// usage of this library: ConvexHullTrickL cht(comp);
-// usage of this library: cht.add(make_pair(a, b));
-// usage of this library: auto t = cht.val(x);
+# -*- mode: snippet -*-
+# name: convex_hull_trick_def
+# key: convex_hull_trick_def
+# --
 template <typename T>
 struct ConvexHullTrick_ {
   vector<pair<T, T> > lines;
@@ -44,6 +32,3 @@ struct ConvexHullTrick_ {
 
 using ConvexHullTrickI = ConvexHullTrick_<int>;
 using ConvexHullTrickL = ConvexHullTrick_<long long>;
-// end library
-
-#endif
