@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: int128_t_use
+# key: int128_t_use
+# --
+__int128_t t = to_int128(s);
+os << t;
