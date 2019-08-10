@@ -107,3 +107,28 @@ impl Contests for AtCoder {
         Ok(res)
     }
 }
+
+#[test]
+fn check_pname() {
+    let pname = "pn".to_string();
+    let cname = "cm".to_string();
+    let ac = AtCoder::new(cname, pname.clone());
+    assert!(ac.get_problem_name() == pname);
+}
+
+#[test]
+fn check_cname() {
+    let pname = "pn".to_string();
+    let cname = "cm".to_string();
+    let ac = AtCoder::new(cname.clone(), pname);
+    assert!(ac.get_contest_name() == cname);
+}
+
+#[test]
+fn check_url() {
+    let pname = "pn".to_string();
+    let cname = "cm".to_string();
+    let ac = AtCoder::new(cname.clone(), pname);
+    let url = "https://atcoder.jp/contests/cm/tasks/cm_pn";
+    assert!(ac.construct_url() == url);
+}

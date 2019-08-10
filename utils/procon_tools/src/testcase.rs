@@ -45,3 +45,15 @@ impl fmt::Debug for TestCase {
         )
     }
 }
+
+#[test]
+fn pop_last_lf() {
+    let in_t = "in_t".to_string();
+    let out_t = "out_t".to_string();
+    let in_c = "in_c\n".to_string();
+    let out_c = "out_c".to_string();
+    let tc = TestCase::new(in_t, out_t, in_c.clone(), out_c.clone());
+    assert!(!(in_c == tc.input));
+    assert!("in_c".to_string() ==tc.input);
+    assert!(out_c == tc.output);
+}

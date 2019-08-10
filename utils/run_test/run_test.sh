@@ -71,3 +71,7 @@ printf '\e[32mTest for tree ...\e[m\n'
 ./tree/euler_tour
 ./tree/diameter
 ./tree/range_query_on_tree
+
+printf '\e[32mTest for ProCon Tools ...\e[m\n'
+cd ../utils/procon_tools
+cargo test
