@@ -74,4 +74,4 @@ printf '\e[32mTest for tree ...\e[m\n'
 
 printf '\e[32mTest for ProCon Tools ...\e[m\n'
 cd ../utils/procon_tools
-cargo test
+~/.cargo/bin/cargo test
