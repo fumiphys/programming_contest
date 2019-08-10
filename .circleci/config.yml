@@ -18,7 +18,7 @@ jobs:
           command: 'sudo apt update && sudo apt install -y cmake'
       - run:
           name: install rust
-          command: 'sudo apt update && sudo apt install -y curl && curl https://sh.rustup.rs -sSf | sh /dev/stdin --channel=nightly --yes'
+          command: 'sudo apt update && sudo apt install -y curl && curl https://sh.rustup.rs -sSf | sh /dev/stdin --yes'
       - run:
           name: library test
           command: ./utils/run_test/run_test.sh
