@@ -21,7 +21,7 @@ jobs:
           command: 'sudo apt update && sudo apt install -y curl && curl https://sh.rustup.rs -sSf | sh -s -- -y'
       - run:
           name: install openssl
-          command: 'sudo apt update && sudo apt install -y openssl'
+          command: 'sudo apt update && sudo apt install -y openssl pkg-config'
       - run:
           name: library test
           command: './utils/run_test/run_test.sh'
