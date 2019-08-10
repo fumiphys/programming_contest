@@ -1,0 +1,16 @@
+[package]
+name = "procon_tools"
+version = "0.1.0"
+authors = ["fumiphys <ufimihot2703@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+reqwest = "*"
+regex = "*"
+scraper = "*"
+
+[[bin]]
+name = "fetch_testcases"
+path = "src/fetch_testcases.rs"
