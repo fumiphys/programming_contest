@@ -18,7 +18,7 @@ jobs:
           command: 'sudo apt update && sudo apt install -y cmake'
       - run:
           name: install rust
-          command: 'sudo apt update && sudo apt install -y curl && curl https://sh.rustup.rs -sSf | sh -s -- -y'
+          command: 'sudo apt update && sudo apt install -y curl && curl https://sh.rustup.rs -sSf | sh -s -- -y && export PATH=$PATH:~/.cargo/bin'
       - run:
           name: library test
-          command: 'export PATH=$PATH:~/.cargo/bin ./utils/run_test/run_test.sh'
+          command: './utils/run_test/run_test.sh'
