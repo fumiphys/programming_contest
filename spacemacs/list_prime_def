@@ -6,6 +6,7 @@ template <typename T>
 vector<T> list_prime(T n){
   vector<T> res;
   vector<bool> i_prime = vector<bool>(n+1, true);
+  i_prime[0] = i_prime[1] = false;
   for(ll i = 2; i <= n; i++){
     if(i_prime[i]){
       res.push_back(i);
