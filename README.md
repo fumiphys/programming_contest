@@ -16,7 +16,6 @@ Library for programming contest
  - [template](template/README.md)
  - [tree](tree/README.md)
  - [utils](utils/README.md)
- - [notes](notes/README.md)
 
 ## usage
 ```
@@ -53,7 +52,6 @@ python3 auto_create_snippet_spacemacs.py
  - verification of BigInt, acceleration of multiplication, division
  - Binary Search Tree (Link Cut Tree, Red Black Tree)
  - kd Tree
- - auto generate snippet
 
 ## Links
  - [atcoder](https://beta.atcoder.jp/users/fumiphys)
