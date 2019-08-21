@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: extend_cerr_def
+# key: extend_cerr_def
+# --
+void excerr(){
+  cerr << endl;
+}
+
+template <class Head, class... Tail>
+void excerr(Head&& head, Tail&&... tail){
+  if(sizeof...(tail) != 0)cerr << head << " ";
+  else cerr << head;
+  excerr(forward<Tail>(tail)...);
+}

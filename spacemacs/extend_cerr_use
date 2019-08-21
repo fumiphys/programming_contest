@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: extend_cerr_use
+# key: extend_cerr_use
+# --
+excerr("a", 1, "b");

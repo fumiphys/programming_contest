@@ -22,4 +22,18 @@ void excout(Head&& head, Tail&&... tail){
 }
 // end library
 
+// begin library extend_cerr here
+// usage of this library: excerr("a", 1, "b");
+void excerr(){
+  cerr << endl;
+}
+
+template <class Head, class... Tail>
+void excerr(Head&& head, Tail&&... tail){
+  if(sizeof...(tail) != 0)cerr << head << " ";
+  else cerr << head;
+  excerr(forward<Tail>(tail)...);
+}
+// end library
+
 #endif
