@@ -307,4 +307,31 @@ circle_crossing_state circle_crossing(const circle &a, const circle &b){
 }
 // end library
 
+// begin library square_test here
+// usage of this library: square_test(x, y);
+// for int or long long
+template <typename T>
+bool square_test(const vector<T> &x, const vector<T> &y){
+  assert(x.size() == 4);
+  assert(y.size() == 4);
+  vector<T> v;
+  for(size_t i = 0; i < x.size(); i++){
+    for(size_t j = i + 1; j < y.size(); j++){
+      T d = (x[i] - x[j]) * (x[i] - x[j]) + (y[i] - y[j]) * (y[i] - y[j]);
+      v.push_back(d);
+    }
+  }
+  sort(v.begin(), v.end());
+  T b = v[0];
+  if(b == 0)return false;
+  for(int i = 1; i < 4; i++){
+    if(v[i] != b)return false;
+  }
+  for(int i = 4; i < 6; i++){
+    if(v[i] != b * 2)return false;
+  }
+  return true;
+}
+// end library
+
 #endif

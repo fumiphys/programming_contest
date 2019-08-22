@@ -159,5 +159,15 @@ int main(int argc, char const* argv[])
   circle c6(point2d(10., 10.), 0.5);
   assert(circle_crossing(c1, c6) == NOTCROSS);
   cout << "-- test for circle intersection end: Success --" << endl;
+
+  cout << "-- test for square_test start --" << endl;
+  vector<int> x{0, 0, 1, 1}, y{0, 1, 0, 1};
+  assert(square_test(x, y));
+  y.back() = 2;
+  assert(!square_test(x, y));
+
+  vector<ll> X{1, 2, -1, -2}, Y{2, -1, -2, 1};
+  assert(square_test(X, Y));
+  cout << "-- test for square_test end: Success --" << endl;
   return 0;
 }

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: square_test_use
+# key: square_test_use
+# --
+square_test(x, y);

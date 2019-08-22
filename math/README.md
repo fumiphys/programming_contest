@@ -22,6 +22,8 @@ library for math
   verify: [AtCoder(Big Bang)](https://atcoder.jp/contests/abc022/tasks/abc022_d)  
   - circle intersection  
   verify: [AOJ(Intersection)](https://onlinejudge.u-aizu.ac.jp/courses/library/4/CGL/7/CGL_7_A)
+  - square test  
+  veriry: [yukicoder(正方形を描くだけの簡単なお仕事です。)](https://yukicoder.me/problems/no/55)
 
 ## power
 [power.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/power.hpp)  
