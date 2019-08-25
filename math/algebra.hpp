@@ -100,11 +100,11 @@ long long garner(vector<T> b, vector<T> m, T MOD){
 }
 // end library
 
-// begin library chinese_reminder_theorem here
-// usage of this library: P p = chinese_reminder_theorem<long long, long long>(b, m);
+// begin library crt here
+// usage of this library: P p = crt<long long, long long>(b, m);
 // depends: extgcd
 template<typename T>
-pair<T, T> chinese_reminder_theorem(vector<T> b, vector<T> m){
+pair<T, T> crt(vector<T> b, vector<T> m){
   T r = 0, M = 1;
   for(int i = 0; i < b.size(); i++){
     T x, y;

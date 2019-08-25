@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: crt_use
+# key: crt_use
+# --
+P p = crt<long long, long long>(b, m);

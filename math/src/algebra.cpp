@@ -65,7 +65,7 @@ int main(int argc, char const* argv[])
   b.push_back(3);
   m.push_back(3);
   m.push_back(5);
-  pair<int, int> p = chinese_reminder_theorem(b, m);
+  pair<int, int> p = crt(b, m);
   assert(p.first == 8);
   assert(p.second == 15);
   b.clear();
@@ -74,7 +74,7 @@ int main(int argc, char const* argv[])
   m.clear();
   m.push_back(2);
   m.push_back(4);
-  p = chinese_reminder_theorem(b, m);
+  p = crt(b, m);
   assert(p.first == 0);
   assert(p.second == -1);
 

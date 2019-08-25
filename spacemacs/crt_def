@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: chinese_reminder_theorem_def
-# key: chinese_reminder_theorem_def
+# name: crt_def
+# key: crt_def
 # --
 template<typename T>
 T extgcd(T a, T b, T &x, T &y){ 
@@ -15,7 +15,7 @@ T extgcd(T a, T b, T &x, T &y){
 }
 
 template<typename T>
-pair<T, T> chinese_reminder_theorem(vector<T> b, vector<T> m){
+pair<T, T> crt(vector<T> b, vector<T> m){
   T r = 0, M = 1;
   for(int i = 0; i < b.size(); i++){
     T x, y;
