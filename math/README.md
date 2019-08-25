@@ -97,6 +97,12 @@ FFT, Convolution
 
 
 ## Rational
+[rational.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/rational.hpp)  
 有理数ライブラリ
   - stern brocot tree  
   verify: [yukicoder(貯金箱の消失)](https://yukicoder.me/problems/no/152)
+
+## set by bit
+[set\_by\_bit.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/set_by_bit.hpp)  
+bitを用いた集合演算
+  - next_combination  
