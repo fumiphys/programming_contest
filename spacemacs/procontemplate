@@ -33,11 +33,6 @@ template <typename T1, typename T2> ostream &operator<<(ostream &os, const unord
 //  types
 using ll = long long int;
 using P = pair<int, int>;
-using Pli = pair<ll, int>;
-using Pil = pair<int, ll>;
-using Pll = pair<ll, ll>;
-using Pdd = pair<double, double>;
-using cd = complex<double>;
 // constants
 const int inf = 1e9;
 const ll linf = 1LL << 50;
