@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: next_combination_use
+# key: next_combination_use
+# --
+next_combination(s);
