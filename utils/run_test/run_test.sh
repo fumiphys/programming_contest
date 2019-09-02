@@ -37,6 +37,7 @@ printf '\e[32mTest for graph ...\e[m\n'
 ./graph/primal_dual
 ./graph/successive_shortest_path
 ./graph/strongly_connected_components
+./graph/hopcroft_karp
 printf '\e[32mTest for math ...\e[m\n'
 ./math/geometry
 ./math/power

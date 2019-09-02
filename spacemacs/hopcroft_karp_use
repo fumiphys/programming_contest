@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: hopcroft_karp_use
+# key: hopcroft_karp_use
+# --
+Graph g(n, m);
+g.adde(u, v);
+int p = g.maximum_matching();
