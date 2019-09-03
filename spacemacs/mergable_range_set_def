@@ -1,22 +1,12 @@
-/*
- * Mergable Range set
- */
-#ifndef _MERGABLE_RANGE_SET_H_
-#define _MERGABLE_RANGE_SET_H_
-
-#include <algorithm>
-#include <set>
-#include <utility>
-#include <limits>
-using namespace std;
-
-// begin library mergable_range_set here
-// usage of this library: MergableRangeSet<ll> mrs;
-// usage of this library: mrs.add(l, r);
+# -*- mode: snippet -*-
+# name: mergable_range_set_def
+# key: mergable_range_set_def
+# --
 template <typename T>
 struct MergableRangeSet{
   using PT = pair<T, T>;
   set<PT> st;
+  T maxi = numeric_limits<T>::max();
   MergableRangeSet(){}
   // [l, r)
   void add(T l, T r){
@@ -53,6 +43,3 @@ struct MergableRangeSet{
     return st.size();
   }
 };
-// end library
-
-#endif

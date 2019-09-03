@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: mergable_range_set_use
+# key: mergable_range_set_use
+# --
+MergableRangeSet<ll> mrs;
+mrs.add(l, r);
