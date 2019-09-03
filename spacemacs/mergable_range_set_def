@@ -6,7 +6,6 @@ template <typename T>
 struct MergableRangeSet{
   using PT = pair<T, T>;
   set<PT> st;
-  T maxi = numeric_limits<T>::max();
   MergableRangeSet(){}
   // [l, r)
   void add(T l, T r){

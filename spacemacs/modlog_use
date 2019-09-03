@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: modlog_use
+# key: modlog_use
+# --
+modlog(a, b, m);

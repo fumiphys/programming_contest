@@ -1,0 +1,73 @@
+# -*- mode: snippet -*-
+# name: modlog_def
+# key: modlog_def
+# --
+template<typename T>
+T extgcd(T a, T b, T &x, T &y){ 
+  T d = a;
+  if(b != 0){
+    d = extgcd(b, a % b, y, x);
+    y -= (a / b) * x;
+  }else{
+    x = 1, y = 0;
+  }
+  return d;
+}
+
+template <typename T>
+T modinv(T a, T m){
+  long long x = 0, y = 0;
+  extgcd<long long>(a, m, x, y);
+  x %= m;
+  if(x < 0)x += m;
+  return x;
+}
+
+template <typename T>
+T power(T a, T n, T mod) {
+  T res = 1;
+  T tmp = n;
+  T curr = a;
+  while(tmp){
+    if(tmp % 2 == 1){
+      res = (T)(res * curr % mod);
+    }
+    curr = (T)(curr * curr % mod);
+    tmp >>= 1;
+  }
+
+  return res;
+}
+
+long long modlog(long long a, long long b, long long m){
+  a %= m;
+  b %= m;
+
+  long long l = -1, r = m;
+  while(r - l > 1){
+    long long md = (l + r) / 2;
+    if(md * md >= m)r = md;
+    else l = md;
+  }
+  // x = i * sm + j
+  long long sm = r;
+
+  // table for a^i
+  map<long long, long long> mp;
+  long long curr = 1;
+  for(long long i = 0; i < sm; i++){
+    mp[curr] = i;
+    curr = curr * a % m;
+  }
+
+  long long A = power<long long>(modinv(a, m), sm, m);
+  curr = b;
+  for(long long i = 0; i < sm; i++){
+    if(mp.find(curr) != mp.end()){
+      long long res = i * sm + mp[curr];
+      if(res >= 0)return res;
+    }
+    curr = curr * A % m;
+  }
+  return -1;
+}

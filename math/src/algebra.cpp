@@ -52,12 +52,12 @@ int main(int argc, char const* argv[])
   }
 
   // modlog
-  assert(modlog(3, 1, 7) == 6);
-  assert(modlog(3, 2, 7) == 2);
-  assert(modlog(3, 3, 7) == 1);
-  assert(modlog(3, 4, 7) == 4);
-  assert(modlog(3, 5, 7) == 5);
-  assert(modlog(3, 6, 7) == 3);
+  assert(power<long long>(3, modlog(3, 1, 7), 7) == 1);
+  assert(power<long long>(3, modlog(3, 2, 7), 7) == 2);
+  assert(power<long long>(3, modlog(3, 3, 7), 7) == 3);
+  assert(power<long long>(3, modlog(3, 4, 7), 7) == 4);
+  assert(power<long long>(3, modlog(3, 5, 7), 7) == 5);
+  assert(power<long long>(3, modlog(3, 6, 7), 7) == 6);
 
   // chinese reminder theorem
   vector<int> b, m;

@@ -50,6 +50,10 @@ T modinv(T a, T m){
 }
 // end library
 
+// begin library modlog here
+// usage of this library: modlog(a, b, m);
+// depends: power
+// depends: modinv
 long long modlog(long long a, long long b, long long m){
   a %= m;
   b %= m;
@@ -60,12 +64,14 @@ long long modlog(long long a, long long b, long long m){
     if(md * md >= m)r = md;
     else l = md;
   }
+  // x = i * sm + j
   long long sm = r;
 
+  // table for a^i
   map<long long, long long> mp;
   long long curr = 1;
   for(long long i = 0; i < sm; i++){
-    mp[curr] = max(mp[curr], i);
+    mp[curr] = i;
     curr = curr * a % m;
   }
 
@@ -74,12 +80,13 @@ long long modlog(long long a, long long b, long long m){
   for(long long i = 0; i < sm; i++){
     if(mp.find(curr) != mp.end()){
       long long res = i * sm + mp[curr];
-      if(res > 0)return res;
+      if(res >= 0)return res;
     }
     curr = curr * A % m;
   }
   return -1;
 }
+// end library
 
 // begin library garner here
 // usage of this library: garner<long long>(b, m, mod);
