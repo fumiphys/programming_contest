@@ -106,3 +106,9 @@ FFT, Convolution
 [set\_by\_bit.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/set_by_bit.hpp)  
 bitを用いた集合演算
   - next_combination  
+
+## combination
+[combination.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/combination.hpp)  
+二項係数(modが素数でない場合)
+  - fixed base combination
+  verify: [AtCoder(Don't worry. Be Together)](https://atcoder.jp/contests/arc012/tasks/arc012_4)

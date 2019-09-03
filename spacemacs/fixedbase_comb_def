@@ -1,0 +1,90 @@
+# -*- mode: snippet -*-
+# name: fixedbase_comb_def
+# key: fixedbase_comb_def
+# --
+template <typename T>
+T power(T a, T n, T mod) {
+  T res = 1;
+  T tmp = n;
+  T curr = a;
+  while(tmp){
+    if(tmp % 2 == 1){
+      res = (T)(res * curr % mod);
+    }
+    curr = (T)(curr * curr % mod);
+    tmp >>= 1;
+  }
+
+  return res;
+}
+
+template <typename T>
+map<T, int> factorize(T n){
+  map<T, int> res;
+  T tmp = n;
+  for(T i = 2; i * i <= n; i++){
+    while(tmp % i == 0){
+      ++res[i];
+      tmp /= i;
+    }
+  }
+  if(tmp != 1)res[tmp] = 1;
+  return res;
+}
+
+struct FixedBaseComb{
+  int n, m;
+  long long MOD;
+  vector<long long> comb;
+  vector<long long> vec;
+  vector<int> acc;
+  FixedBaseComb(int n, long long MOD): n(n), MOD(MOD){
+    comb.resize(n + 1, 1);
+
+    // segment tree
+    m = 1;
+    while(m < n)m *= 2;
+    vec.resize(2 * m - 1, 1);
+    acc.resize(2 * m - 1, 0);
+    build();
+  }
+  void build(){
+    comb[0] = 1;
+    for(int i = 1; i <= n / 2; i++){
+      auto mp = factorize<ll>(n - i + 1);
+      for(auto itr = mp.begin(); itr != mp.end(); ++itr){
+        update(itr->first-1, itr->second);
+      }
+      mp = factorize<ll>(i);
+      for(auto itr = mp.begin(); itr != mp.end(); ++itr){
+        update(itr->first-1, - itr->second);
+      }
+      comb[i] = query(0, n);
+    }
+    for(int i = n / 2 + 1; i <= n; i++){
+      comb[i] = comb[n - i];
+    }
+  }
+  long long c(int k){
+    return comb[k];
+  }
+  void update(int k, int v){
+    acc[k] += v;
+    vec[k + n - 1] = power<long long>(k + 1, acc[k], MOD);
+    k = k + n - 1;
+    while(k > 0){
+      k = (k - 1) / 2;
+      vec[k] = vec[2*k+1] * vec[2*k+2] % MOD;
+    }
+  }
+  long long query(int a, int b, int k, int l, int r){
+    if(r <= a || b <= l)return 1;
+    if(a <= l && r <= b)return vec[k];
+    long long ld = query(a, b, 2*k+1, l, (l+r)/2);
+    long long rd = query(a, b, 2*k+2, (l+r)/2, r);
+    return ld * rd % MOD;
+  }
+  long long query(int a, int b){
+    return query(a, b, 0, 0, n);
+  }
+};

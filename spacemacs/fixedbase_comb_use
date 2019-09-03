@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: fixedbase_comb_use
+# key: fixedbase_comb_use
+# --
+FixedBaseComb fbc(n, mod);
+fbc.c(k);
