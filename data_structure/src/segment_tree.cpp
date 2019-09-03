@@ -6,7 +6,7 @@
 #include <climits>
 #include <iostream>
 
-#include "../segment_tree_pu_rq.hpp"
+#include "../segment_tree.hpp"
 using namespace std;
 
 int main(int argc, char const* argv[])

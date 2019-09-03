@@ -2,7 +2,7 @@
  * usage of Segment Tree
  */
 
-#include "segment_tree_pu_rq.hpp"
+#include "segment_tree.hpp"
 
 // begin library RMQ here
 // usage of this library: SegmentTreeL seg = SegmentTreeL(n, [](ll a, ll b){return min(a, b);},

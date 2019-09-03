@@ -17,7 +17,7 @@ printf '\e[32mTest for data_structrue ...\e[m\n'
 ./data_structure/union_find
 ./data_structure/binary_indexed_tree
 ./data_structure/lazy_segment_tree
-./data_structure/segment_tree_pu_rq
+./data_structure/segment_tree
 ./data_structure/bigint
 ./data_structure/mergable_range_set
 ./data_structure/wavelet_matrix

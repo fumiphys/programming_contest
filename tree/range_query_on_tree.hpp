@@ -10,7 +10,7 @@
 
 #include "euler_tour.hpp"
 #include "lowest_common_ancestor.hpp"
-#include "../data_structure/segment_tree_pu_rq.hpp"
+#include "../data_structure/segment_tree.hpp"
 using namespace std;
 
 // begin library point_query_tree here

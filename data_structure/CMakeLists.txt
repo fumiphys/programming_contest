@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 add_executable(union_find src/union_find.cpp)
-add_executable(segment_tree_pu_rq src/segment_tree_pu_rq.cpp)
+add_executable(segment_tree src/segment_tree.cpp)
 add_executable(binary_indexed_tree src/binary_indexed_tree.cpp)
 add_executable(lazy_segment_tree src/lazy_segment_tree.cpp)
 add_executable(int128 src/int128.cpp)
