@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: compressed2d_segment_tree_use
+# key: compressed2d_segment_tree_use
+# --
+Compressed2DSegmentTree<int, int> cst(p, f, g, def, v);
+cst.update(x, y, e);
+cst.query(x1, x2, y1, y2);

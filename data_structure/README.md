@@ -84,3 +84,8 @@
 [median.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/median.hpp)
 中央値
  - Median
+
+## Compressed2DSegmentTree
+クエリ先読みによる2次元セグメント木のメモリ削減
+[compressed2d\_segment_tree.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/compressed2d_segment_tree.hpp)  
+  - Compressed2DSegmentTree

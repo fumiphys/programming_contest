@@ -1,0 +1,121 @@
+# -*- mode: snippet -*-
+# name: compressed2d_segment_tree_def
+# key: compressed2d_segment_tree_def
+# --
+template<typename T, typename E>
+struct SegmentTree_ {
+  function<T(T, T)> f; // aggregate function
+  function<T(T, E)> g; // update function
+  int n;
+  T def;
+  vector<T> vec;
+  SegmentTree_(){}
+  SegmentTree_(int n_, function<T(T, T)> f, function<T(T, E)> g, T def, vector<T> v=vector<T>()): f(f), g(g), def(def){
+
+    // initialize vector
+    n = 1;
+    while(n < n_){
+      n *= 2;
+    }
+    vec = vector<T>(2*n -1, def);
+
+    // initialize segment tree
+    for(int i = 0; i < v.size(); i++){
+      vec[i + n - 1] = v[i];
+    }
+    for(int i = n - 2; i >= 0; i--){
+      vec[i] = f(vec[2*i+1], vec[2*i+2]);
+    }
+  }
+  void update(int k, const E &val){
+    k = k + n - 1;
+    vec[k] = g(vec[k], val);
+    while(k > 0){
+      k = (k - 1) / 2;
+      vec[k] = f(vec[2*k+1], vec[2*k+2]);
+    }
+  }
+  // [l, r) -> [a, b) (at k)
+  T query(int a, int b, int k, int l, int r){
+    if(r <= a || b <= l)return def;
+    if(a <= l && r <= b)return vec[k];
+    T ld = query(a, b, 2*k+1, l, (l+r)/2);
+    T rd = query(a, b, 2*k+2, (l+r)/2, r);
+    return f(ld, rd);
+  }
+  T query(int a, int b){
+    return query(a, b, 0, 0, n);
+  }
+};
+
+template<typename T, typename E>
+using SegmentTree = struct SegmentTree_<T, E>;
+using SegmentTreeI = SegmentTree<int, int>;
+using SegmentTreeL = SegmentTree<long long, long long>;
+
+template <typename T, typename E>
+struct Compressed2DSegmentTree{
+  using p_t = pair<T, T>;
+  T def;
+  int n;
+  function<T(T, T)> f;
+  vector<SegmentTree<T, E>> seg;
+  vector<vector<int>> idx;
+  map<T, int> mpx;
+  Compressed2DSegmentTree(vector<p_t> p, function<T(T, T)> f, function<T(T, E)> g, T def): f(f), def(def){
+    n = p.size();
+    vector<T> xc(n);
+    for(int i = 0; i < n; i++)xc[i] = p[i].first;
+    sort(xc.begin(), xc.end());
+    xc.erase(unique(xc.begin(), xc.end()), xc.end());
+    for(int i = 0; i < xc.size(); i++){
+      mpx[xc[i]] = i;
+    }
+
+    n = 1;
+    while(n < mpx.size())n *= 2;
+    idx.resize(2 * n - 1);
+    seg.resize(2 * n - 1);
+    for(int i = 0; i < p.size(); i++){
+      idx[mpx[p[i].first] + n - 1].push_back(p[i].second);
+    }
+    for(int i = n - 1; i < 2 * n - 1; i++){
+      sort(idx[i].begin(), idx[i].end());
+      idx[i].erase(unique(idx[i].begin(), idx[i].end()), idx[i].end());
+    }
+    for(int i = n - 2; i >= 0; i--){
+      merge(idx[2*i+1].begin(), idx[2*i+1].end(),
+            idx[2*i+2].begin(), idx[2*i+2].end(),
+            back_inserter(idx[i]));
+      idx[i].erase(unique(idx[i].begin(), idx[i].end()), idx[i].end());
+    }
+    for(int i = 0; i < 2 * n - 1; i++){
+      seg[i] = SegmentTree<T, E>(idx[i].size(), f, g, def, vector<T>());
+    }
+  }
+  void update(T x, T y, E e){
+    int xi = mpx[x] + n - 1;
+    while(true){
+      int yi = lower_bound(idx[xi].begin(), idx[xi].end(), y) - idx[xi].begin();
+      seg[xi].update(yi, e);
+      if(xi == 0)break;
+      xi = (xi - 1) / 2;
+    }
+  }
+  T query(int sx, int tx, T sy, T ty, int k, int l, int r){
+    if(r <= sx || tx <= l)return def;
+    if(sx <= l && r <= tx){
+      int ssy = lower_bound(idx[k].begin(), idx[k].end(), sy) - idx[k].begin();
+      int sty = lower_bound(idx[k].begin(), idx[k].end(), ty) - idx[k].begin();
+      return seg[k].query(ssy, sty);
+    }
+    T ld = query(sx, tx, sy, ty, 2*k+1, l, (l+r)/2);
+    T rd = query(sx, tx, sy, ty, 2*k+2, (l+r)/2, r);
+    return f(ld, rd);
+  }
+  T query(T sx, T tx, T sy, T ty){
+    int msx = mpx.lower_bound(sx)->first;
+    int mtx = mpx.lower_bound(tx)->first;
+    return query(msx, mtx, sy, ty, 0, 0, n);
+  }
+};
