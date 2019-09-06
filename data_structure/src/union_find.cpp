@@ -30,6 +30,8 @@ int main(int argc, char const* argv[])
   assert(unionfind.unite(0, 1));
   assert(unionfind.unite(7, 8));
   assert(!unionfind.unite(7, 8));
+  assert(unionfind.size(2) == 1);
+  assert(unionfind.size(0) == 2);
 
   assert(unionfind.same(0, 1));
   assert(!unionfind.same(0, 2));
@@ -38,7 +40,7 @@ int main(int argc, char const* argv[])
   assert(wuf.find(0) == 0);
   assert(wuf.find(1) == 1);
   assert(wuf.find(2) == 2);
-  
+
   assert(!wuf.same(0, 1));
 
   assert(wuf.unite(0, 1, 1));

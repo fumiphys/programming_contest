@@ -20,10 +20,9 @@ using namespace std;
 // usage of this library: uf.same(a, b);
 // usage of this library: uf.find(a);
 typedef struct UnionFind_ {
-	vector<int> par;
-	vector<int> rank_;
+	vector<int> par, rank_, siz;
   UnionFind_(){}
-	explicit UnionFind_(int n): rank_(n, 0) {
+	explicit UnionFind_(int n): rank_(n, 0), siz(n, 1) {
     par.resize(n);
     for(int i = 0; i < n; i++)par[i] = i;
 	}
@@ -39,14 +38,24 @@ typedef struct UnionFind_ {
     int xp = find(x);
     int yp = find(y);
     if(xp == yp)return false;
-    if(rank_[xp] > rank_[yp])par[yp] = xp;
-    else if(rank_[xp] < rank_[yp])par[xp] = yp;
+    if(rank_[xp] > rank_[yp]){
+      par[yp] = xp;
+      siz[xp] += siz[yp];
+    }
+    else if(rank_[xp] < rank_[yp]){
+      par[xp] = yp;
+      siz[yp] += siz[xp];
+    }
     else {
       par[yp] = xp;
+      siz[xp] += siz[yp];
       rank_[xp]++;
     }
     return true;
 	}
+  int size(int i){
+    return siz[find(i)];
+  }
 } UnionFind;
 // end library
 
