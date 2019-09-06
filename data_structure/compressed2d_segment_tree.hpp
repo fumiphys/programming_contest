@@ -4,6 +4,7 @@
 #ifndef _COMPRESSED2DSEGMENTTREE_H_
 #define _COMPRESSED2DSEGMENTTREE_H_
 
+#include <iostream>
 #include <algorithm>
 #include <functional>
 #include <map>
@@ -17,18 +18,20 @@ using namespace std;
 // usage of this library: cst.update(x, y, e);
 // usage of this library: cst.query(x1, x2, y1, y2);
 // depends: segment_tree
-template <typename T, typename E>
+template <typename U, typename T, typename E>
 struct Compressed2DSegmentTree{
-  using p_t = pair<T, T>;
+  using p_t = pair<U, U>;
   T def;
   int n;
   function<T(T, T)> f;
+  function<T(T, E)> g;
   vector<SegmentTree<T, E>> seg;
-  vector<vector<int>> idx;
-  map<T, int> mpx;
-  Compressed2DSegmentTree(vector<p_t> p, function<T(T, T)> f, function<T(T, E)> g, T def): f(f), def(def){
+  vector<vector<U>> idx;
+  map<U, int> mpx;
+  vector<U> xc;
+  Compressed2DSegmentTree(vector<p_t> p, function<T(T, T)> f, function<T(T, E)> g, T def): f(f), g(g), def(def){
     n = p.size();
-    vector<T> xc(n);
+    xc.resize(n);
     for(int i = 0; i < n; i++)xc[i] = p[i].first;
     sort(xc.begin(), xc.end());
     xc.erase(unique(xc.begin(), xc.end()), xc.end());
@@ -57,7 +60,7 @@ struct Compressed2DSegmentTree{
       seg[i] = SegmentTree<T, E>(idx[i].size(), f, g, def, vector<T>());
     }
   }
-  void update(T x, T y, E e){
+  void update(U x, U y, E e){
     int xi = mpx[x] + n - 1;
     while(true){
       int yi = lower_bound(idx[xi].begin(), idx[xi].end(), y) - idx[xi].begin();
@@ -66,7 +69,7 @@ struct Compressed2DSegmentTree{
       xi = (xi - 1) / 2;
     }
   }
-  T query(int sx, int tx, T sy, T ty, int k, int l, int r){
+  T query(int sx, int tx, U sy, U ty, int k, int l, int r){
     if(r <= sx || tx <= l)return def;
     if(sx <= l && r <= tx){
       int ssy = lower_bound(idx[k].begin(), idx[k].end(), sy) - idx[k].begin();
@@ -77,9 +80,9 @@ struct Compressed2DSegmentTree{
     T rd = query(sx, tx, sy, ty, 2*k+2, (l+r)/2, r);
     return f(ld, rd);
   }
-  T query(T sx, T tx, T sy, T ty){
-    int msx = mpx.lower_bound(sx)->first;
-    int mtx = mpx.lower_bound(tx)->first;
+  T query(U sx, U tx, U sy, U ty){
+    int msx = lower_bound(xc.begin(), xc.end(), sx) - xc.begin();
+    int mtx = lower_bound(xc.begin(), xc.end(), tx) - xc.begin();
     return query(msx, mtx, sy, ty, 0, 0, n);
   }
 };
