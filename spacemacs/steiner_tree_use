@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: steiner_tree_use
+# key: steiner_tree_use
+# --
+SteinerTree<int> st(n);
+st.adde(u, v, c)
+st.steiner_tree(v);

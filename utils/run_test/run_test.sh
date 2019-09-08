@@ -39,6 +39,7 @@ printf '\e[32mTest for graph ...\e[m\n'
 ./graph/successive_shortest_path
 ./graph/strongly_connected_components
 ./graph/hopcroft_karp
+./graph/steiner_tree
 printf '\e[32mTest for math ...\e[m\n'
 ./math/geometry
 ./math/power
