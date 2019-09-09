@@ -100,4 +100,5 @@ library for graph
 [steiner\_tree.hpp](https://github.com/fumiphys/programming_contest/blob/master/graph/steiner_tree.hpp)  
 最小シュタイナー木
   - steiner tree  
-  verify: [yukicoder(遠い未来)](https://yukicoder.me/problems/no/114)
+  verify: [yukicoder(遠い未来)](https://yukicoder.me/problems/no/114)  
+  verify: [AOJ(Problem F: Chocolate with Heart Marks)](https://onlinejudge.u-aizu.ac.jp/problems/1040)  
