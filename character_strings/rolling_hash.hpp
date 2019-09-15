@@ -11,7 +11,7 @@ using namespace std;
 
 template <int MS = 2>
 struct RollingHash{
-  const long long mod[2] = {999999937LL, 1000000007L};
+  const long long mod[2] = {999999937LL, 1000000007LL};
   const long long base[2] = {9973, 10007};
   vector<long long> hash[MS], power[MS];
   int n = 0;
