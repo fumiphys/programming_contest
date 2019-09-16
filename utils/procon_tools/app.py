@@ -8,11 +8,7 @@ import copy
 import test
 import run
 import add
-
-
-def writeerr(cont):
-    sys.stderr.write(cont)
-    sys.stderr.write("\n")
+from utils import writeerr
 
 
 def assert_method(method):
