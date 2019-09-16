@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 import bs4
 import re
 import urllib.request
+from termcolor import colored
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
 from pc_testcase import TestCase
@@ -21,6 +22,7 @@ class AtCoder(TestCase):
 
 
 def fetch_testcases(url):
+    print(" * Fetch testcase from url: {}".format(colored(url, "blue")))
     html = urllib.request.urlopen(url)
     soup = BeautifulSoup(html, "html.parser")
 
