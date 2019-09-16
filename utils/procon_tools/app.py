@@ -2,8 +2,9 @@
 '''
 import argparse
 import sys
+import os
 
-import fetch
+from fetch import fetch_testcases
 import copy
 import test
 import run
@@ -18,22 +19,38 @@ def assert_method(method):
         sys.exit(1)
 
 
-def assert_contest_name(contest):
-    contest = str(contest).lower()
-    contests = ["atcoder", "codeforces", "aoj", "yukicoder"]
-    if contest not in contests:
-        writeerr("Error! No support for contest: {}.".format(contest))
+def assert_host_name(host):
+    host = str(host).lower()
+    hosts = ["atcoder", "codeforces", "aoj", "yukicoder"]
+    if host not in hosts:
+        writeerr("Error! No support for contest host: {}.".format(host))
         sys.exit(1)
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("method", help="type of the method")
+    parser.add_argument("--host", help="contest host")
     parser.add_argument("--contest", help="contest name")
+    parser.add_argument("--problem", help="problem name")
     args = parser.parse_args()
 
     method = args.method
-    contest = ("AtCoder" if args.contest is None else args.contest)
+    host = ("AtCoder" if args.host is None else args.host)
 
     assert_method(method)
-    assert_contest_name(contest)
+    assert_host_name(host)
+
+    current_path = os.path.abspath(".")
+    os.makedirs("{}/.procon".format(current_path), exist_ok=True)
+
+    if method == "fetch":
+        if args.contest is None:
+            writeerr("Error! No contest name specified.")
+            sys.exit(1)
+        if args.problem is None:
+            writeerr("Error! No problem name specified.")
+            sys.exit(1)
+        contest = args.contest
+        problem = args.problem
+        fetch_testcases(host, contest, problem)
