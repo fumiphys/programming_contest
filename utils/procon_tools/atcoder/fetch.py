@@ -8,8 +8,8 @@ import re
 import urllib.request
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
-from testcase import TestCase
-from utils import writeerr, format_string
+from pc_testcase import TestCase
+from pc_utils import writeerr, format_string
 
 
 class AtCoder(TestCase):

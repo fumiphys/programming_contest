@@ -4,12 +4,12 @@ import argparse
 import sys
 import os
 
-from fetch import fetch_testcases
-import copy
-import test
-import run
-import add
-from utils import writeerr
+from pc_fetch import fetch_testcases
+import pc_copy
+import pc_test
+import pc_run
+import pc_add
+from pc_utils import writeerr
 
 
 def assert_method(method):
