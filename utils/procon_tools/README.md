@@ -11,5 +11,5 @@ pip install -e .
 
 ## fetch
 ```
-pc fetch (--host AtCoder) --contest {contest_name} --problem {problem_name}
+pc fetch (--host {contest host}) --contest {contest_name} --problem {problem_name}
 ```
