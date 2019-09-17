@@ -93,4 +93,5 @@
 ## Sparse Table
 (1<<i)ごとに要素の最小値(最大値)を保持しておきクエリにO(1)で返答する
 [sparse\_table_.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/sparse_table.hpp)  
-  - SparseTable
+  - SparseTable  
+  verify: [SPOJ(RMQSQ)](https://www.spoj.com/problems/RMQSQ/)
