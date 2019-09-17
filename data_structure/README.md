@@ -95,3 +95,5 @@
 [sparse\_table_.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/sparse_table.hpp)  
   - SparseTable  
   verify: [SPOJ(RMQSQ)](https://www.spoj.com/problems/RMQSQ/)
+  - DisjointSparseTable  
+  verify: [SPOJ(RMQSQ)](https://www.spoj.com/problems/RMQSQ/)

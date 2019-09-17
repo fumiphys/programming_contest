@@ -45,4 +45,44 @@ struct SparseTable{
 };
 // end library
 
+// begin library disjoint_sparse_table here
+// usage of this library: DisjointSparseTable<int> dst(v, f, def);
+// usage of this library: dst.query(l, r);
+template <typename T>
+struct DisjointSparseTable{
+  int n;
+  vector<vector<T>> vec;
+  function<T(T, T)> f;
+  T def;
+  DisjointSparseTable(){}
+  DisjointSparseTable(const vector<T> &v, function<T(T, T)> f, T def): f(f), def(def){
+    n = int(v.size());
+    int b = 0;
+    while((1 << b) <= n)b++;
+    vec.resize(b, vector<T>(1 << b, def));
+    for(int i = 0; i < n; i++)vec[0][i] = v[i];
+    for(int j = 1; j < b; j++){
+      int shift = (1 << j);
+      for(int i = 0; i < n; i += (shift << 1)){
+        int t = min(i + shift, n);
+        vec[j][t-1] = v[t-1];
+        for(int k = t - 2; k >= i; k--){
+          vec[j][k] = f(v[k], vec[j][k+1]);
+        }
+        if(t >= n)break;
+        vec[j][t] = v[t];
+        for(int k = t + 1; k < min(t + shift, n); k++){
+          vec[j][k] = f(vec[j][k-1], v[k]);
+        }
+      }
+    }
+  }
+  T query(int l, int r){
+    if(l >= r - 1)return vec[0][l];
+    int b = 31 - __builtin_clz(l ^ (r-1));
+    return f(vec[b][l], vec[b][r-1]);
+  }
+};
+// end library
+
 #endif // _SPARSETABLE_H_
