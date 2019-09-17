@@ -89,3 +89,8 @@
 クエリ先読みによる2次元セグメント木のメモリ削減
 [compressed2d\_segment_tree.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/compressed2d_segment_tree.hpp)  
   - Compressed2DSegmentTree
+
+## Sparse Table
+(1<<i)ごとに要素の最小値(最大値)を保持しておきクエリにO(1)で返答する
+[sparse\_table_.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/sparse_table.hpp)  
+  - SparseTable
