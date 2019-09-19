@@ -9,8 +9,8 @@
 #include "power.hpp"
 #include "algebra.hpp"
 using namespace std;
-using cd = complex<double>;
 
+using cd = complex<double>;
 // f.size() should be the power of 2.
 void rec_fft(vector<cd> &f, bool inv=false){
   int n = f.size();
@@ -58,7 +58,7 @@ void idft(vector<cd> &f){
 }
 
 template <typename T>
-vector<T> convolution(vector<T> &f, vector<T> &g){
+vector<T> convolution(const vector<T> &f, const vector<T> &g){
   int n = 1;
   while(n < 2 * f.size() + 1)n *= 2;
   vector<cd> F(n, 0), G(n, 0);
@@ -124,7 +124,7 @@ using NTT1 = NTT<167772161, 3>;
 using NTT2 = NTT<469762049, 3>;
 using NTT3 = NTT<1224736769, 3>;
 
-vector<long long> arbitrary_mod_convolution(vector<long long> f, vector<long long> g, int MOD){
+vector<long long> arbitrary_mod_convolution(vector<long long> f, vector<long long> g, long long MOD){
   for(size_t i = 0; i < f.size(); i++)f[i] %= MOD;
   for(size_t i = 0; i < g.size(); i++)g[i] %= MOD;
   NTT1 ntt1;

@@ -2,16 +2,15 @@
 
 ## Big Integer
 [bigint.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/bigint.hpp)  
-多倍長整数
-  - BigInt (0以上の数のみ)  
+多倍長整数(simple multiplication, FFT, karatsuba)  
+  - Bigint (0以上の数のみ)  
   verify: [AOJ(National Budget)](https://onlinejudge.u-aizu.ac.jp/problems/0015)  
   verify: [AOJ(Addition of Big Integers)](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/2/NTL_2_A)  
   verify: [AOJ(Difference of Big Integers)](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/2/NTL_2_B)  
   verify: [AOJ(Multiplication of Big Integers)](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/2/NTL_2_C)  
-  - SBigInt (signed)  
-  verify: [AOJ(Addition of Big Integers)](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/2/NTL_2_A)  
-  verify: [AOJ(Difference of Big Integers)](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/2/NTL_2_B)  
-  verify: [AOJ(Multiplication of Big Integers)](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/2/NTL_2_C)  
+  verify: [AOJ(Division of Big Integers)](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/2/NTL_2_D)  
+  verify: [AOJ(Reminder of Big Integers)](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/2/NTL_2_E)  
+  verify: [AOJ(Multiplication of Big Integers II)](https://onlinejudge.u-aizu.ac.jp/courses/library/6/NTL/2/NTL_2_F)  
 
 ## Binary Indexed Tree
 [binary\_indexed\_tree.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/binary_indexed_tree.hpp)  
@@ -81,17 +80,17 @@
   verify: [AOJ(Dungeon(I))](https://onlinejudge.u-aizu.ac.jp/problems/1505)  
 
 ## Median
-[median.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/median.hpp)
-中央値
+[median.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/median.hpp)  
+中央値  
  - Median
 
 ## Compressed2DSegmentTree
-クエリ先読みによる2次元セグメント木のメモリ削減
+クエリ先読みによる2次元セグメント木のメモリ削減  
 [compressed2d\_segment_tree.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/compressed2d_segment_tree.hpp)  
   - Compressed2DSegmentTree
 
 ## Sparse Table
-(1<<i)ごとに要素の最小値(最大値)を保持しておきクエリにO(1)で返答する
+(1<<i)ごとに要素の最小値(最大値)を保持しておきクエリにO(1)で返答する  
 [sparse\_table_.hpp](https://github.com/fumiphys/programming_contest/blob/master/data_structure/sparse_table.hpp)  
   - SparseTable  
   verify: [SPOJ(RMQSQ)](https://www.spoj.com/problems/RMQSQ/)

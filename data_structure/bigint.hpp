@@ -4,343 +4,387 @@
 #ifndef _BIGINT_H_
 #define _BIGINT_H_
 
-#include <cassert>
-#include <iostream>
-#include <iomanip>
 #include <vector>
 #include <string>
 #include <algorithm>
 #include <utility>
+#include <iostream>
+#include <iomanip>
+#include "../math/convolution.hpp"
 using namespace std;
 using ll = long long;
 
-const ll B = 10000;
-const int BW = 4;
-struct BigInt{
-  vector<ll> digit;
-  BigInt(ll a = 0){
-    digit.emplace_back(a);
-    normalize();
-  }
-  BigInt(const string &s){
-    from_string(s);
-  }
-  void from_string(const string &s){
-    digit.clear();
-    int i;
-    for(i = (int)s.size() - BW; i >= 0; i-=BW){
-      digit.emplace_back(stol(s.substr(i, BW)));
-    }
-    i += BW;
-    if(i > 0)digit.emplace_back(stol(s.substr(0, i)));
-  }
-  void normalize(){
-    ll c = 0;
-    for(int i = 0; i < digit.size(); i++){
-      while(digit[i] < 0){
-        if(i + 1 == digit.size())digit.emplace_back(0);
-        digit[i+1]--;
-        digit[i] += B;
-      }
-      ll a = digit[i] + c;
-      digit[i] = a % B;
-      c = a / B;
-    }
-    while(c){
-      digit.emplace_back(c % B);
-      c /= B;
-    }
-    for(int i = (int)digit.size() - 1; i >= 1; i--){
-      if(digit[i] == 0){
-        digit.pop_back();
-      }else{
-        break;
-      }
+//// begin library bigint here
+//// usage of this library: Bigint b = x;
+vector<ll> convert_base(const vector<ll> &v, int old_b, int new_b){
+  vector<ll> p(max(new_b, old_b) + 1);
+  p[0] = 1;
+  for(int i = 1; i < p.size(); i++)p[i] = p[i-1] * 10;
+  vector<ll> res;
+  ll curr = 0;
+  int curr_b = 0;
+  for(int i = 0; i < v.size(); i++){
+    curr += v[i] * p[curr_b];
+    curr_b += old_b;
+    while(curr_b >= new_b){
+      res.push_back(curr % p[new_b]);
+      curr /= p[new_b];
+      curr_b -= new_b;
     }
   }
-  size_t size(){
-    return digit.size();
+  res.push_back(curr);
+  while(!res.empty() && res.back() == 0)res.pop_back();
+  return res;
+}
+
+vector<ll> simple_multiply(const vector<ll> &x, const vector<ll> &y){
+  vector<ll> res(x.size() + y.size() - 1, 0);
+  for(int i = 0; i < x.size(); i++){
+    for(int j = 0; j < y.size(); j++){
+      res[i+j] += x[i] * y[j];
+    }
   }
-  BigInt& operator=(ll a){
-    digit.resize(1, a);
-    normalize();
+  while(!res.empty() && res.back() == 0)res.pop_back();
+  return res;
+}
+
+vector<ll> fft_multiply(const vector<ll> &x, const vector<ll> &y){
+  int n = max(x.size(), y.size());
+  vector<ll> a = x, b = y;
+  a.resize(n, 0);
+  b.resize(n, 0);
+  vector<ll> conv = convolution<ll>(a, b);
+  while(!conv.empty() && conv.back() == 0)conv.pop_back();
+  return conv;
+}
+
+vector<ll> karatsuba_multiply(const vector<ll> &x, const vector<ll> &y){
+  int n = max(x.size(), y.size());
+  int m = 0;
+  while((1 << m) < n)m++;
+  n = (1 << m);
+  vector<ll> a = x, b = y;
+  a.resize(n, 0);
+  b.resize(n, 0);
+  if(n <= 32){
+    return simple_multiply(a, b);
+  }
+
+  int k = n >> 1;
+  vector<ll> a1(a.begin(), a.begin() + k);
+  vector<ll> a2(a.begin() + k, a.end());
+  vector<ll> b1(b.begin(), b.begin() + k);
+  vector<ll> b2(b.begin() + k, b.end());
+
+  vector<ll> a1b1 = karatsuba_multiply(a1, b1);
+  vector<ll> a2b2 = karatsuba_multiply(a2, b2);
+  for(int i = 0; i < k; i++)a2[i] += a1[i];
+  for(int i = 0; i < k; i++)b2[i] += b1[i];
+  vector<ll> z = karatsuba_multiply(a2, b2);
+  for(int i = 0; i < a1b1.size(); i++)z[i] -= a1b1[i];
+  for(int i = 0; i < a2b2.size(); i++)z[i] -= a2b2[i];
+
+  vector<ll> res(2 * n, 0);
+  for(int i = 0; i < a1b1.size(); i++)res[i] += a1b1[i];
+  for(int i = 0; i < a2b2.size(); i++)res[i + n] += a2b2[i];
+  for(int i = 0; i < z.size(); i++)res[i + k] += z[i];
+  while(!res.empty() && res.back() == 0)res.pop_back();
+  return res;
+}
+
+struct Bigint{
+  const ll base = 100000000;
+  const ll mbase = 1000; // 1000 for FFT, 10000 otherwise
+  const int b = 8;
+  const int mb = 3; // 3 for FFT, 10000 otherwise
+  int sign = 1;
+  vector<ll> dg;
+  Bigint(){}
+  Bigint(ll x){
+    if(x < 0){
+      sign = -1;
+      x *= -1;
+    }
+    while(x){
+      dg.push_back(x % base);
+      x /= base;
+    }
+  }
+  Bigint(const string &s){
+    int e = 0;
+    if(s[0] == '-'){
+      sign = -1;
+      e++;
+    }
+    for(int i = int(s.size()) - 1; i >= e; i-=b){
+      int B = (i - b + 1 >= e ? b: i + 1 - e);
+      ll x = stoll(s.substr(max(e, i - b + 1), B));
+      dg.push_back(x);
+    }
+  }
+  Bigint& operator=(const string &s){
+    *this = Bigint(s);
     return *this;
   }
-  BigInt& operator=(const string &s){
-    from_string(s);
+  Bigint& operator=(const Bigint &x){
+    sign = x.sign;
+    dg = x.dg;
     return *this;
   }
-} ZERO(0), ONE(1);
-
-ostream &operator<<(ostream &os, const BigInt &b){
-  os << b.digit[b.digit.size() - 1];
-  for(int i = (int)b.digit.size() - 2; i >= 0; i--){
-    os << setw(BW) << setfill('0') << b.digit[i];
+  Bigint& operator=(ll x){
+    return (*this = Bigint(x));
   }
-  return os;
-}
-
-istream & operator>>(istream &is, BigInt &b){
-  string s;
-  is >> s;
-  b.from_string(s);
-  return is;
-}
-
-bool operator<(const BigInt &x, const BigInt &y){
-  if(x.digit.size() != y.digit.size())return x.digit.size() < y.digit.size();
-  for(int i = x.digit.size() - 1; i >= 0; i--){
-    if(x.digit[i] != y.digit[i])return x.digit[i] < y.digit[i];
-  }
-  return false;
-}
-
-bool operator>(const BigInt &x, const BigInt y){
-  return y < x;
-}
-
-bool operator<=(const BigInt &x, const BigInt &y){
-  return !(y < x);
-}
-
-bool operator>=(const BigInt &x, const BigInt &y){
-  return !(x < y);
-}
-
-bool operator!=(const BigInt &x, const BigInt &y){
-  return x < y || y < x;
-}
-
-bool operator==(const BigInt &x, const BigInt &y){
-  return !(x < y) && !(y < x);
-}
-
-BigInt operator+(const BigInt &x, ll a){
-  BigInt res = x;
-  res.digit[0] += a;
-  res.normalize();
-  return res;
-}
-
-BigInt operator+(const BigInt &x, const BigInt &y){
-  BigInt res = x;
-  while(res.digit.size() < y.digit.size())res.digit.emplace_back(0);
-  for(int i = 0; i < y.digit.size(); i++)res.digit[i] += y.digit[i];
-  res.normalize();
-  return res;
-}
-
-BigInt operator-(const BigInt &x, const BigInt &y){
-  BigInt res = x;
-  assert(res.digit.size() >= y.digit.size());
-  for(int i = 0; i < y.digit.size(); i++)res.digit[i] -= y.digit[i];
-  res.normalize();
-  return res;
-}
-
-BigInt operator*(const BigInt &x, const BigInt &y){
-  BigInt z;
-  z.digit.assign(x.digit.size() + y.digit.size(), 0);
-  for(int i = 0; i < x.digit.size(); i++){
-    for(int j = 0; j < y.digit.size(); j++){
-      z.digit[i+j] += x.digit[i] * y.digit[j];
-    }
-  }
-  z.normalize();
-  return z;
-}
-
-BigInt operator*(const BigInt &x, ll a){
-  BigInt res = x;
-  for(int i = 0; i < res.digit.size(); i++)res.digit[i] *= a;
-  res.normalize();
-  return res;
-}
-
-pair<BigInt, ll> divmod(const BigInt &x, ll a){
-  ll c = 0;
-  BigInt res = x;
-  for(int i = (int)res.digit.size() - 1; i >= 0; i--){
-    ll t = B * c + res.digit[i];
-    res.digit[i] = t / a;
-    c = t % a;
-  }
-  res.normalize();
-  return make_pair(res, c);
-}
-
-BigInt operator/(const BigInt &x, ll a){
-  return divmod(x, a).first;
-}
-
-BigInt operator%(const BigInt &x, ll a){
-  return divmod(x, a).second;
-}
-
-pair<BigInt, BigInt> divmod(const BigInt &x, const BigInt &y){
-  BigInt rx = x, ry = y;
-  if(x.digit.size() < y.digit.size())return make_pair(ZERO, x);
-  int F = B / (y.digit[y.digit.size() - 1] + 1);
-  rx = rx * F; ry = ry * F;
-  BigInt z;
-  z.digit.assign(rx.digit.size() - ry.digit.size() + 1, 0);
-  for(int k = (int)z.digit.size() - 1, i = (int)rx.digit.size() - 1; k >= 0; k--, i--){
-    z.digit[k] = (i + 1 < rx.digit.size() ? rx.digit[i+1]: 0) * B + rx.digit[i];
-    z.digit[k] /= ry.digit[ry.digit.size() - 1];
-    BigInt t;
-    t.digit.assign(k + ry.digit.size(), 0);
-    for(int m = 0; m < ry.digit.size(); m++){
-      t.digit[k+m] = z.digit[k] * ry.digit[m];
-    }
-    t.normalize();
-    while(rx < t){
-      z.digit[k] -= 1;
-      for(int m = 0; m < ry.digit.size(); m++){
-        t.digit[k+m] -= ry.digit[m];
-      }
-      t.normalize();
-    }
-    rx = rx - t;
-  }
-  z.normalize();
-  return make_pair(z, rx / F);
-}
-
-BigInt operator/(const BigInt &x, const BigInt &y){
-  return divmod(x, y).first;
-}
-
-BigInt operator%(const BigInt &x, const BigInt &y){
-  return divmod(x, y).second;
-}
-
-BigInt& operator+=(BigInt &x, ll a){
-  x = x + a;
-  return x;
-}
-
-BigInt &operator+=(BigInt &x, const BigInt &y){
-  x = x + y;
-  return x;
-}
-
-BigInt &operator-=(BigInt &x, const BigInt &y){
-  x = x - y;
-  return x;
-}
-
-BigInt& operator*=(BigInt &x, const BigInt &y){
-  x = x * y;
-  return x;
-}
-
-BigInt& operator/=(BigInt &x, const BigInt &y){
-  x = x / y;
-  return x;
-}
-
-BigInt& operator%=(BigInt &x, const BigInt &y){
-  x = x % y;
-  return x;
-}
-
-BigInt& operator/=(BigInt &x, ll a){
-  x = x / a;
-  return x;
-}
-
-BigInt& operator%=(BigInt &x, ll a){
-  x = x % a;
-  return x;
-}
-
-BigInt sqrt(const BigInt &x){
-  BigInt l = 1;
-  BigInt r = x;
-  while(r - l > BigInt(1)){
-    BigInt m = (r + l) / 2;
-    if(m * m > x)r = m;
-    else l = m;
-  }
-  return l;
-}
-
-struct SBigInt{
-  bool neg = false;
-  BigInt b = 0;
-  SBigInt(){}
-  SBigInt(ll a): b(BigInt(abs(a))){
-    if(a < 0)neg = true;
-  }
-  SBigInt(const string &s){
-    string t = s;
-    if(t[0] == '-'){
-      neg = true;
-      t = t.substr(1, t.size() - 1);
-    }
-    b = BigInt(t);
-  }
-  void check_zero(){
-    if(b == ZERO)neg = false;
-  }
-  bool operator==(const SBigInt &r) const{
-    return (neg == r.neg) && (b == r.b);
-  }
-  bool operator!=(const SBigInt &r) const{
-    return (neg != r.neg) || (b != r.b);
-  }
-  SBigInt operator-() const{
-    SBigInt res = *this;
-    res.neg = !res.neg;
-    res.check_zero();
+  Bigint operator-() const{
+    Bigint res = *this;
+    res.sign *= -1;
     return res;
   }
-};
-
-SBigInt operator+(const SBigInt &x, const SBigInt &y){
-  SBigInt res;
-  if(x.neg == y.neg){
-    res.b = x.b + y.b;
-    res.neg = x.neg;
-  }else{
-    if(x.b > y.b){
-      res.b = x.b - y.b;
-      res.neg = x.neg;
+  Bigint operator+(const Bigint &x) const{
+    if(sign == x.sign){
+      Bigint res;
+      res.sign = sign;
+      res.dg.resize(max(dg.size(), x.dg.size()));
+      ll carry = 0;
+      for(int i = 0; i < max(dg.size(), x.dg.size()); i++){
+        ll tmp = carry;
+        if(i < dg.size())tmp += dg[i];
+        if(i < x.dg.size())tmp += x.dg[i];
+        res.dg[i] = (tmp % base);
+        carry = tmp / base;
+      }
+      while(carry){
+        res.dg.push_back(carry % base);
+        carry /= base;
+      }
+      return res;
     }else{
-      res.b = y.b - x.b;
-      res.neg = y.neg;
+      return (*this - (- x));
     }
   }
-  res.check_zero();
-  return res;
-}
+  void trim(){
+    while(!dg.empty() && dg.back() == 0)dg.pop_back();
+    if(dg.empty())sign = 1;
+  }
+  Bigint abs() const{
+    Bigint res = *this;
+    res.sign = 1;
+    return res;
+  }
+  Bigint operator-(const Bigint &x) const{
+    if(sign == x.sign){
+      if(abs() >= x.abs()){
+        Bigint res = *this;
+        ll carry = 0;
+        for(int i = 0; i < x.dg.size(); i++){
+          res.dg[i] -= carry + x.dg[i];
+          if(res.dg[i] < 0){
+            res.dg[i] += base;
+            carry = 1;
+          }else{
+            carry = 0;
+          }
+        }
+        if(carry > 0){
+          for(int i = x.dg.size(); i < res.dg.size() && carry > 0; i++){
+            res.dg[i] -= carry;
+            if(res.dg[i] < 0){
+              res.dg[i] += base;
+              carry = 1;
+            }else{
+              carry = 0;
+            }
+          }
+        }
+        res.trim();
+        return res;
+      }else{
+        return - (x - *this);
+      }
+    }else{
+      return (*this + (- x));
+    }
+  }
+  bool operator<(const Bigint &x) const{
+    if(sign != x.sign)return sign < x.sign;
+    if(dg.size() != x.dg.size())return int(dg.size()) * sign < int(x.dg.size()) * x.sign;
+    for(int i = int(dg.size()) - 1; i >= 0; i--){
+      if(dg[i] != x.dg[i])return dg[i] * sign < x.dg[i] * x.sign;
+    }
+    return false;
+  }
+  bool operator>(const Bigint &x) const{
+    return x < *this;
+  }
+  bool operator<=(const Bigint &x) const{
+    return !(*this > x);
+  }
+  bool operator>=(const Bigint &x) const{
+    return !(*this < x);
+  }
+  bool operator==(const Bigint &x) const{
+    return !(*this < x) && !(x < *this);
+  }
+  bool operator!=(const Bigint &x) const{
+    return (*this < x) || (x < *this);
+  }
+  friend istream& operator>>(istream &is, Bigint &x){
+    string s;
+    is >> s;
+    x = s;
+    return is;
+  }
+  friend ostream& operator<<(ostream& os, const Bigint &x){
+    if(x.sign < 0)os << '-';
+    if(x.dg.empty())os << 0;
+    else{
+      os << x.dg.back();
+      for(int i = int(x.dg.size()) - 2; i >= 0; i--){
+        os << setw(x.b) << setfill('0') << x.dg[i];
+      }
+    }
+    return os;
+  }
+  Bigint& operator*=(ll x){
+    if(x < 0){
+      x *= -1;
+      sign *= -1;
+    }
+    ll carry = 0;
+    for(int i = 0; i < dg.size(); i++){
+      carry = dg[i] * x + carry;
+      dg[i] = carry % base;
+      carry /= base;
+    }
+    while(carry){
+      dg.push_back(carry % base);
+      carry /= base;
+    }
+    trim();
+    return *this;
+  }
+  Bigint operator*(ll x) const{
+    Bigint res = *this;
+    res *= x;
+    return res;
+  }
+  Bigint operator*(const Bigint &v) const{
+    vector<ll> x = convert_base(dg, b, mb);
+    vector<ll> y = convert_base(v.dg, b, mb);
 
-SBigInt operator-(const SBigInt &x, const SBigInt &y){
-  SBigInt res = x + (- y);
-  res.check_zero();
-  return res;
-}
+    if(x.empty())x.push_back(0);
+    if(y.empty())y.push_back(0);
+    // simple multiplication
+    // vector<ll> mul = simple_multiply(x, y);
+    // FFT
+    vector<ll> mul = fft_multiply(x, y);
+    // karatsuba
+    // vector<ll> mul = karatsuba_multiply(x, y);
 
-SBigInt operator*(const SBigInt &x, const SBigInt &y){
-  SBigInt res;
-  res.neg = !(x.neg == y.neg);
-  res.b = x.b * y.b;
-  res.check_zero();
-  return res;
-}
+    Bigint res;
+    res.sign = sign * v.sign;
+    ll carry = 0;
+    for(int i = 0; i < mul.size(); i++){
+      carry += mul[i];
+      res.dg.push_back(carry % mbase);
+      carry /= mbase;
+    }
+    while(carry){
+      res.dg.push_back(carry % mbase);
+      carry /= mbase;
+    }
+    res.dg = convert_base(res.dg, mb, b);
+    res.trim();
+    return res;
+  }
+  // a = bq + r
+  pair<Bigint, Bigint> divmod(const Bigint &a1, const Bigint &b1) const{
+    ll norm = base / (b1.dg.back() + 1);
+    Bigint q, r;
+    q.sign = a1.sign * b1.sign;
+    r.sign = a1.sign;
 
-SBigInt operator/(const SBigInt &x, const SBigInt &y){
-  SBigInt res;
-  res.neg = !(x.neg == y.neg);
-  res.b = x.b / y.b;
-  res.check_zero();
-  return res;
-}
+    Bigint a = a1.abs() * norm;
+    Bigint b = b1.abs() * norm;
+    q.dg.resize(a.dg.size());
 
-ostream &operator<<(ostream &os, const SBigInt &b){
-  if(b.neg)os << "-";
-  os << b.b;
-  return os;
-}
+    for(int i = int(a.dg.size()) - 1; i >= 0; i--){
+      r = r * base + a.dg[i];
+      ll s1 = (r.dg.size() <= b.dg.size() ? 0: r.dg[b.dg.size()]);
+      ll s2 = (r.dg.size() <= int(b.dg.size()) - 1 ? 0: r.dg[int(b.dg.size()) - 1]);
+      // temporary solution
+      ll d = (base * s1 + s2) / b.dg.back();
+      r -= b * d;
+      // feedback
+      while(r < 0)r += b, d--;
+      q.dg[i] = d;
+    }
+
+    q.trim();
+    r.trim();
+    return make_pair(q, r / norm);
+  }
+  Bigint operator/(const Bigint &x) const{
+    return divmod(*this, x).first;
+  }
+  Bigint operator%(const Bigint &x) const{
+    return divmod(*this, x).second;
+  }
+  Bigint& operator/=(ll x){
+    if(x < 0){
+      x *= -1;
+      sign *= -1;
+    }
+    ll rem = 0;
+    for(int i = int(dg.size()) - 1; i >= 0; i--){
+      rem = dg[i] + rem * base;
+      dg[i] = rem / x;
+      rem = rem % x;
+    }
+    trim();
+    return *this;
+  }
+  Bigint operator/(ll x) const{
+    Bigint res = *this;
+    res /= x;
+    return res;
+  }
+  Bigint operator%(ll x) const{
+    if(x < 0)x *= -1;
+    ll m = 0;
+    for(int i = int(dg.size()) - 1; i >= 0; i--){
+      m = (dg[i] + m * base) % x;
+    }
+    return m * sign;
+  }
+  Bigint& operator+=(const Bigint &x){
+    *this = *this + x;
+    return *this;
+  }
+  Bigint& operator-=(const Bigint &x){
+    *this = *this - x;
+    return *this;
+  }
+  Bigint& operator*=(const Bigint &x){
+    *this = *this * x;
+    return *this;
+  }
+  Bigint& operator/=(const Bigint &x){
+    *this = *this / x;
+    return *this;
+  }
+  bool iszero(){
+    trim();
+    if(dg.empty())return false;
+    return true;
+  }
+  ll long_value() const {
+    ll res = 0;
+    for(int i = int(dg.size()) - 1; i >= 0; i--){
+      res = res * base + dg[i];
+    }
+    return res * sign;
+  }
+};
+//// end library
 
 #endif
