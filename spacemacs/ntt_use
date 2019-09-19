@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: ntt_use
+# key: ntt_use
+# --
+NTT1 ntt;
+h = ntt.convolution(f, g);

@@ -10,6 +10,8 @@
 #include "algebra.hpp"
 using namespace std;
 
+// begin library fft here
+// usage of this library: fft(f);
 using cd = complex<double>;
 // f.size() should be the power of 2.
 void rec_fft(vector<cd> &f, bool inv=false){
@@ -76,7 +78,13 @@ vector<T> convolution(const vector<T> &f, const vector<T> &g){
   }
   return h;
 }
+// end library
 
+// begin library ntt here
+// usage of this library: NTT1 ntt;
+// usage of this library: h = ntt.convolution(f, g);
+// depends: power
+// depends: garner
 template <int MOD, int g>
 struct NTT{
   int get_mod(){
@@ -147,5 +155,6 @@ vector<long long> arbitrary_mod_convolution(vector<long long> f, vector<long lon
   }
   return res;
 }
+// end library
 
 #endif

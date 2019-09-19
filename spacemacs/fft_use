@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: fft_use
+# key: fft_use
+# --
+fft(f);
