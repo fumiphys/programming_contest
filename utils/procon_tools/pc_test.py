@@ -34,17 +34,21 @@ def exec_input(input):
 
 
 def run_testcases(tc):
-    print(" ** [ {} ]".format(colored(tc["input_title"], "magenta")))
+    print(" ** [ {} ]".format(colored(tc["input_title"], "yellow", attrs=["bold"])))
     print_fixed_line(tc["input"])
-    print(" ** [ {} ]".format(colored(tc["output_title"], "cyan")))
+    print(" ** [ {} ]".format(colored(tc["output_title"], "yellow", attrs=["bold"])))
     print_fixed_line(tc["output"])
     output = exec_input(tc["input"]).strip()
     print(" ** {}".format(colored("Output", "yellow")))
     print_fixed_line(output)
 
+    res = False
     if output == tc["output"]:
-        return True
-    return False
+        res = True
+    else:
+        res = False
+    print("  Result: {}".format(colored("Accepted", "green") if res else colored("Wrong Answer", "red")))
+    return res
 
 
 def check_testcases():
