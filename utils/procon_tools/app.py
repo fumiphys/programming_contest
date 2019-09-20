@@ -4,9 +4,10 @@ import argparse
 import sys
 import os
 
+import config
 from pc_fetch import fetch_testcases
 import pc_copy
-import pc_test
+from pc_test import check_testcases
 import pc_run
 import pc_add
 from pc_utils import writeerr
@@ -42,7 +43,7 @@ def main():
     assert_host_name(host)
 
     current_path = os.path.abspath(".")
-    os.makedirs("{}/.procon".format(current_path), exist_ok=True)
+    os.makedirs("{}/{}".format(current_path, config.procon_dir), exist_ok=True)
 
     if method == "fetch":
         if args.contest is None:
@@ -54,3 +55,5 @@ def main():
         contest = args.contest
         problem = args.problem
         fetch_testcases(host, contest, problem)
+    elif method == "test":
+        check_testcases()

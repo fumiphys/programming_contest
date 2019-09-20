@@ -6,13 +6,14 @@ import os
 from termcolor import colored
 
 from atcoder import fetch as ac
+import config
 from pc_utils import writeerr
 
 
 def fetch_testcases(host, contest, problem):
     current_path = os.path.abspath(".")
-    testcase_dir = "{}/.procon/testcases".format(current_path)
-    testcase_json = "{}/testcase.json".format(testcase_dir)
+    testcase_dir = "{}/{}/{}".format(current_path, config.procon_dir, config.testcase_dir)
+    testcase_json = "{}/{}".format(testcase_dir, config.testcase_json)
     os.makedirs(testcase_dir, exist_ok=True)
     testcases = None
     if host.lower() == "atcoder":
