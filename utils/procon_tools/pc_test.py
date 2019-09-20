@@ -23,19 +23,25 @@ def fetch_all_testcases():
     return testcases
 
 
-def print_fixed_line(cont):
+def print_fixed_line(cont, inp=False):
     cont = cont.split("\n")
-    for i in range(min(len(cont), config.testcase_print_lines)):
-        print("  {}".format(cont[i]))
+    if inp:
+        for i in range(min(len(cont), config.testcase_print_lines)):
+            print(" | {}".format(cont[i]))
+        if len(cont) > config.testcase_print_lines:
+            print("  ...")
+    else:
+        for i in range(len(cont)):
+            print(" | {}".format(cont[i]))
 
 
 def exec_input(input):
-    return "23"
+    return "23\n12\n123\n123"
 
 
 def run_testcases(tc):
     print(" ** [ {} ]".format(colored(tc["input_title"], "yellow", attrs=["bold"])))
-    print_fixed_line(tc["input"])
+    print_fixed_line(tc["input"], inp=True)
     print(" ** [ {} ]".format(colored(tc["output_title"], "yellow", attrs=["bold"])))
     print_fixed_line(tc["output"])
     output = exec_input(tc["input"]).strip()
@@ -47,7 +53,7 @@ def run_testcases(tc):
         res = True
     else:
         res = False
-    print("  Result: {}".format(colored("Accepted", "green") if res else colored("Wrong Answer", "red")))
+    print(" Result: {}".format(colored("Accepted", "green") if res else colored("Wrong Answer", "red")))
     return res
 
 
