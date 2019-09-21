@@ -1,0 +1,11 @@
+<snippet>
+<content><![CDATA[
+PointQueryTree<ll, ll> pqt = PointQueryTree<ll, ll>(n, [](ll a, ll b){return a + b;},)
+                                                    [](ll a, ll b){return a + b;},
+                                                    [](ll a){return -a;},
+                                                    0, vector<ll>());
+]]></content>
+<tabTrigger>point_query_tree_use</tabTrigger>
+<scope>source.c++</scope>
+<description>point_query_tree usage</description>
+</snippet>

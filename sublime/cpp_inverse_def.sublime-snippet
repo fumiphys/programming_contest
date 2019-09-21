@@ -1,0 +1,12 @@
+<snippet>
+<content><![CDATA[
+// depends: power
+template <typename T>
+T inverse(T x, T mod) {
+  return power<T>(x, mod - 2, mod);
+}
+]]></content>
+<tabTrigger>inverse_def</tabTrigger>
+<scope>source.c++</scope>
+<description>inverse definition</description>
+</snippet>

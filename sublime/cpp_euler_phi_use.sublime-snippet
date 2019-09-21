@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+euler_phi(x);
+]]></content>
+<tabTrigger>euler_phi_use</tabTrigger>
+<scope>source.c++</scope>
+<description>euler_phi usage</description>
+</snippet>

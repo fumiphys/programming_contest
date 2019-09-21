@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+auto m = factorize<ll>(x);
+]]></content>
+<tabTrigger>factorize_use</tabTrigger>
+<scope>source.c++</scope>
+<description>factorize usage</description>
+</snippet>

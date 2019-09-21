@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+fast_moebius<ll>(g);
+]]></content>
+<tabTrigger>fast_moebius_use</tabTrigger>
+<scope>source.c++</scope>
+<description>fast_moebius usage</description>
+</snippet>

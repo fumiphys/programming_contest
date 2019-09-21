@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+millar_rabin(x);
+]]></content>
+<tabTrigger>millar_rabin_use</tabTrigger>
+<scope>source.c++</scope>
+<description>millar_rabin usage</description>
+</snippet>

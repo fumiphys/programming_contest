@@ -1,0 +1,15 @@
+<snippet>
+<content><![CDATA[
+template <typename T>
+bool is_prime(T x){
+  if(x == 1)return false;
+  for(ll i = 2; i * i <= x; i++){
+    if(x % i == 0)return false;
+  }
+  return true;
+}
+]]></content>
+<tabTrigger>is_prime_def</tabTrigger>
+<scope>source.c++</scope>
+<description>is_prime definition</description>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+extgcd<ll>(a, b, x, y);
+]]></content>
+<tabTrigger>extgcd_use</tabTrigger>
+<scope>source.c++</scope>
+<description>extgcd usage</description>
+</snippet>

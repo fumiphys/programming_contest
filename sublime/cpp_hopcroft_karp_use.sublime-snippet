@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+Graph g(n, m);
+g.adde(u, v);
+int p = g.maximum_matching();
+]]></content>
+<tabTrigger>hopcroft_karp_use</tabTrigger>
+<scope>source.c++</scope>
+<description>hopcroft_karp usage</description>
+</snippet>

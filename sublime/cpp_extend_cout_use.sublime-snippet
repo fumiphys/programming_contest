@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+excout("a", 1, "b");
+]]></content>
+<tabTrigger>extend_cout_use</tabTrigger>
+<scope>source.c++</scope>
+<description>extend_cout usage</description>
+</snippet>

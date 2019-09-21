@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+EulerTourTree ett(n);
+ett.adde(u, v);
+ett.build();
+]]></content>
+<tabTrigger>euler_tour_use</tabTrigger>
+<scope>source.c++</scope>
+<description>euler_tour usage</description>
+</snippet>

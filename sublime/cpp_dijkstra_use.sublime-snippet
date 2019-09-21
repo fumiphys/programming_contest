@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+graph.dijkstra(x);
+]]></content>
+<tabTrigger>dijkstra_use</tabTrigger>
+<scope>source.c++</scope>
+<description>dijkstra usage</description>
+</snippet>

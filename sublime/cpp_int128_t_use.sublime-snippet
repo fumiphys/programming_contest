@@ -1,0 +1,9 @@
+<snippet>
+<content><![CDATA[
+__int128_t t = to_int128(s);
+os << t;
+]]></content>
+<tabTrigger>int128_t_use</tabTrigger>
+<scope>source.c++</scope>
+<description>int128_t usage</description>
+</snippet>

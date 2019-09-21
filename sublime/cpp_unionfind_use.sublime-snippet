@@ -1,0 +1,11 @@
+<snippet>
+<content><![CDATA[
+UnionFind uf(n);
+uf.unite(a, b);
+uf.same(a, b);
+uf.find(a);
+]]></content>
+<tabTrigger>unionfind_use</tabTrigger>
+<scope>source.c++</scope>
+<description>unionfind usage</description>
+</snippet>

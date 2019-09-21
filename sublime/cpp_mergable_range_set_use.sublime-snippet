@@ -1,0 +1,9 @@
+<snippet>
+<content><![CDATA[
+MergableRangeSet<ll> mrs;
+mrs.add(l, r);
+]]></content>
+<tabTrigger>mergable_range_set_use</tabTrigger>
+<scope>source.c++</scope>
+<description>mergable_range_set usage</description>
+</snippet>

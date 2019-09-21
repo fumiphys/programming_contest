@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+inverse<ll>(x, mod);
+]]></content>
+<tabTrigger>inverse_use</tabTrigger>
+<scope>source.c++</scope>
+<description>inverse usage</description>
+</snippet>

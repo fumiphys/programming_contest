@@ -1,0 +1,23 @@
+<snippet>
+<content><![CDATA[
+// depends: extgcd
+template<typename T>
+pair<T, T> crt(vector<T> b, vector<T> m){
+  T r = 0, M = 1;
+  for(int i = 0; i < b.size(); i++){
+    T x, y;
+    T d = extgcd<T>(M, m[i], x, y);
+    if((b[i] - r) % d != 0)return make_pair(0, -1);
+    T tmp = (b[i] - r) / d * x % (m[i] / d);
+    r += M * tmp;
+    M *= m[i] / d;
+  }
+  r %= M;
+  if(r < 0)r += M;
+  return make_pair(r % M, M);
+}
+]]></content>
+<tabTrigger>crt_def</tabTrigger>
+<scope>source.c++</scope>
+<description>crt definition</description>
+</snippet>

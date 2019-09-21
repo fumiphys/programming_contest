@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+next_combination(s);
+]]></content>
+<tabTrigger>next_combination_use</tabTrigger>
+<scope>source.c++</scope>
+<description>next_combination usage</description>
+</snippet>

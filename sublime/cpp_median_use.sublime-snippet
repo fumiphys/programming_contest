@@ -1,0 +1,11 @@
+<snippet>
+<content><![CDATA[
+Median<ll> m;
+m.add(x);
+pair<ll, ll> p = m.median();
+ll sum = m.median_sum();
+]]></content>
+<tabTrigger>median_use</tabTrigger>
+<scope>source.c++</scope>
+<description>median usage</description>
+</snippet>

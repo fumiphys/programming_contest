@@ -1,0 +1,11 @@
+<snippet>
+<content><![CDATA[
+LCATree t(n);
+t.adde(u, v);
+t.build();
+t.lca(a, b);
+]]></content>
+<tabTrigger>lowest_common_ancestor_use</tabTrigger>
+<scope>source.c++</scope>
+<description>lowest_common_ancestor usage</description>
+</snippet>

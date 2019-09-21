@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+SteinerTree<int> st(n);
+st.adde(u, v, c)
+st.steiner_tree(v);
+]]></content>
+<tabTrigger>steiner_tree_use</tabTrigger>
+<scope>source.c++</scope>
+<description>steiner_tree usage</description>
+</snippet>

@@ -1,0 +1,9 @@
+<snippet>
+<content><![CDATA[
+DisjointSparseTable<int> dst(v, f, def);
+dst.query(l, r);
+]]></content>
+<tabTrigger>disjoint_sparse_table_use</tabTrigger>
+<scope>source.c++</scope>
+<description>disjoint_sparse_table usage</description>
+</snippet>

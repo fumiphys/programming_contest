@@ -1,0 +1,9 @@
+<snippet>
+<content><![CDATA[
+Factorial fac(n, mod);
+fac.comb(n, k);
+]]></content>
+<tabTrigger>factorial_use</tabTrigger>
+<scope>source.c++</scope>
+<description>factorial usage</description>
+</snippet>

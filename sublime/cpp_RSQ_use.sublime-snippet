@@ -1,0 +1,9 @@
+<snippet>
+<content><![CDATA[
+SegmentTreeL seg = SegmentTreeL(n, [](ll a, ll b){return a + b;},
+                                [](ll a,ll b){return a + b;}, 0, V);
+]]></content>
+<tabTrigger>RSQ_use</tabTrigger>
+<scope>source.c++</scope>
+<description>RSQ usage</description>
+</snippet>

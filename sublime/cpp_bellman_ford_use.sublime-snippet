@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+bool b = graph.bellman_ford(x);
+]]></content>
+<tabTrigger>bellman_ford_use</tabTrigger>
+<scope>source.c++</scope>
+<description>bellman_ford usage</description>
+</snippet>

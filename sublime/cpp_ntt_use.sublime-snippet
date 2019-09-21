@@ -1,0 +1,9 @@
+<snippet>
+<content><![CDATA[
+NTT1 ntt;
+h = ntt.convolution(f, g);
+]]></content>
+<tabTrigger>ntt_use</tabTrigger>
+<scope>source.c++</scope>
+<description>ntt usage</description>
+</snippet>

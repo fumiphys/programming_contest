@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+garner<long long>(b, m, mod);
+]]></content>
+<tabTrigger>garner_use</tabTrigger>
+<scope>source.c++</scope>
+<description>garner usage</description>
+</snippet>

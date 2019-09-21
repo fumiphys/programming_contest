@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+ConvexHullTrickL cht(comp);
+cht.add(make_pair(a, b));
+auto t = cht.val(x);
+]]></content>
+<tabTrigger>convex_hull_trick_use</tabTrigger>
+<scope>source.c++</scope>
+<description>convex_hull_trick usage</description>
+</snippet>

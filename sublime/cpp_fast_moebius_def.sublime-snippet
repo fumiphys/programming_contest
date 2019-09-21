@@ -1,0 +1,22 @@
+<snippet>
+<content><![CDATA[
+/*
+ * f(U) = \sum_{U\in T}(-1)^(|T\U|)f(T)
+ * for f(U) = \sum_{T\in U}f(T), use f[j | i] -= f[j];
+ */
+template <typename T>
+void fast_moebius(vector<T> &f){
+  int n = f.size();
+  for(int i = 1; i < n; i<<=1){
+    for(int j = 0; j < n; j++){
+      if((j & i) == 0){
+        f[j] -= f[j | i];
+      }
+    }
+  }
+}
+]]></content>
+<tabTrigger>fast_moebius_def</tabTrigger>
+<scope>source.c++</scope>
+<description>fast_moebius definition</description>
+</snippet>

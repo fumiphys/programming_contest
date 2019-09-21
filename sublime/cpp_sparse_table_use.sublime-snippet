@@ -1,0 +1,9 @@
+<snippet>
+<content><![CDATA[
+SparseTable<int> st(v, [](int a, int b){return min(a, b);});
+st.query(l, r);
+]]></content>
+<tabTrigger>sparse_table_use</tabTrigger>
+<scope>source.c++</scope>
+<description>sparse_table usage</description>
+</snippet>

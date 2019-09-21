@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+fft(f);
+]]></content>
+<tabTrigger>fft_use</tabTrigger>
+<scope>source.c++</scope>
+<description>fft usage</description>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+modlog(a, b, m);
+]]></content>
+<tabTrigger>modlog_use</tabTrigger>
+<scope>source.c++</scope>
+<description>modlog usage</description>
+</snippet>

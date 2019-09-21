@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+power<ll>(p, n);
+]]></content>
+<tabTrigger>power_use</tabTrigger>
+<scope>source.c++</scope>
+<description>power usage</description>
+</snippet>

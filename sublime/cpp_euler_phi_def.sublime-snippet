@@ -1,0 +1,19 @@
+<snippet>
+<content><![CDATA[
+// depends: factorize
+// depends: modinv
+long long euler_phi(long long n){
+  ll res = n;
+  auto mp = factorize(n);
+  const int MOD = 1e9 + 7;
+  for(auto itr = mp.begin(); itr != mp.end(); ++itr){
+    long long p = itr->first;
+    res = res * ((p-1) * modinv<long long>(p, MOD) % MOD) % MOD;
+  }
+  return res;
+}
+]]></content>
+<tabTrigger>euler_phi_def</tabTrigger>
+<scope>source.c++</scope>
+<description>euler_phi definition</description>
+</snippet>
