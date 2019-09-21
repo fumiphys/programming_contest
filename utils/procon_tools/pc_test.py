@@ -47,7 +47,7 @@ def exec_command(cmd, inp=None, timeout=config.exec_timeout):
 
 
 def exec_cpp_input(source, inp):
-    executable = "_{}".format(source.split(".")[0])
+    executable = "./_{}".format(source.split(".")[0])
     stdout_data, stderr_data = exec_command(config.exec_time_base + [executable], inp)
     return stdout_data, stderr_data
 
@@ -79,7 +79,7 @@ def run_testcases(source, tc):
     stderr_data = stderr_data.split("\n")
     if len(stderr_data) > 1:
         print(" ** {}".format(colored("Standard Error", "blue", attrs=["bold"])))
-        print_fixed_line(stderr_data[:-1])
+        print_fixed_line("\n".join(stderr_data[:-1]))
     mem, tim = stderr_data[-1][1:-1].split(" ")
 
     res = False
