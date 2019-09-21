@@ -34,6 +34,7 @@ def main():
     parser.add_argument("--host", help="contest host")
     parser.add_argument("--contest", help="contest name")
     parser.add_argument("--problem", help="problem name")
+    parser.add_argument("--source", help="source file")
     args = parser.parse_args()
 
     method = args.method
@@ -56,4 +57,8 @@ def main():
         problem = args.problem
         fetch_testcases(host, contest, problem)
     elif method == "test":
-        check_testcases()
+        if args.source is None:
+            writeerr("Error! No source file specified.")
+            sys.exit(1)
+        source = args.source
+        check_testcases(source)

@@ -2,6 +2,7 @@
 '''
 import json
 import os
+import subprocess
 from termcolor import colored
 
 import config
@@ -35,34 +36,65 @@ def print_fixed_line(cont, inp=False):
             print(" | {}".format(cont[i]))
 
 
-def exec_input(input):
-    return "23\n12\n123\n123"
+def exec_command(cmd, inp, timeout=config.exec_timeout):
+    try:
+        proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')
+        outs, errs = proc.communicate(input=inp, timeout=timeout)
+    except subprocess.TimeoutExpired:
+        proc.kill()
+        outs, errs = proc.communicate()
+    return outs, errs
 
 
-def run_testcases(tc):
+def exec_cpp_input(source, inp):
+    pass
+
+
+def exec_py3_input(source, inp):
+    stdout_data, stderr_data = exec_command(["/usr/bin/time", "-f", "'%M %E'", "python3", source], inp)
+    return stdout_data, stderr_data
+
+
+def exec_input(source, inp):
+    ext = source.split(".")[-1]
+    if ext == "cpp" or ext == "cc":
+        return exec_cpp_input(source, inp)
+    elif ext == "py" or ext == "py3":
+        return exec_py3_input(source, inp)
+
+
+def run_testcases(source, tc):
     print(" ** [ {} ]".format(colored(tc["input_title"], "yellow", attrs=["bold"])))
     print_fixed_line(tc["input"], inp=True)
     print(" ** [ {} ]".format(colored(tc["output_title"], "yellow", attrs=["bold"])))
     print_fixed_line(tc["output"])
-    output = exec_input(tc["input"]).strip()
-    print(" ** {}".format(colored("Output", "yellow")))
-    print_fixed_line(output)
+    stdout_data, stderr_data = exec_input(source, tc["input"])
+    stdout_data = stdout_data.strip()
+    stderr_data = stderr_data.strip()
+    print(" ** {}".format(colored("Standard Output", "yellow")))
+    print_fixed_line(stdout_data)
+
+    stderr_data = stderr_data.split("\n")
+    if len(stderr_data) > 1:
+        print(" ** {}".format(colored("Standard Error", "yellow")))
+        print_fixed_line(stderr_data[:-1])
+    mem, tim = stderr_data[-1][1:-1].split(" ")
 
     res = False
-    if output == tc["output"]:
+    if stdout_data == tc["output"]:
         res = True
     else:
         res = False
-    print(" Result: {}".format(colored("Accepted", "green") if res else colored("Wrong Answer", "red")))
+    print(" Result: {}, Time: {}s, Memory: {}KB".format(colored("Accepted", "green") if res else colored("Wrong Answer", "red"), tim, mem))
     return res
 
 
-def check_testcases():
+def check_testcases(source):
     testcases = fetch_all_testcases()
     al = 0
     ps = 0
     for tc in testcases:
         al += 1
-        if run_testcases(tc):
+        if run_testcases(source, tc):
             ps += 1
     print(" * Passed {}/{} Testcases".format(colored(ps, "blue"), colored(al, "blue")))
