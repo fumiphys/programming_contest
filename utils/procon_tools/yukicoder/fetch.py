@@ -1,27 +1,32 @@
 '''fetch testcases from AtCoder
 '''
 import json
-import sys
 import os
-from bs4 import BeautifulSoup
-import bs4
 import re
+import sys
 import urllib.request
+
+import bs4
+from bs4 import BeautifulSoup
 from termcolor import colored
+
+import config
+from pc_testcase import TestCase
+from pc_utils import format_string, writeerr
+
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
-from pc_testcase import TestCase
-from pc_utils import writeerr, format_string
-import config
 
 
 class Yukicoder(TestCase):
     def get_contest_url(self):
-        return "https://yukicoder.me/problems/no/{pname}".format(pname=self.problem)
+        return "https://yukicoder.me/problems/no/{pname}".format(
+            pname=self.problem)
 
     def get_testcases(self):
         res = fetch_testcases(self.get_contest_url())
-        info_json = "{}/{}/{}".format(config.procon_dir, config.info_dir, config.info_json)
+        info_json = "{}/{}/{}".format(config.procon_dir, config.info_dir,
+                                      config.info_json)
         info = {}
         with open(info_json, 'r') as f:
             info = json.load(f)

@@ -1,16 +1,16 @@
 '''entrypoint script
 '''
 import argparse
-import sys
-import os
 import json
+import os
+import sys
 
 import config
-from pc_fetch import fetch_testcases
-import pc_copy
-from pc_test import check_testcases
-import pc_run
 import pc_add
+import pc_copy
+import pc_run
+from pc_fetch import fetch_testcases
+from pc_test import check_testcases
 from pc_utils import writeerr
 
 
@@ -40,8 +40,10 @@ def main():
 
     current_path = os.path.abspath(".")
     os.makedirs("{}/{}".format(current_path, config.procon_dir), exist_ok=True)
-    os.makedirs("{}/{}".format(config.procon_dir, config.info_dir), exist_ok=True)
-    info_json = "{}/{}/{}".format(config.procon_dir, config.info_dir, config.info_json)
+    os.makedirs("{}/{}".format(config.procon_dir, config.info_dir),
+                exist_ok=True)
+    info_json = "{}/{}/{}".format(config.procon_dir, config.info_dir,
+                                  config.info_json)
     if not os.path.exists(info_json):
         info = {}
         info["current_path"] = current_path
@@ -68,13 +70,14 @@ def main():
 
     current_path = os.path.abspath(".")
     os.makedirs("{}/{}".format(current_path, config.procon_dir), exist_ok=True)
-    os.makedirs("{}/{}".format(config.procon_dir, config.info_dir), exist_ok=True)
-    info_json = "{}/{}/{}".format(config.procon_dir, config.info_dir, config.info_json)
+    os.makedirs("{}/{}".format(config.procon_dir, config.info_dir),
+                exist_ok=True)
+    info_json = "{}/{}/{}".format(config.procon_dir, config.info_dir,
+                                  config.info_json)
     if not os.path.exists(info_json):
         info = {}
         with open(info_json, 'w') as f:
             json.dump(info, f, indent=4)
-
 
     if method == "fetch":
         contest = None
