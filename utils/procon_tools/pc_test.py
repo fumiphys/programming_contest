@@ -36,7 +36,7 @@ def print_fixed_line(cont, inp=False):
             print(" | {}".format(cont[i]))
 
 
-def exec_command(cmd, inp, timeout=config.exec_timeout):
+def exec_command(cmd, inp=None, timeout=config.exec_timeout):
     try:
         proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')
         outs, errs = proc.communicate(input=inp, timeout=timeout)
@@ -47,11 +47,13 @@ def exec_command(cmd, inp, timeout=config.exec_timeout):
 
 
 def exec_cpp_input(source, inp):
-    pass
+    executable = "_{}".format(source.split(".")[0])
+    stdout_data, stderr_data = exec_command(config.exec_time_base + [executable], inp)
+    return stdout_data, stderr_data
 
 
 def exec_py3_input(source, inp):
-    stdout_data, stderr_data = exec_command(["/usr/bin/time", "-f", "'%M %E'", "python3", source], inp)
+    stdout_data, stderr_data = exec_command(config.exec_time_base + ["python3", source], inp)
     return stdout_data, stderr_data
 
 
@@ -93,6 +95,16 @@ def check_testcases(source):
     testcases = fetch_all_testcases()
     al = 0
     ps = 0
+    ext = source.split(".")[-1]
+    if ext == "cpp" or ext == "cc":
+        executable = "_{}".format(source.split(".")[0])
+        stdout_data, stderr_data = exec_command(config.cpp_compile_base + [source, "-o", executable])
+        if len(stderr_data) > 0:
+            stderr_data = stderr_data.strip()
+            print_fixed_line(stderr_data)
+            print(" * Compile Failed")
+            return
+
     for tc in testcases:
         al += 1
         if run_testcases(source, tc):
