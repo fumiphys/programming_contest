@@ -110,4 +110,11 @@ def check_testcases(source):
         al += 1
         if run_testcases(source, tc):
             ps += 1
+    info_json = "{}/{}/{}".format(config.procon_dir, config.info_dir, config.info_json)
+    info = {}
+    with open(info_json, 'r') as f:
+        info = json.load(f)
+    info["source"] = source
+    with open(info_json, 'w') as f:
+        json.dump(info, f, indent=4)
     print(" * Passed {}/{} Testcases".format(colored(ps, "blue"), colored(al, "blue")))

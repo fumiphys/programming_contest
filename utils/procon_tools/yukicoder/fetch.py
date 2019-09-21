@@ -11,6 +11,7 @@ sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
 from pc_testcase import TestCase
 from pc_utils import writeerr, format_string
+import config
 
 
 class Yukicoder(TestCase):
@@ -18,7 +19,16 @@ class Yukicoder(TestCase):
         return "https://yukicoder.me/problems/no/{pname}".format(pname=self.problem)
 
     def get_testcases(self):
-        return fetch_testcases(self.get_contest_url())
+        res = fetch_testcases(self.get_contest_url())
+        info_json = "{}/{}/{}".format(config.procon_dir, config.info_dir, config.info_json)
+        info = {}
+        with open(info_json, 'r') as f:
+            info = json.load(f)
+        info["contest"] = self.contest
+        info["problem"] = self.problem
+        with open(info_json, 'w') as f:
+            json.dump(info, f, indent=4)
+        return res
 
 
 def fetch_testcases(url):

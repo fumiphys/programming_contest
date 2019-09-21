@@ -4,6 +4,8 @@
 procon_dir = ".procon"
 testcase_dir = "testcases"
 testcase_json = "testcase.json"
+info_dir = "info"
+info_json = "info.json"
 
 testcase_print_lines = 4
 
