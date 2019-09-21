@@ -73,12 +73,12 @@ def run_testcases(source, tc):
     stdout_data, stderr_data = exec_input(source, tc["input"])
     stdout_data = stdout_data.strip()
     stderr_data = stderr_data.strip()
-    print(" ** {}".format(colored("Standard Output", "blue")))
+    print(" ** {}".format(colored("Standard Output", "blue", attrs=["bold"])))
     print_fixed_line(stdout_data)
 
     stderr_data = stderr_data.split("\n")
     if len(stderr_data) > 1:
-        print(" ** {}".format(colored("Standard Error", "blue")))
+        print(" ** {}".format(colored("Standard Error", "blue", attrs=["bold"])))
         print_fixed_line(stderr_data[:-1])
     mem, tim = stderr_data[-1][1:-1].split(" ")
 
