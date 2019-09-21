@@ -6,6 +6,7 @@ import os
 from termcolor import colored
 
 from atcoder import fetch as ac
+from yukicoder import fetch as yk
 import config
 from pc_utils import writeerr
 
@@ -18,6 +19,9 @@ def fetch_testcases(host, contest, problem):
     testcases = None
     if host.lower() == "atcoder":
         cst = ac.AtCoder(contest, problem)
+        testcases = cst.get_testcases()
+    elif host.lower() == "yukicoder":
+        cst = yk.Yukicoder(contest, problem)
         testcases = cst.get_testcases()
     else:
         writeerr("Error! Not Implemented.")

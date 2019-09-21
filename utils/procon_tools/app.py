@@ -47,14 +47,22 @@ def main():
     os.makedirs("{}/{}".format(current_path, config.procon_dir), exist_ok=True)
 
     if method == "fetch":
-        if args.contest is None:
-            writeerr("Error! No contest name specified.")
-            sys.exit(1)
-        if args.problem is None:
-            writeerr("Error! No problem name specified.")
-            sys.exit(1)
-        contest = args.contest
-        problem = args.problem
+        contest = None
+        problem = None
+        if host == "AtCoder":
+            if args.contest is None:
+                writeerr("Error! No contest name specified.")
+                sys.exit(1)
+            if args.problem is None:
+                writeerr("Error! No problem name specified.")
+                sys.exit(1)
+            contest = args.contest
+            problem = args.problem
+        else:
+            if args.problem is None:
+                writeerr("Error! No problem name specified.")
+                sys.exit(1)
+            problem = args.problem
         fetch_testcases(host, contest, problem)
     elif method == "test":
         if args.source is None:
