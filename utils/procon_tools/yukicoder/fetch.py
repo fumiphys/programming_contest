@@ -1,5 +1,6 @@
 '''fetch testcases from AtCoder
 '''
+import json
 import sys
 import os
 from bs4 import BeautifulSoup
