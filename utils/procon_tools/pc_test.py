@@ -66,19 +66,19 @@ def exec_input(source, inp):
 
 
 def run_testcases(source, tc):
-    print(" ** [ {} ]".format(colored(tc["input_title"], "yellow", attrs=["bold"])))
+    print(" ** [ {} ]".format(colored(tc["input_title"], "blue", attrs=["bold"])))
     print_fixed_line(tc["input"], inp=True)
-    print(" ** [ {} ]".format(colored(tc["output_title"], "yellow", attrs=["bold"])))
+    print(" ** [ {} ]".format(colored(tc["output_title"], "blue", attrs=["bold"])))
     print_fixed_line(tc["output"])
     stdout_data, stderr_data = exec_input(source, tc["input"])
     stdout_data = stdout_data.strip()
     stderr_data = stderr_data.strip()
-    print(" ** {}".format(colored("Standard Output", "yellow")))
+    print(" ** {}".format(colored("Standard Output", "blue")))
     print_fixed_line(stdout_data)
 
     stderr_data = stderr_data.split("\n")
     if len(stderr_data) > 1:
-        print(" ** {}".format(colored("Standard Error", "yellow")))
+        print(" ** {}".format(colored("Standard Error", "blue")))
         print_fixed_line(stderr_data[:-1])
     mem, tim = stderr_data[-1][1:-1].split(" ")
 
@@ -99,6 +99,7 @@ def check_testcases(source):
     if ext == "cpp" or ext == "cc":
         executable = "_{}".format(source.split(".")[0])
         stdout_data, stderr_data = exec_command(config.cpp_compile_base + [source, "-o", executable])
+        print("* Compiling {}".format(colored(source, "blue")))
         if len(stderr_data) > 0:
             stderr_data = stderr_data.strip()
             print_fixed_line(stderr_data)
