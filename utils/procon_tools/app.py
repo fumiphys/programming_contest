@@ -38,8 +38,30 @@ def main():
     parser.add_argument("--source", help="source file")
     args = parser.parse_args()
 
+    current_path = os.path.abspath(".")
+    os.makedirs("{}/{}".format(current_path, config.procon_dir), exist_ok=True)
+    os.makedirs("{}/{}".format(config.procon_dir, config.info_dir), exist_ok=True)
+    info_json = "{}/{}/{}".format(config.procon_dir, config.info_dir, config.info_json)
+    if not os.path.exists(info_json):
+        info = {}
+        info["current_path"] = current_path
+        with open(info_json, 'w') as f:
+            json.dump(info, f, indent=4)
+    info = {}
+    with open(info_json, 'r') as f:
+        info = json.load(f)
+
     method = args.method
-    host = ("AtCoder" if args.host is None else args.host)
+    if args.host is None:
+        if "host" not in info.keys():
+            host = "AtCoder"
+        else:
+            host = info["host"]
+    else:
+        host = args.host
+    info["host"] = host
+    with open(info_json, 'w') as f:
+        json.dump(info, f, indent=4)
 
     assert_method(method)
     assert_host_name(host)
@@ -53,27 +75,44 @@ def main():
         with open(info_json, 'w') as f:
             json.dump(info, f, indent=4)
 
+
     if method == "fetch":
         contest = None
         problem = None
         if host == "AtCoder":
+            acont = args.contest
+            aprob = args.problem
             if args.contest is None:
-                writeerr("Error! No contest name specified.")
-                sys.exit(1)
+                if "contest" in info.keys():
+                    acont = info["contest"]
+                else:
+                    writeerr("Error! No contest name specified.")
+                    sys.exit(1)
             if args.problem is None:
-                writeerr("Error! No problem name specified.")
-                sys.exit(1)
-            contest = args.contest
-            problem = args.problem
+                if "problem" in info.keys():
+                    aprob = info["problem"]
+                else:
+                    writeerr("Error! No problem name specified.")
+                    sys.exit(1)
+            contest = acont
+            problem = aprob
         else:
+            aprob = args.problem
             if args.problem is None:
-                writeerr("Error! No problem name specified.")
-                sys.exit(1)
-            problem = args.problem
+                if "problem" in info.keys():
+                    aprob = info["problem"]
+                else:
+                    writeerr("Error! No problem name specified.")
+                    sys.exit(1)
+            problem = aprob
         fetch_testcases(host, contest, problem)
     elif method == "test":
+        asource = args.source
         if args.source is None:
-            writeerr("Error! No source file specified.")
-            sys.exit(1)
-        source = args.source
+            if "source" in info.keys():
+                asource = info["source"]
+            else:
+                writeerr("Error! No source file specified.")
+                sys.exit(1)
+        source = asource
         check_testcases(source)
