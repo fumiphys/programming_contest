@@ -22,10 +22,12 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
+        cd utils/procon_tools
         python -m pip install --upgrade pip
         pip install -e .
     - name: Lint with flake8
       run: |
+        cd utils/procon_tools
         pip install flake8
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
@@ -33,5 +35,6 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
+        cd utils/procon_tools
         pip install pytest
         pytest
