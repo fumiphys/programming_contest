@@ -12,6 +12,11 @@ def writeerr(cont):
     sys.stderr.write("\n")
 
 
+def writeerr_and_exit(cont):
+    writeerr(cont)
+    sys.exit(1)
+
+
 def format_string(cont):
     cont = cont.replace('\r\n', '\n')
     cont = re.sub(r'\n$', '', cont)

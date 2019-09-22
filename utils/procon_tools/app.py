@@ -2,7 +2,6 @@
 '''
 import argparse
 import os
-import sys
 
 import config
 import pc_add
@@ -10,25 +9,30 @@ import pc_copy
 import pc_run
 from pc_fetch import fetch_testcases
 from pc_test import check_testcases
-from pc_utils import load_info, write_info, writeerr
+from pc_utils import load_info, write_info, writeerr_and_exit
 
 
 def assert_method(method):
+    '''check if method exists
+    '''
     methods = ["fetch", "copy", "test", "run", "add"]
     if method not in methods:
-        writeerr("Error! No support for method: {}.".format(method))
-        sys.exit(1)
+        writeerr_and_exit("Error! No support for method: {}.".format(method))
 
 
 def assert_host_name(host):
+    '''check if host is valid
+    '''
     host = str(host).lower()
     hosts = ["atcoder", "codeforces", "aoj", "yukicoder"]
     if host not in hosts:
-        writeerr("Error! No support for contest host: {}.".format(host))
-        sys.exit(1)
+        writeerr_and_exit(
+            "Error! No support for contest host: {}.".format(host))
 
 
 def get_host(args, info):
+    '''get host name
+    '''
     host = ""
     if args.host is None:
         if "host" not in info.keys():
@@ -41,33 +45,37 @@ def get_host(args, info):
 
 
 def get_contest(args, info):
+    '''get contest name
+    '''
     contest = ""
     if args.contest is None:
         if "contest" in info.keys():
             contest = info["contest"]
         else:
             if info["host"].lower() == "atcoder":
-                writeerr("Error! No contest specified.")
-                sys.exit(1)
+                writeerr_and_exit("Error! No contest specified.")
     else:
         contest = args.contest
     return contest
 
 
 def get_problem(args, info):
+    '''get problem name
+    '''
     problem = ""
     if args.problem is None:
         if "problem" in info.keys():
             problem = info["problem"]
         else:
-            writeerr("Error! No problem specified.")
-            sys.exit(1)
+            writeerr_and_exit("Error! No problem specified.")
     else:
         problem = args.problem
     return problem
 
 
 def get_source(args, info):
+    '''get source file
+    '''
     source = ""
     if args.source is not None:
         source = args.source
@@ -126,8 +134,7 @@ def main():
         fetch_testcases(host, contest, problem)
     elif method == "test":
         if source == "":
-            writeerr("Error! No source file specified.")
-            sys.exit(1)
+            writeerr_and_exit("Error! No source file specified.")
         check_testcases(source, contest, problem)
 
     info["contest"] = contest

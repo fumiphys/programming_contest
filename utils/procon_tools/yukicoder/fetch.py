@@ -10,9 +10,8 @@ import bs4
 from bs4 import BeautifulSoup
 from termcolor import colored
 
-import config
 from pc_testcase import TestCase
-from pc_utils import format_string, writeerr
+from pc_utils import format_string, writeerr_and_exit
 
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
@@ -37,8 +36,7 @@ def fetch_testcases(url):
     output_list = soup.find_all("h6", text=re.compile("出力"))
 
     if not len(input_list) == len(output_list):
-        writeerr("Error! length of input and output mismatch.")
-        sys.exit(1)
+        writeerr_and_exit("Error! length of input and output mismatch.")
 
     iteration = 1
     for inp, outp in zip(input_list, output_list):

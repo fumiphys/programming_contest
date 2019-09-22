@@ -2,13 +2,12 @@
 '''
 import json
 import os
-import sys
 
 from termcolor import colored
 
 import config
 from atcoder import fetch as ac
-from pc_utils import writeerr
+from pc_utils import writeerr_and_exit
 from yukicoder import fetch as yk
 
 
@@ -30,8 +29,7 @@ def fetch_testcases(host, contest, problem):
         cst = yk.Yukicoder(contest, problem)
         testcases = cst.get_testcases()
     else:
-        writeerr("Error! Not Implemented.")
-        sys.exit(1)
+        writeerr_and_exit("Error! Not Implemented.")
 
     if testcases is not None:
         if contest not in testcase_dict.keys():
