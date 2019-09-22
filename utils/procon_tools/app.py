@@ -89,9 +89,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("method", help="type of the method")
     parser.add_argument("--host", help="contest host")
-    parser.add_argument("--contest", help="contest name")
-    parser.add_argument("--problem", help="problem name")
-    parser.add_argument("--source", help="source file")
+    parser.add_argument("-c", "--contest", help="contest name")
+    parser.add_argument("-p", "--problem", help="problem name")
+    parser.add_argument("-s", "--source", help="source file")
     args = parser.parse_args()
 
     # create base directory
