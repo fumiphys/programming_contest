@@ -375,8 +375,8 @@ struct Bigint{
   }
   bool iszero(){
     trim();
-    if(dg.empty())return false;
-    return true;
+    if(dg.empty())return true;
+    return false;
   }
   ll long_value() const {
     ll res = 0;
