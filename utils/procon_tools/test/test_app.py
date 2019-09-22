@@ -178,5 +178,5 @@ def test_main():
     args = ["fetch", "--contest", "abc140", "--problem", "a"]
     _test_main(args)
 
-    args = ["fetch", "--host", "yukicoder", "--problem", "a"]
+    args = ["fetch", "--host", "yukicoder", "--problem", "140"]
     _test_main(args)
