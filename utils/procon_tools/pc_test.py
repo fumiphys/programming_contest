@@ -11,6 +11,7 @@ import config
 
 
 def fetch_all_testcases(contest, problem):
+    # read testcases
     current_path = os.path.abspath(".")
     testcase_dir = "{}/{}/{}".format(current_path, config.procon_dir,
                                      config.testcase_dir)
@@ -35,6 +36,8 @@ def fetch_all_testcases(contest, problem):
 
 
 def print_fixed_line(cont, inp=False):
+    '''print cont (at most config.testcase_print_lines)
+    '''
     cont = cont.split("\n")
     if inp:
         for i in range(min(len(cont), config.testcase_print_lines)):
@@ -47,6 +50,8 @@ def print_fixed_line(cont, inp=False):
 
 
 def exec_command(cmd, inp=None, timeout=config.exec_timeout):
+    '''execute command
+    '''
     try:
         proc = subprocess.Popen(cmd,
                                 stdin=subprocess.PIPE,
@@ -61,6 +66,8 @@ def exec_command(cmd, inp=None, timeout=config.exec_timeout):
 
 
 def exec_cpp_input(source, inp):
+    '''execute c++ command
+    '''
     executable = "./_{}".format(source.split(".")[0])
     stdout_data, stderr_data = exec_command(
         config.exec_time_base + [executable], inp)
@@ -68,6 +75,8 @@ def exec_cpp_input(source, inp):
 
 
 def exec_py3_input(source, inp):
+    '''execute python scirpt
+    '''
     stdout_data, stderr_data = exec_command(
         config.exec_time_base + ["python3", source], inp)
     return stdout_data, stderr_data
@@ -88,6 +97,7 @@ def run_testcases(source, tc):
     print(" ** [ {} ]".format(
         colored(tc["output_title"], "blue", attrs=["bold"])))
     print_fixed_line(tc["output"])
+    # execution
     stdout_data, stderr_data = exec_input(source, tc["input"])
     stdout_data = stdout_data.strip()
     stderr_data = stderr_data.strip()
@@ -101,6 +111,7 @@ def run_testcases(source, tc):
         print_fixed_line("\n".join(stderr_data[:-1]))
     mem, tim = stderr_data[-1][1:-1].split(" ")
 
+    # print execution info
     res = False
     if stdout_data == tc["output"]:
         res = True

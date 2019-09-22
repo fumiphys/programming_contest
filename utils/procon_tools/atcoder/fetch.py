@@ -27,6 +27,7 @@ class AtCoder(TestCase):
 
 def fetch_testcases(url):
     print(" * Fetch testcase from url: {}".format(colored(url, "blue")))
+    # fetch html
     html = urllib.request.urlopen(url)
     soup = BeautifulSoup(html, "html.parser")
 
@@ -34,9 +35,11 @@ def fetch_testcases(url):
     input_list = soup.find_all("h3", text=re.compile("入力例"))
     output_list = soup.find_all("h3", text=re.compile("出力例"))
 
+    # check length mismatch
     if not len(input_list) == len(output_list):
         writeerr_and_exit("Error! length of input and output mismatch.")
 
+    # fetch input and output
     for inp, outp in zip(input_list, output_list):
         input_title = inp.text
         output_title = outp.text

@@ -12,6 +12,7 @@ from yukicoder import fetch as yk
 
 
 def fetch_testcases(host, contest, problem):
+    # create base directory for testcase
     current_path = os.path.abspath(".")
     testcase_dir = "{}/{}/{}".format(current_path, config.procon_dir,
                                      config.testcase_dir)
@@ -21,6 +22,8 @@ def fetch_testcases(host, contest, problem):
         with open(testcase_json, 'r') as f:
             testcase_dict = json.load(f)
     os.makedirs(testcase_dir, exist_ok=True)
+
+    # fetch testcases
     testcases = None
     if host.lower() == "atcoder":
         cst = ac.AtCoder(contest, problem)
@@ -31,6 +34,7 @@ def fetch_testcases(host, contest, problem):
     else:
         writeerr_and_exit("Error! Not Implemented.")
 
+    # write testcases
     if testcases is not None:
         if contest not in testcase_dict.keys():
             testcase_dict[contest] = {}
