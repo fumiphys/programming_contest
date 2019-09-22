@@ -36,5 +36,5 @@ jobs:
     - name: Test with pytest
       run: |
         cd utils/procon_tools
-        pip install pytest pytest-cov
+        pip install -r requirements.txt
         pytest -v --cov=.
