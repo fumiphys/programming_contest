@@ -2,12 +2,14 @@
 '''
 import argparse
 import os
+import shutil
 import sys
 
 import pytest
 
+import config
 from app import (assert_host_name, assert_method, get_contest, get_host,
-                 get_problem, get_source)
+                 get_problem, get_source, main)
 
 sys.path.append(os.path.join(os.path.abspath(os.path.dirname(__file__)), ".."))
 
@@ -158,3 +160,23 @@ def test_get_source():
         "source": "c.cpp",
     }
     _test_get_source("c.cpp", args, info)
+
+
+def test_main():
+    def _test_main(args):
+        procon = config.procon_dir
+        if os.path.exists(procon):
+            shutil.rmtree(procon)
+        tmp = sys.argv
+        sys.argv = ["a"] + args
+        main()
+        sys.argv = tmp
+
+        assert os.path.exists(procon)
+        shutil.rmtree(procon)
+
+    args = ["fetch", "--contest", "abc140", "--problem", "a"]
+    _test_main(args)
+
+    args = ["fetch", "--host", "yukicoder", "--problem", "a"]
+    _test_main(args)
