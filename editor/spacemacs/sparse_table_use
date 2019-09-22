@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: sparse_table_use
+# key: sparse_table_use
+# --
+SparseTable<int> st(v, [](int a, int b){return min(a, b);});
+st.query(l, r);

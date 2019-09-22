@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+gcd<ll>(a, b);
+]]></content>
+<tabTrigger>gcd_use</tabTrigger>
+<scope>source.c++</scope>
+<description>gcd usage</description>
+</snippet>

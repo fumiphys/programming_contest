@@ -49,7 +49,6 @@ python3 auto_create_snippet_spacemacs.py
  - SA-IS, BWT (direct implementation)
  - Bug fix for KMP, BM
  - power for general data stucture
- - verification of BigInt, acceleration of multiplication, division
  - Binary Search Tree (Link Cut Tree, Red Black Tree)
  - kd Tree
 

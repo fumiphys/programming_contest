@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+auto p = list_prime(n);
+]]></content>
+<tabTrigger>list_prime_use</tabTrigger>
+<scope>source.c++</scope>
+<description>list_prime usage</description>
+</snippet>

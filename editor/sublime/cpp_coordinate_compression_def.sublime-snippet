@@ -1,0 +1,24 @@
+<snippet>
+<content><![CDATA[
+template <typename T>
+struct CoordinateCompression{
+  map<T, int> mp;
+  vector<T> v;
+  CoordinateCompression(vector<T> &x){
+    v.resize(x.size());
+    copy(x.begin(), x.end(), v.begin());
+    sort(v.begin(), v.end());
+    v.erase(unique(v.begin(), v.end()), v.end());
+    for(int i = 0; i < v.size(); i++){
+      mp[v[i]] = i;
+    }
+  }
+};
+
+using CoordinateCompressionI = CoordinateCompression<int>;
+using CoordinateCompressionL = CoordinateCompression<long long>;
+]]></content>
+<tabTrigger>coordinate_compression_def</tabTrigger>
+<scope>source.c++</scope>
+<description>coordinate_compression definition</description>
+</snippet>

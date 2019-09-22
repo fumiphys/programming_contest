@@ -1,0 +1,17 @@
+<snippet>
+<content><![CDATA[
+void excout(){
+  cout << endl;
+}
+
+template <class Head, class... Tail>
+void excout(Head&& head, Tail&&... tail){
+  if(sizeof...(tail) != 0)cout << head << " ";
+  else cout << head;
+  excout(forward<Tail>(tail)...);
+}
+]]></content>
+<tabTrigger>extend_cout_def</tabTrigger>
+<scope>source.c++</scope>
+<description>extend_cout definition</description>
+</snippet>

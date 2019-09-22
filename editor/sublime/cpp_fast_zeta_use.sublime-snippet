@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+fast_zeta<ll>(f);
+]]></content>
+<tabTrigger>fast_zeta_use</tabTrigger>
+<scope>source.c++</scope>
+<description>fast_zeta usage</description>
+</snippet>

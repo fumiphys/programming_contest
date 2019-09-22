@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+square_test(x, y);
+]]></content>
+<tabTrigger>square_test_use</tabTrigger>
+<scope>source.c++</scope>
+<description>square_test usage</description>
+</snippet>

@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+excerr("a", 1, "b");
+]]></content>
+<tabTrigger>extend_cerr_use</tabTrigger>
+<scope>source.c++</scope>
+<description>extend_cerr usage</description>
+</snippet>

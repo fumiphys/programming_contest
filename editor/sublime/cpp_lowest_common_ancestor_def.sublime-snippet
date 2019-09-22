@@ -1,0 +1,72 @@
+<snippet>
+<content><![CDATA[
+struct LCATree{
+  int n = 0, m = 0;
+  vector<vector<int>> edge;
+  vector<vector<int>> par;
+  vector<bool> vis;
+  vector<int> h;
+  LCATree(){}
+  LCATree(int n): n(n){
+    while((1LL<<m) <= n)m++;
+    edge.resize(n);
+    par.assign(m + 1, vector<int>(n, 0));
+    vis.resize(n, false);
+    h.resize(n);
+  }
+  void adde(int from, int to){
+    edge[from].emplace_back(to);
+  }
+  void dfs(int i){
+    vis[i] = true;
+    for(auto e: edge[i]){
+      if(!vis[e]){
+        par[0][e] = i;
+        h[e] = h[i] + 1;
+        dfs(e);
+      }
+    }
+  }
+  void build(){
+    fill(vis.begin(), vis.end(), false);
+    fill(h.begin(), h.end(), 0);
+    par[0][0] = 0;
+    h[0] = 0;
+    dfs(0);
+    for(int i = 1; i <= m; i++){
+      for(int j = 0; j < n; j++){
+        par[i][j] = par[i-1][par[i-1][j]];
+      }
+    }
+  }
+  int go_up(int u, int k){
+    int i = 0;
+    while(k){
+      if(k % 2 == 1){
+        u = par[i][u];
+      }
+      i++;
+      k /= 2;
+    }
+    return u;
+  }
+  int lca(int u, int v){
+    if(h[u] > h[v])u = go_up(u, h[u] - h[v]);
+    if(h[u] < h[v])v = go_up(v, h[v] - h[u]);
+    if(u == v)return u;
+    int ld = 0, rd = n;
+    while(rd - ld > 1){
+      int k = (rd + ld) / 2;
+      int uk = go_up(u, k);
+      int vk = go_up(v, k);
+      if(uk == vk)rd = k;
+      else ld = k;
+    }
+    return go_up(u, rd);
+  }
+};
+]]></content>
+<tabTrigger>lowest_common_ancestor_def</tabTrigger>
+<scope>source.c++</scope>
+<description>lowest_common_ancestor definition</description>
+</snippet>

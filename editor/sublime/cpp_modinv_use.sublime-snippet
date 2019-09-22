@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+modinv<ll>(x);
+]]></content>
+<tabTrigger>modinv_use</tabTrigger>
+<scope>source.c++</scope>
+<description>modinv usage</description>
+</snippet>

@@ -1,0 +1,9 @@
+<snippet>
+<content><![CDATA[
+SegmentTreeL seg = SegmentTreeL(n, [](ll a, ll b){return min(a, b);},
+                                [](ll a,ll b){return b;}, INF, V);
+]]></content>
+<tabTrigger>RMQ_use</tabTrigger>
+<scope>source.c++</scope>
+<description>RMQ usage</description>
+</snippet>

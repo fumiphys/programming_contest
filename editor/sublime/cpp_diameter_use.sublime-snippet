@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+Tree<long long> t = Tree<long long>(n);
+t.adde(u, v, w);
+t.diameter();
+]]></content>
+<tabTrigger>diameter_use</tabTrigger>
+<scope>source.c++</scope>
+<description>diameter usage</description>
+</snippet>

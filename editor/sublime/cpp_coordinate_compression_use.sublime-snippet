@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+CoordinateCompressionL cl = CoordinateCompressionL(v);
+]]></content>
+<tabTrigger>coordinate_compression_use</tabTrigger>
+<scope>source.c++</scope>
+<description>coordinate_compression usage</description>
+</snippet>

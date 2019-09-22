@@ -14,7 +14,7 @@ use_pattern = r"^// usage of this library: (.+)"
 end_pattern = r"^// end library"
 def_sentence = "snippet {}_def"
 use_sentence = "snippet {}_use"
-out_file = "cpp.snip"
+out_file = "{}/editor/vim/cpp.snip".format(root_path)
 
 
 def add_snippet(filename, writer):

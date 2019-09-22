@@ -1,0 +1,12 @@
+<snippet>
+<content><![CDATA[
+ll next_combination(ll s){
+  ll x = s & (- s);
+  ll y = s + x;
+  return (((s & (~y)) / x) >> 1) | y;
+}
+]]></content>
+<tabTrigger>next_combination_def</tabTrigger>
+<scope>source.c++</scope>
+<description>next_combination definition</description>
+</snippet>

@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+Compressed2DSegmentTree<int, int> cst(p, f, g, def, v);
+cst.update(x, y, e);
+cst.query(x1, x2, y1, y2);
+]]></content>
+<tabTrigger>compressed2d_segment_tree_use</tabTrigger>
+<scope>source.c++</scope>
+<description>compressed2d_segment_tree usage</description>
+</snippet>

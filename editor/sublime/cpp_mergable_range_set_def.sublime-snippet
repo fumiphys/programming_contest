@@ -1,0 +1,47 @@
+<snippet>
+<content><![CDATA[
+template <typename T>
+struct MergableRangeSet{
+  using PT = pair<T, T>;
+  set<PT> st;
+  MergableRangeSet(){}
+  // [l, r)
+  void add(T l, T r){
+    if(r <= l)return;
+    auto itr = st.upper_bound(make_pair(l, 0));
+    if(itr != st.begin()){
+      auto litr = itr;
+      --litr;
+      if(litr->second >= r){
+        return;
+      }else if(litr->second >= l){
+        l = litr->first;
+        st.erase(litr);
+      }
+    }
+    if(itr != st.end()){
+      if(r < itr->first)st.insert(make_pair(l, r));
+      else {
+        PT p = make_pair(l, max(r, itr->second));
+        st.erase(itr);
+        st.insert(p);
+      }
+    }else{
+      st.insert(make_pair(l, r));
+    }
+  }
+  typename set<PT>::iterator begin() noexcept{
+    return st.begin();
+  }
+  typename set<PT>::iterator end() noexcept{
+    return st.end();
+  }
+  size_t size(){
+    return st.size();
+  }
+};
+]]></content>
+<tabTrigger>mergable_range_set_def</tabTrigger>
+<scope>source.c++</scope>
+<description>mergable_range_set definition</description>
+</snippet>

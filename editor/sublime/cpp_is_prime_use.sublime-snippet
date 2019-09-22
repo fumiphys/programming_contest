@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+is_prime(x);
+]]></content>
+<tabTrigger>is_prime_use</tabTrigger>
+<scope>source.c++</scope>
+<description>is_prime usage</description>
+</snippet>

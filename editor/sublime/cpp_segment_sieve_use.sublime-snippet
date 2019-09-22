@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+auto p = segment_sieve<ll>(a, b);
+]]></content>
+<tabTrigger>segment_sieve_use</tabTrigger>
+<scope>source.c++</scope>
+<description>segment_sieve usage</description>
+</snippet>

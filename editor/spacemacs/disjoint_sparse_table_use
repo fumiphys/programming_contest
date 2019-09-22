@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: disjoint_sparse_table_use
+# key: disjoint_sparse_table_use
+# --
+DisjointSparseTable<int> dst(v, f, def);
+dst.query(l, r);

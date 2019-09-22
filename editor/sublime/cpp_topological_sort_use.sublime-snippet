@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+Graph g(n);
+g.adde(u, v);
+auto t = g.topological_sort();
+]]></content>
+<tabTrigger>topological_sort_use</tabTrigger>
+<scope>source.c++</scope>
+<description>topological_sort usage</description>
+</snippet>

@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+Graph g(n);
+g.adde(u, v);
+bool b = g.is_bipartile();
+]]></content>
+<tabTrigger>bipartile_use</tabTrigger>
+<scope>source.c++</scope>
+<description>bipartile usage</description>
+</snippet>

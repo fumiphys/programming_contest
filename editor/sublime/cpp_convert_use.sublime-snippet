@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+int d = dto_int(c);
+]]></content>
+<tabTrigger>convert_use</tabTrigger>
+<scope>source.c++</scope>
+<description>convert usage</description>
+</snippet>

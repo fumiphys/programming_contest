@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: bigint_use
+# key: bigint_use
+# --
+Bigint b = x;

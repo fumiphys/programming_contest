@@ -22,7 +22,7 @@ scope = "<scope>source.c++</scope>"
 def_description = "<description>{} definition</description>"
 use_description = "<description>{} usage</description>"
 snippet_end = "</snippet>"
-out_file = "{}/sublime/".format(root_path) + "cpp_{}_{}.sublime-snippet"
+out_file = "{}/editor/sublime/".format(root_path) + "cpp_{}_{}.sublime-snippet"
 
 
 def add_snippet(filename):
@@ -85,7 +85,8 @@ def add_snippet(filename):
 
 
 template_file = "{}/template/template.cpp".format(root_path)
-template_out = "{}/sublime/cpp_template.sublime-snippet".format(root_path)
+template_out = "{}/editor/sublime/cpp_template.sublime-snippet".format(
+    root_path)
 
 
 def add_template_snippet():

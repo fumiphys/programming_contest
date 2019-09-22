@@ -1,0 +1,13 @@
+<snippet>
+<content><![CDATA[
+WeightedUnionFind<ll> wuf(n);
+wuf.find(x);
+weight(x);
+same(x, y);
+unite(x, y, w);
+diff(x, y);
+]]></content>
+<tabTrigger>weighted_unionfind_use</tabTrigger>
+<scope>source.c++</scope>
+<description>weighted_unionfind usage</description>
+</snippet>

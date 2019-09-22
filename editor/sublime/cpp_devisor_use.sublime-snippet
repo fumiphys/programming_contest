@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+auto d = devisor<ll>(x);
+]]></content>
+<tabTrigger>devisor_use</tabTrigger>
+<scope>source.c++</scope>
+<description>devisor usage</description>
+</snippet>

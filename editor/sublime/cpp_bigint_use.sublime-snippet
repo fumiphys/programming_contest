@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+Bigint b = x;
+]]></content>
+<tabTrigger>bigint_use</tabTrigger>
+<scope>source.c++</scope>
+<description>bigint usage</description>
+</snippet>

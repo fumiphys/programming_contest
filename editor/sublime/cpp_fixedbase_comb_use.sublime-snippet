@@ -1,0 +1,9 @@
+<snippet>
+<content><![CDATA[
+FixedBaseComb fbc(n, mod);
+fbc.c(k);
+]]></content>
+<tabTrigger>fixedbase_comb_use</tabTrigger>
+<scope>source.c++</scope>
+<description>fixedbase_comb usage</description>
+</snippet>

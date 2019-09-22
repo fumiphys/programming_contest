@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+graph.warshall_floyd()
+]]></content>
+<tabTrigger>warshall_floyd_use</tabTrigger>
+<scope>source.c++</scope>
+<description>warshall_floyd usage</description>
+</snippet>

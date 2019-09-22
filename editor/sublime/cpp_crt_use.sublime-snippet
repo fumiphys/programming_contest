@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+P p = crt<long long, long long>(b, m);
+]]></content>
+<tabTrigger>crt_use</tabTrigger>
+<scope>source.c++</scope>
+<description>crt usage</description>
+</snippet>
