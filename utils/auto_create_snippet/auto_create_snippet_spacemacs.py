@@ -10,7 +10,7 @@ import sys
 # default values
 encoding = "utf-8"
 root_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), "../../")
-out_file = "{}/spacemacs/".format(root_path) + "{}_{}"
+out_file = "{}/editor/spacemacs/".format(root_path) + "{}_{}"
 
 def_sentence = "# name: {library}_def\n# key: {library}_def"
 use_sentence = "# name: {library}_use\n# key: {library}_use"
@@ -133,14 +133,15 @@ def generate_snippet(filelist):
         library_list[node].dump()
         for depee in reverse_edge_list[node]:
             edge_list[depee].remove(node)
-            library_list[depee].depends_library.append(library_list[node].contents)
+            library_list[depee].depends_library.append(
+                library_list[node].contents)
             if len(edge_list[depee]) == 0:
                 nodes.append(depee)
         print(library_name_list[node])
 
 
 template_file = "{}/template/template.cpp".format(root_path)
-template_out = "{}/spacemacs/procontemplate".format(root_path)
+template_out = "{}/editor/spacemacs/procontemplate".format(root_path)
 
 
 def add_template_snippet():
