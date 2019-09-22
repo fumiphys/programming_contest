@@ -17,7 +17,6 @@ from pc_utils import format_string, writeerr
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
 
-
 class Yukicoder(TestCase):
     def get_contest_url(self):
         return "https://yukicoder.me/problems/no/{pname}".format(
@@ -25,15 +24,6 @@ class Yukicoder(TestCase):
 
     def get_testcases(self):
         res = fetch_testcases(self.get_contest_url())
-        info_json = "{}/{}/{}".format(config.procon_dir, config.info_dir,
-                                      config.info_json)
-        info = {}
-        with open(info_json, 'r') as f:
-            info = json.load(f)
-        info["contest"] = self.contest
-        info["problem"] = self.problem
-        with open(info_json, 'w') as f:
-            json.dump(info, f, indent=4)
         return res
 
 

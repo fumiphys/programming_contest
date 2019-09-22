@@ -1,7 +1,6 @@
 '''entrypoint script
 '''
 import argparse
-import json
 import os
 import sys
 
@@ -11,7 +10,7 @@ import pc_copy
 import pc_run
 from pc_fetch import fetch_testcases
 from pc_test import check_testcases
-from pc_utils import writeerr
+from pc_utils import load_info, write_info, writeerr
 
 
 def assert_method(method):
@@ -33,7 +32,7 @@ def get_host(args, info):
     host = ""
     if args.host is None:
         if "host" not in info.keys():
-            host = "AtCoder"
+            host = "atcoder"
         else:
             host = info["host"]
     else:
@@ -47,7 +46,7 @@ def get_contest(args, info):
         if "contest" in info.keys():
             contest = info["contest"]
         else:
-            if info["host"] == "AtCoder":
+            if info["host"].lower() == "atcoder":
                 writeerr("Error! No contest specified.")
                 sys.exit(1)
     else:
@@ -97,12 +96,9 @@ def main():
     if not os.path.exists(info_json):
         info = {}
         info["current_path"] = current_path
-        with open(info_json, 'w') as f:
-            json.dump(info, f, indent=4)
+        write_info(info)
     # fetch basic info
-    info = {}
-    with open(info_json, 'r') as f:
-        info = json.load(f)
+    info = load_info()
 
     # method
     method = args.method
@@ -113,14 +109,15 @@ def main():
     info["host"] = host
     assert_host_name(host)
 
-    with open(info_json, 'w') as f:
-        json.dump(info, f, indent=4)
+    write_info(info)
 
     # contest
     contest = get_contest(args, info)
 
     # problem
     problem = get_problem(args, info)
+    if host.lower() == "yukicoder":
+        contest = problem
 
     # source
     source = get_source(args, info)
@@ -132,3 +129,8 @@ def main():
             writeerr("Error! No source file specified.")
             sys.exit(1)
         check_testcases(source, contest, problem)
+
+    info["contest"] = contest
+    info["problem"] = problem
+    info["source"] = source
+    write_info(info)
