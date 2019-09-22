@@ -118,4 +118,32 @@ def main():
                 writeerr("Error! No source file specified.")
                 sys.exit(1)
         source = asource
-        check_testcases(source)
+        contest = None
+        problem = None
+        if host == "AtCoder":
+            acont = args.contest
+            aprob = args.problem
+            if args.contest is None:
+                if "contest" in info.keys():
+                    acont = info["contest"]
+                else:
+                    writeerr("Error! No contest name specified.")
+                    sys.exit(1)
+            if args.problem is None:
+                if "problem" in info.keys():
+                    aprob = info["problem"]
+                else:
+                    writeerr("Error! No problem name specified.")
+                    sys.exit(1)
+            contest = acont
+            problem = aprob
+        else:
+            aprob = args.problem
+            if args.problem is None:
+                if "problem" in info.keys():
+                    aprob = info["problem"]
+                else:
+                    writeerr("Error! No problem name specified.")
+                    sys.exit(1)
+            problem = aprob
+        check_testcases(source, contest, problem)

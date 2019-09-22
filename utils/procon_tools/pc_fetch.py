@@ -17,6 +17,10 @@ def fetch_testcases(host, contest, problem):
     testcase_dir = "{}/{}/{}".format(current_path, config.procon_dir,
                                      config.testcase_dir)
     testcase_json = "{}/{}".format(testcase_dir, config.testcase_json)
+    testcase_dict = {}
+    if os.path.exists(testcase_json):
+        with open(testcase_json, 'r') as f:
+            testcase_dict = json.load(f)
     os.makedirs(testcase_dir, exist_ok=True)
     testcases = None
     if host.lower() == "atcoder":
@@ -30,7 +34,10 @@ def fetch_testcases(host, contest, problem):
         sys.exit(1)
 
     if testcases is not None:
+        if contest not in testcase_dict.keys():
+            testcase_dict[contest] = {}
+        testcase_dict[contest][problem] = testcases
         f = open(testcase_json, 'w')
-        json.dump(testcases, f, indent=4)
+        json.dump(testcase_dict, f, indent=4)
         print(" * Testcases written to {}".format(
             colored(testcase_json, "blue")))

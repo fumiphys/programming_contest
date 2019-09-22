@@ -3,13 +3,14 @@
 import json
 import os
 import subprocess
+import sys
 
 from termcolor import colored
 
 import config
 
 
-def fetch_all_testcases():
+def fetch_all_testcases(contest, problem):
     current_path = os.path.abspath(".")
     testcase_dir = "{}/{}/{}".format(current_path, config.procon_dir,
                                      config.testcase_dir)
@@ -18,10 +19,17 @@ def fetch_all_testcases():
 
     if not os.path.exists(testcase_json):
         print(" * No TestCase Found. Exit.")
+        sys.exit()
 
-    testcases = []
+    testcases = {}
     with open(testcase_json, 'r') as f:
         testcases = json.load(f)
+    if contest not in testcases.keys(
+    ) or problem not in testcases[contest].keys():
+        print(" * No TestCase Found. Exit.")
+        sys.exit()
+    testcases = testcases[contest][problem]
+
     print(" * {} Testcases Found.".format(colored(len(testcases), "blue")))
     return testcases
 
@@ -104,8 +112,8 @@ def run_testcases(source, tc):
     return res
 
 
-def check_testcases(source):
-    testcases = fetch_all_testcases()
+def check_testcases(source, contest, problem):
+    testcases = fetch_all_testcases(contest, problem)
     al = 0
     ps = 0
     ext = source.split(".")[-1]
