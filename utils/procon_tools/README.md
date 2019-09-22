@@ -4,6 +4,9 @@
 pip install -e .
 ```
 
+## requirement
+ - GNU time
+
 ## about
  - scirpt for programming contest
  - fetch testcase from contest site
