@@ -4,14 +4,18 @@ import argparse
 import os
 import shutil
 import sys
+import urllib.request
 
 import pytest
 
 import config
+import pc_test
 from app import (assert_host_name, assert_method, get_contest, get_host,
                  get_problem, get_source, main)
 
 sys.path.append(os.path.join(os.path.abspath(os.path.dirname(__file__)), ".."))
+
+current_module = sys.modules[__name__]
 
 
 def test_assert_method():
@@ -162,7 +166,10 @@ def test_get_source():
     _test_get_source("c.cpp", args, info)
 
 
-def test_main():
+def test_main(monkeypatch):
+    monkeypatch.setattr(urllib.request, "urlopen", lambda x: "<html></html>")
+    monkeypatch.setattr("app.check_testcases", lambda x, y, z: None)
+
     def _test_main(args):
         procon = config.procon_dir
         if os.path.exists(procon):
@@ -178,5 +185,23 @@ def test_main():
     args = ["fetch", "--contest", "abc140", "--problem", "a"]
     _test_main(args)
 
-    args = ["fetch", "--host", "yukicoder", "--problem", "140"]
+    args = ["fetch", "--host", "yukicoder", "--problem", "b"]
     _test_main(args)
+
+    args = [
+        "test", "--host", "yukicoder", "--problem", "140", "--source", "c.cpp"
+    ]
+    _test_main(args)
+
+    args = [
+        "test",
+        "--host",
+        "yukicoder",
+        "--problem",
+        "140",
+    ]
+
+    with pytest.raises(SystemExit) as e:
+        _test_main(args)
+    assert (e.type == SystemExit)
+    assert (e.value.code == 1)
