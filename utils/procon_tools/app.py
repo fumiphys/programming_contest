@@ -7,7 +7,7 @@ import config
 import pc_add
 import pc_copy
 import pc_run
-from pc_fetch import fetch_testcases
+from pc_fetch import fetch_testcases, fetch_testcases_from_url
 from pc_test import check_testcases
 from pc_utils import load_info, write_info, writeerr_and_exit
 
@@ -15,7 +15,7 @@ from pc_utils import load_info, write_info, writeerr_and_exit
 def assert_method(method):
     '''check if method exists
     '''
-    methods = ["fetch", "copy", "test", "run", "add"]
+    methods = ["fetch", "fetchurl", "copy", "test", "run", "add"]
     if method not in methods:
         writeerr_and_exit("Error! No support for method: {}.".format(method))
 
@@ -84,6 +84,17 @@ def get_source(args, info):
     return source
 
 
+def get_url(args, info):
+    '''get url
+    '''
+    url = ""
+    if args.url is not None:
+        url = args.url
+    elif "url" in info.keys():
+        url = info["url"]
+    return url
+
+
 def main():
     # parse arguments
     parser = argparse.ArgumentParser()
@@ -92,6 +103,7 @@ def main():
     parser.add_argument("-c", "--contest", help="contest name")
     parser.add_argument("-p", "--problem", help="problem name")
     parser.add_argument("-s", "--source", help="source file")
+    parser.add_argument("--url", help="problem url")
     args = parser.parse_args()
 
     # create base directory
@@ -130,8 +142,15 @@ def main():
     # source
     source = get_source(args, info)
 
+    # url
+    url = get_url(args, info)
+
     if method == "fetch":
         fetch_testcases(host, contest, problem)
+    elif method == "fetchurl":
+        if url == "":
+            writeerr_and_exit("Error! No url specified.")
+        fetch_testcases_from_url(host, contest, problem, url)
     elif method == "test":
         if source == "":
             writeerr_and_exit("Error! No source file specified.")

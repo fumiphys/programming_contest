@@ -11,7 +11,7 @@ import pytest
 import config
 import pc_test
 from app import (assert_host_name, assert_method, get_contest, get_host,
-                 get_problem, get_source, main)
+                 get_problem, get_source, get_url, main)
 
 sys.path.append(os.path.join(os.path.abspath(os.path.dirname(__file__)), ".."))
 
@@ -166,6 +166,26 @@ def test_get_source():
     _test_get_source("c.cpp", args, info)
 
 
+def test_get_url():
+    def _test_get_url(url, args, info):
+        assert (url == get_url(args, info))
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--url")
+    args = parser.parse_args(["--url", "https://procon.jp"])
+    info = {}
+    _test_get_url("https://procon.jp", args, info)
+
+    args = parser.parse_args([])
+    info = {}
+    _test_get_url("", args, info)
+
+    info = {
+        "url": "https://google.com",
+    }
+    _test_get_url("https://google.com", args, info)
+
+
 def test_main(monkeypatch):
     monkeypatch.setattr(urllib.request, "urlopen", lambda x: "<html></html>")
     monkeypatch.setattr("app.check_testcases", lambda x, y, z: None)
@@ -199,6 +219,26 @@ def test_main(monkeypatch):
         "yukicoder",
         "--problem",
         "140",
+    ]
+
+    with pytest.raises(SystemExit) as e:
+        _test_main(args)
+    assert (e.type == SystemExit)
+    assert (e.value.code == 1)
+
+    args = [
+        "fetchurl", "--contest", "ab", "--problem", "v", "--url",
+        "https://a.com"
+    ]
+
+    _test_main(args)
+
+    args = [
+        "fetchurl",
+        "--contest",
+        "ab",
+        "--problem",
+        "v",
     ]
 
     with pytest.raises(SystemExit) as e:
