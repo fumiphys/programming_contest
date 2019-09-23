@@ -61,7 +61,8 @@ def exec_command(cmd, inp=None, timeout=config.exec_timeout):
         outs, errs = proc.communicate(input=inp, timeout=timeout)
     except subprocess.TimeoutExpired:
         proc.kill()
-        outs, errs = proc.communicate()
+        # outs, errs = proc.communicate()
+        return None, None
     return outs, errs
 
 
@@ -99,6 +100,9 @@ def run_testcases(source, tc):
     print_fixed_line(tc["output"])
     # execution
     stdout_data, stderr_data = exec_input(source, tc["input"])
+    if stdout_data is None or stderr_data is None:
+        print(" {}.".format(colored("Execution reached timeout", "yellow")))
+        return
     stdout_data = stdout_data.strip()
     stderr_data = stderr_data.strip()
     print(" ** {}".format(colored("Standard Output", "blue", attrs=["bold"])))
