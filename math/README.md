@@ -55,6 +55,8 @@ library for math
   - modinv  
   - modlog (baby step giant step)  
   - Garner Algorithm
+  - arbitrary mod garner algorithm  
+  verify: [yukicoder(中華風 (Hard))](https://yukicoder.me/problems/no/187)
   - chinese reminder theorem  
   verify: [yukicoder(中華風 (Easy))](https://yukicoder.me/problems/no/186)
   - factorial, combination, permutation, h  

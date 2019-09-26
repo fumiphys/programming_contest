@@ -1,0 +1,69 @@
+# -*- mode: snippet -*-
+# name: arbitrary_garner_def
+# key: arbitrary_garner_def
+# --
+template<typename T>
+T extgcd(T a, T b, T &x, T &y){ 
+  T d = a;
+  if(b != 0){
+    d = extgcd(b, a % b, y, x);
+    y -= (a / b) * x;
+  }else{
+    x = 1, y = 0;
+  }
+  return d;
+}
+
+template <typename T>
+T modinv(T a, T m){
+  long long x = 0, y = 0;
+  extgcd<long long>(a, m, x, y);
+  x %= m;
+  if(x < 0)x += m;
+  return x;
+}
+
+template <typename T>
+long long garner(vector<T> b, vector<T> m, T MOD){
+  m.emplace_back(MOD);
+  vector<long long> coef(m.size(), 1);
+  vector<long long> consts(m.size(), 0);
+  for(int i = 0; i < b.size(); i++){
+    long long t = ((b[i] - consts[i]) % m[i]) * modinv<long long>(coef[i], m[i]) % m[i];
+    for(int j = i + 1; j < m.size(); j++){
+      consts[j] = (consts[j] + t * coef[j] % m[j]) % m[j];
+      coef[j] = coef[j] * m[i] % m[j];
+    }
+  }
+  return consts.back();
+}
+
+template<typename T>
+T gcd(T a, T b) {
+  if(a > b)return gcd(b, a);
+  if(a == 0)return b;
+  return gcd(b % a, a);
+}
+
+template <typename T>
+long long arbitrary_garner(vector<T> b, vector<T> m, T MOD){
+  for(int i = 0; i < b.size(); i++){
+    for(int j = 0; j < i; j++){
+      T g = gcd(m[i], m[j]);
+      if((b[i] - b[j]) % g != 0)return -1;
+
+      m[i] /= g, m[j] /= g;
+
+      T gi = gcd(m[i], g), gj = g / gi;
+
+      do{
+        g = gcd(gi, gj);
+        gi *= g, gj /= g;
+      }while(g != 1);
+
+      m[i] *= gi, m[j] *= gj;
+      b[i] %= m[i], b[j] %= m[j];
+    }
+  }
+  return garner<T>(b, m, MOD);
+}

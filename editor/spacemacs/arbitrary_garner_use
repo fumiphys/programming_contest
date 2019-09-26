@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: arbitrary_garner_use
+# key: arbitrary_garner_use
+# --
+arbitrary_garner(b, m);

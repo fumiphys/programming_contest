@@ -98,12 +98,41 @@ long long garner(vector<T> b, vector<T> m, T MOD){
   vector<long long> consts(m.size(), 0);
   for(int i = 0; i < b.size(); i++){
     long long t = ((b[i] - consts[i]) % m[i]) * modinv<long long>(coef[i], m[i]) % m[i];
+    if(t < 0)t += m[i];
     for(int j = i + 1; j < m.size(); j++){
       consts[j] = (consts[j] + t * coef[j] % m[j]) % m[j];
       coef[j] = coef[j] * m[i] % m[j];
     }
   }
   return consts.back();
+}
+// end library
+
+// begin library arbitrary_garner here
+// usage of this library: arbitrary_garner(b, m);
+// depends: gcd
+// depends: garner
+template <typename T>
+long long arbitrary_garner(vector<T> &b, vector<T> &m, T MOD){
+  for(int i = 0; i < b.size(); i++){
+    for(int j = 0; j < i; j++){
+      T g = gcd(m[i], m[j]);
+      if((b[i] - b[j]) % g != 0)return -1;
+
+      m[i] /= g, m[j] /= g;
+
+      T gi = gcd(m[i], g), gj = g / gi;
+
+      do{
+        g = gcd(gi, gj);
+        gi *= g, gj /= g;
+      }while(g != 1);
+
+      m[i] *= gi, m[j] *= gj;
+      b[i] %= m[i], b[j] %= m[j];
+    }
+  }
+  return garner<T>(b, m, MOD);
 }
 // end library
 

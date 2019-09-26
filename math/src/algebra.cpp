@@ -79,11 +79,15 @@ int main(int argc, char const* argv[])
   assert(p.second == -1);
 
   // garner
+  b.clear();
+  m.clear();
   b.push_back(2);
   b.push_back(3);
   m.push_back(3);
   m.push_back(5);
   long long res = garner(b, m, 15);
+  assert(res == 8);
+  res = arbitrary_garner(b, m, 15);
   assert(res == 8);
 
   b.clear();
@@ -95,6 +99,8 @@ int main(int argc, char const* argv[])
   b.push_back(1);
   b.push_back(2);
   res = garner(b, m, 13);
+  assert(res == 4);
+  res = arbitrary_garner(b, m, 13);
   assert(res == 4);
 
   // factorial
