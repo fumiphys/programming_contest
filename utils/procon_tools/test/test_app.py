@@ -3,6 +3,7 @@
 import argparse
 import os
 import shutil
+import signal
 import sys
 import urllib.request
 
@@ -189,6 +190,7 @@ def test_get_url():
 def test_main(monkeypatch):
     monkeypatch.setattr(urllib.request, "urlopen", lambda x: "<html></html>")
     monkeypatch.setattr("app.check_testcases", lambda x, y, z: None)
+    monkeypatch.setattr("app.copy_source", lambda x: None)
 
     def _test_main(args):
         procon = config.procon_dir
@@ -243,5 +245,22 @@ def test_main(monkeypatch):
 
     with pytest.raises(SystemExit) as e:
         _test_main(args)
+    assert (e.type == SystemExit)
+    assert (e.value.code == 1)
+
+    args = ["copy", "--source", "a.cpp"]
+    _test_main(args)
+
+    args = ["copy"]
+    with pytest.raises(SystemExit) as e:
+        _test_main(args)
+    assert (e.type == SystemExit)
+    assert (e.value.code == 1)
+
+
+def test_sigint():
+    pid = os.getpid()
+    with pytest.raises(SystemExit) as e:
+        os.kill(pid, signal.SIGINT)
     assert (e.type == SystemExit)
     assert (e.value.code == 1)
