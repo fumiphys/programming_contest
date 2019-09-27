@@ -32,3 +32,9 @@ pc copy --source {source_file}
 
 ## other
  - you can omit argument [host, contest, problem] once you specify them.
+
+## testing
+```
+pytest -v
+```
+- for testing copy method at headless environment, you should run `xvfb-run pytest -v`
