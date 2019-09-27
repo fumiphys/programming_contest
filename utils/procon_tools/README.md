@@ -25,6 +25,10 @@ pc test --source {source_file}
 ```
  - currently supported: C++(extension: cpp, cc), Python3(extension: py, py3)
 
+## copy
+```
+pc copy --source {source_file}
+```
 
 ## other
  - you can omit argument [host, contest, problem] once you specify them.
