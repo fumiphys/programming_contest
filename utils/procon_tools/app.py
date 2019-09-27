@@ -5,8 +5,8 @@ import os
 
 import config
 import pc_add
-import pc_copy
 import pc_run
+from pc_copy import copy_source
 from pc_fetch import fetch_testcases, fetch_testcases_from_url
 from pc_test import check_testcases
 from pc_utils import load_info, write_info, writeerr_and_exit
@@ -132,12 +132,14 @@ def main():
     write_info(info)
 
     # contest
-    contest = get_contest(args, info)
+    if not method == "copy":
+        contest = get_contest(args, info)
 
     # problem
-    problem = get_problem(args, info)
-    if host.lower() == "yukicoder":
-        contest = problem
+    if not method == "copy":
+        problem = get_problem(args, info)
+        if host.lower() == "yukicoder":
+            contest = problem
 
     # source
     source = get_source(args, info)
@@ -151,12 +153,17 @@ def main():
         if url == "":
             writeerr_and_exit("Error! No url specified.")
         fetch_testcases_from_url(host, contest, problem, url)
+    elif method == "copy":
+        if source == "":
+            writeerr_and_exit("Error! No source file specified.")
+        copy_source(source)
     elif method == "test":
         if source == "":
             writeerr_and_exit("Error! No source file specified.")
         check_testcases(source, contest, problem)
 
-    info["contest"] = contest
-    info["problem"] = problem
+    if not method == "copy":
+        info["contest"] = contest
+        info["problem"] = problem
     info["source"] = source
     write_info(info)
