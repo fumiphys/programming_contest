@@ -2,6 +2,9 @@
 '''
 import argparse
 import os
+import signal
+
+from termcolor import colored
 
 import config
 import pc_add
@@ -10,6 +13,13 @@ from pc_copy import copy_source
 from pc_fetch import fetch_testcases, fetch_testcases_from_url
 from pc_test import check_testcases
 from pc_utils import load_info, write_info, writeerr_and_exit
+
+
+def sigint_handler(signo, frame):
+    writeerr_and_exit("\n * {}".format(colored("Execution canceled.", "red")))
+
+
+signal.signal(signal.SIGINT, sigint_handler)
 
 
 def assert_method(method):
