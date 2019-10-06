@@ -8,6 +8,7 @@ from termcolor import colored
 import config
 import yukicoder
 from atcoder import fetch as ac
+from codeforces import fetch as cf
 from pc_utils import writeerr_and_exit
 from yukicoder import fetch as yk
 
@@ -31,6 +32,9 @@ def fetch_testcases(host, contest, problem):
         testcases = cst.get_testcases()
     elif host.lower() == "yukicoder":
         cst = yk.Yukicoder(contest, problem)
+        testcases = cst.get_testcases()
+    elif host.lower() == "codeforces":
+        cst = cf.Codeforces(contest, problem)
         testcases = cst.get_testcases()
     else:
         writeerr_and_exit("Error! Not Implemented.")
