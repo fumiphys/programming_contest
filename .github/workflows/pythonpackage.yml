@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - procon_tools
+      - master
 
 jobs:
   build:
