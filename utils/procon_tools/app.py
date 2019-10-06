@@ -8,9 +8,9 @@ from termcolor import colored
 
 import config
 import pc_add
-import pc_run
 from pc_copy import copy_source
 from pc_fetch import fetch_testcases, fetch_testcases_from_url
+from pc_run import run_source
 from pc_test import check_testcases
 from pc_utils import load_info, write_info, writeerr_and_exit
 
@@ -171,6 +171,10 @@ def main():
         if source == "":
             writeerr_and_exit("Error! No source file specified.")
         check_testcases(source, contest, problem)
+    elif method == "run":
+        if source == "":
+            writeerr_and_exit("Error! No source file specified.")
+        run_source(source)
 
     if not method == "copy":
         info["contest"] = contest

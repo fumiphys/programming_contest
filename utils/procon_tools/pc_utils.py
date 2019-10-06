@@ -2,6 +2,7 @@
 '''
 import json
 import re
+import select
 import sys
 
 import config
@@ -38,3 +39,11 @@ def write_info(dic):
                                   config.info_json)
     with open(info_json, 'w') as f:
         json.dump(dic, f)
+
+
+def input_with_timeout(timeout=config.default_timeout):
+    (ready, _, _) = select.select([sys.stdin], [], [], timeout)
+    if ready:
+        return sys.stdin.readline().strip()
+    else:
+        return None

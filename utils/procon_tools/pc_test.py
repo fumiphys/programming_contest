@@ -134,9 +134,9 @@ def check_testcases(source, contest, problem):
     ext = source.split(".")[-1]
     if ext == "cpp" or ext == "cc":
         executable = "_{}".format(source.split(".")[0])
+        print(" * Compiling {}".format(colored(source, "blue")))
         stdout_data, stderr_data = exec_command(config.cpp_compile_base +
                                                 [source, "-o", executable])
-        print(" * Compiling {}".format(colored(source, "blue")))
         if len(stderr_data) > 0:
             stderr_data = stderr_data.strip()
             print_fixed_line(stderr_data)
