@@ -114,6 +114,7 @@ def main():
     parser.add_argument("-p", "--problem", help="problem name")
     parser.add_argument("-s", "--source", help="source file")
     parser.add_argument("--url", help="problem url")
+    parser.add_argument("--fast", action="store_true")
     args = parser.parse_args()
 
     # create base directory
@@ -170,11 +171,11 @@ def main():
     elif method == "test":
         if source == "":
             writeerr_and_exit("Error! No source file specified.")
-        check_testcases(source, contest, problem)
+        check_testcases(source, contest, problem, fast=args.fast)
     elif method == "run":
         if source == "":
             writeerr_and_exit("Error! No source file specified.")
-        run_source(source)
+        run_source(source, fast=args.fast)
 
     if not method == "copy":
         info["contest"] = contest

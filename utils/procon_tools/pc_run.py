@@ -15,13 +15,18 @@ def compose_command(ext, source):
     return None
 
 
-def run_source(source):
+def run_source(source, fast=False):
     ext = source.split(".")[-1]
     if ext == "cpp" or ext == "cc":
         executable = "_{}".format(source.split(".")[0])
         print(" * Compiling {}".format(colored(source, "blue")))
-        stdout_data, stderr_data = exec_command(config.cpp_compile_base +
-                                                [source, "-o", executable])
+        stdout_data, stderr_data = None, None
+        if not fast:
+            stdout_data, stderr_data = exec_command(config.cpp_compile_base +
+                                                    [source, "-o", executable])
+        else:
+            stdout_data, stderr_data = exec_command(
+                config.cpp_compile_base_fast + [source, "-o", executable])
         if len(stderr_data) > 0:
             stderr_data = stderr_data.strip()
             print_fixed_line(stderr_data)
