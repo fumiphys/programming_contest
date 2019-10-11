@@ -3,8 +3,8 @@ import subprocess
 from termcolor import colored
 
 import config
-from pc_test import exec_command, print_fixed_line
-from pc_utils import input_with_timeout, writeerr_and_exit
+from pc_utils import (exec_command, input_with_timeout, print_fixed_line,
+                      writeerr_and_exit)
 
 
 def compose_command(ext, source):

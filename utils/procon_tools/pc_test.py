@@ -8,6 +8,7 @@ import sys
 from termcolor import colored
 
 import config
+from pc_utils import exec_command, print_fixed_line
 
 
 def fetch_all_testcases(contest, problem):
@@ -35,37 +36,7 @@ def fetch_all_testcases(contest, problem):
     return testcases
 
 
-def print_fixed_line(cont, inp=False):
-    '''print cont (at most config.testcase_print_lines)
-    '''
-    cont = cont.split("\n")
-    if inp:
-        for i in range(min(len(cont), config.testcase_print_lines)):
-            print(" | {}".format(cont[i]))
-        if len(cont) > config.testcase_print_lines:
-            print("  ...")
-    else:
-        for i in range(len(cont)):
-            print(" | {}".format(cont[i]))
-
-
-def exec_command(cmd, inp=None, timeout=config.exec_timeout):
-    '''execute command
-    '''
-    try:
-        proc = subprocess.Popen(cmd,
-                                stdin=subprocess.PIPE,
-                                stdout=subprocess.PIPE,
-                                stderr=subprocess.PIPE,
-                                encoding='utf-8')
-        outs, errs = proc.communicate(input=inp, timeout=timeout)
-    except subprocess.TimeoutExpired:
-        proc.kill()
-        # outs, errs = proc.communicate()
-        return None, None
-    return outs, errs
-
-
+# TODO: move this to languages dir
 def exec_cpp_input(source, inp):
     '''execute c++ command
     '''
@@ -75,6 +46,7 @@ def exec_cpp_input(source, inp):
     return stdout_data, stderr_data
 
 
+# TODO: move this to languages dir
 def exec_py3_input(source, inp):
     '''execute python scirpt
     '''
@@ -133,6 +105,7 @@ def check_testcases(source, contest, problem, fast=False):
     ps = 0
     ext = source.split(".")[-1]
     if ext == "cpp" or ext == "cc":
+        # TODO: move this to languages dir
         executable = "_{}".format(source.split(".")[0])
         print(" * Compiling {}".format(colored(source, "blue")))
         stdout_data, stderr_data = None, None
