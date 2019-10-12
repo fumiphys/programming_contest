@@ -1,0 +1,128 @@
+/*
+ * Heavy Light Decomposition
+ */
+#ifndef _HEAVYLIGHTDECOMPOSITION_H_
+#define _HEAVYLIGHTDECOMPOSITION_H_
+
+#include <vector>
+#include <queue>
+#include <stack>
+using namespace std;
+
+// begin library heavy_light_decomposition here
+// usage of this library: HeavyLightDecomposition<int> hld(n);
+// usage of this library: hld.adde(u, v, w);
+// usage of this library: hld.lca(u, v);
+template <typename T>
+struct HeavyLightDecomposition{
+  struct edge{
+    int to;
+    T w;
+    edge(int to, T w): to(to), w(w){}
+  };
+  int n, cid;
+  vector<vector<edge>> edges;
+  vector<int> par, chain, depth, siz, pos_seg, head;
+  vector<T> parw;
+  HeavyLightDecomposition(){}
+  explicit HeavyLightDecomposition(int n): n(n){
+    edges.resize(n);
+    par.resize(n, -1);
+    chain.resize(n, -1);
+    depth.resize(n, -1);
+    siz.resize(n, 1);
+    pos_seg.resize(n, -1);
+    head.resize(n, -1);
+    parw.resize(n);
+  }
+  void adde(int from, int to, T w){
+    edges[from].emplace_back(to, w);
+  }
+  void build(int r = 0){
+    par.assign(n, -1);
+    chain.assign(n, -1);
+    depth.assign(n, -1);
+    siz.assign(n, -1);
+    pos_seg.assign(n, -1);
+
+    dfs(r);
+
+    hld(r);
+  }
+  void dfs(int r = 0){
+    par[r] = r;
+    depth[r] = 0;
+    deque<int> dq;
+    dq.push_back(r);
+
+    int l = 0;
+    while(l < (int)dq.size()){
+      int i = dq[l];
+      siz[i] = 1;
+      for(auto &e: edges[i]){
+        if(par[e.to] != -1)continue;
+        par[e.to] = i;
+        parw[e.to] = e.w;
+        depth[e.to] = depth[i] + 1;
+        dq.push_back(e.to);
+      }
+      l++;
+    }
+    while(!dq.empty()){
+      int i = dq.back(); dq.pop_back();
+      if(par[i] != i){
+        siz[par[i]] += siz[i];
+      }
+    }
+  }
+  void hld(int r = 0){
+    cid = 0;
+    chain[r] = cid;
+    pos_seg[r] = 0;
+    head[r] = r;
+
+    stack<int> st;
+    st.push(r);
+
+    while(!st.empty()){
+      int i = st.top(); st.pop();
+      int max_siz = 0;
+      int idx = -1;
+      for(auto &e: edges[i]){
+        if(par[e.to] != i)continue;
+        if(max_siz < siz[e.to]){
+          max_siz = siz[e.to];
+          idx = e.to;
+        }
+      }
+      if(idx == -1)continue;
+      for(auto &e: edges[i]){
+        if(par[e.to] != i)continue;
+        if(idx == e.to){
+          chain[e.to] = chain[i];
+          pos_seg[e.to] = pos_seg[i] + 1;
+          head[e.to] = head[i];
+          st.push(e.to);
+        }else{
+          chain[e.to] = ++cid;
+          pos_seg[e.to] = 0;
+          head[e.to] = e.to;
+          st.push(e.to);
+        }
+      }
+    }
+  }
+  int lca(int u, int v){
+    while(true){
+      if(chain[u] == chain[v]){
+        if(depth[u] < depth[v])return u;
+        else return v;
+      }
+      if(depth[head[u]] > depth[head[v]])swap(u, v);
+      v = par[head[v]];
+    }
+  }
+};
+// end library
+
+#endif // _HEAVYLIGHTDECOMPOSITION_H_

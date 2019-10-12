@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: heavy_light_decomposition_use
+# key: heavy_light_decomposition_use
+# --
+HeavyLightDecomposition<int> hld(n);
+hld.adde(u, v, w);
+hld.lca(u, v);
