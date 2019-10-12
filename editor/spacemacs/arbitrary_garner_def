@@ -30,6 +30,7 @@ long long garner(vector<T> b, vector<T> m, T MOD){
   vector<long long> consts(m.size(), 0);
   for(int i = 0; i < b.size(); i++){
     long long t = ((b[i] - consts[i]) % m[i]) * modinv<long long>(coef[i], m[i]) % m[i];
+    if(t < 0)t += m[i];
     for(int j = i + 1; j < m.size(); j++){
       consts[j] = (consts[j] + t * coef[j] % m[j]) % m[j];
       coef[j] = coef[j] * m[i] % m[j];
@@ -46,7 +47,7 @@ T gcd(T a, T b) {
 }
 
 template <typename T>
-long long arbitrary_garner(vector<T> b, vector<T> m, T MOD){
+long long arbitrary_garner(vector<T> &b, vector<T> &m, T MOD){
   for(int i = 0; i < b.size(); i++){
     for(int j = 0; j < i; j++){
       T g = gcd(m[i], m[j]);
