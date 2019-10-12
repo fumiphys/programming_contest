@@ -8,6 +8,7 @@ import sys
 from termcolor import colored
 
 import config
+from languages.cpp_utils import compile_cpp_source
 from pc_utils import exec_command, print_fixed_line
 
 
@@ -105,20 +106,8 @@ def check_testcases(source, contest, problem, fast=False):
     ps = 0
     ext = source.split(".")[-1]
     if ext == "cpp" or ext == "cc":
-        # TODO: move this to languages dir
-        executable = "_{}".format(source.split(".")[0])
-        print(" * Compiling {}".format(colored(source, "blue")))
-        stdout_data, stderr_data = None, None
-        if not fast:
-            stdout_data, stderr_data = exec_command(config.cpp_compile_base +
-                                                    [source, "-o", executable])
-        else:
-            stdout_data, stderr_data = exec_command(
-                config.cpp_compile_base_fast + [source, "-o", executable])
-        if len(stderr_data) > 0:
-            stderr_data = stderr_data.strip()
-            print_fixed_line(stderr_data)
-            print(" * Compile Failed")
+        b = compile_cpp_source(source, fast)
+        if not b:
             return
 
     for tc in testcases:
