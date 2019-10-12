@@ -3,9 +3,8 @@ import subprocess
 from termcolor import colored
 
 import config
-from languages.cpp_utils import compile_cpp_source
-from pc_utils import (exec_command, input_with_timeout, print_fixed_line,
-                      writeerr_and_exit)
+from languages import compile_cpp_source
+from pc_utils import input_with_timeout, print_fixed_line, writeerr_and_exit
 
 
 def compose_command(ext, source):

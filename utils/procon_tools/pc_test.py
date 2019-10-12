@@ -2,13 +2,12 @@
 '''
 import json
 import os
-import subprocess
 import sys
 
 from termcolor import colored
 
 import config
-from languages.cpp_utils import compile_cpp_source
+from languages import compile_cpp_source
 from pc_utils import exec_command, print_fixed_line
 
 
