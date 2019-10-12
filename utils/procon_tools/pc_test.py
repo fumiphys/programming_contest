@@ -7,8 +7,8 @@ import sys
 from termcolor import colored
 
 import config
-from languages import compile_cpp_source
-from pc_utils import exec_command, print_fixed_line
+from languages import compile_cpp_source, exec_cpp_input, exec_py3_input
+from pc_utils import print_fixed_line
 
 
 def fetch_all_testcases(contest, problem):
@@ -34,25 +34,6 @@ def fetch_all_testcases(contest, problem):
 
     print(" * {} Testcases Found.".format(colored(len(testcases), "blue")))
     return testcases
-
-
-# TODO: move this to languages dir
-def exec_cpp_input(source, inp):
-    '''execute c++ command
-    '''
-    executable = "./_{}".format(source.split(".")[0])
-    stdout_data, stderr_data = exec_command(
-        config.exec_time_base + [executable], inp)
-    return stdout_data, stderr_data
-
-
-# TODO: move this to languages dir
-def exec_py3_input(source, inp):
-    '''execute python scirpt
-    '''
-    stdout_data, stderr_data = exec_command(
-        config.exec_time_base + ["python3", source], inp)
-    return stdout_data, stderr_data
 
 
 def exec_input(source, inp):

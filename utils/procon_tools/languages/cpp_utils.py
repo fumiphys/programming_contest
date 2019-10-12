@@ -2,7 +2,7 @@
 '''
 from termcolor import colored
 
-from config import cpp_compile_base, cpp_compile_base_fast
+from config import cpp_compile_base, cpp_compile_base_fast, exec_time_base
 from pc_utils import exec_command, print_fixed_line
 
 
@@ -22,3 +22,11 @@ def compile_cpp_source(source, fast=False):
         print(" * Compile Failed")
         return False
     return True
+
+
+def exec_cpp_input(source, inp):
+    '''execute c++ command
+    '''
+    executable = "./_{}".format(source.split(".")[0])
+    stdout_data, stderr_data = exec_command(exec_time_base + [executable], inp)
+    return stdout_data, stderr_data
