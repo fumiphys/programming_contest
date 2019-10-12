@@ -24,3 +24,10 @@ dfsの順に木を区間に対応させる.
 木上のsum query
   - 1点更新, 2頂点間Query  
   verify: [AOJ(Range Query on a Tree)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_D)
+
+## Heavy Light Decomposition
+[heavy\_light\_decomposition.hpp](https://github.com/fumiphys/programming_contest/blob/master/tree/heavy_light_decomposition.hpp)  
+木をO(logN)のパスに分割する.
+ - Heavy Light Decomposition
+ - LCA  
+ verify: [AOJ(LCA: Lowest Common Ancestor)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C)
