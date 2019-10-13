@@ -15,7 +15,7 @@ from pc_utils import writeerr_and_exit
 
 def interactive(source, judge, fast=False):
     ext_source = source.split(".")[-1]
-    ext_judge = source.split(".")[-1]
+    ext_judge = judge.split(".")[-1]
     if ext_source == "cpp" or ext_source == "cc":
         b = compile_cpp_source(source, fast)
         if not b:
