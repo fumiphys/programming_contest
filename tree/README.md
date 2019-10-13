@@ -30,4 +30,6 @@ dfsの順に木を区間に対応させる.
 木をO(logN)のパスに分割する.
  - Heavy Light Decomposition
  - LCA  
- verify: [AOJ(LCA: Lowest Common Ancestor)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C)
+ verify: [AOJ(LCA: Lowest Common Ancestor)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_C) 
+ verify: [AOJ(Range Query on a Tree)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_D)  
+ verify: [AOJ(Range Query on a Tree II)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/5/GRL_5_E)  
