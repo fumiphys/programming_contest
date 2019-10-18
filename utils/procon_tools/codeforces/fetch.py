@@ -1,8 +1,6 @@
 '''fetch testcases from AtCoder
 '''
-import os
 import re
-import sys
 import urllib.request
 
 import bs4
@@ -11,8 +9,6 @@ from termcolor import colored
 
 from pc_testcase import TestCase
 from pc_utils import format_string, writeerr_and_exit
-
-sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
 
 class Codeforces(TestCase):

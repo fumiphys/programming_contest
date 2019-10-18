@@ -10,6 +10,7 @@ import config
 import pc_add
 from pc_copy import copy_source
 from pc_fetch import fetch_testcases, fetch_testcases_from_url
+from pc_interactive import interactive
 from pc_run import run_source
 from pc_test import check_testcases
 from pc_utils import load_info, write_info, writeerr_and_exit
@@ -25,7 +26,9 @@ signal.signal(signal.SIGINT, sigint_handler)
 def assert_method(method):
     '''check if method exists
     '''
-    methods = ["fetch", "fetchurl", "copy", "test", "run", "add"]
+    methods = [
+        "fetch", "fetchurl", "copy", "test", "run", "add", "interactive"
+    ]
     if method not in methods:
         writeerr_and_exit("Error! No support for method: {}.".format(method))
 
@@ -94,6 +97,17 @@ def get_source(args, info):
     return source
 
 
+def get_judge(args, info):
+    '''get judge file
+    '''
+    judge = ""
+    if args.judge is not None:
+        judge = args.judge
+    elif "judge" in info.keys():
+        judge = info["judge"]
+    return judge
+
+
 def get_url(args, info):
     '''get url
     '''
@@ -114,6 +128,9 @@ def main():
     parser.add_argument("-p", "--problem", help="problem name")
     parser.add_argument("-s", "--source", help="source file")
     parser.add_argument("--url", help="problem url")
+    parser.add_argument("--fast", action="store_true")
+    parser.add_argument("--judge", help="judge file")
+    parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
 
     # create base directory
@@ -154,6 +171,9 @@ def main():
     # source
     source = get_source(args, info)
 
+    # judge
+    judge = get_judge(args, info)
+
     # url
     url = get_url(args, info)
 
@@ -170,14 +190,21 @@ def main():
     elif method == "test":
         if source == "":
             writeerr_and_exit("Error! No source file specified.")
-        check_testcases(source, contest, problem)
+        check_testcases(source, contest, problem, fast=args.fast, force=args.force)
     elif method == "run":
         if source == "":
             writeerr_and_exit("Error! No source file specified.")
-        run_source(source)
+        run_source(source, fast=args.fast, force=args.force)
+    elif method == "interactive":
+        if source == "":
+            writeerr_and_exit("Error! No source file specified.")
+        if judge == "":
+            writeerr_and_exit("Error! No judge file specified.")
+        interactive(source, judge, fast=args.fast, force=args.force)
 
     if not method == "copy":
         info["contest"] = contest
         info["problem"] = problem
     info["source"] = source
+    info["judge"] = judge
     write_info(info)

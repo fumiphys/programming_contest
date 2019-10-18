@@ -2,12 +2,13 @@
 '''
 import json
 import os
-import subprocess
 import sys
 
 from termcolor import colored
 
 import config
+from languages import compile_cpp_source, exec_cpp_input, exec_py3_input
+from pc_utils import print_fixed_line
 
 
 def fetch_all_testcases(contest, problem):
@@ -33,54 +34,6 @@ def fetch_all_testcases(contest, problem):
 
     print(" * {} Testcases Found.".format(colored(len(testcases), "blue")))
     return testcases
-
-
-def print_fixed_line(cont, inp=False):
-    '''print cont (at most config.testcase_print_lines)
-    '''
-    cont = cont.split("\n")
-    if inp:
-        for i in range(min(len(cont), config.testcase_print_lines)):
-            print(" | {}".format(cont[i]))
-        if len(cont) > config.testcase_print_lines:
-            print("  ...")
-    else:
-        for i in range(len(cont)):
-            print(" | {}".format(cont[i]))
-
-
-def exec_command(cmd, inp=None, timeout=config.exec_timeout):
-    '''execute command
-    '''
-    try:
-        proc = subprocess.Popen(cmd,
-                                stdin=subprocess.PIPE,
-                                stdout=subprocess.PIPE,
-                                stderr=subprocess.PIPE,
-                                encoding='utf-8')
-        outs, errs = proc.communicate(input=inp, timeout=timeout)
-    except subprocess.TimeoutExpired:
-        proc.kill()
-        # outs, errs = proc.communicate()
-        return None, None
-    return outs, errs
-
-
-def exec_cpp_input(source, inp):
-    '''execute c++ command
-    '''
-    executable = "./_{}".format(source.split(".")[0])
-    stdout_data, stderr_data = exec_command(
-        config.exec_time_base + [executable], inp)
-    return stdout_data, stderr_data
-
-
-def exec_py3_input(source, inp):
-    '''execute python scirpt
-    '''
-    stdout_data, stderr_data = exec_command(
-        config.exec_time_base + ["python3", source], inp)
-    return stdout_data, stderr_data
 
 
 def exec_input(source, inp):
@@ -127,20 +80,14 @@ def run_testcases(source, tc):
     return res
 
 
-def check_testcases(source, contest, problem):
+def check_testcases(source, contest, problem, fast=False, force=False):
     testcases = fetch_all_testcases(contest, problem)
     al = 0
     ps = 0
     ext = source.split(".")[-1]
     if ext == "cpp" or ext == "cc":
-        executable = "_{}".format(source.split(".")[0])
-        print(" * Compiling {}".format(colored(source, "blue")))
-        stdout_data, stderr_data = exec_command(config.cpp_compile_base +
-                                                [source, "-o", executable])
-        if len(stderr_data) > 0:
-            stderr_data = stderr_data.strip()
-            print_fixed_line(stderr_data)
-            print(" * Compile Failed")
+        b = compile_cpp_source(source, fast, force)
+        if not b:
             return
 
     for tc in testcases:

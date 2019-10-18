@@ -3,8 +3,8 @@ import subprocess
 from termcolor import colored
 
 import config
-from pc_test import exec_command, print_fixed_line
-from pc_utils import input_with_timeout, writeerr_and_exit
+from languages import compile_cpp_source
+from pc_utils import input_with_timeout, print_fixed_line, writeerr_and_exit
 
 
 def compose_command(ext, source):
@@ -15,17 +15,11 @@ def compose_command(ext, source):
     return None
 
 
-def run_source(source):
+def run_source(source, fast=False, force=False):
     ext = source.split(".")[-1]
     if ext == "cpp" or ext == "cc":
-        executable = "_{}".format(source.split(".")[0])
-        print(" * Compiling {}".format(colored(source, "blue")))
-        stdout_data, stderr_data = exec_command(config.cpp_compile_base +
-                                                [source, "-o", executable])
-        if len(stderr_data) > 0:
-            stderr_data = stderr_data.strip()
-            print_fixed_line(stderr_data)
-            print(" * Compile Failed")
+        b = compile_cpp_source(source, fast, force)
+        if not b:
             return
 
     # run command

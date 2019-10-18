@@ -189,7 +189,7 @@ def test_get_url():
 
 def test_main(monkeypatch):
     monkeypatch.setattr(urllib.request, "urlopen", lambda x: "<html></html>")
-    monkeypatch.setattr("app.check_testcases", lambda x, y, z: None)
+    monkeypatch.setattr("app.check_testcases", lambda x, y, z, **kwargs: None)
     monkeypatch.setattr("app.copy_source", lambda x: None)
 
     def _test_main(args):
