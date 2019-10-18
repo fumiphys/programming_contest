@@ -130,6 +130,7 @@ def main():
     parser.add_argument("--url", help="problem url")
     parser.add_argument("--fast", action="store_true")
     parser.add_argument("--judge", help="judge file")
+    parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
 
     # create base directory
@@ -189,17 +190,17 @@ def main():
     elif method == "test":
         if source == "":
             writeerr_and_exit("Error! No source file specified.")
-        check_testcases(source, contest, problem, fast=args.fast)
+        check_testcases(source, contest, problem, fast=args.fast, force=args.force)
     elif method == "run":
         if source == "":
             writeerr_and_exit("Error! No source file specified.")
-        run_source(source, fast=args.fast)
+        run_source(source, fast=args.fast, force=args.force)
     elif method == "interactive":
         if source == "":
             writeerr_and_exit("Error! No source file specified.")
         if judge == "":
             writeerr_and_exit("Error! No judge file specified.")
-        interactive(source, judge, fast=args.fast)
+        interactive(source, judge, fast=args.fast, force=args.force)
 
     if not method == "copy":
         info["contest"] = contest

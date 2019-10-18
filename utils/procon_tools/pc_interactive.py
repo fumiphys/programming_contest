@@ -13,15 +13,15 @@ from pc_run import compose_command
 from pc_utils import writeerr_and_exit
 
 
-def interactive(source, judge, fast=False):
+def interactive(source, judge, fast=False, force=False):
     ext_source = source.split(".")[-1]
     ext_judge = judge.split(".")[-1]
     if ext_source == "cpp" or ext_source == "cc":
-        b = compile_cpp_source(source, fast)
+        b = compile_cpp_source(source, fast, force)
         if not b:
             return
     if ext_judge == "cpp" or ext_judge == "cc":
-        b = compile_cpp_source(judge, fast)
+        b = compile_cpp_source(judge, fast, force)
         if not b:
             return
 

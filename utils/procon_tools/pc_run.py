@@ -15,10 +15,10 @@ def compose_command(ext, source):
     return None
 
 
-def run_source(source, fast=False):
+def run_source(source, fast=False, force=False):
     ext = source.split(".")[-1]
     if ext == "cpp" or ext == "cc":
-        b = compile_cpp_source(source, fast)
+        b = compile_cpp_source(source, fast, force)
         if not b:
             return
 

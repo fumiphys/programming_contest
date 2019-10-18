@@ -80,13 +80,13 @@ def run_testcases(source, tc):
     return res
 
 
-def check_testcases(source, contest, problem, fast=False):
+def check_testcases(source, contest, problem, fast=False, force=False):
     testcases = fetch_all_testcases(contest, problem)
     al = 0
     ps = 0
     ext = source.split(".")[-1]
     if ext == "cpp" or ext == "cc":
-        b = compile_cpp_source(source, fast)
+        b = compile_cpp_source(source, fast, force)
         if not b:
             return
 

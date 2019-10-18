@@ -7,6 +7,8 @@ testcase_dir = "testcases"
 testcase_json = "testcase.json"
 info_dir = "info"
 info_json = "info.json"
+source_dir = "source"
+source_json = "source.json"
 
 # test
 testcase_print_lines = 4
