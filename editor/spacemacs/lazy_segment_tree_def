@@ -43,7 +43,7 @@ struct LazySegmentTree_ {
       lazy[k] = l_def;
     }
   }
-  E update(int a, int b, const E &val, int k, int l, int r){
+  T update(int a, int b, const E &val, int k, int l, int r){
     eval(k, r - l);
     if(r <= a || b <= l){
       return vec[k];
@@ -56,7 +56,7 @@ struct LazySegmentTree_ {
           update(a, b, val, 2*k+2, (l+r)/2, r));
     }
   }
-  E update(int a, int b, E val){
+  T update(int a, int b, E val){
     return update(a, b, val, 0, 0, n);
   }
   // [l, r) -> [a, b) (at k)
