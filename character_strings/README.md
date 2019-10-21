@@ -55,3 +55,8 @@ library for strings
 ## convert
 [convert.hpp](https://github.com/fumiphys/programming_contest/blob/master/character_strings/convert.hpp)  
 charとintを相互変換する
+
+## Palindromic Tree
+[palindromic\_tree.hpp](https://github.com/fumiphys/programming_contest/blob/master/character_strings/palindromic_tree.hpp)
+回文に対するデータ構造
+ - Palindromic Tree (i番目の文字が最後の最長回文など.)
