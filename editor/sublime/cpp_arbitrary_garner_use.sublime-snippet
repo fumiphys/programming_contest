@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+arbitrary_garner(b, m);
+]]></content>
+<tabTrigger>arbitrary_garner_use</tabTrigger>
+<scope>source.c++</scope>
+<description>arbitrary_garner usage</description>
+</snippet>

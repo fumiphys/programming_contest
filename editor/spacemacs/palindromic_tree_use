@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: palindromic_tree_use
+# key: palindromic_tree_use
+# --
+PalindromicTree pt(s);

@@ -157,6 +157,123 @@ snippet point_query_tree_use
 	                                                    [](ll a){return -a;},
 	                                                    0, vector<ll>());
 
+snippet heavy_light_decomposition_def
+	template <typename T>
+	struct HeavyLightDecomposition{
+	  struct edge{
+	    int to;
+	    T w;
+	    edge(int to, T w): to(to), w(w){}
+	  };
+	  int n, cid;
+	  vector<vector<edge>> edges;
+	  vector<int> par, chain, depth, siz, pos_seg, head;
+	  vector<T> parw;
+	  HeavyLightDecomposition(){}
+	  explicit HeavyLightDecomposition(int n): n(n){
+	    edges.resize(n);
+	    par.resize(n, -1);
+	    chain.resize(n, -1);
+	    depth.resize(n, -1);
+	    siz.resize(n, 1);
+	    pos_seg.resize(n, -1);
+	    head.resize(n, -1);
+	    parw.resize(n);
+	  }
+	  void adde(int from, int to, T w){
+	    edges[from].emplace_back(to, w);
+	  }
+	  void build(int r = 0){
+	    par.assign(n, -1);
+	    chain.assign(n, -1);
+	    depth.assign(n, -1);
+	    siz.assign(n, -1);
+	    pos_seg.assign(n, -1);
+	
+	    dfs(r);
+	
+	    hld(r);
+	  }
+	  void dfs(int r = 0){
+	    par[r] = r;
+	    depth[r] = 0;
+	    deque<int> dq;
+	    dq.push_back(r);
+	
+	    int l = 0;
+	    while(l < (int)dq.size()){
+	      int i = dq[l];
+	      siz[i] = 1;
+	      for(auto &e: edges[i]){
+	        if(par[e.to] != -1)continue;
+	        par[e.to] = i;
+	        parw[e.to] = e.w;
+	        depth[e.to] = depth[i] + 1;
+	        dq.push_back(e.to);
+	      }
+	      l++;
+	    }
+	    while(!dq.empty()){
+	      int i = dq.back(); dq.pop_back();
+	      if(par[i] != i){
+	        siz[par[i]] += siz[i];
+	      }
+	    }
+	  }
+	  void hld(int r = 0){
+	    cid = 0;
+	    chain[r] = cid;
+	    pos_seg[r] = 0;
+	    head[r] = r;
+	
+	    stack<int> st;
+	    st.push(r);
+	
+	    while(!st.empty()){
+	      int i = st.top(); st.pop();
+	      int max_siz = 0;
+	      int idx = -1;
+	      for(auto &e: edges[i]){
+	        if(par[e.to] != i)continue;
+	        if(max_siz < siz[e.to]){
+	          max_siz = siz[e.to];
+	          idx = e.to;
+	        }
+	      }
+	      if(idx == -1)continue;
+	      for(auto &e: edges[i]){
+	        if(par[e.to] != i)continue;
+	        if(idx == e.to){
+	          chain[e.to] = chain[i];
+	          pos_seg[e.to] = pos_seg[i] + 1;
+	          head[e.to] = head[i];
+	          st.push(e.to);
+	        }else{
+	          chain[e.to] = ++cid;
+	          pos_seg[e.to] = 0;
+	          head[e.to] = e.to;
+	          st.push(e.to);
+	        }
+	      }
+	    }
+	  }
+	  int lca(int u, int v){
+	    while(true){
+	      if(chain[u] == chain[v]){
+	        if(depth[u] < depth[v])return u;
+	        else return v;
+	      }
+	      if(depth[head[u]] > depth[head[v]])swap(u, v);
+	      v = par[head[v]];
+	    }
+	  }
+	};
+
+snippet heavy_light_decomposition_use
+	HeavyLightDecomposition<int> hld(n);
+	hld.adde(u, v, w);
+	hld.lca(u, v);
+
 snippet diameter_def
 	template <typename T>
 	struct edge{
@@ -257,7 +374,7 @@ snippet lazy_segment_tree_def
 	      lazy[k] = l_def;
 	    }
 	  }
-	  E update(int a, int b, const E &val, int k, int l, int r){
+	  T update(int a, int b, const E &val, int k, int l, int r){
 	    eval(k, r - l);
 	    if(r <= a || b <= l){
 	      return vec[k];
@@ -270,7 +387,7 @@ snippet lazy_segment_tree_def
 	          update(a, b, val, 2*k+2, (l+r)/2, r));
 	    }
 	  }
-	  E update(int a, int b, E val){
+	  T update(int a, int b, E val){
 	    return update(a, b, val, 0, 0, n);
 	  }
 	  // [l, r) -> [a, b) (at k)
@@ -1175,8 +1292,8 @@ snippet bigint_def
 	  }
 	  bool iszero(){
 	    trim();
-	    if(dg.empty())return false;
-	    return true;
+	    if(dg.empty())return true;
+	    return false;
 	  }
 	  ll long_value() const {
 	    ll res = 0;
@@ -1189,6 +1306,68 @@ snippet bigint_def
 
 snippet bigint_use
 	Bigint b = x;
+
+snippet palindromic_tree_def
+	struct Node{
+	  map<char, int> next;
+	  int len = 0;
+	  int suffixlink = -1;
+	  int cnt = 0;
+	  Node(int len, int suffixlink): len(len), suffixlink(suffixlink){}
+	};
+	
+	struct PalindromicTree{
+	  string s;
+	  vector<Node> tree;
+	  int curr = 0;
+	  vector<int> max_suffix_idx;
+	  PalindromicTree(const string &s): s(s){
+	    tree.reserve(s.size() + 2);
+	    curr = 2;
+	    tree.emplace_back(-1, 0);
+	    tree.emplace_back(0, 0);
+	    max_suffix_idx.resize(s.size() + 2, 1);
+	    for(size_t i = 0; i < s.size(); i++){
+	      addl(i);
+	    }
+	  }
+	  // true if added, false if exists
+	  bool addl(int i){
+	    int A = max_suffix_idx[i+1];
+	    while(true){
+	      if(i - 1 - tree[A].len >= 0 && s[i - 1 - tree[A].len] == s[i])break;
+	      A = tree[A].suffixlink;
+	    }
+	
+	    if(tree[A].next[s[i]] != 0){
+	      max_suffix_idx[i + 2] = tree[A].next[s[i]];
+	      return false;
+	    }
+	
+	    max_suffix_idx[i + 2] = curr;
+	    tree[A].next[s[i]] = curr;
+	    curr++;
+	    tree.emplace_back(tree[A].len + 2, -1);
+	
+	    if(tree.back().len == 1){
+	      tree.back().suffixlink = 1;
+	      tree.back().cnt = 1;
+	      return true;
+	    }
+	
+	    int B = A;
+	    while(true){
+	      B = tree[B].suffixlink;
+	      if(i - 1 - tree[B].len >= 0 && s[i - 1 - tree[B].len] == s[i])break;
+	    }
+	    tree.back().suffixlink = tree[B].next[s[i]];
+	    tree.back().cnt = 1 + tree[tree.back().suffixlink].cnt;
+	    return true;
+	  }
+	};
+
+snippet palindromic_tree_use
+	PalindromicTree pt(s);
 
 snippet convert_def
 	int ato_int(char c){
@@ -1989,6 +2168,7 @@ snippet garner_def
 	  vector<long long> consts(m.size(), 0);
 	  for(int i = 0; i < b.size(); i++){
 	    long long t = ((b[i] - consts[i]) % m[i]) * modinv<long long>(coef[i], m[i]) % m[i];
+	    if(t < 0)t += m[i];
 	    for(int j = i + 1; j < m.size(); j++){
 	      consts[j] = (consts[j] + t * coef[j] % m[j]) % m[j];
 	      coef[j] = coef[j] * m[i] % m[j];
@@ -1999,6 +2179,35 @@ snippet garner_def
 
 snippet garner_use
 	garner<long long>(b, m, mod);
+
+snippet arbitrary_garner_def
+	// depends: gcd
+	// depends: garner
+	template <typename T>
+	long long arbitrary_garner(vector<T> &b, vector<T> &m, T MOD){
+	  for(int i = 0; i < b.size(); i++){
+	    for(int j = 0; j < i; j++){
+	      T g = gcd(m[i], m[j]);
+	      if((b[i] - b[j]) % g != 0)return -1;
+	
+	      m[i] /= g, m[j] /= g;
+	
+	      T gi = gcd(m[i], g), gj = g / gi;
+	
+	      do{
+	        g = gcd(gi, gj);
+	        gi *= g, gj /= g;
+	      }while(g != 1);
+	
+	      m[i] *= gi, m[j] *= gj;
+	      b[i] %= m[i], b[j] %= m[j];
+	    }
+	  }
+	  return garner<T>(b, m, MOD);
+	}
+
+snippet arbitrary_garner_use
+	arbitrary_garner(b, m);
 
 snippet crt_def
 	// depends: extgcd

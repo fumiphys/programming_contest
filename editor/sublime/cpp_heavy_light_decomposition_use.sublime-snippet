@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+HeavyLightDecomposition<int> hld(n);
+hld.adde(u, v, w);
+hld.lca(u, v);
+]]></content>
+<tabTrigger>heavy_light_decomposition_use</tabTrigger>
+<scope>source.c++</scope>
+<description>heavy_light_decomposition usage</description>
+</snippet>

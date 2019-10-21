@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+PalindromicTree pt(s);
+]]></content>
+<tabTrigger>palindromic_tree_use</tabTrigger>
+<scope>source.c++</scope>
+<description>palindromic_tree usage</description>
+</snippet>

@@ -1,17 +1,7 @@
-/*
- * Palindromic Tree
- */
-
-#ifndef _PALINDROMIC_TREE_H_
-#define _PALINDROMIC_TREE_H_
-
-#include <map>
-#include <string>
-#include <vector>
-using namespace std;
-
-// begin library palindromic_tree here
-// usage of this library: PalindromicTree pt(s);
+# -*- mode: snippet -*-
+# name: palindromic_tree_def
+# key: palindromic_tree_def
+# --
 struct Node{
   map<char, int> next;
   int len = 0;
@@ -69,6 +59,3 @@ struct PalindromicTree{
     return true;
   }
 };
-// end library
-
-#endif // _PALINDROMIC_TREE_H_
