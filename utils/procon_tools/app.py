@@ -159,14 +159,20 @@ def main():
     write_info(info)
 
     # contest
-    if not method == "copy":
+    no_contest = ["copy", "run"]
+    if method not in no_contest:
         contest = get_contest(args, info)
+    else:
+        contest = ""
 
     # problem
-    if not method == "copy":
+    no_problem = ["copy", "run"]
+    if method not in no_problem:
         problem = get_problem(args, info)
         if host.lower() == "yukicoder":
             contest = problem
+    else:
+        problem = ""
 
     # source
     source = get_source(args, info)
@@ -202,8 +208,9 @@ def main():
             writeerr_and_exit("Error! No judge file specified.")
         interactive(source, judge, fast=args.fast, force=args.force)
 
-    if not method == "copy":
+    if method not in no_contest:
         info["contest"] = contest
+    if method not in no_problem:
         info["problem"] = problem
     info["source"] = source
     info["judge"] = judge
