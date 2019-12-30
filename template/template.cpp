@@ -10,7 +10,7 @@ using namespace std;
 #define rrep(i, n) for(int i=((int)(n)-1);i>=0;i--)
 #define irep(itr, st) for(auto itr = (st).begin(); itr != (st).end(); ++itr)
 #define irrep(itr, st) for(auto itr = (st).rbegin(); itr != (st).rend(); ++itr)
-#define all(x) (x).begin(),(x).end()
+#define whole(x) (x).begin(),(x).end()
 #define sz(x) ((int)(x).size())
 #define UNIQUE(v) v.erase(unique(v.begin(), v.end()), v.end())
 #define bit(n) (1LL<<(n))
