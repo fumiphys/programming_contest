@@ -25,8 +25,8 @@ def interactive(source, judge, fast=False, force=False):
         if not b:
             return
 
-    exe_source = compose_command(ext_source, source)
-    exe_judge = compose_command(ext_judge, judge)
+    exe_source = compose_command(ext_source, source, time=False)
+    exe_judge = compose_command(ext_judge, judge, time=False)
 
     if exe_source is None or exe_judge is None:
         return
@@ -34,13 +34,13 @@ def interactive(source, judge, fast=False, force=False):
     proc_source = subprocess.Popen(exe_source,
                                    stdin=subprocess.PIPE,
                                    stdout=subprocess.PIPE,
-                                   stderr=subprocess.PIPE,
+                                   # stderr=subprocess.PIPE,
                                    encoding='utf-8',
                                    bufsize=1)
     proc_judge = subprocess.Popen(exe_judge,
                                   stdin=subprocess.PIPE,
                                   stdout=subprocess.PIPE,
-                                  stderr=subprocess.PIPE,
+                                  # stderr=subprocess.PIPE,
                                   encoding='utf-8',
                                   bufsize=1)
     flag = fcntl.fcntl(proc_source.stdout.fileno(), fcntl.F_GETFL)
@@ -52,9 +52,7 @@ def interactive(source, judge, fast=False, force=False):
                 flag | os.O_NONBLOCK)
     while True:
         try:
-            if proc_source.poll() is not None:
-                break
-            if proc_judge.poll() is not None:
+            if proc_source.poll() is not None and proc_judge.poll() is not None:
                 break
             buf_source = proc_source.stdout.readline()
             buf_judge = proc_judge.stdout.readline()

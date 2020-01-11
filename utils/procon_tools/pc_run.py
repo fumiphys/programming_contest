@@ -7,11 +7,17 @@ from languages import compile_cpp_source
 from pc_utils import input_with_timeout, print_fixed_line, writeerr_and_exit
 
 
-def compose_command(ext, source):
-    if ext == "cpp" or ext == "cc":
-        return config.exec_time_base + ["./_{}".format(source.split(".")[0])]
-    elif ext == "py" or ext == "py3":
-        return config.exec_time_base + ["python3", source]
+def compose_command(ext, source, time=True):
+    if time:
+        if ext == "cpp" or ext == "cc":
+            return config.exec_time_base + ["./_{}".format(source.split(".")[0])]
+        elif ext == "py" or ext == "py3":
+            return config.exec_time_base + ["python3", source]
+    else:
+        if ext == "cpp" or ext == "cc":
+            return ["./_{}".format(source.split(".")[0])]
+        elif ext == "py" or ext == "py3":
+            return ["python3", source]
     return None
 
 
