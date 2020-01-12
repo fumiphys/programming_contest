@@ -11,7 +11,7 @@
 using namespace std;
 
 const int mod = 1e9 + 7;
-using MM = ModInt<mod>;
+using MM = Mint;
 
 int main(int argc, char const* argv[])
 {

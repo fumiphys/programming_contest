@@ -1,85 +1,86 @@
 /*
- * Library for ModInt
+ * Library for Modint
  */
 #ifndef _MODINT_H_
 #define _MODINT_H_
-
-#include <iostream>
+#include "algebra.hpp"
 using namespace std;
 using ll = long long;
 
-template <int MOD>
-struct ModInt {
+// begin library modint here
+// usage of this library: Mint x(n);
+// depends: modinv
+struct Mint{
+  const static ll default_mod = (ll)(1e9 + 7);
+  ll MOD = default_mod;
   ll x = 0;
-  ModInt(){}
-  ModInt(ll x_){
-    x = int(x_ % MOD);
+  ll get_mod(){
+    return MOD;
+  }
+  Mint(){}
+  Mint(ll x_, ll MOD=default_mod): MOD(MOD){
+    x = x_;
+    x %= MOD;
     if(x < 0)x += MOD;
   }
-  ModInt(const ModInt &m){
+  Mint(const Mint &m){
     x = m.x;
+    MOD = m.MOD;
   }
-  ModInt& operator+=(const ModInt &y){
+  Mint &operator+=(const Mint &y){
     x = (x + y.x) % MOD;
     if(x < 0)x += MOD;
     return *this;
   }
-  ModInt& operator-=(const ModInt &y){
+  Mint &operator-=(const Mint &y){
     x = (x - y.x) % MOD;
     if(x < 0)x += MOD;
     return *this;
   }
-  ModInt& operator*=(const ModInt &y){
+  Mint &operator*=(const Mint &y){
     x = (x * y.x) % MOD;
     if(x < 0)x += MOD;
     return *this;
   }
-  ModInt& operator/=(const ModInt &y){
+  Mint inverse() const{
+    return Mint(modinv<ll>(x, MOD), MOD);
+  }
+  Mint &operator/=(const Mint &y){
     x = (x * y.inverse().x) % MOD;
     if(x < 0)x += MOD;
     return *this;
   }
-  ModInt inverse() const{
-    ll res = 1;
-    ll tmp = MOD - 2;
-    ll curr = x;
-    while(tmp){
-      if(tmp % 2 == 1)res = res * curr % MOD;
-      curr = curr * curr % MOD;
-      tmp /= 2;
-    }
-    return ModInt(res);
+  Mint operator-() const{
+    return Mint(-x, MOD);
   }
-  ModInt operator-() const{
-    return ModInt(-x);
+  Mint operator+(const Mint &y) const{
+    return Mint(*this) += y;
   }
-  ModInt operator+(const ModInt &y) const{
-    return ModInt(*this) += y;
+  Mint operator-(const Mint &y) const{
+    return Mint(*this) -= y;
   }
-  ModInt operator-(const ModInt &y) const{
-    return ModInt(*this) -= y;
+  Mint operator*(const Mint &y) const{
+    return Mint(*this) *= y;
   }
-  ModInt operator*(const ModInt &y) const{
-    return ModInt(*this) *= y;
+  Mint operator/(const Mint &y) const{
+    return Mint(*this) /= y;
   }
-  ModInt operator/(const ModInt &y) const{
-    return ModInt(*this) /= y;
-  }
-  bool operator==(const ModInt &y) const{
+  bool operator==(const Mint &y) const{
     return x == y.x;
   }
-  bool operator!=(const ModInt &y) const{
+  bool operator!=(const Mint &y) const{
     return x != y.x;
   }
-  friend ostream& operator<<(ostream &os, const ModInt<MOD> &m){
+  friend ostream& operator<<(ostream &os, const Mint &m){
     return os << m.x;
   }
-  friend istream& operator>>(istream &is, ModInt<MOD> &m){
-    long t;
+  friend istream& operator>>(istream &is, Mint &m){
+    ll t;
     is >> t;
-    m = ModInt<MOD>(t);
+    m = Mint(t);
     return is;
   }
 };
+// end library
 
-#endif
+#endif // _MODINT_H_
