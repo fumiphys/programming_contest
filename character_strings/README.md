@@ -54,7 +54,15 @@ library for strings
 
 ## convert
 [convert.hpp](https://github.com/fumiphys/programming_contest/blob/master/character_strings/convert.hpp)  
-charとintを相互変換する
+charとintを相互変換する  
+| function | arguments | return | description |
+|:--------:|:---------:|:------:|:-----------:|
+| ato\_int | char | int | 小文字a-z $\rightarrow$ intへの変換 |
+| to\_achar | int | char | int $\rightarrow$ 小文字a-zへの変換 |
+| Ato\_int | char | int | A-Za-z $\rightarrow$ intへの変換(大文字は+26) |
+| to\_Achar | int | char | int $\rightarrow$ A-Za-zへの変換(大文字は+26) |
+| dto\_int | char | int | char0-9 $\rightarrow$ int0-9への変換(大文字は+26) |
+| to\_dchar | int | char | int0-9 $\rightarrow$ char0-9への変換(大文字は+26) |
 
 ## Palindromic Tree
 [palindromic\_tree.hpp](https://github.com/fumiphys/programming_contest/blob/master/character_strings/palindromic_tree.hpp)
