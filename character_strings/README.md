@@ -48,21 +48,23 @@ library for strings
 
 ## Z-Algorithm
 [z.hpp](https://github.com/fumiphys/programming_contest/blob/master/character_strings/z.hpp)  
-文字列sとs[i:]の共通接頭辞の長さを線形時間で求める.
-  - zarray (calculate Z array)  
+文字列sとs[i:]の共通接頭辞の長さを線形時間で求める.  
   verify: [Atcoder(ABCAC)](https://atcoder.jp/contests/arc055/tasks/arc055_c)
+| function | arguments | return | description | complexity |
+|:--------:|:---------:|:------:|:-----------|:----------:|
+| zarray | const string &s | vector\<int\> z | $z[i] = s[i:]$と$s[0:]$の共通接頭辞の長さ | $O(n)$ |
 
 ## convert
 [convert.hpp](https://github.com/fumiphys/programming_contest/blob/master/character_strings/convert.hpp)  
 charとintを相互変換する  
-| function | arguments | return | description |
-|:--------:|:---------:|:------:|:-----------:|
-| ato\_int | char | int | 小文字a-z $\rightarrow$ intへの変換 |
-| to\_achar | int | char | int $\rightarrow$ 小文字a-zへの変換 |
-| Ato\_int | char | int | A-Za-z $\rightarrow$ intへの変換(大文字は+26) |
-| to\_Achar | int | char | int $\rightarrow$ A-Za-zへの変換(大文字は+26) |
-| dto\_int | char | int | char0-9 $\rightarrow$ int0-9への変換(大文字は+26) |
-| to\_dchar | int | char | int0-9 $\rightarrow$ char0-9への変換(大文字は+26) |
+| function | arguments | return | description | complexity |
+|:--------:|:---------:|:------:|:-----------|:----------:|
+| ato\_int | char | int | 小文字a-z $\rightarrow$ intへの変換 | $O(1)$ |
+| to\_achar | int | char | int $\rightarrow$ 小文字a-zへの変換 | $O(1)$ |
+| Ato\_int | char | int | A-Za-z $\rightarrow$ intへの変換(大文字は+26) | $O(1)$ |
+| to\_Achar | int | char | int $\rightarrow$ A-Za-zへの変換(大文字は+26) | $O(1)$ |
+| dto\_int | char | int | char0-9 $\rightarrow$ int0-9への変換(大文字は+26) | $O(1)$ |
+| to\_dchar | int | char | int0-9 $\rightarrow$ char0-9への変換(大文字は+26) | $O(1)$ |
 
 ## Palindromic Tree
 [palindromic\_tree.hpp](https://github.com/fumiphys/programming_contest/blob/master/character_strings/palindromic_tree.hpp)
