@@ -8,6 +8,8 @@
 #include <vector>
 using namespace std;
 
+// begin library zarray here
+// usage of this library: vector<int> z = zarray(s);
 vector<int> zarray(const string &s){
   int n = s.size();
   vector<int> z(n, 0);
@@ -25,5 +27,6 @@ vector<int> zarray(const string &s){
   z[0] = n;
   return z;
 }
+// end library
 
 #endif
