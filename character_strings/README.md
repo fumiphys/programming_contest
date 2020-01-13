@@ -50,6 +50,8 @@ library for strings
 [z.hpp](https://github.com/fumiphys/programming_contest/blob/master/character_strings/z.hpp)  
 文字列sとs[i:]の共通接頭辞の長さを線形時間で求める.  
   verify: [Atcoder(ABCAC)](https://atcoder.jp/contests/arc055/tasks/arc055_c)
+
+
 | function | arguments | return | description | complexity |
 |:--------:|:---------:|:------:|:-----------|:----------:|
 | zarray | const string &s | vector\<int\> z | $z[i] = s[i:]$と$s[0:]$の共通接頭辞の長さ | $O(n)$ |
@@ -57,6 +59,8 @@ library for strings
 ## convert
 [convert.hpp](https://github.com/fumiphys/programming_contest/blob/master/character_strings/convert.hpp)  
 charとintを相互変換する  
+
+
 | function | arguments | return | description | complexity |
 |:--------:|:---------:|:------:|:-----------|:----------:|
 | ato\_int | char | int | 小文字a-z $\rightarrow$ intへの変換 | $O(1)$ |
