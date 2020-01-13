@@ -4,8 +4,10 @@
 #include <iostream>
 #include <vector>
 #include <cassert>
+#include <random>
 #include "../bit.hpp"
 using namespace std;
+using ll = long long;
 
 int main(int argc, char const* argv[])
 {
@@ -30,6 +32,41 @@ int main(int argc, char const* argv[])
   assert(v[1] == -4);
   assert(v[2] == -2);
   assert(v[3] == 4);
+  // random test
+  random_device rnd;
+  mt19937 mt(rnd());
+  uniform_int_distribution<> dist(0, 1000);
+  int n = (1 << 10);
+
+  vector<ll> f(n);
+  for(int i = 0; i < n; i++)f[i] = dist(mt);
+  vector<ll> g1(n, 0);
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < n; j++){
+      if((i & j) == i)g1[i] += f[j];
+    }
+  }
+  vector<ll> g2 = f;
+  fast_zeta(g2);
+  for(int i = 0; i < n; i++){
+    assert(g1[i] == g2[i]);
+  }
+
+  vector<ll> h1(n, 0);
+  for(int i = 0; i < n; i++){
+    for(int j = 0; j < n; j++){
+      if((i & j) == i){
+        int pop = __builtin_popcount(i ^ j);
+        pop = (pop & 1) ? -1: 1;
+        h1[i] += f[j] * pop;
+      }
+    }
+  }
+  vector<ll> h2 = f;
+  fast_moebius(h2);
+  for(int i = 0; i < n; i++){
+    assert(h1[i] == h2[i]);
+  }
   cout << "-- test for bit end: Success --" << endl;
   return 0;
 }
