@@ -12,6 +12,7 @@ using namespace std;
 
 // begin library fft here
 // usage of this library: fft(f);
+const long double m_pi = acosl(-1.);
 template <typename T>
 struct custom_complex{
   T x = 0, y = 0;
@@ -67,7 +68,7 @@ void rec_fft(vector<cd> &f, bool inv=false){
   }
   rec_fft(f0, inv);
   rec_fft(f1, inv);
-  double th = M_PI * 2 / n;
+  double th = m_pi * 2 / n;
   if(inv)th = - th;
   cd u(cos(th), sin(th)), ui(1., 0);
   for(int i = 0; i < n; i++){
@@ -81,7 +82,7 @@ void fft(vector<cd> &f, bool inv=false){
   int n = f.size(), mask = n - 1;
   vector<cd> tmp(n);
   for(int i = n >> 1; i >= 1; i >>= 1){
-    cd zeta = pol<double>(1., 2. * M_PI * i * (inv ? -1.: 1.) / n);
+    cd zeta = pol<double>(1., 2. * m_pi * i * (inv ? -1.: 1.) / n);
     cd w = cd(1., 0);
     for(int j = 0; j < n; j += i){
       for(int k = 0; k < i; k++){
