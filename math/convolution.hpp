@@ -12,7 +12,50 @@ using namespace std;
 
 // begin library fft here
 // usage of this library: fft(f);
-using cd = complex<double>;
+template <typename T>
+struct custom_complex{
+  T x = 0, y = 0;
+  custom_complex(){}
+  custom_complex(T x, T y): x(x), y(y){}
+  custom_complex operator+(const custom_complex &r) const{
+    return custom_complex(x + r.x, y + r.y);
+  }
+  custom_complex operator-(const custom_complex &r) const{
+    return custom_complex(x - r.x, y - r.y);
+  }
+  custom_complex operator*(const custom_complex &r) const{
+    return custom_complex(x * r.x - y * r.y, x * r.y + y * r.x);
+  }
+  custom_complex conjugate() const{
+    return custom_complex(x, - y);
+  }
+  custom_complex operator/(const custom_complex &r ) const{
+    T norm = r.x * r.x + r.y * r.y;
+    custom_complex cc = (*this) * r.conjugate();
+    cc.x /= norm;
+    cc.y /= norm;
+    return cc;
+  }
+  custom_complex& operator*=(const custom_complex &r){
+    T xp = x, yp = y;
+    x = xp * r.x - yp * r.y;
+    y = xp * r.y + yp * r.x;
+    return *this;
+  }
+  T real() const{
+    return x;
+  }
+  T imag() const{
+    return y;
+  }
+};
+
+template <typename T>
+custom_complex<T> pol(T r, T theta){
+  return custom_complex<T>(r * cosl(theta), r * sinl(theta));
+}
+
+using cd = custom_complex<double>;
 // f.size() should be the power of 2.
 void rec_fft(vector<cd> &f, bool inv=false){
   int n = f.size();
@@ -26,7 +69,7 @@ void rec_fft(vector<cd> &f, bool inv=false){
   rec_fft(f1, inv);
   double th = M_PI * 2 / n;
   if(inv)th = - th;
-  cd u(cos(th), sin(th)), ui(1, 0);
+  cd u(cos(th), sin(th)), ui(1., 0);
   for(int i = 0; i < n; i++){
     f[i] = f0[i%(n/2)] + ui * f1[i%(n/2)];
     ui = ui * u;
@@ -38,8 +81,8 @@ void fft(vector<cd> &f, bool inv=false){
   int n = f.size(), mask = n - 1;
   vector<cd> tmp(n);
   for(int i = n >> 1; i >= 1; i >>= 1){
-    cd zeta = polar(1., 2. * M_PI * i * (inv ? -1.: 1.) / n);
-    cd w = 1;
+    cd zeta = pol<double>(1., 2. * M_PI * i * (inv ? -1.: 1.) / n);
+    cd w = cd(1., 0);
     for(int j = 0; j < n; j += i){
       for(int k = 0; k < i; k++){
         tmp[j + k] = f[((j<<1)&mask) + k] + w * f[(((j<<1)+i)&mask)+k];
@@ -56,16 +99,16 @@ void dft(vector<cd> &f){
 
 void idft(vector<cd> &f){
   fft(f, true);
-  for(size_t i = 0; i < f.size(); i++)f[i] = f[i] / cd(f.size());
+  for(size_t i = 0; i < f.size(); i++)f[i] = f[i] / cd(f.size(), 0.);
 }
 
 template <typename T>
 vector<T> convolution(const vector<T> &f, const vector<T> &g){
   int n = 1;
   while(n < 2 * f.size() + 1)n *= 2;
-  vector<cd> F(n, 0), G(n, 0);
-  for(int i = 0; i < f.size(); i++)F[i] = cd(f[i]);
-  for(int i = 0; i < g.size(); i++)G[i] = cd(g[i]);
+  vector<cd> F(n, cd(0., 0.)), G(n, cd(0., 0.));
+  for(int i = 0; i < f.size(); i++)F[i] = cd(f[i], 0.);
+  for(int i = 0; i < g.size(); i++)G[i] = cd(g[i], 0.);
 
   dft(F);
   dft(G);
