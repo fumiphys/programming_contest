@@ -42,6 +42,7 @@ printf '\e[32mTest for graph ...\e[m\n'
 ./graph/strongly_connected_components
 ./graph/hopcroft_karp
 ./graph/steiner_tree
+./graph/lowlink
 printf '\e[32mTest for math ...\e[m\n'
 ./math/geometry
 ./math/power
