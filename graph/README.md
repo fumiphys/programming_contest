@@ -109,3 +109,4 @@ lowlinkを用いてグラフの橋, 関節点などを求める.
  - lowlink  
  verify: [AOJ(Articulation Points)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_A)  
  verify: [AOJ(Bridges)](https://onlinejudge.u-aizu.ac.jp/courses/library/5/GRL/3/GRL_3_B)
+ - two edge connected components
