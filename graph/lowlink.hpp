@@ -49,4 +49,31 @@ struct LowLink{
     dfs(0, -1);
   }
 };
+
+struct TwoEdgeConnectedComponents: LowLink{
+  vector<int> idx;
+  vector<vector<int>> tedge;
+  int tc;
+  TwoEdgeConnectedComponents(int n): LowLink::LowLink(n){
+    idx.resize(n);
+  }
+  void dfs(int i, int p){
+    if(p != -1 && ord[p] >= low[i])idx[i] = idx[p];
+    else idx[i] = tc++;
+    for(auto e: edge[i]){
+      if(idx[e] == -1)dfs(e, i);
+    }
+  }
+  void build(){
+    LowLink::build();
+    idx.assign(n, -1);
+    tc = 0;
+    dfs(0, -1);
+    tedge.resize(tc);
+    for(auto e: bridge){
+      tedge[idx[e.first]].push_back(idx[e.second]);
+      tedge[idx[e.second]].push_back(idx[e.first]);
+    }
+  }
+};
 // end library

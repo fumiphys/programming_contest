@@ -40,6 +40,35 @@ int main(){
     if(lk.articulation[i] == 3)ok = true;
   }
   assert(ok);
+
+  // two edge connected components
+  TwoEdgeConnectedComponents tecc(n);
+  tecc.adde(0, 1);
+  tecc.adde(0, 2);
+  tecc.adde(1, 0);
+  tecc.adde(1, 2);
+  tecc.adde(2, 0);
+  tecc.adde(2, 1);
+  tecc.adde(2, 3);
+  tecc.adde(3, 2);
+  tecc.adde(3, 4);
+  tecc.adde(4, 3);
+  tecc.build();
+  assert(tecc.idx[0] == tecc.idx[1] && tecc.idx[1] == tecc.idx[2]);
+  assert(tecc.idx[0] != tecc.idx[3]);
+  assert(tecc.idx[0] != tecc.idx[4] && tecc.idx[3] != tecc.idx[4]);
+  assert(tecc.tedge.size() == 3);
+
+  ok = false;
+  for(auto e: tecc.tedge[tecc.idx[0]]){
+    if(e == tecc.idx[3])ok = true;
+  }
+  assert(ok);
+  ok = false;
+  for(auto e: tecc.tedge[tecc.idx[3]]){
+    if(e == tecc.idx[4])ok = true;
+  }
+  assert(ok);
   cout << "-- test for lowlink end: Success --" << endl;
   return 0;
 }
