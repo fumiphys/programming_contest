@@ -135,6 +135,34 @@ struct FPS: vector<T>{
     }
     return res.pre(deg);
   }
+  FPS operator>>(int sz) const{
+    if(sz >= this->size())return {};
+    FPS res(*this);
+    res.erase(res.begin(), res.begin() + sz);
+    return res;
+  }
+  FPS operator<<(int sz) const{
+    FPS res(*this);
+    res.insert(res.begin(), sz, (T)0);
+    return res;
+  }
+  FPS diff() const{
+    int n = this->size();
+    FPS res(max(0, n - 1));
+    for(int i = 0; i < n - 1; i++){
+      res[i] = (*this)[i + 1] * (T)(i + 1);
+    }
+    return res;
+  }
+  FPS integral() const{
+    int n = this->size();
+    FPS res(n + 1);
+    res[0] = (T)0;
+    for(int i = 0; i < n; i++){
+      res[i+1] = (*this)[i] / (T)(i + 1);
+    }
+    return res;
+  }
   friend ostream& operator<<(ostream &os, const FPS &f){
     for(size_t i = 0; i < f.size(); i++){
       os << f[i];

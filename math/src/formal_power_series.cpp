@@ -33,11 +33,25 @@ int main(){
   // minus
   h = - h;
   cerr << h << endl;
+  // division
   h = - h;
   h = h / f;
   cerr << h << endl;
   cerr << h * f << endl;
-  // division
+  f = FPS<Mint>(n + 1, Mint(1));
+  g = FPS<Mint>(n + 1, Mint(1));
+  h = f * g;
+  h += FPS<Mint>({1, 1});
+  h = h % f;
+  cerr << h << endl;
+  // shift
+  cerr << (f << 2) << endl;
+  cerr << (f >> 1) << endl;
+  // differentiate
+  cerr << f.diff() << endl;
+  // integral
+  cerr << f.integral() << endl;
+  cerr << f.integral().diff() << endl;
   cout << "-- test for formal power series end: Success --" << endl;
   return 0;
 }
