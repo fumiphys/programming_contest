@@ -2,6 +2,7 @@
  * Formal Power Series
  */
 #include <vector>
+#include <algorithm>
 #include "convolution.hpp"
 using namespace std;
 
