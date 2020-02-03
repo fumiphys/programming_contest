@@ -80,6 +80,9 @@ struct Mint{
     m = Mint(t);
     return is;
   }
+  explicit operator long long() const{
+    return x;
+  }
 };
 // end library
 
