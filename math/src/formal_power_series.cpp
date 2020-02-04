@@ -52,6 +52,15 @@ int main(){
   // integral
   cerr << f.integral() << endl;
   cerr << f.integral().diff() << endl;
+  // log
+  f = FPS<Mint>({1, 1});
+  cerr << f.log(4) << endl;
+  // exp
+  f = FPS<Mint>({0, 1});
+  cerr << f.exp(4) << endl;
+  // sqrt
+  f = FPS<Mint>({1, 1});
+  cerr << f.sqrt(4) << endl;
   cout << "-- test for formal power series end: Success --" << endl;
   return 0;
 }

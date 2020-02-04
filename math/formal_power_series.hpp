@@ -163,6 +163,44 @@ struct FPS: vector<T>{
     }
     return res;
   }
+  FPS log(int deg = -1) const{
+    assert((*this)[0] == 1);
+    int n = this->size();
+    if(deg == -1)deg = n;
+    return (diff() * inv(deg)).pre(deg - 1).integral();
+  }
+  FPS exp(int deg = -1) const{
+    assert((*this)[0] == (T)0);
+    int n = this->size();
+    if(deg == -1)deg = n;
+    FPS res({(T)1});
+    for(int i = 1; i < deg; i<<=1){
+      res = (res * (pre(i << 1) + (T)1 - res.log(i << 1))).pre(i << 1);
+    }
+    return res.pre(deg);
+  }
+  FPS sqrt(int deg = -1) const{
+    int n = this->size();
+    if(deg == -1)deg = n;
+    if((*this)[0] == (T)0){
+      for(int i = 1; i < n; i++){
+        if((*this)[i] != (T)0){
+          if(i & 1)return {};
+          if(deg - i / 2 <= 0)break;
+          FPS res = (*this >> i).sqrt(deg - i / 2) << (i / 2);
+          if(res.size() < deg)res.resize(deg, (T)0);
+          return res;
+        }
+      }
+      return FPS(deg, 0);
+    }
+    FPS res({(T)1});
+    T half = (T)1 / (T)2;
+    for(int i = 1; i < deg; i<<=1){
+      res = (res + pre(i << 1) * res.inv(i << 1)) * half;
+    }
+    return res.pre(deg);
+  }
   friend ostream& operator<<(ostream &os, const FPS &f){
     for(size_t i = 0; i < f.size(); i++){
       os << f[i];
