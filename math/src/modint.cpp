@@ -24,6 +24,7 @@ int main(int argc, char const* argv[])
   assert(m2 / m1 == Mint(3));
   m = Mint(2);
   assert(m.inverse() == Mint(int(5e8+4)));
+  assert(m.pow(10) == Mint(1024));
 
   const long long MOD = 998244353;
   random_device rnd;

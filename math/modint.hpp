@@ -4,12 +4,14 @@
 #ifndef _MODINT_H_
 #define _MODINT_H_
 #include "algebra.hpp"
+#include "power.hpp"
 using namespace std;
 using ll = long long;
 
 // begin library modint here
 // usage of this library: Mint x(n);
 // depends: modinv
+// depends: power
 struct Mint{
   const static ll default_mod = (ll)(1e9 + 7);
   ll MOD = default_mod;
@@ -70,6 +72,10 @@ struct Mint{
   }
   bool operator!=(const Mint &y) const{
     return x != y.x;
+  }
+  Mint pow(long long k) const{
+    long long ret = power<long long>(x, k, MOD);
+    return Mint(ret, MOD);
   }
   friend ostream& operator<<(ostream &os, const Mint &m){
     return os << m.x;
