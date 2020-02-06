@@ -61,6 +61,10 @@ int main(){
   // sqrt
   f = FPS<Mint>({1, 1});
   cerr << f.sqrt(4) << endl;
+  // pow
+  f = FPS<Mint>({1, 1, 0, 0, 0});
+  cerr << (f.log()).exp() << endl;
+  cerr << f.pow(4) << endl;
   cout << "-- test for formal power series end: Success --" << endl;
   return 0;
 }

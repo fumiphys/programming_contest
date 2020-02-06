@@ -201,6 +201,29 @@ struct FPS: vector<T>{
     }
     return res.pre(deg);
   }
+  FPS pow(long long k, int deg = -1) const{
+    int n = this->size();
+    if(deg == -1)deg = n;
+    for(int i = 0; i < n; i++){
+      if((*this)[i] != (T)0){
+        T rev = T(1) / (*this)[i];
+        FPS D = (*this * rev) << i;
+        D = (D.log() * k).exp() * (*this)[i].pow(k);
+        if(i * k >= deg)return {};
+        FPS ret = (D >> (i * k)).pre(deg);
+        return ret;
+      }
+    }
+    return *this;
+  }
+  T val(T x) const{
+    T ret = 0, w = 1;
+    for(size_t i = 0; i < this->size(); i++){
+      ret += (*this)[i] * w;
+      w *= x;
+    }
+    return ret;
+  }
   friend ostream& operator<<(ostream &os, const FPS &f){
     for(size_t i = 0; i < f.size(); i++){
       os << f[i];
