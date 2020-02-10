@@ -10,7 +10,7 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-  cout << "test for palindromic tree start --" << endl;
+  cout << "-- test for palindromic tree start --" << endl;
   string s = "eertreere";
   PalindromicTree pt = PalindromicTree(s);
   
@@ -22,6 +22,6 @@ int main(int argc, char const *argv[])
   assert(pt.tree[pt.max_suffix_idx[6]].len == 3);
   assert(pt.tree[pt.max_suffix_idx[7]].len == 5);
   assert(pt.tree[pt.max_suffix_idx[8]].len == 7);
-  cout << "test for palindromic tree end: Success --" << endl;
+  cout << "-- test for palindromic tree end: Success --" << endl;
   return 0;
 }
