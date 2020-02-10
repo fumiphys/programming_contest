@@ -120,7 +120,8 @@ def generate_snippet(filelist):
     while len(nodes) > 0:
         node = nodes[-1]
         nodes.pop()
-        dic["{}_def".format(library_list[node].library)] = library_list[node].dump_def()
+        if len(library_list[node].contents) > 0:
+            dic["{}_def".format(library_list[node].library)] = library_list[node].dump_def()
         dic["{}_use".format(library_list[node].library)] = library_list[node].dump_use()
         for depee in reverse_edge_list[node]:
             edge_list[depee].remove(node)
