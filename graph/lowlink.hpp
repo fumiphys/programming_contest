@@ -5,10 +5,10 @@
 #include <utility>
 using namespace std;
 
-// begin library lowlink here
-// usage of this library: LowLink lk(n);
-// usage of this library: lk.adde(u, v);
-// usage of this library: lk.build();
+/// begin library lowlink here
+/// usage of this library: LowLink lk(n);
+/// usage of this library: lk.adde(u, v);
+/// usage of this library: lk.build();
 struct LowLink{
   int n;
   vector<vector<int>> edge;
@@ -76,4 +76,4 @@ struct TwoEdgeConnectedComponents: LowLink{
     }
   }
 };
-// end library
+/// end library

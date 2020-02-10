@@ -9,9 +9,9 @@
 #include <vector>
 using namespace std;
 
-// begin library sparse_table here
-// usage of this library: SparseTable<int> st(v, [](int a, int b){return min(a, b);});
-// usage of this library: st.query(l, r);
+/// begin library sparse_table here
+/// usage of this library: SparseTable<int> st(v, [](int a, int b){return min(a, b);});
+/// usage of this library: st.query(l, r);
 template <typename T>
 struct SparseTable{
   int n;
@@ -43,11 +43,11 @@ struct SparseTable{
     return f(vec[b][l], vec[b][r - (1 << b)]);
   }
 };
-// end library
+/// end library
 
-// begin library disjoint_sparse_table here
-// usage of this library: DisjointSparseTable<int> dst(v, f, def);
-// usage of this library: dst.query(l, r);
+/// begin library disjoint_sparse_table here
+/// usage of this library: DisjointSparseTable<int> dst(v, f, def);
+/// usage of this library: dst.query(l, r);
 template <typename T>
 struct DisjointSparseTable{
   int n;
@@ -83,6 +83,6 @@ struct DisjointSparseTable{
     return f(vec[b][l], vec[b][r-1]);
   }
 };
-// end library
+/// end library
 
 #endif // _SPARSETABLE_H_

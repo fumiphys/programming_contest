@@ -10,10 +10,10 @@
 #include <queue>
 using namespace std;
 
-// begin library hopcroft_karp here
-// usage of this library: Graph g(n, m);
-// usage of this library: g.adde(u, v);
-// usage of this library: int p = g.maximum_matching();
+/// begin library hopcroft_karp here
+/// usage of this library: Graph g(n, m);
+/// usage of this library: g.adde(u, v);
+/// usage of this library: int p = g.maximum_matching();
 struct Graph{
   int n, m;
   vector<vector<int>> edges;
@@ -81,6 +81,6 @@ struct Graph{
     }
   }
 };
-// end library
+/// end library
 
 #endif // _HOPCROFTKARP_H_

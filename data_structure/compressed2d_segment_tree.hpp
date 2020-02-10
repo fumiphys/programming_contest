@@ -13,11 +13,11 @@
 #include "segment_tree.hpp"
 using namespace std;
 
-// begin library compressed2d_segment_tree here
-// usage of this library: Compressed2DSegmentTree<int, int> cst(p, f, g, def, v);
-// usage of this library: cst.update(x, y, e);
-// usage of this library: cst.query(x1, x2, y1, y2);
-// depends: segment_tree
+/// begin library compressed2d_segment_tree here
+/// usage of this library: Compressed2DSegmentTree<int, int> cst(p, f, g, def, v);
+/// usage of this library: cst.update(x, y, e);
+/// usage of this library: cst.query(x1, x2, y1, y2);
+/// depends: segment_tree
 template <typename U, typename T, typename E>
 struct Compressed2DSegmentTree{
   using p_t = pair<U, U>;
@@ -86,6 +86,6 @@ struct Compressed2DSegmentTree{
     return query(msx, mtx, sy, ty, 0, 0, n);
   }
 };
-// end library
+/// end library
 
 #endif // _COMPRESSED2DSEGMENTTREE_H_

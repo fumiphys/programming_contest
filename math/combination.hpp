@@ -12,11 +12,11 @@
 #include "prime.hpp"
 using namespace std;
 
-// begin library fixedbase_comb here
-// usage of this library: FixedBaseComb fbc(n, mod);
-// usage of this library: fbc.c(k);
-// depends: power
-// depends: factorize
+/// begin library fixedbase_comb here
+/// usage of this library: FixedBaseComb fbc(n, mod);
+/// usage of this library: fbc.c(k);
+/// depends: power
+/// depends: factorize
 struct FixedBaseComb{
   int n, m;
   long long MOD;
@@ -73,6 +73,6 @@ struct FixedBaseComb{
     return query(a, b, 0, 0, n);
   }
 };
-// end library
+/// end library
 
 #endif // _COMBINATION_H_

@@ -50,10 +50,10 @@ T modinv(T a, T m){
 }
 // end library
 
-// begin library modlog here
-// usage of this library: modlog(a, b, m);
-// depends: power
-// depends: modinv
+/// begin library modlog here
+/// usage of this library: modlog(a, b, m);
+/// depends: power
+/// depends: modinv
 long long modlog(long long a, long long b, long long m){
   a %= m;
   b %= m;
@@ -86,7 +86,7 @@ long long modlog(long long a, long long b, long long m){
   }
   return -1;
 }
-// end library
+/// end library
 
 // begin library garner here
 // usage of this library: garner<long long>(b, m, mod);

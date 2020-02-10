@@ -9,11 +9,11 @@
 #include "warshall_floyd.hpp"
 using namespace std;
 
-// begin library steiner_tree here
-// usage of this library: SteinerTree<int> st(n);
-// usage of this library: st.adde(u, v, c)
-// usage of this library: st.steiner_tree(v);
-// depends: warshall_floyd
+/// begin library steiner_tree here
+/// usage of this library: SteinerTree<int> st(n);
+/// usage of this library: st.adde(u, v, c)
+/// usage of this library: st.steiner_tree(v);
+/// depends: warshall_floyd
 template <typename T>
 struct SteinerTree{
   int n;
@@ -68,6 +68,6 @@ struct SteinerTree{
     return res;
   }
 };
-// end library
+/// end library
 
 #endif // _STEINERTREE_H_

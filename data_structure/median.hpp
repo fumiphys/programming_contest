@@ -10,11 +10,11 @@
 #include <utility>
 using namespace std;
 
-// begin library median here
-// usage of this library: Median<ll> m;
-// usage of this library: m.add(x);
-// usage of this library: pair<ll, ll> p = m.median();
-// usage of this library: ll sum = m.median_sum();
+/// begin library median here
+/// usage of this library: Median<ll> m;
+/// usage of this library: m.add(x);
+/// usage of this library: pair<ll, ll> p = m.median();
+/// usage of this library: ll sum = m.median_sum();
 template <typename T>
 struct Median{
   // l.size() >= r.size() will be always satisfied
@@ -76,6 +76,6 @@ struct Median{
     }
   }
 };
-// end library
+/// end library
 
 #endif // _MEDIAN_H_

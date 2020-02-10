@@ -6,11 +6,11 @@
 #include "convolution.hpp"
 using namespace std;
 
-// begin library formal_power_series here
-// usage of this library: FPS<Mint> fps(n);
-// depends: fft
-// depends: ntt
-// convolution function should be switched by yourself
+/// begin library formal_power_series here
+/// usage of this library: FPS<Mint> fps(n);
+/// depends: fft
+/// depends: ntt
+/// convolution function should be switched by yourself
 template <typename T>
 vector<T> conv(const vector<T> &F, const vector<T> &G){
   vector<long long> f(F.size()), g(G.size());
@@ -232,4 +232,4 @@ struct FPS: vector<T>{
     return os;
   }
 };
-// end library
+/// end library

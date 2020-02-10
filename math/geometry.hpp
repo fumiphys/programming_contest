@@ -278,9 +278,9 @@ double closest_pair(vector<point2d> &a){
   return closest_pair(a, 0, int(a.size()));
 }
 
-// begin library circle here
-// usage of this library: circle c(point2d(x, y), r);
-// usage of this library: circle_crossing_state(c1, c2);
+/// begin library circle here
+/// usage of this library: circle c(point2d(x, y), r);
+/// usage of this library: circle_crossing_state(c1, c2);
 struct circle{
   point2d c;
   double r;
@@ -305,11 +305,11 @@ circle_crossing_state circle_crossing(const circle &a, const circle &b){
   if(d + EPS < abs(a.r - b.r))return INCLUDED;
   return INTERSECT;
 }
-// end library
+/// end library
 
-// begin library square_test here
-// usage of this library: square_test(x, y);
-// for int or long long
+/// begin library square_test here
+/// usage of this library: square_test(x, y);
+/// for int or long long
 template <typename T>
 bool square_test(const vector<T> &x, const vector<T> &y){
   assert(x.size() == 4);
@@ -332,6 +332,6 @@ bool square_test(const vector<T> &x, const vector<T> &y){
   }
   return true;
 }
-// end library
+/// end library
 
 #endif

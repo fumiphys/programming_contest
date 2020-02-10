@@ -10,8 +10,8 @@
 #include <vector>
 using namespace std;
 
-// begin library palindromic_tree here
-// usage of this library: PalindromicTree pt(s);
+/// begin library palindromic_tree here
+/// usage of this library: PalindromicTree pt(s);
 struct Node{
   map<char, int> next;
   int len = 0;
@@ -69,6 +69,6 @@ struct PalindromicTree{
     return true;
   }
 };
-// end library
+/// end library
 
 #endif // _PALINDROMIC_TREE_H_

@@ -13,14 +13,14 @@
 #include "../data_structure/segment_tree.hpp"
 using namespace std;
 
-// begin library point_query_tree here
-// usage of this library: PointQueryTree<ll, ll> pqt = PointQueryTree<ll, ll>(n, [](ll a, ll b){return a + b;},)
-// usage of this library:                                                     [](ll a, ll b){return a + b;},
-// usage of this library:                                                     [](ll a){return -a;},
-// usage of this library:                                                     0, vector<ll>());
-// depends: euler_tour
-// depends: lowest_common_ancestor
-// depends: segment_tree
+/// begin library point_query_tree here
+/// usage of this library: PointQueryTree<ll, ll> pqt = PointQueryTree<ll, ll>(n, [](ll a, ll b){return a + b;},)
+/// usage of this library:                                                     [](ll a, ll b){return a + b;},
+/// usage of this library:                                                     [](ll a){return -a;},
+/// usage of this library:                                                     0, vector<ll>());
+/// depends: euler_tour
+/// depends: lowest_common_ancestor
+/// depends: segment_tree
 template <typename T, typename E>
 struct PointQueryTree{
   int n = 0;
@@ -56,6 +56,6 @@ struct PointQueryTree{
     return res;
   }
 };
-// end library
+/// end library
 
 #endif // _RANGE_QUERY_ON_TREE_H_
