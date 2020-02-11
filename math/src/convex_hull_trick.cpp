@@ -38,6 +38,21 @@ int main(int argc, char const* argv[])
   chl.add(make_pair(-1e9, 0));
   assert(chl.val(2) == -2e9);
   assert(chl.val(-2) == -4e9);
+
+  vector<int> x = {-2, 2};
+  LiChaoTree<int> lcl(x, 1000000, [](int a, int b){return a < b;});
+  lcl.add(2, 0);
+  assert(lcl.query(2) == 4);
+  assert(lcl.query(-2) == -4);
+  lcl.add(0, -1);
+  assert(lcl.query(2) == -1);
+  assert(lcl.query(-2) == -4);
+  lcl.add(1, 1);
+  assert(lcl.query(2) == -1);
+  assert(lcl.query(-2) == -4);
+  lcl.add(-1, 0);
+  assert(lcl.query(2) == -2);
+  assert(lcl.query(-2) == -4);
   cout << "-- test for convex hull trick end: Success -- " << endl;
   return 0;
 }

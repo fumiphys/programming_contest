@@ -66,6 +66,7 @@ library for math
 [convex\_hull\_trick.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/convex_hull_trick.hpp)  
 複数の直線の中で最小の値を求める  
   - monotonious update of lines
+  - Li Chao Tree
 
 ## matrix
 [matrix.hpp](https://github.com/fumiphys/programming_contest/blob/master/math/matrix.hpp)  

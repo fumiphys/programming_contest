@@ -5,6 +5,7 @@
 #ifndef _CONVEX_HULL_TRICK_H_
 #define _CONVEX_HULL_TRICK_H_
 
+#include <algorithm>
 #include <vector>
 #include <utility>
 #include <functional>
@@ -45,5 +46,102 @@ struct ConvexHullTrick_ {
 using ConvexHullTrickI = ConvexHullTrick_<int>;
 using ConvexHullTrickL = ConvexHullTrick_<long long>;
 // end library
+
+template <typename T>
+struct LiChaoTree{
+  struct Line{
+    T a, b;
+    Line(){}
+    Line(T a, T b): a(a), b(b){}
+  };
+  static inline T f(const Line &line, T x){
+    return line.a * x + line.b;
+  }
+
+  int n;
+  vector<T> x;
+  vector<Line> vl;
+  vector<bool> used;
+  function<T(T, T)> comp;
+  T def;
+  LiChaoTree(vector<T> xp, T def, function<T(T, T)> comp=[](T x, T y){return x < y;}): def(def), comp(comp){
+    sort(xp.begin(), xp.end());
+    xp.erase(unique(xp.begin(), xp.end()), xp.end());
+    x = xp;
+    n = 1;
+    while(n < int(xp.size())){
+      n *= 2;
+    }
+    x.resize(n, xp.back());
+    vl.resize(2 * n + 1);
+    used.resize(2 * n + 1);
+  }
+  // [l, r)
+  void add(int k, int l, int r, Line line){
+    if(!used[k]){
+      used[k] = true;
+      vl[k] = line;
+      return;
+    }
+    T ly = f(line, x[l]), ry = f(line, x[r-1]);
+    T dly = f(vl[k], x[l]), dry = f(vl[k], x[r-1]);
+    if(comp(dly, ly) && comp(dry, ry))return;
+    if(comp(ly, dly) && comp(ry, dry)){
+      vl[k] = line;
+      return;
+    }
+    if(r - l == 1)return;
+    int m = (l + r) / 2;
+    if(comp(dly, ly))swap(vl[k], line);
+    if(comp(f(line, x[m]), f(vl[k], x[m]))){
+      swap(vl[k], line);
+      add(2 * k + 2, m, r, line);
+    }else{
+      add(2 * k + 1, l, m, line);
+    }
+  }
+  // [l, r)
+  void add(int l, int r, Line line){
+    int l0 = l, r0 = r, sz = 1;
+    l += n, r += n;
+    while(l < r){
+      if(l & 1){
+        add(l - 1, l0, l0 + sz, line);
+        l0 += sz;
+        l++;
+      }
+      if(r & 1){
+        r--;
+        r0 -= sz;
+        add(r - 1, r0, r0 + sz, line);
+      }
+      l >>= 1, r >>= 1, sz <<= 1;
+    }
+  }
+  // [l, r]
+  void add(T l, T r, T a, T b){
+    int li = lower_bound(x.begin(), x.end(), l) - x.begin();
+    int ri = upper_bound(x.begin(), x.end(), r) - x.begin();
+    add(li, ri, Line(a, b));
+  }
+  void add(T a, T b){
+    add(0, n, Line(a, b));
+  }
+  T query(T val){
+    return f(get(val), val);
+  }
+  Line get(T val){
+    int i = lower_bound(x.begin(), x.end(), val) - x.begin() + n - 1;
+    int ret = -1;
+    while(true){
+      if(used[i]){
+        if(ret == -1 || comp(f(vl[i], val), f(vl[ret], val)))ret = i;
+      }
+      if(i == 0)break;
+      i = (i - 1) / 2;
+    }
+    return vl[ret];
+  }
+};
 
 #endif
