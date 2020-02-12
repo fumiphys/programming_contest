@@ -64,17 +64,22 @@ struct LiChaoTree{
   vector<bool> used;
   function<T(T, T)> comp;
   T def;
-  LiChaoTree(vector<T> xp, T def, function<T(T, T)> comp=[](T x, T y){return x < y;}): def(def), comp(comp){
-    sort(xp.begin(), xp.end());
-    xp.erase(unique(xp.begin(), xp.end()), xp.end());
-    x = xp;
+  LiChaoTree(const vector<T> &xp, T def, function<T(T, T)> comp=[](T x, T y){return x < y;}): def(def), comp(comp){
+    rebuild(xp);
+  }
+  void rebuild(const vector<T> &xp){
+    x.resize(xp.size());
+    for(size_t i = 0; i < xp.size(); i++)x[i] = xp[i];
+    sort(x.begin(), x.end());
+    x.erase(unique(x.begin(), x.end()), x.end());
     n = 1;
-    while(n < int(xp.size())){
+    while(n < int(x.size())){
       n *= 2;
     }
-    x.resize(n, xp.back());
+    T xb = x.back();
+    x.resize(n, xb);
     vl.resize(2 * n + 1);
-    used.resize(2 * n + 1);
+    used.assign(2 * n + 1, false);
   }
   // [l, r)
   void add(int k, int l, int r, Line line){
