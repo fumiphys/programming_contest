@@ -32,7 +32,7 @@ make
 ## snippet
 ```
 cd utils/auto_create_snippet
-python3 auto_create_snippet_spacemacs.py
+python3 auto_create_snippet_vscode.py
 ```
 
  - snippet template
@@ -48,7 +48,6 @@ python3 auto_create_snippet_spacemacs.py
 ## TODO
  - SA-IS, BWT (direct implementation)
  - Bug fix for KMP, BM
- - power for general data stucture
  - Binary Search Tree (Link Cut Tree, Red Black Tree)
  - kd Tree
 
