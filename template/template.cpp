@@ -12,9 +12,9 @@ using namespace std;
 #define irrep(itr, st) for(auto itr = (st).rbegin(); itr != (st).rend(); ++itr)
 #define whole(x) (x).begin(),(x).end()
 #define sz(x) ((int)(x).size())
-#define UNIQUE(v) v.erase(unique(v.begin(), v.end()), v.end())
 #define bit(n) (1LL<<(n))
 // functions
+template <typename T> void unique(T& c){c.erase(std::unique(c.begin(), c.end()), c.end());}
 template <class T>bool chmax(T &a, const T &b){if(a < b){a = b; return 1;} return 0;}
 template <class T>bool chmin(T &a, const T &b){if(a > b){a = b; return 1;} return 0;}
 template <typename T> istream &operator>>(istream &is, vector<T> &vec){for(auto &v: vec)is >> v; return is;}
