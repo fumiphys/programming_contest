@@ -1,66 +1,60 @@
 /*
  * segment tree for point update and range query
  */
-#ifndef _SEGMENT_TREE_PU_RQ_H_
-#define _SEGMENT_TREE_PU_RQ_H_
+#ifndef _SEGMENT_TREE_H_
+#define _SEGMENT_TREE_H_
 
-#include <functional>
 #include <vector>
+#include <typeinfo>
 using namespace std;
 
 // begin library segment_tree here
 // usage of this library: SegmentTreeL seg = SegmentTreeL(n, [](ll a, ll b){return min(a, b);},
-// usage of this library:                                 [](ll a,ll b){return b;}, INF, V);
-template<typename T, typename E>
-struct SegmentTree_ {
-  function<T(T, T)> f; // aggregate function
-  function<T(T, E)> g; // update function
-  int n;
-  T def;
-  vector<T> vec;
-  SegmentTree_(){}
-  SegmentTree_(int n_, function<T(T, T)> f, function<T(T, E)> g, T def, vector<T> v=vector<T>()): f(f), g(g), def(def){
+template <class Monoid>
+class SegmentTree{
+  public:
+    int n;
+    using T = typename Monoid::value_type;
+    vector<T> val;
+    T identity;
 
-    // initialize vector
-    n = 1;
-    while(n < n_){
-      n *= 2;
-    }
-    vec = vector<T>(2*n -1, def);
+    SegmentTree(){}
+    SegmentTree(int n_, vector<T> v=vector<T>()){
+      n = 1;
+      while(n < n_)n *= 2;
+      identity = Monoid::identity;
+      val.assign(2*n-1, identity);
 
-    // initialize segment tree
-    for(int i = 0; i < v.size(); i++){
-      vec[i + n - 1] = v[i];
+      for(size_t i = 0; i < v.size(); i++){
+        val[i+n-1] = v[i];
+      }
+      for(int i = n - 2; i >= 0; i--){
+        val[i] = Monoid::operation(val[2*i+1], val[2*i+2]);
+      }
     }
-    for(int i = n - 2; i >= 0; i--){
-      vec[i] = f(vec[2*i+1], vec[2*i+2]);
+    void update(int k, const T &t){
+      k = k + n - 1;
+      val[k] = t;
+      while(k > 0){
+        k = (k - 1) / 2;
+        val[k] = Monoid::operation(val[2*k+1], val[2*k+2]);
+      }
     }
-  }
-  void update(int k, const E &val){
-    k = k + n - 1;
-    vec[k] = g(vec[k], val);
-    while(k > 0){
-      k = (k - 1) / 2;
-      vec[k] = f(vec[2*k+1], vec[2*k+2]);
+    T query(int a, int b, int k, int l, int r){
+      if(r <= a || b <= l)return identity;
+      if(a <= l && r <= b)return val[k];
+      T lv = query(a, b, 2*k+1, l, (l+r)/2);
+      T rv = query(a, b, 2*k+2, (l+r)/2, r);
+      return Monoid::operation(lv, rv);
     }
-  }
-  // [l, r) -> [a, b) (at k)
-  T query(int a, int b, int k, int l, int r){
-    if(r <= a || b <= l)return def;
-    if(a <= l && r <= b)return vec[k];
-    T ld = query(a, b, 2*k+1, l, (l+r)/2);
-    T rd = query(a, b, 2*k+2, (l+r)/2, r);
-    return f(ld, rd);
-  }
-  T query(int a, int b){
-    return query(a, b, 0, 0, n);
-  }
+    T query(int a, int b){
+      return query(a, b, 0, 0, n);
+    }
+    T get(int i){
+      return val[i+n-1];
+    }
 };
-
-template<typename T, typename E>
-using SegmentTree = struct SegmentTree_<T, E>;
-using SegmentTreeI = SegmentTree<int, int>;
-using SegmentTreeL = SegmentTree<long long, long long>;
+// usage of this library:                                 [](ll a,ll b){return b;}, INF, V);
 // end library
 
 #endif
