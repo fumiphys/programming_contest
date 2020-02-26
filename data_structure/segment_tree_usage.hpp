@@ -17,10 +17,19 @@ class RMQ{
       return min(l, r);
     }
 };
-// usage of this library:                                 [](ll a,ll b){return b;}, INF, V);
 // end library
 
 // begin library RSQ here
-// usage of this library: SegmentTreeL seg = SegmentTreeL(n, [](ll a, ll b){return a + b;},
-// usage of this library:                                 [](ll a,ll b){return a + b;}, 0, V);
+// usage of this library: SegmentTree<RSQ<ll>> seg(n);
+template <typename T>
+class RSQ{
+  public:
+    const static T identity = 0;
+    using value_type = T;
+
+    RSQ(){}
+    static T operation(T &l, T &r){
+      return l + r;
+    }
+};
 // end library
