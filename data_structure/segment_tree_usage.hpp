@@ -5,6 +5,7 @@
 #include "segment_tree.hpp"
 
 // begin library RMQ here
+// depends: segment_tree
 // usage of this library: SegmentTree<RMQ<ll>> seg(n);
 template <typename T>
 class RMQ{
@@ -20,6 +21,7 @@ class RMQ{
 // end library
 
 // begin library RSQ here
+// depends: segment_tree
 // usage of this library: SegmentTree<RSQ<ll>> seg(n);
 template <typename T>
 class RSQ{

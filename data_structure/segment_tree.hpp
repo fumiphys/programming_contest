@@ -9,7 +9,7 @@
 using namespace std;
 
 // begin library segment_tree here
-// usage of this library: SegmentTreeL seg = SegmentTreeL(n, [](ll a, ll b){return min(a, b);},
+// usage of this library: SegmentTree<Monoid> seg(n);
 template <class Monoid>
 class SegmentTree{
   public:
@@ -54,7 +54,6 @@ class SegmentTree{
       return val[i+n-1];
     }
 };
-// usage of this library:                                 [](ll a,ll b){return b;}, INF, V);
 // end library
 
 #endif
