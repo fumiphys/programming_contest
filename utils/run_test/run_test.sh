@@ -77,5 +77,4 @@ printf '\e[32mTest for tree ...\e[m\n'
 ./tree/lowest_common_ancestor
 ./tree/euler_tour
 ./tree/diameter
-./tree/range_query_on_tree
 ./tree/heavy_light_decomposition
