@@ -39,12 +39,12 @@ struct LCATree{
       }
     }
   }
-  void build(){
+  void build(int r = 0){
     fill(vis.begin(), vis.end(), false);
     fill(h.begin(), h.end(), 0);
-    par[0][0] = 0;
-    h[0] = 0;
-    dfs(0);
+    par[0][r] = r;
+    h[r] = 0;
+    dfs(r);
     for(int i = 1; i <= m; i++){
       for(int j = 0; j < n; j++){
         par[i][j] = par[i-1][par[i-1][j]];
