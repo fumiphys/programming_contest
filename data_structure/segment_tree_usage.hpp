@@ -2,6 +2,7 @@
  * usage of Segment Tree
  */
 
+#include <limits>
 #include "segment_tree.hpp"
 
 // begin library RMQ here

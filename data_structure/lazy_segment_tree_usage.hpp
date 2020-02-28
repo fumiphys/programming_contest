@@ -2,6 +2,7 @@
  * usage of Lazy Segment Tree
  */
 
+#include <limits>
 #include "lazy_segment_tree.hpp"
 
 // begin library RUQ here
