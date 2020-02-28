@@ -7,8 +7,20 @@
 #include <random>
 #include <vector>
 #include <utility>
+#include "../segment_tree_usage.hpp"
 #include "../compressed2d_segment_tree.hpp"
 using namespace std;
+
+class RMQ0{
+  public:
+    const static long long identity = numeric_limits<int>::max();
+    using value_type = long long;
+
+    RMQ0(){}
+    static long long operation(long long &l, long long &r){
+      return min(l, r);
+    }
+};
 
 int main(int argc, char *argv[])
 {
@@ -21,8 +33,7 @@ int main(int argc, char *argv[])
   vec[3] = make_pair(1, 4);
   vec[4] = make_pair(4, 4);
 
-  Compressed2DSegmentTree<int, int, int> cs(vec, [](int a, int b){return a + b;},
-                                       [](int a, int b){return a + b;}, 0);
+  Compressed2DSegmentTree<int, RSQ<int>> cs(vec);
   cs.update(0, 0, 1);
   assert(cs.query(0, 4, 0, 4) == 1);
   cs.update(3, 1, 2);
@@ -43,18 +54,14 @@ int main(int argc, char *argv[])
   for(int i = 0; i < m; i++){
     v[i] = make_pair(rand(mt), rand(mt));
   }
-  long long inf = (long long)1e9;
   // long long inf = (long long)0;
-  Compressed2DSegmentTree<long long, long long, long long> csr(v, [](long long a, long long b){return min(a, b);},
-                                                    [](long long a, long long b){return a + b;}, inf);
-  // Compressed2DSegmentTree<long long, long long, long long> csr(v, [](long long a, long long b){return min(a, b);},
-  //                                                   [](long long a, long long b){return b;}, inf);
+  Compressed2DSegmentTree<long long, RMQ0> csr(v);
+  long long inf = RMQ0::identity;
   vector<vector<long long>> a(n, vector<long long>(n, inf));
   for(int i = 0; i < m; i++){
     long long u = rand(mt);
     csr.update(v[i].first, v[i].second, u);
-    a[v[i].first][v[i].second] += u;
-    // a[v[i].first][v[i].second] = u;
+    a[v[i].first][v[i].second] = u;
     int x1 = rand(mt), x2 = rand(mt), y1 = rand(mt), y2 = rand(mt);
     if(x1 > x2)swap(x1, x2);
     if(y1 > y2)swap(y1, y2);
