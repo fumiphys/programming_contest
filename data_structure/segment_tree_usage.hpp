@@ -11,7 +11,7 @@
 template <typename T>
 class RMQ{
   public:
-    const static T identity = numeric_limits<T>::max();
+    const static T identity;
     using value_type = T;
 
     RMQ(){}
@@ -19,6 +19,9 @@ class RMQ{
       return min(l, r);
     }
 };
+
+template <typename T>
+const T RMQ<T>::identity = numeric_limits<T>::max();
 // end library
 
 // begin library RSQ here
@@ -27,7 +30,7 @@ class RMQ{
 template <typename T>
 class RSQ{
   public:
-    const static T identity = 0;
+    const static T identity;
     using value_type = T;
 
     RSQ(){}
@@ -35,4 +38,7 @@ class RSQ{
       return l + r;
     }
 };
+
+template <typename T>
+const T RSQ<T>::identity = 0;
 // end library
