@@ -14,7 +14,7 @@ source_json = "source.json"
 testcase_print_lines = 4
 
 # execution
-exec_time_base = ["/usr/bin/time", "-f", "'%M %E'"]
+exec_time_base = ["gtime", "-f", "'%M %E'"]
 cpp_compile_base = ["g++", "-std=c++14", "-O2", "-g", "-fsanitize=undefined"]
 cpp_compile_base_fast = ["g++", "-std=c++14"]
 exec_timeout = 20
