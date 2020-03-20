@@ -17,30 +17,42 @@ template <typename T>
 struct MergableRangeSet{
   using PT = pair<T, T>;
   set<PT> st;
+  T mini = numeric_limits<T>::min();
   MergableRangeSet(){}
   // [l, r)
   void add(T l, T r){
     if(r <= l)return;
-    auto itr = st.upper_bound(make_pair(l, 0));
+    auto itr = st.lower_bound(make_pair(l, mini));
     if(itr != st.begin()){
       auto litr = itr;
       --litr;
-      if(litr->second >= r){
-        return;
-      }else if(litr->second >= l){
-        l = litr->first;
-        st.erase(litr);
+      if(litr->second >= l){
+        if(litr->second >= r){
+          return;
+        }else{
+          l = litr->first;
+          st.erase(litr);
+        }
       }
     }
-    if(itr != st.end()){
-      if(r < itr->first)st.insert(make_pair(l, r));
-      else {
-        PT p = make_pair(l, max(r, itr->second));
-        st.erase(itr);
-        st.insert(p);
+    while(true){
+      if(itr != st.end()){
+        if(r < itr->first){
+          st.insert(make_pair(l, r));
+          return;
+        }else {
+          if(r <= itr->second){
+            r = itr->second;
+            st.erase(itr);
+            st.insert(make_pair(l, r));
+            return;
+          }
+          itr = st.erase(itr);
+        }
+      }else{
+        st.insert(make_pair(l, r));
+        return;
       }
-    }else{
-      st.insert(make_pair(l, r));
     }
   }
   typename set<PT>::iterator begin() noexcept{
