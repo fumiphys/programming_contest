@@ -13,8 +13,8 @@ class RUQ{
   public:
     using value_type = T;
     using lazy_type = E;
-    const static T identity = 0;
-    const static E lazy_def = numeric_limits<E>::min();
+    const static T identity;
+    const static E lazy_def;
     RUQ(){}
     static T operation(T &l, T &r){
       return l + r;
@@ -26,6 +26,11 @@ class RUQ{
       return e * len;
     }
 };
+
+template <typename T, typename E>
+const T RUQ<T, E>::identity = 0;
+template <typename T, typename E>
+const E RUQ<T, E>::lazy_def = numeric_limits<E>::min();
 // end library
 
 // begin library RAQ here
@@ -36,8 +41,8 @@ class RAQ{
   public:
     using value_type = T;
     using lazy_type = E;
-    const static T identity = 0;
-    const static E lazy_def = 0;
+    const static T identity;
+    const static E lazy_def;
     RAQ(){}
     static T operation(T &l, T &r){
       return l + r;
@@ -49,6 +54,11 @@ class RAQ{
       return t + e * len;
     }
 };
+
+template <typename T, typename E>
+const T RAQ<T, E>::identity = 0;
+template <typename T, typename E>
+const E RAQ<T, E>::lazy_def = 0;
 // end library
 
 // begin library RMQRUQ here
@@ -59,8 +69,8 @@ class RMQRUQ{
   public:
     using value_type = T;
     using lazy_type = E;
-    const static T identity = numeric_limits<T>::max();
-    const static E lazy_def = numeric_limits<E>::min();
+    const static T identity;
+    const static E lazy_def;
     RMQRUQ(){}
     static T operation(T &l, T &r){
       return min(l, r);
@@ -72,6 +82,11 @@ class RMQRUQ{
       return e;
     }
 };
+
+template <typename T, typename E>
+const T RMQRUQ<T, E>::identity = numeric_limits<T>::max();
+template <typename T, typename E>
+const E RMQRUQ<T, E>::lazy_def = numeric_limits<E>::min();
 // end library
 
 // begin library RSQRAQ here
@@ -82,8 +97,8 @@ class RSQRAQ{
   public:
     using value_type = T;
     using lazy_type = E;
-    const static T identity = 0;
-    const static E lazy_def = 0;
+    const static T identity;
+    const static E lazy_def;
     RSQRAQ(){}
     static T operation(T &l, T &r){
       return l + r;
@@ -95,6 +110,11 @@ class RSQRAQ{
       return t + e * len;
     }
 };
+
+template <typename T, typename E>
+const T RSQRAQ<T, E>::identity = 0;
+template <typename T, typename E>
+const E RSQRAQ<T, E>::lazy_def = 0;
 // end library
 
 // begin library RMQRAQ here
@@ -105,8 +125,8 @@ class RMQRAQ{
   public:
     using value_type = T;
     using lazy_type = E;
-    const static T identity = numeric_limits<T>::max();
-    const static E lazy_def = 0;
+    const static T identity;
+    const static E lazy_def;
     RMQRAQ(){}
     static T operation(T &l, T &r){
       return min(l, r);
@@ -118,6 +138,11 @@ class RMQRAQ{
       return t + e;
     }
 };
+
+template <typename T, typename E>
+const T RMQRAQ<T, E>::identity = numeric_limits<T>::max();
+template <typename T, typename E>
+const E RMQRAQ<T, E>::lazy_def = 0;
 // end library
 
 // begin library RSQRUQ here
@@ -128,8 +153,8 @@ class RSQRUQ{
   public:
     using value_type = T;
     using lazy_type = E;
-    const static T identity = 0;
-    const static E lazy_def = numeric_limits<E>::min();
+    const static T identity;
+    const static E lazy_def;
     RSQRUQ(){}
     static T operation(T &l, T &r){
       return l + r;
@@ -141,4 +166,9 @@ class RSQRUQ{
       return e * len;
     }
 };
+
+template <typename T, typename E>
+const T RSQRUQ<T, E>::identity = 0;
+template <typename T, typename E>
+const E RSQRUQ<T, E>::lazy_def = numeric_limits<E>::min();
 // end library
