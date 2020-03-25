@@ -65,7 +65,11 @@ def run_testcases(source, tc):
     if len(stderr_data) > 1:
         print(" ** {}".format(colored("Standard Error", "blue",
                                       attrs=["bold"])))
-        print_fixed_line("\n".join(stderr_data[:-1]))
+        print_err_data = stderr_data[:-1]
+        if len(print_err_data) > config.stderr_print_lines:
+            print_err_data = print_err_data[:config.stderr_print_lines]
+            print_err_data.append("...")
+        print_fixed_line("\n".join(print_err_data))
     mem, tim = stderr_data[-1][1:-1].split(" ")
 
     # print execution info
