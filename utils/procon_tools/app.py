@@ -7,7 +7,7 @@ import signal
 from termcolor import colored
 
 import config
-import pc_add
+from pc_add import add_new_testcase
 from pc_copy import copy_source
 from pc_fetch import fetch_testcases, fetch_testcases_from_url
 from pc_interactive import interactive
@@ -209,6 +209,8 @@ def main():
         check_testcases(source, contest, problem, fast=args.fast, force=args.force)
     elif method == "run":
         run_source(source, fast=args.fast, force=args.force, input_file=input_file)
+    elif method == "add":
+        add_new_testcase(contest, problem)
     elif method == "interactive":
         if source == "":
             writeerr_and_exit("Error! No source file specified.")
