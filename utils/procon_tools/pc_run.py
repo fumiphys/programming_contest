@@ -21,7 +21,7 @@ def compose_command(ext, source, time=True):
     return None
 
 
-def run_source(source, fast=False, force=False):
+def run_source(source, fast=False, force=False, input_file=None):
     ext = source.split(".")[-1]
     if ext == "cpp" or ext == "cc":
         b = compile_cpp_source(source, fast, force)
@@ -32,11 +32,20 @@ def run_source(source, fast=False, force=False):
     command = compose_command(ext, source)
     if command is None:
         return
-    proc = subprocess.Popen(command,
-                            stdin=subprocess.PIPE,
-                            stderr=subprocess.PIPE,
-                            encoding='utf-8',
-                            bufsize=1)
+    proc = None
+    if input_file is None:
+        proc = subprocess.Popen(command,
+                                stdin=subprocess.PIPE,
+                                stderr=subprocess.PIPE,
+                                encoding='utf-8',
+                                bufsize=1)
+    else:
+        with open(input_file, 'r') as f:
+            proc = subprocess.Popen(command,
+                                    stdin=f,
+                                    stderr=subprocess.PIPE,
+                                    encoding='utf-8',
+                                    bufsize=1)
 
     print(" ** {}".format(colored("input>>", "blue")))
     while True:

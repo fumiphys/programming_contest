@@ -119,6 +119,12 @@ def get_url(args, info):
     return url
 
 
+def get_input_file(args, info):
+    '''get input
+    '''
+    return args.input_file
+
+
 def main():
     # parse arguments
     parser = argparse.ArgumentParser()
@@ -131,6 +137,7 @@ def main():
     parser.add_argument("--fast", action="store_true", help="compile without optimization option")
     parser.add_argument("--judge", help="judge file")
     parser.add_argument("--force", action="store_true", help="force compile")
+    parser.add_argument("-i", "--input_file", help="input file")
     args = parser.parse_args()
 
     # create base directory
@@ -183,6 +190,9 @@ def main():
     # url
     url = get_url(args, info)
 
+    # input
+    input_file = get_input_file(args, info)
+
     if method == "fetch":
         fetch_testcases(host, contest, problem)
     elif method == "fetchurl":
@@ -198,9 +208,7 @@ def main():
             writeerr_and_exit("Error! No source file specified.")
         check_testcases(source, contest, problem, fast=args.fast, force=args.force)
     elif method == "run":
-        if source == "":
-            writeerr_and_exit("Error! No source file specified.")
-        run_source(source, fast=args.fast, force=args.force)
+        run_source(source, fast=args.fast, force=args.force, input_file=input_file)
     elif method == "interactive":
         if source == "":
             writeerr_and_exit("Error! No source file specified.")
