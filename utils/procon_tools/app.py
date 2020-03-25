@@ -128,9 +128,9 @@ def main():
     parser.add_argument("-p", "--problem", help="problem name")
     parser.add_argument("-s", "--source", help="source file")
     parser.add_argument("--url", help="problem url")
-    parser.add_argument("--fast", action="store_true")
+    parser.add_argument("--fast", action="store_true", help="compile without optimization option")
     parser.add_argument("--judge", help="judge file")
-    parser.add_argument("--force", action="store_true")
+    parser.add_argument("--force", action="store_true", help="force compile")
     args = parser.parse_args()
 
     # create base directory
