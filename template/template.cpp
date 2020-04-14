@@ -13,6 +13,8 @@ using namespace std;
 #define whole(x) (x).begin(),(x).end()
 #define sz(x) ((int)(x).size())
 #define bit(n) (1LL<<(n))
+#define F first
+#define S second
 // functions
 template <typename T> void unique(T& c){c.erase(std::unique(c.begin(), c.end()), c.end());}
 template <class T>bool chmax(T &a, const T &b){if(a < b){a = b; return 1;} return 0;}
