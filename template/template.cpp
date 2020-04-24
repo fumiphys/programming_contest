@@ -33,7 +33,7 @@ using ll = long long int;
 using P = pair<int, int>;
 // constants
 const int inf = 1e9;
-const ll linf = 1LL << 50;
+const ll linf = 1LL << 60;
 const double EPS = 1e-10;
 const int mod = 1000000007;
 const int dx[4] = {-1, 0, 1, 0};
