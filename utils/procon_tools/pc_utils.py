@@ -77,5 +77,5 @@ def exec_command(cmd, inp=None, timeout=config.exec_timeout):
     except subprocess.TimeoutExpired:
         proc.kill()
         # outs, errs = proc.communicate()
-        return None, None
-    return outs, errs
+        return None, None, None
+    return outs, errs, proc.returncode

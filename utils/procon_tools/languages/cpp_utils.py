@@ -31,16 +31,20 @@ def compile_cpp_source(source, fast=False, force=False):
     print(" * Compiling {}".format(colored(source, "blue")))
     stdout_data, stderr_data = None, None
     if not fast:
-        stdout_data, stderr_data = exec_command(cpp_compile_base +
+        stdout_data, stderr_data, returncode = exec_command(cpp_compile_base +
                                                 [source, "-o", executable])
     else:
-        stdout_data, stderr_data = exec_command(cpp_compile_base_fast +
+        stdout_data, stderr_data, returncode = exec_command(cpp_compile_base_fast +
                                                 [source, "-o", executable])
-    if len(stderr_data) > 0:
+    if returncode != 0:
         stderr_data = stderr_data.strip()
         print_fixed_line(stderr_data)
         print(" * Compile Failed")
         return False
+    
+    if len(stderr_data) > 0:
+        stderr_data = stderr_data.strip()
+        print_fixed_line(stderr_data)
 
     source_dict[source] = time.time()
     f = open(s_json, 'w')
@@ -52,5 +56,5 @@ def exec_cpp_input(source, inp):
     '''execute c++ command
     '''
     executable = "./_{}".format(source.split(".")[0])
-    stdout_data, stderr_data = exec_command(exec_time_base + [executable], inp)
+    stdout_data, stderr_data, returncode = exec_command(exec_time_base + [executable], inp)
     return stdout_data, stderr_data
